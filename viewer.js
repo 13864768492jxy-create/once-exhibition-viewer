@@ -1,4 +1,4 @@
-import {ExhibitionScene} from './scene.js?v=20261011-02';
+import {ExhibitionScene} from './scene.js?v=20261011-03';
 import {walls,cm,sampleImage} from './model.js?v=20261011-connect-01';
 
 const $=id=>document.getElementById(id);

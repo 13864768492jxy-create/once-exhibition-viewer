@@ -144,7 +144,7 @@ export class ExhibitionScene {
     if(work.type==='art'){
       const outer=workBounds(work),padding=work.frame==='none'?0:(work.frameWidth||.008);
       g.add(this.box(outer.width,outer.height,work.depth,'#faf9f5'));
-      const imagePlane=new THREE.Mesh(new THREE.PlaneGeometry(work.width,work.height),new THREE.MeshBasicMaterial({color:'#eeede5',side:THREE.FrontSide,toneMapped:false}));imagePlane.position.z=work.depth/2+.001;g.add(imagePlane);
+      const imagePlane=new THREE.Mesh(new THREE.PlaneGeometry(work.width,work.height),new THREE.MeshBasicMaterial({color:'#eeede5',side:THREE.FrontSide,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-4}));imagePlane.position.z=work.depth/2+.001;g.add(imagePlane);
       if(work.frame!=='none'){
         const color={black:'#292b28',white:'#f9f9f4',wood:'#b5a58b'}[work.frame];
         [[outer.width,padding,0,(outer.height-padding)/2],[outer.width,padding,0,-(outer.height-padding)/2],[padding,outer.height,-(outer.width-padding)/2,0],[padding,outer.height,(outer.width-padding)/2,0]].forEach(([w,h,x,y])=>{const frame=this.box(w,h,work.depth+.009,color);frame.position.set(x,y,0);g.add(frame);});
