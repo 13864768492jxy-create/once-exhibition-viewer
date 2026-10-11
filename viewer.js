@@ -1,4 +1,4 @@
-import {ExhibitionScene} from './scene.js';
+import {ExhibitionScene} from './scene.js?v=20261011-02';
 import {walls,cm,sampleImage} from './model.js?v=20261011-connect-01';
 
 const $=id=>document.getElementById(id);
@@ -16,7 +16,7 @@ function changeView(mode){
   scene.view(mode);select(null);document.body.classList.toggle('eye',mode==='eye');
   $('walk-controls').hidden=mode!=='eye';
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===mode)));
-  $('view-tip').textContent=mode==='plan'?'拖动平移 · 双指或滚轮缩放':mode==='eye'?'拖动环顾 · 方向键或 W A S D 移动':'拖动转动视角 · 双指或滚轮缩放';
+  $('view-tip').textContent=mode==='plan'?'编号对应作品清单 · 拖动平移 · 双指或滚轮缩放':mode==='eye'?'拖动环顾 · 方向键或 W A S D 移动':'拖动转动视角 · 双指或滚轮缩放';
   if(mobile.matches)showList(false);
 }
 function renderList(medium){

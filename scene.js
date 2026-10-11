@@ -136,6 +136,7 @@ export class ExhibitionScene {
       this.roomGroup.add(g);
     }
     state.works.forEach((w,i)=>{if(w.placed!==false)this.addWork(w,i);});
+    this.spacePlanMarkers();
     this.setSelected(this.selected);this.applyVisibility();this.resize();
   }
   addWork(work,index){
@@ -164,8 +165,21 @@ export class ExhibitionScene {
       g.add(this.box(work.width,work.height,work.depth,work.color||(work.type==='partition'?'#f7f7f0':work.type==='plinth'?'#e5e4db':'#889683')));
       if(work.type==='block'){const line=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(work.width,work.height,work.depth)),new THREE.LineBasicMaterial({color:'#67765e',transparent:true,opacity:.3}));g.add(line);}
     }
-    const marker=this.label(String(index+1).padStart(2,'0'),.32,'#355748');marker.userData.marker=true;marker.position.set(0,work.height/2+.12,0);g.add(marker);
+    const number=/^once_(\d+)$/.exec(work.name)?.[1];
+    const marker=this.label(number||(work.displayKind==='book-table'?'书台':work.name.startsWith('VESSEL')?'影像':'前言'),.32,'#faf9f3');marker.userData.marker=true;marker.position.set(0,work.height/2+.12,.2);g.userData.planMarker=marker;g.add(marker);
     this.worksGroup.add(g);this.positionWork(work);g.traverse(child=>{child.userData.workId=work.id;});
+  }
+  spacePlanMarkers(){
+    for(const wall of this.wallData){
+      const group=[...this.workGroups.values()].filter(g=>g.userData.work.type==='art'&&g.userData.work.wall===wall.index).sort((a,b)=>a.userData.work.along-b.userData.work.along);
+      const positions=[];
+      group.forEach((g,i)=>positions.push(Math.max(g.userData.work.along,i?positions[i-1]+.42:.2)));
+      for(let i=positions.length-1;i>=0;i--)positions[i]=Math.min(positions[i],i===positions.length-1?wall.length-.2:positions[i+1]-.42);
+      group.forEach((g,i)=>{
+        const marker=g.userData.planMarker,w=g.userData.work,dx=positions[i]-w.along;marker.position.x=dx;
+        const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,marker.position.y,.01),new THREE.Vector3(dx,marker.position.y,.2)]),new THREE.LineBasicMaterial({color:'#faf9f3',transparent:true,opacity:.55,depthTest:false}));line.userData.marker=true;line.renderOrder=3;g.add(line);
+      });
+    }
   }
   async loadTexture(source){
     if(this.textures.has(source))return this.textures.get(source);
