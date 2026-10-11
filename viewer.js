@@ -1,4 +1,4 @@
-import {ExhibitionScene} from './scene.js?v=20261012-frames-01';
+import {ExhibitionScene} from './scene.js?v=20261012-frames-02';
 import {walls,cm,sampleImage,workBounds,wallPosition} from './model.js?v=20261011-connect-01';
 
 const $=id=>document.getElementById(id);
@@ -36,10 +36,10 @@ function renderList(medium){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261012-frames-01');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261012-frames-02');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
   const variant=new URLSearchParams(location.search).get('framing');
-  let framingNote=data.framingPlan?'确定带框 7 幅；24、32 暂按纸贴。':'';
+  let framingNote=data.framingPlan?'确定带框 8 幅；24 与16、26、31同规格；32 暂按纸贴。':'';
   if(['white-wide','black-narrow'].includes(variant)){
     const w=state.works.find(w=>w.name==='once_32'),center=w.hangingCenterHeight??w.elevation+workBounds(w).height/2;
     Object.assign(w,{frame:variant==='white-wide'?'white':'black',mat:.025,frameWidth:variant==='white-wide'?.04:.006,depth:variant==='white-wide'?.02:.025});
