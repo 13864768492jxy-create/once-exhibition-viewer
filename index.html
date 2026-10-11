@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#e8e7e0">
+  <title>后知后觉 / once · 姜昕宇</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="viewer.css?v=20261011-01">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+  <header>
+    <div class="identity"><h1>后知后觉 <span>/ once</span></h1><p>姜昕宇 · 2026</p></div>
+    <nav aria-label="观看方式">
+      <button data-view="overview" aria-pressed="true">空间总览</button>
+      <button data-view="plan" aria-pressed="false">俯视布置</button>
+      <button data-view="eye" aria-pressed="false">观众视角</button>
+      <button id="list-toggle" aria-controls="works" aria-expanded="true">作品清单</button>
+    </nav>
+  </header>
+  <main>
+    <aside id="works" aria-label="作品清单"><div class="list-heading"><strong>作品清单</strong><span>30 幅摄影</span></div><div id="work-list"></div></aside>
+    <section class="stage" aria-label="展厅预览">
+      <div id="viewport"></div>
+      <div id="loading" role="status">正在打开展厅…</div>
+      <p id="view-tip">拖动转动视角 · 双指或滚轮缩放</p>
+      <div id="walk-controls" aria-label="观众移动" hidden>
+        <span>拖动环顾 · 点按或长按移动</span>
+        <div class="walk-pad">
+          <button data-walk="forward" aria-label="前进">↑<small>前进</small></button>
+          <button data-walk="left" aria-label="左移">←<small>左移</small></button>
+          <button data-walk="back" aria-label="后退">↓<small>后退</small></button>
+          <button data-walk="right" aria-label="右移">→<small>右移</small></button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="viewer.js?v=20261011-01"></script>
+</body>
+</html>
