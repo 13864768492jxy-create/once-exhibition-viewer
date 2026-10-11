@@ -143,14 +143,19 @@ export class ExhibitionScene {
     const g=new THREE.Group();g.userData.workId=work.id;g.userData.work=work;this.workGroups.set(work.id,g);
     if(work.type==='art'){
       const outer=workBounds(work),padding=work.frame==='none'?0:(work.frameWidth||.008);
-      g.add(this.box(outer.width,outer.height,work.depth,'#faf9f5'));
-      const imagePlane=new THREE.Mesh(new THREE.PlaneGeometry(work.width,work.height),new THREE.MeshBasicMaterial({color:'#eeede5',side:THREE.FrontSide,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-4}));imagePlane.position.z=work.depth/2+.001;g.add(imagePlane);
+      const floating=work.mounting==='floating'&&work.frame!=='none';
+      let imageDepth=work.depth/2+.001;
+      if(floating){
+        const panelDepth=work.panelDepth||.01,panelFront=work.depth/2-(work.panelRecess??.002);
+        const panel=this.box(work.width,work.height,panelDepth,'#393733');panel.position.z=panelFront-panelDepth/2;g.add(panel);imageDepth=panelFront+.0005;
+      }else g.add(this.box(outer.width,outer.height,work.depth,'#faf9f5'));
+      const imagePlane=new THREE.Mesh(new THREE.PlaneGeometry(work.width,work.height),new THREE.MeshBasicMaterial({color:'#eeede5',side:THREE.FrontSide,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-4}));imagePlane.position.z=imageDepth;g.add(imagePlane);
       if(work.frame!=='none'){
         const color={black:'#292b28',white:'#f9f9f4',wood:'#b5a58b'}[work.frame];
-        [[outer.width,padding,0,(outer.height-padding)/2],[outer.width,padding,0,-(outer.height-padding)/2],[padding,outer.height,-(outer.width-padding)/2,0],[padding,outer.height,(outer.width-padding)/2,0]].forEach(([w,h,x,y])=>{const frame=this.box(w,h,work.depth+.009,color);frame.position.set(x,y,0);g.add(frame);});
+        [[outer.width,padding,0,(outer.height-padding)/2],[outer.width,padding,0,-(outer.height-padding)/2],[padding,outer.height,-(outer.width-padding)/2,0],[padding,outer.height,(outer.width-padding)/2,0]].forEach(([w,h,x,y])=>{const frame=this.box(w,h,floating?work.depth:work.depth+.009,color);frame.position.set(x,y,0);g.add(frame);});
       }
       g.userData.imagePlane=imagePlane;const initialSource=work.thumbnail&&work.width<=.6?work.thumbnail:work.image;g.userData.lowResolution=initialSource!==work.image;
-      if(initialSource)this.loadTexture(initialSource).then(texture=>{if(imagePlane.material&&texture&&!g.userData.highResolutionApplied){imagePlane.material.map=texture;imagePlane.material.color.set('#fff');imagePlane.material.needsUpdate=true;}}).catch(()=>{});
+      if(initialSource)this.loadTexture(initialSource).then(texture=>{if(imagePlane.material&&texture&&!g.userData.highResolutionApplied)this.applyArtTexture(g,texture);}).catch(()=>{});
     }else if(work.displayKind==='book-table'){
       const tableTop=this.box(work.width,.035,work.depth,'#b1a08c');tableTop.position.y=work.height/2-.018;g.add(tableTop);
       for(const x of [-work.width/2+.035,work.width/2-.035])for(const z of [-work.depth/2+.035,work.depth/2-.035]){const leg=this.box(.026,work.height-.035,.026,'#6f6458');leg.position.set(x,-.018,z);g.add(leg);}
@@ -168,6 +173,19 @@ export class ExhibitionScene {
     const number=/^once_(\d+)$/.exec(work.name)?.[1];
     const marker=this.label(number||(work.displayKind==='book-table'?'书台':work.name.startsWith('VESSEL')?'影像':'前言'),.32,'#faf9f3');marker.userData.marker=true;marker.position.set(0,work.height/2+.12,.2);g.userData.planMarker=marker;g.add(marker);
     this.worksGroup.add(g);this.positionWork(work);g.traverse(child=>{child.userData.workId=work.id;});
+  }
+  applyArtTexture(g,texture){
+    const plane=g.userData.imagePlane,work=g.userData.work;if(!plane?.material)return;
+    let map=texture;
+    if(work.imageFit==='cover'){
+      map=texture.clone();map.userData={...texture.userData,ephemeral:true};
+      const sourceRatio=texture.image.width/texture.image.height,targetRatio=work.width/work.height;
+      if(sourceRatio>targetRatio){map.repeat.x=targetRatio/sourceRatio;map.offset.x=(1-map.repeat.x)/2;}
+      else{map.repeat.y=sourceRatio/targetRatio;map.offset.y=(1-map.repeat.y)/2;}
+      map.needsUpdate=true;
+    }
+    if(plane.material.map?.userData.ephemeral)plane.material.map.dispose();
+    plane.material.map=map;plane.material.color.set('#fff');plane.material.needsUpdate=true;
   }
   spacePlanMarkers(){
     for(const wall of this.wallData){
@@ -219,7 +237,7 @@ export class ExhibitionScene {
   upgradeArt(g){
     if(!g.userData.lowResolution||g.userData.highResolutionRequested||performance.now()<(g.userData.retryAt||0))return;
     const plane=g.userData.imagePlane,work=g.userData.work;if(!plane||!work.image)return;g.userData.highResolutionRequested=true;
-    this.loadTexture(work.image).then(texture=>{plane.material.map=texture;plane.material.color.set('#fff');plane.material.needsUpdate=true;g.userData.highResolutionApplied=true;g.userData.lowResolution=false;}).catch(()=>{g.userData.highResolutionRequested=false;g.userData.retryAt=performance.now()+10000;});
+    this.loadTexture(work.image).then(texture=>{this.applyArtTexture(g,texture);g.userData.highResolutionApplied=true;g.userData.lowResolution=false;}).catch(()=>{g.userData.highResolutionRequested=false;g.userData.retryAt=performance.now()+10000;});
   }
   view(mode){
     if(!this.state)return;this.navigation.clear();this.mode=mode;const b=bounds(this.state.room),max=Math.max(b.width,b.depth);

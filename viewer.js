@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261011-03';
-import {walls,cm,sampleImage} from './model.js?v=20261011-connect-01';
+import {ExhibitionScene} from './scene.js?v=20261012-frames-01';
+import {walls,cm,sampleImage,workBounds,wallPosition} from './model.js?v=20261011-connect-01';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -36,8 +36,18 @@ function renderList(medium){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261011-01');if(!response.ok)throw Error('方案没有载入');
-  const data=await response.json();state=data.state;photos=state.works.filter(w=>w.sourceFile&&w.placed!==false);
+  const response=await fetch('data.json?v=20261012-frames-01');if(!response.ok)throw Error('方案没有载入');
+  const data=await response.json();state=data.state;
+  const variant=new URLSearchParams(location.search).get('framing');
+  let framingNote=data.framingPlan?'确定带框 7 幅；24、32 暂按纸贴。':'';
+  if(['white-wide','black-narrow'].includes(variant)){
+    const w=state.works.find(w=>w.name==='once_32'),center=w.hangingCenterHeight??w.elevation+workBounds(w).height/2;
+    Object.assign(w,{frame:variant==='white-wide'?'white':'black',mat:.025,frameWidth:variant==='white-wide'?.04:.006,depth:variant==='white-wide'?.02:.025});
+    w.elevation=center-workBounds(w).height/2;wallPosition(w,state.room);
+    framingNote=variant==='white-wide'?'装裱候选：32 号白宽框（正面暂估 4 cm），2.5 cm 卡纸。':'装裱候选：32 号黑窄框，2.5 cm 卡纸。';
+  }
+  if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
+  photos=state.works.filter(w=>w.sourceFile&&w.placed!==false);
   scene=new ExhibitionScene($('viewport'),{
     select,beginDrag:()=>{},drag:()=>{},endDrag:()=>{},
     imageSource:async source=>source.startsWith('sample:')?sampleImage(source.slice(7)):new URL(source,location.href).href
