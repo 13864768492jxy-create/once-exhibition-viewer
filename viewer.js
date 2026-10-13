@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261012-frames-03';
-import {walls,cm,sampleImage,workBounds,wallPosition} from './model.js?v=20261011-connect-01';
+import {ExhibitionScene} from './scene.js?v=20261014-sync-01';
+import {walls,cm,sampleImage} from './model.js?v=20261014-sync-01';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -29,23 +29,16 @@ function renderList(medium){
       const button=document.createElement('button');button.className='work';button.setAttribute('aria-pressed','false');
       const image=document.createElement('img');image.src=w.thumbnail||w.image;image.alt='';image.loading='lazy';
       const text=document.createElement('span'),title=document.createElement('strong'),caption=document.createElement('small');
-      title.textContent=w.name;caption.textContent=`${cm(w.width)} × ${cm(w.height)} cm，2026，${medium}。`;
+      title.textContent=w.name;caption.textContent=`${cm(w.width)} × ${cm(w.height)} cm，2026，${medium}。${w.framingDescription||''}`;
       text.append(title,caption);button.append(image,text);buttons.set(w.id,button);root.append(button);
       button.onclick=()=>{changeView(`wall:${w.wall}`);select(w.id);$('view-tip').textContent=`${wall.name} · ${w.name}`;};
     }
   }
 }
 try{
-  const response=await fetch('data.json?v=20261012-frames-03');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261014-sync-01');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
-  const variant=new URLSearchParams(location.search).get('framing');
-  let framingNote=data.framingPlan?'确定带框 7 幅；24 恢复纸贴；32 暂按纸贴。':'';
-  if(['white-wide','black-narrow'].includes(variant)){
-    const w=state.works.find(w=>w.name==='once_32'),center=w.hangingCenterHeight??w.elevation+workBounds(w).height/2;
-    Object.assign(w,{frame:variant==='white-wide'?'white':'black',mat:.025,frameWidth:variant==='white-wide'?.04:.006,depth:variant==='white-wide'?.02:.025});
-    w.elevation=center-workBounds(w).height/2;wallPosition(w,state.room);
-    framingNote=variant==='white-wide'?'装裱候选：32 号白宽框（正面暂估 4 cm），2.5 cm 卡纸。':'装裱候选：32 号黑窄框，2.5 cm 卡纸。';
-  }
+  const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白色宽框：32、34。24 保留纸贴。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
   photos=state.works.filter(w=>w.sourceFile&&w.placed!==false);
   scene=new ExhibitionScene($('viewport'),{

@@ -152,7 +152,7 @@ export function validateState(value) {
     w.placed=w.placed!==false;
     if(w.lockAspect!==undefined&&typeof w.lockAspect!=='boolean')throw Error('照片比例锁定设置无效。');
     if(w.mat!==undefined&&(!Number.isFinite(w.mat)||w.mat<0||w.mat>.15))throw Error('卡纸留边须在 0 到 15 厘米之间。');
-    if(w.frameWidth!==undefined&&(!Number.isFinite(w.frameWidth)||w.frameWidth<.002||w.frameWidth>.03))throw Error('框条宽度须在 0.2 到 3 厘米之间。');
+    if(w.frameWidth!==undefined&&(!Number.isFinite(w.frameWidth)||w.frameWidth<.002||w.frameWidth>.15))throw Error('框条宽度须在 0.2 到 15 厘米之间。');
     for(const field of ['frameOuterWidth','frameOuterHeight'])if(w[field]!==undefined&&(!Number.isFinite(w[field])||w[field]<.1||w[field]>30))throw Error('外框尺寸无效。');
     if(w.imageRatio!==undefined&&(!Number.isFinite(w.imageRatio)||w.imageRatio<.02||w.imageRatio>50))throw Error('图片比例无效。');
     w.name=String(w.name||'未命名作品').slice(0,120);w.frame=['none','white','black','wood'].includes(w.frame)?w.frame:'none';
