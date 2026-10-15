@@ -1,6 +1,7 @@
-Font source: Noto Sans CJK SC Bold
+Font sources: Noto Sans CJK SC Bold and Medium
 Copyright 2014-2021 Adobe (http://www.adobe.com/).
-Subset renamed Once Poetry Sans for this exhibition viewer.
+Subsets renamed Once Poetry Sans Bold and Once Poetry Sans Medium for this exhibition viewer.
+Medium source: https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Medium.otf
 Original license: https://github.com/notofonts/noto-cjk/blob/main/Sans/LICENSE
 
 This Font Software is licensed under the SIL Open Font License,
