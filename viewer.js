@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261015-left-01';
-import {walls,cm,sampleImage} from './model.js?v=20261015-left-01';
+import {ExhibitionScene} from './scene.js?v=20261015-sizes-01';
+import {walls,cm,sampleImage} from './model.js?v=20261015-sizes-01';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -36,7 +36,7 @@ function renderList(medium){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261015-left-01');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261015-sizes-01');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
   const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白色宽框：32、34。24 保留纸贴。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
