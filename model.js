@@ -53,7 +53,7 @@ export function wallPosition(work,room) {
   const outer=workBounds(work),edge=Math.min(outer.width/2+.03,wall.length/2);
   work.along=clamp(Number(work.along)||wall.length/2,edge,wall.length-edge);
   work.elevation=clamp(work.elevation,0,Math.max(0,wall.height-outer.height));
-  const offset=work.depth/2+.002;
+  const offset=work.wallOffset??(work.depth/2+.002);
   work.x=wall.a[0]+wall.tangent[0]*work.along+wall.normal[0]*offset;
   work.z=wall.a[1]+wall.tangent[1]*work.along+wall.normal[1]*offset;
   work.rotation=wall.rotation*180/Math.PI;
@@ -153,6 +153,7 @@ export function validateState(value) {
     if(w.lockAspect!==undefined&&typeof w.lockAspect!=='boolean')throw Error('照片比例锁定设置无效。');
     if(w.mat!==undefined&&(!Number.isFinite(w.mat)||w.mat<0||w.mat>.15))throw Error('卡纸留边须在 0 到 15 厘米之间。');
     if(w.frameWidth!==undefined&&(!Number.isFinite(w.frameWidth)||w.frameWidth<.002||w.frameWidth>.15))throw Error('框条宽度须在 0.2 到 15 厘米之间。');
+    if(w.wallOffset!==undefined&&(!Number.isFinite(w.wallOffset)||w.wallOffset<0||w.wallOffset>.5))throw Error('作品离墙距离须在 0 到 50 厘米之间。');
     for(const field of ['frameOuterWidth','frameOuterHeight'])if(w[field]!==undefined&&(!Number.isFinite(w[field])||w[field]<.1||w[field]>30))throw Error('外框尺寸无效。');
     if(w.imageRatio!==undefined&&(!Number.isFinite(w.imageRatio)||w.imageRatio<.02||w.imageRatio>50))throw Error('图片比例无效。');
     w.name=String(w.name||'未命名作品').slice(0,120);w.frame=['none','white','black','wood'].includes(w.frame)?w.frame:'none';

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261015-height-01';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261015-lift-banner-01';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -191,13 +191,24 @@ export class ExhibitionScene {
     const g=new THREE.Group();g.userData.workId=work.id;g.userData.work=work;this.workGroups.set(work.id,g);
     if(work.type==='art'){
       const outer=workBounds(work),padding=work.frame==='none'?0:(work.frameWidth||.008);
-      const floating=work.mounting==='floating'&&work.frame!=='none';
+      const floating=work.mounting==='floating'&&work.frame!=='none',hanging=work.mounting==='hanging-banner';
       let imageDepth=work.depth/2+.001;
-      if(floating){
+      if(hanging){
+        imageDepth=.001;
+        const radius=(work.rodDiameter||.018)/2,rodMaterial=new THREE.MeshStandardMaterial({color:'#c2c7c4',metalness:.35,roughness:.5});
+        for(const y of [-work.height/2,work.height/2]){const rod=new THREE.Mesh(new THREE.CylinderGeometry(radius,radius,work.rodLength||work.width+.06,24),rodMaterial.clone());rod.rotation.z=Math.PI/2;rod.position.set(0,y,.002);rod.castShadow=false;g.add(rod);}
+        const rise=work.ropeRise||.25,hook=new THREE.Vector3(0,work.height/2+rise,-(work.wallOffset||.055)+.004);
+        for(const x of [-work.width*.43,work.width*.43]){
+          const end=new THREE.Vector3(x,work.height/2+.005,0),direction=hook.clone().sub(end);
+          const rope=new THREE.Mesh(new THREE.CylinderGeometry(.0016,.0016,direction.length(),8),new THREE.MeshBasicMaterial({color:'#64645e'}));
+          rope.position.copy(end).add(hook).multiplyScalar(.5);rope.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),direction.normalize());g.add(rope);
+        }
+        const pin=new THREE.Mesh(new THREE.SphereGeometry(.006,10,8),new THREE.MeshBasicMaterial({color:'#676b66'}));pin.position.copy(hook);g.add(pin);
+      }else if(floating){
         const panelDepth=work.panelDepth||.01,panelFront=work.depth/2-(work.panelRecess??.002);
         const panel=this.box(work.width,work.height,panelDepth,'#393733');panel.position.z=panelFront-panelDepth/2;g.add(panel);imageDepth=panelFront+.0005;
       }else g.add(this.box(outer.width,outer.height,work.depth,'#faf9f5'));
-      const imagePlane=new THREE.Mesh(new THREE.PlaneGeometry(work.width,work.height),new THREE.MeshBasicMaterial({color:'#eeede5',side:THREE.FrontSide,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-4}));imagePlane.position.z=imageDepth;g.add(imagePlane);
+      const imagePlane=new THREE.Mesh(new THREE.PlaneGeometry(work.width,work.height),new THREE.MeshBasicMaterial({color:hanging?(work.fabricColor||'#faf9f5'):'#eeede5',side:hanging?THREE.DoubleSide:THREE.FrontSide,transparent:hanging,opacity:hanging?(work.fabricOpacity??.92):1,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-4}));imagePlane.position.z=imageDepth;g.add(imagePlane);
       if(work.frame!=='none'){
         const color={black:'#292b28',white:'#f9f9f4',wood:'#b5a58b'}[work.frame];
         [[outer.width,padding,0,(outer.height-padding)/2],[outer.width,padding,0,-(outer.height-padding)/2],[padding,outer.height,-(outer.width-padding)/2,0],[padding,outer.height,(outer.width-padding)/2,0]].forEach(([w,h,x,y])=>{const frame=this.box(w,h,floating?work.depth:work.depth+.009,color);frame.position.set(x,y,0);g.add(frame);});
@@ -225,7 +236,15 @@ export class ExhibitionScene {
   applyArtTexture(g,texture){
     const plane=g.userData.imagePlane,work=g.userData.work;if(!plane?.material)return;
     let map=texture;
-    if(work.imageFit==='cover'){
+    if(work.mounting==='hanging-banner'){
+      const scale=1200,canvas=document.createElement('canvas');canvas.width=Math.round(work.width*scale);canvas.height=Math.round(work.height*scale);
+      const ctx=canvas.getContext('2d');ctx.fillStyle=work.fabricColor||'#faf9f5';ctx.fillRect(0,0,canvas.width,canvas.height);
+      const contentWidth=Math.min(work.contentWidth||work.width*.88,work.width),contentHeight=contentWidth*texture.image.height/texture.image.width;
+      const contentCenter=work.contentCenterHeight??work.elevation+work.height/2;
+      ctx.drawImage(texture.image,(work.width-contentWidth)*scale/2,(work.elevation+work.height-contentCenter-contentHeight/2)*scale,contentWidth*scale,contentHeight*scale);
+      map=new THREE.CanvasTexture(canvas);map.colorSpace=THREE.SRGBColorSpace;map.userData.ephemeral=true;
+      map.anisotropy=Math.min(this.renderer.capabilities.getMaxAnisotropy(),8);
+    }else if(work.imageFit==='cover'){
       map=texture.clone();map.userData={...texture.userData,ephemeral:true};
       const sourceRatio=texture.image.width/texture.image.height,targetRatio=work.width/work.height;
       if(sourceRatio>targetRatio){map.repeat.x=targetRatio/sourceRatio;map.offset.x=(1-map.repeat.x)/2;}
