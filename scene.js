@@ -1,8 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261016-photobook-poetry-05';
-import { poemGlyphs } from './poetry-glyphs.js?v=20261016-photobook-poetry-05';
-const poetryPaths=new Map();
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261015-poetry-composition-04';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -175,16 +173,7 @@ export class ExhibitionScene {
       for(const run of p.runs||[]){
         const size=run.fontSize||p.fontSize,tracking=run.letterSpacing??p.letterSpacing??0;
         ctx.font=`${run.fontWeight||p.fontWeight||700} ${size*scale}px "Once Poetry Sans", sans-serif`;
-        let x=run.x*scale;for(const char of run.text){
-          const glyph=p.glyphSource==='photobook-heiti-tc-light'?poemGlyphs.glyphs[char]:null;
-          if(p.glyphSource&&!glyph)throw Error('Reference poem glyph is missing: '+char);
-          ctx.save();ctx.translate(x,run.y*scale);
-          if(glyph){
-            if(!poetryPaths.has(char))poetryPaths.set(char,new Path2D(glyph.path));
-            const unit=size*scale/poemGlyphs.unitsPerEm;ctx.scale(unit,-unit);ctx.fill(poetryPaths.get(char));
-          }else{ctx.scale(1,p.glyphDepthScale||1);ctx.fillText(char,0,0);}
-          ctx.restore();x+=(glyph?glyph.advance/poemGlyphs.unitsPerEm*size*scale:ctx.measureText(char).width)+tracking*scale;
-        }
+        let x=run.x*scale;for(const char of run.text){ctx.save();ctx.translate(x,run.y*scale);ctx.scale(1,p.glyphDepthScale||1);ctx.fillText(char,0,0);ctx.restore();x+=ctx.measureText(char).width+tracking*scale;}
       }
       if(!p.runs){
         ctx.font=`${p.fontWeight||700} ${p.fontSize*scale}px "Once Poetry Sans", sans-serif`;ctx.textBaseline='top';
