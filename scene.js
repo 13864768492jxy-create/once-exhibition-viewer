@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261014-tile-01';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261015-height-01';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -39,7 +39,7 @@ export class ExhibitionScene {
   updateOrtho(aspect){
     const b=this.state?bounds(this.state.room):{width:12,depth:8};
     const viewWidth=this.mode.startsWith('wall:')?walls(this.state.room)[Number(this.mode.split(':')[1])].length+1.5:b.width+2.5;
-    const viewHeight=this.mode.startsWith('wall:')?walls(this.state.room)[Number(this.mode.split(':')[1])].height+1.6:b.depth+2.5;
+    const viewHeight=this.mode.startsWith('wall:')?(this.state.room.ceiling?.enabled?this.state.room.height:walls(this.state.room)[Number(this.mode.split(':')[1])].height)+1.6:b.depth+2.5;
     const half=Math.max(viewHeight/2,viewWidth/(2*aspect));
     this.orthographic.left=-half*aspect;this.orthographic.right=half*aspect;this.orthographic.top=half;this.orthographic.bottom=-half;this.orthographic.updateProjectionMatrix();
   }
@@ -59,6 +59,11 @@ export class ExhibitionScene {
     const room=state.room,b=bounds(room),shape=new THREE.Shape();
     room.points.forEach((p,i)=>i?shape.lineTo(p[0],-p[1]):shape.moveTo(p[0],-p[1]));shape.closePath();
     const floor=new THREE.Mesh(new THREE.ShapeGeometry(shape),new THREE.MeshStandardMaterial({color:room.floorColor||'#dcdacf',roughness:1,side:THREE.DoubleSide}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;floor.position.y=-.006;this.roomGroup.add(floor);
+    if(room.ceiling?.enabled){
+      const ceiling=new THREE.Mesh(new THREE.ShapeGeometry(shape),new THREE.MeshStandardMaterial({color:room.ceiling.color||'#f6f5f0',roughness:.95,side:THREE.BackSide}));
+      ceiling.rotation.x=-Math.PI/2;ceiling.position.y=room.height;ceiling.userData.ceilingSurface=true;this.roomGroup.add(ceiling);
+      this.addCeilingStructure(room,b);
+    }
     const edges=new THREE.BufferGeometry().setFromPoints([...room.points,room.points[0]].map(p=>new THREE.Vector3(p[0],.018,p[1])));
     this.roomGroup.add(new THREE.Line(edges,new THREE.LineBasicMaterial({color:'#9eaa99',transparent:true,opacity:.65})));
     if(room.tileSize){
@@ -98,16 +103,18 @@ export class ExhibitionScene {
         const frame=new THREE.Group();frame.position.set(wall.a[0]+wall.tangent[0]*(o.start+o.width/2),o.bottom+o.height/2,wall.a[1]+wall.tangent[1]*(o.start+o.width/2));frame.rotation.y=wall.rotation;frame.userData.wallIndex=wall.index;
         if(o.type==='window'){
           const recess=o.recessDepth??.18,padding=o.frameWidth??.045,color=o.frameColor||'#24282a';
-          const mullion=-o.width/2+o.width*(o.sashSplit??.5),transom=-o.height/2+o.height*(o.horizontalSplit??.28);
-          for(const [width,height,x,y] of [[padding,o.height,-o.width/2+padding/2,0],[padding,o.height,o.width/2-padding/2,0],[o.width,padding,0,o.height/2-padding/2],[o.width,padding,0,-o.height/2+padding/2],[padding,o.height,mullion,0],[o.width,padding,0,transom]]){
+          const mullion=-o.width/2+o.width*(o.sashSplit??.5),transoms=(o.transoms??[o.horizontalSplit??.28]).map(f=>-o.height/2+o.height*f);
+          for(const [width,height,x,y] of [[padding,o.height,-o.width/2+padding/2,0],[padding,o.height,o.width/2-padding/2,0],[o.width,padding,0,o.height/2-padding/2],[o.width,padding,0,-o.height/2+padding/2],[padding,o.height,mullion,0],...transoms.map(y=>[o.width,padding,0,y])]){
             const strip=this.box(width,height,.065,color);strip.position.set(x,y,-recess);strip.castShadow=false;frame.add(strip);
           }
           for(const [width,height,x,y] of [[.025,o.height,-o.width/2,0],[.025,o.height,o.width/2,0],[o.width,.025,0,o.height/2]]){
             const reveal=this.box(width,height,recess,'#faf9f2');reveal.position.set(x,y,-recess/2);reveal.castShadow=false;frame.add(reveal);
           }
-          const sillDepth=o.sillDepth??recess+.11,sill=this.box(o.width+.12,o.sillThickness??.045,sillDepth,o.sillColor||'#696b66');
-          sill.position.set(0,-o.height/2-.018,-recess+sillDepth/2);sill.castShadow=false;frame.add(sill);
-          const handle=this.box(.09,.018,.018,color);handle.position.set(mullion-.06,(transom+o.height/2)/2,-recess+.06);handle.castShadow=false;frame.add(handle);
+          if(o.style!=='clerestory'){
+            const sillDepth=o.sillDepth??recess+.11,sill=this.box(o.width+.12,o.sillThickness??.045,sillDepth,o.sillColor||'#696b66');
+            sill.position.set(0,-o.height/2-.018,-recess+sillDepth/2);sill.castShadow=false;frame.add(sill);
+            const handle=this.box(.09,.018,.018,color);handle.position.set(mullion-.06,0,-recess+.06);handle.castShadow=false;frame.add(handle);
+          }
           const glass=new THREE.Mesh(new THREE.PlaneGeometry(o.width,o.height),new THREE.MeshStandardMaterial({color:'#cedbda',transparent:true,opacity:.3,side:THREE.DoubleSide,roughness:.25}));
           glass.position.z=-recess-.035;frame.add(glass);
         }else{
@@ -125,6 +132,7 @@ export class ExhibitionScene {
     }
     for(const column of room.columns||[]){
       const mesh=new THREE.Mesh(new THREE.CylinderGeometry(column.diameter/2,column.diameter/2,column.height,48),new THREE.MeshStandardMaterial({color:'#faf9f2',roughness:.85}));mesh.position.set(column.x,column.height/2,column.z);mesh.castShadow=true;mesh.receiveShadow=true;this.roomGroup.add(mesh);
+      if(room.ceiling?.enabled&&room.skirting){const base=new THREE.Mesh(new THREE.CylinderGeometry(column.diameter/2+.005,column.diameter/2+.005,room.skirting.height,48),new THREE.MeshStandardMaterial({color:room.skirting.color,roughness:.9}));base.position.set(column.x,room.skirting.height/2,column.z);this.roomGroup.add(base);}
     }
     for(const fixture of room.fixtures||[]){
       const wall=walls(room)[fixture.wall];if(!wall)continue;
@@ -154,6 +162,30 @@ export class ExhibitionScene {
     state.works.forEach((w,i)=>{if(w.placed!==false)this.addWork(w,i);});
     this.spacePlanMarkers();
     this.setSelected(this.selected);this.applyVisibility();this.resize();
+  }
+  addCeilingStructure(room,b){
+    const ceiling=room.ceiling;
+    const beam=(a,end,width,depth,tags={})=>{
+      const dx=end[0]-a[0],dz=end[1]-a[1],mesh=this.box(Math.hypot(dx,dz),depth,width,ceiling.color||'#f6f5f0');
+      mesh.position.set((a[0]+end[0])/2,room.height-depth/2,(a[1]+end[1])/2);mesh.rotation.y=Math.atan2(-dz,dx);mesh.castShadow=false;
+      Object.assign(mesh.userData,{overheadStructure:true},tags);this.roomGroup.add(mesh);
+    };
+    for(const item of ceiling.beams||[])beam(item.a,item.b,item.width,item.depth,{wallIndices:item.wallIndices});
+    if(ceiling.perimeterBeam)for(const wall of this.wallData.filter(w=>w.perimeter)){
+      const {width,depth}=ceiling.perimeterBeam,offset=p=>p.map((v,i)=>v+wall.normal[i]*width/2);
+      beam(offset(wall.a),offset(wall.b),width,depth,{wallIndex:wall.index});
+    }
+    const lights=ceiling.suspendedLights;if(!lights)return;
+    const add=(mesh,x,y,z)=>{mesh.position.set(x,y,z);mesh.castShadow=false;mesh.userData.ceilingFixture=true;this.roomGroup.add(mesh);};
+    for(const z of new Set(lights.positions.map(p=>p.z))){
+      add(this.box(b.width-1,.025,.025,'#525754'),b.cx,lights.supportHeight,z);
+      for(const x of [b.minX+.8,b.cx,b.maxX-.8])add(this.box(.012,room.height-lights.supportHeight,.012,'#525754'),x,(room.height+lights.supportHeight)/2,z);
+    }
+    for(const p of lights.positions){
+      add(this.box(lights.length,.045,lights.width,'#5c625f'),p.x,lights.bottom+.0225,p.z);
+      const face=new THREE.Mesh(new THREE.PlaneGeometry(lights.length-.035,lights.width-.025),new THREE.MeshStandardMaterial({color:'#ffffff',emissive:'#ffffff',emissiveIntensity:.65,roughness:.35}));face.rotation.x=Math.PI/2;add(face,p.x,lights.bottom-.001,p.z);
+      for(const x of [p.x-lights.length*.32,p.x+lights.length*.32])add(this.box(.012,lights.supportHeight-lights.bottom-.045,.012,'#525754'),x,(lights.supportHeight+lights.bottom+.045)/2,p.z);
+    }
   }
   addWork(work,index){
     const g=new THREE.Group();g.userData.workId=work.id;g.userData.work=work;this.workGroups.set(work.id,g);
@@ -237,6 +269,10 @@ export class ExhibitionScene {
   applyVisibility(){
     const selectedWall=this.mode.startsWith('wall:')?Number(this.mode.split(':')[1]):null;
     this.roomGroup.children.forEach(o=>{o.visible=selectedWall===null||o.userData.wallIndex===selectedWall||!!o.userData.wallIndices?.includes(selectedWall);});
+    this.roomGroup.children.forEach(o=>{
+      if(o.userData.ceilingSurface||o.userData.ceilingFixture)o.visible=this.mode==='eye';
+      if(o.userData.overheadStructure&&(this.mode==='overview'||this.mode==='plan'))o.visible=false;
+    });
     if(this.grid)this.grid.visible=this.gridVisible&&selectedWall===null;
     this.roomGroup.traverse(o=>{if(o.userData.wallLabel)o.visible=false;});
     this.workGroups.forEach(g=>{g.visible=selectedWall===null||(g.userData.work.type==='art'&&g.userData.work.wall===selectedWall);g.traverse(o=>{if(o.userData.marker)o.visible=this.mode==='plan';});});
@@ -260,7 +296,7 @@ export class ExhibitionScene {
     this.camera=mode==='overview'||mode==='eye'?this.perspective:this.orthographic;this.controls.object=this.camera;
     this.perspective.fov=mode==='eye'?70:42;this.perspective.updateProjectionMatrix();
     this.controls.enableRotate=mode==='overview'||mode==='eye';this.controls.enablePan=mode!=='eye';this.controls.enableZoom=mode!=='eye';this.controls.minDistance=mode==='eye'?.03:.5;this.controls.maxDistance=mode==='eye'?.03:100;
-    this.controls.minPolarAngle=mode==='eye'?Math.PI*.4:0;this.controls.maxPolarAngle=mode==='eye'?Math.PI*.6:Math.PI*.495;
+    this.controls.minPolarAngle=mode==='eye'?Math.PI*.12:0;this.controls.maxPolarAngle=mode==='eye'?Math.PI*.88:Math.PI*.495;
     this.camera.up.set(0,1,0);
     if(mode==='overview'){
       this.controls.target.set(b.cx,this.state.room.height*.35,b.cz);
@@ -273,7 +309,8 @@ export class ExhibitionScene {
       const start=eyeStart(this.state.room),look=this.state.room.entryView?new THREE.Vector3(start.dx,start.dy||0,start.dz):new THREE.Vector3(b.cx-start.x,0,b.cz-start.z);if(look.lengthSq()<.01)look.set(start.dx,0,start.dz);look.normalize();this.camera.position.set(start.x,1.6,start.z);this.controls.target.set(start.x+look.x*.03,1.6+look.y*.03,start.z+look.z*.03);
     }else if(mode.startsWith('wall:')){
       const wall=walls(this.state.room)[Number(mode.split(':')[1])];const x=(wall.a[0]+wall.b[0])/2,z=(wall.a[1]+wall.b[1])/2;
-      this.camera.position.set(x+wall.normal[0]*30,wall.height/2,z+wall.normal[1]*30);this.controls.target.set(x,wall.height/2,z);
+      const height=this.state.room.ceiling?.enabled?this.state.room.height:wall.height;
+      this.camera.position.set(x+wall.normal[0]*30,height/2,z+wall.normal[1]*30);this.controls.target.set(x,height/2,z);
     }
     this.camera.lookAt(this.controls.target);this.controls.update();this.applyVisibility();this.resize();
   }

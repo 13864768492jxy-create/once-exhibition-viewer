@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261015-frame24-01';
-import {walls,cm,sampleImage} from './model.js?v=20261015-frame24-01';
+import {ExhibitionScene} from './scene.js?v=20261015-height-01';
+import {walls,cm,sampleImage} from './model.js?v=20261015-height-01';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -36,16 +36,14 @@ function renderList(medium){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261015-frame24-01');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261015-height-01');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
   const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白色宽框：32、34。白色细框加卡纸：24、27。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
   if(state.room.measurements?.wall1){
     const note=document.createElement('p');note.className='framing-note';
-    const windowMeasure=state.room.measurements.window;
-    const windowNote=windowMeasure?.status==='tile-estimate'?`按80 cm地砖估算：左侧短墙约${cm(windowMeasure.leftWallWidth)} cm，窗宽约${cm(windowMeasure.width)} cm，窗台高约${cm(windowMeasure.sillHeight)} cm。`:
-      windowMeasure?.status==='photo-estimate'?'窗户细部尺寸暂估。':'';
-    note.textContent=`墙1总长 ${state.room.measurements.wall1.length.toFixed(2)} m（实测）。${windowNote}`;
+    const measured=state.room.measurements;
+    note.textContent=measured.ceiling?`墙1全长 ${measured.wall1.length.toFixed(2)} m，层高 ${state.room.height.toFixed(2)} m。突出墙高 ${measured.interiorWall.height.toFixed(2)} m，上方通透；高窗下沿 ${measured.clerestory.bottom.toFixed(2)} m。窗宽、窗上沿、梁与灯位按实景暂估。`:`墙1总长 ${measured.wall1.length.toFixed(2)} m（实测）。窗户细部尺寸暂估。`;
     $('works').insertBefore(note,$('work-list'));
   }
   photos=state.works.filter(w=>w.sourceFile&&w.placed!==false);
