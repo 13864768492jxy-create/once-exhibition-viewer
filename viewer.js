@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261015-lift-banner-01';
-import {walls,cm,sampleImage} from './model.js?v=20261015-lift-banner-01';
+import {ExhibitionScene} from './scene.js?v=20261015-paper-poetry-01';
+import {walls,cm,sampleImage} from './model.js?v=20261015-paper-poetry-01';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -34,11 +34,15 @@ function renderList(medium){
       button.onclick=()=>{changeView(`wall:${w.wall}`);select(w.id);$('view-tip').textContent=`${wall.name} · ${w.name}`;};
     }
   }
+  const textHeading=document.createElement('h2');textHeading.textContent='展览文字';root.append(textHeading);
+  for(const [title,caption,mode,floorId] of [['悬挂前言 · 引诗','月亮升起。潮水对此一无所知。','wall:2'],['地面诗 · 阅读动线','我在以后看见他们，','plan'],['地面诗 · 21前方','河流带有未命名的方向，从每个人流过。','eye','floor-poem-4'],['地面诗 · 终句','他们再也看不见我。','eye','floor-poem-6']]){
+    const button=document.createElement('button');button.className='work';const text=document.createElement('span'),name=document.createElement('strong'),description=document.createElement('small');name.textContent=title;description.textContent=caption;text.append(name,description);button.append(text);button.onclick=()=>{changeView(mode);if(floorId)scene.focusFloorPoem(floorId);$('view-tip').textContent=title;};root.append(button);
+  }
 }
 try{
-  const response=await fetch('data.json?v=20261015-lift-banner-01');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261015-paper-poetry-01');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
-  const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白色宽框：32、34。白色细框加卡纸：24、27。':'';
+  const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白色宽框：32、34。白色细框加卡纸：24、27。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
   if(state.room.measurements?.wall1){
     const note=document.createElement('p');note.className='framing-note';
@@ -51,6 +55,7 @@ try{
     select,beginDrag:()=>{},drag:()=>{},endDrag:()=>{},
     imageSource:async source=>source.startsWith('sample:')?sampleImage(source.slice(7)):new URL(source,location.href).href
   });
+  await document.fonts.load('700 48px "Once Poetry Sans"');
   scene.editable=false;scene.update(state);renderList(data.medium);changeView('overview');$('loading').hidden=true;
   document.querySelectorAll('[data-view]').forEach(button=>button.onclick=()=>changeView(button.dataset.view));
   for(const button of document.querySelectorAll('[data-walk]')){

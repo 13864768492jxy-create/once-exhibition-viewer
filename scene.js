@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261015-lift-banner-01';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261015-paper-poetry-01';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -159,9 +159,20 @@ export class ExhibitionScene {
       }
       this.roomGroup.add(g);
     }
+    this.addFloorPoetry(room.floorPoems||[]);
     state.works.forEach((w,i)=>{if(w.placed!==false)this.addWork(w,i);});
     this.spacePlanMarkers();
     this.setSelected(this.selected);this.applyVisibility();this.resize();
+  }
+  addFloorPoetry(stations){
+    for(const p of stations){
+      const scale=1200,c=document.createElement('canvas');c.width=Math.ceil(p.width*scale);c.height=Math.ceil(p.height*scale);
+      const ctx=c.getContext('2d');ctx.fillStyle=p.color||'#ffffff';ctx.font=`${p.fontWeight||700} ${p.fontSize*scale}px "Once Poetry Sans", sans-serif`;ctx.textBaseline='top';
+      p.lines.forEach((line,i)=>{let x=.035*scale;for(const char of line){ctx.save();ctx.translate(x,(.025+i*p.lineHeight)*scale);ctx.scale(p.horizontalScale||1,1);ctx.fillText(char,0,0);ctx.restore();x+=ctx.measureText(char).width*(p.horizontalScale||1)+(p.letterSpacing||0)*scale;}});
+      const texture=new THREE.CanvasTexture(c);texture.colorSpace=THREE.SRGBColorSpace;texture.userData.ephemeral=true;texture.anisotropy=Math.min(this.renderer.capabilities.getMaxAnisotropy(),8);
+      const ink=new THREE.Mesh(new THREE.PlaneGeometry(p.width,p.height),new THREE.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-4}));
+      ink.rotation.x=-Math.PI/2;const group=new THREE.Group();group.add(ink);group.position.set(p.x,.012,p.z);group.rotation.y=p.rotation*Math.PI/180;group.userData.floorPoem=true;this.roomGroup.add(group);
+    }
   }
   addCeilingStructure(room,b){
     const ceiling=room.ceiling;
@@ -207,8 +218,19 @@ export class ExhibitionScene {
       }else if(floating){
         const panelDepth=work.panelDepth||.01,panelFront=work.depth/2-(work.panelRecess??.002);
         const panel=this.box(work.width,work.height,panelDepth,'#393733');panel.position.z=panelFront-panelDepth/2;g.add(panel);imageDepth=panelFront+.0005;
-      }else g.add(this.box(outer.width,outer.height,work.depth,'#faf9f5'));
+      }else g.add(this.box(outer.width,outer.height,work.depth,work.paperBorder?'#ffffff':'#faf9f5'));
       const imagePlane=new THREE.Mesh(new THREE.PlaneGeometry(work.width,work.height),new THREE.MeshBasicMaterial({color:hanging?(work.fabricColor||'#faf9f5'):'#eeede5',side:hanging?THREE.DoubleSide:THREE.FrontSide,transparent:hanging,opacity:hanging?(work.fabricOpacity??.92):1,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-4}));imagePlane.position.z=imageDepth;g.add(imagePlane);
+      if(work.mounting==='corner-pins'){
+        const inset=work.pinInset,plastic=new THREE.MeshStandardMaterial({color:'#ffffff',roughness:.52}),metal=new THREE.MeshStandardMaterial({color:'#a5aaa8',metalness:.8,roughness:.3});
+        for(const x of [-outer.width/2+inset,outer.width/2-inset])for(const y of [-outer.height/2+inset,outer.height/2-inset]){
+          const pin=new THREE.Group();pin.position.set(x,y,work.depth/2+.0003);pin.userData.cornerPin=true;
+          for(const [diameter,length,z,material] of [[work.pinDiameter||.0096,.002,.001,plastic],[.0065,.0025,.00325,plastic],[.0065,.002,.0055,plastic],[.004,.0007,.00685,metal]]){
+            const part=new THREE.Mesh(new THREE.CylinderGeometry(diameter/2,diameter/2,length,20),material.clone());part.rotation.x=Math.PI/2;part.position.z=z;part.castShadow=true;pin.add(part);
+          }
+          g.add(pin);
+        }
+        plastic.dispose();metal.dispose();
+      }
       if(work.frame!=='none'){
         const color={black:'#292b28',white:'#f9f9f4',wood:'#b5a58b'}[work.frame];
         [[outer.width,padding,0,(outer.height-padding)/2],[outer.width,padding,0,-(outer.height-padding)/2],[padding,outer.height,-(outer.width-padding)/2,0],[padding,outer.height,(outer.width-padding)/2,0]].forEach(([w,h,x,y])=>{const frame=this.box(w,h,floating?work.depth:work.depth+.009,color);frame.position.set(x,y,0);g.add(frame);});
@@ -239,9 +261,22 @@ export class ExhibitionScene {
     if(work.mounting==='hanging-banner'){
       const scale=1200,canvas=document.createElement('canvas');canvas.width=Math.round(work.width*scale);canvas.height=Math.round(work.height*scale);
       const ctx=canvas.getContext('2d');ctx.fillStyle=work.fabricColor||'#faf9f5';ctx.fillRect(0,0,canvas.width,canvas.height);
-      const contentWidth=Math.min(work.contentWidth||work.width*.88,work.width),contentHeight=contentWidth*texture.image.height/texture.image.width;
-      const contentCenter=work.contentCenterHeight??work.elevation+work.height/2;
-      ctx.drawImage(texture.image,(work.width-contentWidth)*scale/2,(work.elevation+work.height-contentCenter-contentHeight/2)*scale,contentWidth*scale,contentHeight*scale);
+      if(work.prefaceParagraphs&&work.poemLines){
+        const top=work.elevation+work.height,left=.105*scale,width=(work.width-.21)*scale;
+        const text=(line,height,size,family='"PingFang SC", sans-serif',color='#30322e',weight=400)=>{ctx.font=`${weight} ${size*scale}px ${family}`;ctx.fillStyle=color;ctx.fillText(line,left,(top-height)*scale);};
+        text('后知后觉',2.35,.043);text('once',2.282,.03);text('姜昕宇  /  2026',2.229,.0165,'"PingFang SC", sans-serif','#696d64');
+        let y=2.09;
+        for(const line of work.poemLines){if(line)text(line,y,.022,'"Once Poetry Sans", sans-serif','#30322e',700);y-=.036;}
+        y=1.49;ctx.font=`400 ${.019*scale}px "Songti SC", "SimSun", serif`;
+        for(const paragraph of work.prefaceParagraphs){
+          let line='';for(const char of paragraph){if(line&&ctx.measureText(line+char).width>width&&!/[，。；！？、”）]/.test(char)){text(line,y,.019,'"Songti SC", "SimSun", serif');y-=.032;line='';}line+=char;}
+          if(line){text(line,y,.019,'"Songti SC", "SimSun", serif');y-=.032;}y-=.023;
+        }
+      }else{
+        const contentWidth=Math.min(work.contentWidth||work.width*.88,work.width),contentHeight=contentWidth*texture.image.height/texture.image.width;
+        const contentCenter=work.contentCenterHeight??work.elevation+work.height/2;
+        ctx.drawImage(texture.image,(work.width-contentWidth)*scale/2,(work.elevation+work.height-contentCenter-contentHeight/2)*scale,contentWidth*scale,contentHeight*scale);
+      }
       map=new THREE.CanvasTexture(canvas);map.colorSpace=THREE.SRGBColorSpace;map.userData.ephemeral=true;
       map.anisotropy=Math.min(this.renderer.capabilities.getMaxAnisotropy(),8);
     }else if(work.imageFit==='cover'){
@@ -311,10 +346,11 @@ export class ExhibitionScene {
     this.loadTexture(work.image).then(texture=>{this.applyArtTexture(g,texture);g.userData.highResolutionApplied=true;g.userData.lowResolution=false;}).catch(()=>{g.userData.highResolutionRequested=false;g.userData.retryAt=performance.now()+10000;});
   }
   view(mode){
-    if(!this.state)return;this.navigation.clear();this.mode=mode;const b=bounds(this.state.room),max=Math.max(b.width,b.depth);
+    if(!this.state)return;this.navigation.clear();if(this.mode!==mode)this.orthographic.zoom=1;this.mode=mode;const b=bounds(this.state.room),max=Math.max(b.width,b.depth);
     this.camera=mode==='overview'||mode==='eye'?this.perspective:this.orthographic;this.controls.object=this.camera;
     this.perspective.fov=mode==='eye'?70:42;this.perspective.updateProjectionMatrix();
     this.controls.enableRotate=mode==='overview'||mode==='eye';this.controls.enablePan=mode!=='eye';this.controls.enableZoom=mode!=='eye';this.controls.minDistance=mode==='eye'?.03:.5;this.controls.maxDistance=mode==='eye'?.03:100;
+    this.controls.mouseButtons.LEFT=mode==='plan'||mode.startsWith('wall:')?THREE.MOUSE.PAN:THREE.MOUSE.ROTATE;
     this.controls.minPolarAngle=mode==='eye'?Math.PI*.12:0;this.controls.maxPolarAngle=mode==='eye'?Math.PI*.88:Math.PI*.495;
     this.camera.up.set(0,1,0);
     if(mode==='overview'){
@@ -340,6 +376,13 @@ export class ExhibitionScene {
     const p=this.camera.position,next=p.clone().add(move);
     if(!canWalk(this.state.room,next.x,next.z)){if(canWalk(this.state.room,next.x,p.z))move.z=0;else if(canWalk(this.state.room,p.x,next.z))move.x=0;else return;}
     this.camera.position.add(move);this.controls.target.add(move);this.controls.update();
+  }
+  focusFloorPoem(id){
+    const p=this.state.room.floorPoems?.find(p=>p.id===id);if(!p)return;
+    const angle=p.rotation*Math.PI/180,dx=-Math.sin(angle),dz=-Math.cos(angle),distance=[2.3,1.6,1].find(d=>canWalk(this.state.room,p.x-dx*d,p.z-dz*d));if(!distance)return;
+    const x=p.x-dx*distance,z=p.z-dz*distance;
+    this.camera.position.set(x,1.6,z);const look=new THREE.Vector3(p.x,.6,p.z).sub(this.camera.position).normalize();
+    this.controls.target.copy(this.camera.position).addScaledVector(look,.03);this.camera.lookAt(this.controls.target);this.controls.update();
   }
   stepWalking(dt){
     if(this.mode!=='eye'||document.hidden||document.querySelector('dialog[open]'))return;

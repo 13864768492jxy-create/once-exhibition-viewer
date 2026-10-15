@@ -58,7 +58,7 @@ export function wallPosition(work,room) {
   work.z=wall.a[1]+wall.tangent[1]*work.along+wall.normal[1]*offset;
   work.rotation=wall.rotation*180/Math.PI;
 }
-export function workBounds(work){const framed=work.type==='art'&&work.frame&&work.frame!=='none',border=framed?(work.mat||0)+(work.frameWidth||.008):0;return {width:framed&&work.frameOuterWidth?work.frameOuterWidth:work.width+border*2,height:framed&&work.frameOuterHeight?work.frameOuterHeight:work.height+border*2};}
+export function workBounds(work){const framed=work.type==='art'&&work.frame&&work.frame!=='none',border=framed?(work.mat||0)+(work.frameWidth||.008):(work.paperBorder||0);return {width:framed&&work.frameOuterWidth?work.frameOuterWidth:work.width+border*2,height:framed&&work.frameOuterHeight?work.frameOuterHeight:work.height+border*2};}
 export function fitFrame(work){if(!work.frameOuterWidth||!work.frameOuterHeight||work.frame==='none')return;const border=(work.mat||0)+(work.frameWidth||.008),ratio=work.imageRatio||work.width/work.height,width=Math.max(.005,work.frameOuterWidth-border*2),height=Math.max(.005,work.frameOuterHeight-border*2);work.width=clamp(Math.min(width,height*ratio),.005,30);work.height=clamp(work.width/ratio,.005,30);}
 export function resizeArtwork(work,field,value) {
   if(work.type!=='art'||!['width','height','frameOuterWidth','frameOuterHeight'].includes(field)||!Number.isFinite(value))return false;
@@ -143,6 +143,12 @@ export function validateState(value) {
   for(const o of s.room.openings){
     if(!ws[o.wall]||![o.start,o.width,o.height,o.bottom].every(Number.isFinite)||o.width<.1||o.height<.1||o.start<0||o.start+o.width>ws[o.wall].length+.001||o.bottom<0||o.bottom+o.height>s.room.height+.001)throw Error('请检查门窗尺寸，门窗须在墙面范围内。');
   }
+  if(s.room.floorPoems!==undefined){
+    if(!Array.isArray(s.room.floorPoems)||s.room.floorPoems.length>12)throw Error('地面诗段数量无效。');
+    for(const p of s.room.floorPoems){
+      if(!['x','z','width','height','rotation','fontSize','lineHeight'].every(k=>Number.isFinite(p[k]))||p.width<=0||p.width>5||p.height<=0||p.height>3||p.fontSize<.01||p.fontSize>.3||p.lineHeight<p.fontSize||!canWalk(s.room,p.x,p.z)||!Array.isArray(p.lines)||p.lines.length>12||p.lines.some(t=>typeof t!=='string'||t.length>100))throw Error('地面诗段尺寸或位置无效。');
+    }
+  }
   for(const w of s.works){
     if(typeof w.id!=='string'||ids.has(w.id)||!['art','plinth','block','partition'].includes(w.type))throw Error('作品类型或编号无效。');
     ids.add(w.id);
@@ -154,6 +160,8 @@ export function validateState(value) {
     if(w.mat!==undefined&&(!Number.isFinite(w.mat)||w.mat<0||w.mat>.15))throw Error('卡纸留边须在 0 到 15 厘米之间。');
     if(w.frameWidth!==undefined&&(!Number.isFinite(w.frameWidth)||w.frameWidth<.002||w.frameWidth>.15))throw Error('框条宽度须在 0.2 到 15 厘米之间。');
     if(w.wallOffset!==undefined&&(!Number.isFinite(w.wallOffset)||w.wallOffset<0||w.wallOffset>.5))throw Error('作品离墙距离须在 0 到 50 厘米之间。');
+    if(w.paperBorder!==undefined&&(!Number.isFinite(w.paperBorder)||w.paperBorder<0||w.paperBorder>.15))throw Error('相纸白边须在 0 到 15 厘米之间。');
+    if(w.mounting==='corner-pins'&&(!Number.isFinite(w.pinInset)||w.pinInset<=0||w.pinInset>=w.paperBorder))throw Error('钉点须位于相纸白边内。');
     for(const field of ['frameOuterWidth','frameOuterHeight'])if(w[field]!==undefined&&(!Number.isFinite(w[field])||w[field]<.1||w[field]>30))throw Error('外框尺寸无效。');
     if(w.imageRatio!==undefined&&(!Number.isFinite(w.imageRatio)||w.imageRatio<.02||w.imageRatio>50))throw Error('图片比例无效。');
     w.name=String(w.name||'未命名作品').slice(0,120);w.frame=['none','white','black','wood'].includes(w.frame)?w.frame:'none';
