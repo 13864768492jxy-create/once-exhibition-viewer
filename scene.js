@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261015-poetry-composition-04';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261016-poetry-corner-06';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -165,7 +165,8 @@ export class ExhibitionScene {
     this.setSelected(this.selected);this.applyVisibility();this.resize();
   }
   addFloorPoetry(stations){
-    for(const p of stations){
+    const pieces=stations.flatMap(p=>p.fragments?p.fragments.map(fragment=>({...p,...fragment,fragments:undefined})):p);
+    for(const p of pieces){
       const scale=1200,c=document.createElement('canvas');c.width=Math.ceil(p.width*scale);c.height=Math.ceil(p.height*scale);
       const ctx=c.getContext('2d');ctx.fillStyle=p.color||'#ffffff';
       // Explicit baselines let pauses and offsets be part of the poem's composition.
@@ -389,9 +390,9 @@ export class ExhibitionScene {
   }
   focusFloorPoem(id){
     const p=this.state.room.floorPoems?.find(p=>p.id===id);if(!p)return;
-    const angle=p.rotation*Math.PI/180,dx=-Math.sin(angle),dz=-Math.cos(angle),distance=[2.3,1.6,1].find(d=>canWalk(this.state.room,p.x-dx*d,p.z-dz*d));if(!distance)return;
+    const angle=p.rotation*Math.PI/180,dx=-Math.sin(angle),dz=-Math.cos(angle),distance=[p.focusDistance||2.3,2.3,1.6,1].find(d=>canWalk(this.state.room,p.x-dx*d,p.z-dz*d));if(!distance)return;
     const x=p.x-dx*distance,z=p.z-dz*distance;
-    this.camera.position.set(x,1.6,z);const look=new THREE.Vector3(p.x,.6,p.z).sub(this.camera.position).normalize();
+    this.camera.position.set(x,1.6,z);const look=new THREE.Vector3(p.x,p.focusHeight??.6,p.z).sub(this.camera.position).normalize();
     this.controls.target.copy(this.camera.position).addScaledVector(look,.03);this.camera.lookAt(this.controls.target);this.controls.update();
   }
   stepWalking(dt){
