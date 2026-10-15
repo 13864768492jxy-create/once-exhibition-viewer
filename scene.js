@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261015-poetry-hierarchy-03';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261015-poetry-composition-04';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -167,8 +167,18 @@ export class ExhibitionScene {
   addFloorPoetry(stations){
     for(const p of stations){
       const scale=1200,c=document.createElement('canvas');c.width=Math.ceil(p.width*scale);c.height=Math.ceil(p.height*scale);
-      const ctx=c.getContext('2d');ctx.fillStyle=p.color||'#ffffff';ctx.font=`${p.fontWeight||700} ${p.fontSize*scale}px "Once Poetry Sans", sans-serif`;ctx.textBaseline='top';
-      p.lines.forEach((line,i)=>{let x=.035*scale;for(const char of line){ctx.save();ctx.translate(x,(.025+i*p.lineHeight)*scale);ctx.scale(p.horizontalScale||1,1);ctx.fillText(char,0,0);ctx.restore();x+=ctx.measureText(char).width*(p.horizontalScale||1)+(p.letterSpacing||0)*scale;}});
+      const ctx=c.getContext('2d');ctx.fillStyle=p.color||'#ffffff';
+      // Explicit baselines let pauses and offsets be part of the poem's composition.
+      ctx.textBaseline='alphabetic';
+      for(const run of p.runs||[]){
+        const size=run.fontSize||p.fontSize,tracking=run.letterSpacing??p.letterSpacing??0;
+        ctx.font=`${run.fontWeight||p.fontWeight||700} ${size*scale}px "Once Poetry Sans", sans-serif`;
+        let x=run.x*scale;for(const char of run.text){ctx.save();ctx.translate(x,run.y*scale);ctx.scale(1,p.glyphDepthScale||1);ctx.fillText(char,0,0);ctx.restore();x+=ctx.measureText(char).width+tracking*scale;}
+      }
+      if(!p.runs){
+        ctx.font=`${p.fontWeight||700} ${p.fontSize*scale}px "Once Poetry Sans", sans-serif`;ctx.textBaseline='top';
+        p.lines.forEach((line,i)=>{let x=.035*scale;for(const char of line){ctx.save();ctx.translate(x,(.025+i*p.lineHeight)*scale);ctx.scale(p.horizontalScale||1,1);ctx.fillText(char,0,0);ctx.restore();x+=ctx.measureText(char).width*(p.horizontalScale||1)+(p.letterSpacing||0)*scale;}});
+      }
       const texture=new THREE.CanvasTexture(c);texture.colorSpace=THREE.SRGBColorSpace;texture.userData.ephemeral=true;texture.anisotropy=Math.min(this.renderer.capabilities.getMaxAnisotropy(),8);
       const ink=new THREE.Mesh(new THREE.PlaneGeometry(p.width,p.height),new THREE.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-4}));
       ink.rotation.x=-Math.PI/2;const group=new THREE.Group();group.add(ink);group.position.set(p.x,.012,p.z);group.rotation.y=p.rotation*Math.PI/180;group.userData.floorPoem=true;this.roomGroup.add(group);

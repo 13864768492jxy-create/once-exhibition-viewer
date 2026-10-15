@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261015-poetry-hierarchy-03';
-import {walls,cm,sampleImage} from './model.js?v=20261015-poetry-hierarchy-03';
+import {ExhibitionScene} from './scene.js?v=20261015-poetry-composition-04';
+import {walls,cm,sampleImage} from './model.js?v=20261015-poetry-composition-04';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -40,7 +40,7 @@ function renderList(medium){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261015-poetry-hierarchy-03');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261015-poetry-composition-04');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
   const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白色宽框：32、34。白色细框加卡纸：24、27。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
