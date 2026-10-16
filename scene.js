@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261016-frame28-09';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261016-clean-floor-10';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -58,7 +58,7 @@ export class ExhibitionScene {
     this.disposeGroup(this.roomGroup);this.disposeGroup(this.worksGroup);this.workGroups.clear();
     const room=state.room,b=bounds(room),shape=new THREE.Shape();
     room.points.forEach((p,i)=>i?shape.lineTo(p[0],-p[1]):shape.moveTo(p[0],-p[1]));shape.closePath();
-    const floor=new THREE.Mesh(new THREE.ShapeGeometry(shape),new THREE.MeshStandardMaterial({color:room.floorColor||'#dcdacf',roughness:1,side:THREE.DoubleSide}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;floor.position.y=-.006;this.roomGroup.add(floor);
+    const floor=new THREE.Mesh(new THREE.ShapeGeometry(shape),new THREE.MeshStandardMaterial({color:room.floorColor||'#dcdacf',roughness:1,side:THREE.DoubleSide}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=false;floor.position.y=-.006;this.roomGroup.add(floor);
     if(room.ceiling?.enabled){
       const ceiling=new THREE.Mesh(new THREE.ShapeGeometry(shape),new THREE.MeshStandardMaterial({color:room.ceiling.color||'#f6f5f0',roughness:.95,side:THREE.BackSide}));
       ceiling.rotation.x=-Math.PI/2;ceiling.position.y=room.height;ceiling.userData.ceilingSurface=true;this.roomGroup.add(ceiling);
