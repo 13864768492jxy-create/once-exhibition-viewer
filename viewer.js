@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261016-poetry-opening-07';
-import {walls,cm,sampleImage} from './model.js?v=20261016-poetry-opening-07';
+import {ExhibitionScene} from './scene.js?v=20261016-frame28-08';
+import {walls,cm,sampleImage} from './model.js?v=20261016-frame28-08';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -40,9 +40,9 @@ function renderList(medium){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261016-poetry-opening-07');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261016-frame28-08');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
-  const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白色宽框：32、34。白色细框加卡纸：24、27。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
+  const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白色细框加卡纸：24、27、32、34。黑色细框加卡纸：16、26、28、31。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
   if(state.room.measurements?.wall1){
     const note=document.createElement('p');note.className='framing-note';
