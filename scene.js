@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261016-clean-floor-10';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261016-preface-11';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -38,8 +38,9 @@ export class ExhibitionScene {
   }
   updateOrtho(aspect){
     const b=this.state?bounds(this.state.room):{width:12,depth:8};
-    const viewWidth=this.mode.startsWith('wall:')?walls(this.state.room)[Number(this.mode.split(':')[1])].length+1.5:b.width+2.5;
-    const viewHeight=this.mode.startsWith('wall:')?(this.state.room.ceiling?.enabled?this.state.room.height:walls(this.state.room)[Number(this.mode.split(':')[1])].height)+1.6:b.depth+2.5;
+    const focused=this.state?.works.find(work=>work.id===this.focusedTextPanel);
+    const viewWidth=focused?focused.width+.3:this.mode.startsWith('wall:')?walls(this.state.room)[Number(this.mode.split(':')[1])].length+1.5:b.width+2.5;
+    const viewHeight=focused?focused.height+(focused.ropeRise||0)+.3:this.mode.startsWith('wall:')?(this.state.room.ceiling?.enabled?this.state.room.height:walls(this.state.room)[Number(this.mode.split(':')[1])].height)+1.6:b.depth+2.5;
     const half=Math.max(viewHeight/2,viewWidth/(2*aspect));
     this.orthographic.left=-half*aspect;this.orthographic.right=half*aspect;this.orthographic.top=half;this.orthographic.bottom=-half;this.orthographic.updateProjectionMatrix();
   }
@@ -269,7 +270,7 @@ export class ExhibitionScene {
   applyArtTexture(g,texture){
     const plane=g.userData.imagePlane,work=g.userData.work;if(!plane?.material)return;
     let map=texture;
-    if(work.mounting==='hanging-banner'){
+    if(work.mounting==='hanging-banner'&&!work.bannerArtwork){
       const scale=1200,canvas=document.createElement('canvas');canvas.width=Math.round(work.width*scale);canvas.height=Math.round(work.height*scale);
       const ctx=canvas.getContext('2d');ctx.fillStyle=work.fabricColor||'#faf9f5';ctx.fillRect(0,0,canvas.width,canvas.height);
       if(work.prefaceParagraphs&&work.poemLines){
@@ -357,7 +358,7 @@ export class ExhibitionScene {
     this.loadTexture(work.image).then(texture=>{this.applyArtTexture(g,texture);g.userData.highResolutionApplied=true;g.userData.lowResolution=false;}).catch(()=>{g.userData.highResolutionRequested=false;g.userData.retryAt=performance.now()+10000;});
   }
   view(mode){
-    if(!this.state)return;this.navigation.clear();if(this.mode!==mode)this.orthographic.zoom=1;this.mode=mode;const b=bounds(this.state.room),max=Math.max(b.width,b.depth);
+    if(!this.state)return;this.navigation.clear();if(this.mode!==mode||this.focusedTextPanel)this.orthographic.zoom=1;this.focusedTextPanel=null;this.mode=mode;const b=bounds(this.state.room),max=Math.max(b.width,b.depth);
     this.camera=mode==='overview'||mode==='eye'?this.perspective:this.orthographic;this.controls.object=this.camera;
     this.perspective.fov=mode==='eye'?70:42;this.perspective.updateProjectionMatrix();
     this.controls.enableRotate=mode==='overview'||mode==='eye';this.controls.enablePan=mode!=='eye';this.controls.enableZoom=mode!=='eye';this.controls.minDistance=mode==='eye'?.03:.5;this.controls.maxDistance=mode==='eye'?.03:100;
@@ -394,6 +395,12 @@ export class ExhibitionScene {
     const x=p.x-dx*distance,z=p.z-dz*distance;
     this.camera.position.set(x,1.6,z);const look=new THREE.Vector3(p.x,p.focusHeight??.6,p.z).sub(this.camera.position).normalize();
     this.controls.target.copy(this.camera.position).addScaledVector(look,.03);this.camera.lookAt(this.controls.target);this.controls.update();
+  }
+  focusTextPanel(id){
+    const w=this.state.works.find(work=>work.id===id);if(!w||!this.mode.startsWith('wall:'))return;
+    const wall=walls(this.state.room)[w.wall],height=w.height+(w.ropeRise||0),center=w.elevation+height/2;
+    this.controls.target.set(w.x,center,w.z);this.camera.position.set(w.x+wall.normal[0]*30,center,w.z+wall.normal[1]*30);
+    this.focusedTextPanel=id;this.orthographic.zoom=1;this.resize();this.camera.lookAt(this.controls.target);this.controls.update();
   }
   stepWalking(dt){
     if(this.mode!=='eye'||document.hidden||document.querySelector('dialog[open]'))return;

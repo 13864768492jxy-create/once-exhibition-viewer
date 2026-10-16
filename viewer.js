@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261016-clean-floor-10';
-import {walls,cm,sampleImage} from './model.js?v=20261016-clean-floor-10';
+import {ExhibitionScene} from './scene.js?v=20261016-preface-11';
+import {walls,cm,sampleImage} from './model.js?v=20261016-preface-11';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -35,12 +35,12 @@ function renderList(medium){
     }
   }
   const textHeading=document.createElement('h2');textHeading.textContent='展览文字';root.append(textHeading);
-  for(const [title,caption,mode,floorId] of [['悬挂前言 · 引诗','月亮升起。潮水对此一无所知。','wall:2'],['地面诗 · 阅读动线','我在以后看见他们，','plan'],['地面诗 · 起句','我在以后看见他们，','eye','floor-poem-1'],['地面诗 · 迎着风','迎着风谈论明天。','eye','floor-poem-2'],['地面诗 · 群山','群山还未合拢，','eye','floor-poem-3'],['地面诗 · 21前方','河流带有未命名的方向，从每个人流过。','eye','floor-poem-4'],['地面诗 · 世界','已经发生的世界，横亘在我与他们之间。','eye','floor-poem-5'],['地面诗 · 终句','他们再也看不见我。','eye','floor-poem-6']]){
-    const button=document.createElement('button');button.className='work';const text=document.createElement('span'),name=document.createElement('strong'),description=document.createElement('small');name.textContent=title;description.textContent=caption;text.append(name,description);button.append(text);button.onclick=()=>{changeView(mode);if(floorId)scene.focusFloorPoem(floorId);$('view-tip').textContent=title;};root.append(button);
+  for(const [title,caption,mode,floorId,textId] of [['悬挂前言 · 引诗','月亮升起。潮水对此一无所知。','wall:2',null,'curation-preface-01'],['地面诗 · 阅读动线','我在以后看见他们，','plan'],['地面诗 · 起句','我在以后看见他们，','eye','floor-poem-1'],['地面诗 · 迎着风','迎着风谈论明天。','eye','floor-poem-2'],['地面诗 · 群山','群山还未合拢，','eye','floor-poem-3'],['地面诗 · 21前方','河流带有未命名的方向，从每个人流过。','eye','floor-poem-4'],['地面诗 · 世界','已经发生的世界，横亘在我与他们之间。','eye','floor-poem-5'],['地面诗 · 终句','他们再也看不见我。','eye','floor-poem-6']]){
+    const button=document.createElement('button');button.className='work';const text=document.createElement('span'),name=document.createElement('strong'),description=document.createElement('small');name.textContent=title;description.textContent=caption;text.append(name,description);button.append(text);button.onclick=()=>{changeView(mode);if(floorId)scene.focusFloorPoem(floorId);if(textId)scene.focusTextPanel(textId);if(textId&&mobile.matches)showList(false);$('view-tip').textContent=title;};root.append(button);
   }
 }
 try{
-  const response=await fetch('data.json?v=20261016-clean-floor-10');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261016-preface-11');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
   const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白色宽框：32、34。白色细框加卡纸：24、27。黑色细框加卡纸：16、26、28、31。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
