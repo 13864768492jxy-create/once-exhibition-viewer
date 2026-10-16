@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261017-preface-15';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261017-preface-16';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -266,6 +266,14 @@ export class ExhibitionScene {
     const number=/^once_(\d+)$/.exec(work.name)?.[1];
     const marker=this.label(number||(work.displayKind==='book-table'?'书台':work.name.startsWith('VESSEL')?'影像':'前言'),.32,'#faf9f3');marker.userData.marker=true;marker.position.set(0,work.height/2+.12,.2);g.userData.planMarker=marker;g.add(marker);
     this.worksGroup.add(g);this.positionWork(work);g.traverse(child=>{child.userData.workId=work.id;});
+  }
+  async setTextPanelImage(id,image){
+    const g=this.workGroups.get(id),work=g?.userData.work;
+    if(!g||!work||work.mounting!=='hanging-banner')return;
+    work.image=work.thumbnail=image;
+    g.userData.highResolutionApplied=true;
+    const texture=await this.loadTexture(image);
+    if(texture&&this.workGroups.get(id)===g&&work.image===image)this.applyArtTexture(g,texture);
   }
   applyArtTexture(g,texture){
     const plane=g.userData.imagePlane,work=g.userData.work;if(!plane?.material)return;
