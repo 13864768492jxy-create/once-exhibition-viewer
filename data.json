@@ -1,5 +1,5 @@
 {
-  "revision": 81,
+  "revision": 82,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1470,8 +1470,8 @@
         "name": "展览前言 · 悬挂条幅（正文暂拟）",
         "isTextPanel": true,
         "placed": true,
-        "image": "images/preface-banner-v81.svg",
-        "thumbnail": "images/preface-banner-v81.svg",
+        "image": "images/preface-banner-v82.svg",
+        "thumbnail": "images/preface-banner-v82.svg",
         "width": 0.9,
         "height": 2.35,
         "depth": 0.025,
@@ -1492,7 +1492,7 @@
         "fabricColor": "#f5f3ed",
         "contentWidth": 0.8,
         "contentCenterHeight": 1.55,
-        "hangingDescription": "布面90×235厘米，上沿2.70米、下沿0.35米、吊点2.90米。标题仅“前言”，宋体正文26毫米；正文上方长细线，右侧保留策展人盛林斌及短细线，删除艺术家署名。完整诗作横向展开、纵向收紧、围绕450毫米中轴排列；同一版式试排黑体、朝华打字机与现用楷体，常规24毫米、海水40毫米。正文暂拟，其他布展保持。",
+        "hangingDescription": "布面90×235厘米，上沿2.70米、下沿0.35米、吊点2.90米。标题仅“前言”，宋体正文26毫米；正文上方长细线，右侧保留策展人盛林斌及短细线，删除艺术家署名。完整诗作横向展开、纵向收紧、围绕450毫米中轴排列；同一版式试排黑体、朝华打字机与现用楷体，常规24毫米、海水40毫米。正文暂拟，其他布展保持。底部增加19.5厘米浅灰背景与一条细收边线，无新增文字，正文与诗的位置保持v81。",
         "poemLines": [
           "月亮升起。",
           "潮水对此一无所知。",
@@ -1897,17 +1897,17 @@
     {
       "id": "heiti",
       "label": "黑体",
-      "image": "images/preface-banner-v81-heiti.svg"
+      "image": "images/preface-banner-v82-heiti.svg"
     },
     {
       "id": "printer",
       "label": "打印机感",
-      "image": "images/preface-banner-v81-printer.svg"
+      "image": "images/preface-banner-v82-printer.svg"
     },
     {
       "id": "kai",
       "label": "现用楷体",
-      "image": "images/preface-banner-v81.svg"
+      "image": "images/preface-banner-v82.svg"
     }
   ]
 }
