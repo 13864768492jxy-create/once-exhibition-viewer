@@ -1,5 +1,5 @@
 {
-  "revision": 73,
+  "revision": 74,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1104,23 +1104,21 @@
         "placed": true,
         "width": 0.42,
         "height": 0.33897,
-        "depth": 0.025,
-        "elevation": 2.109,
+        "depth": 0.035,
+        "elevation": 2.09,
         "wall": 1,
         "along": 3.54,
-        "x": 3.9855,
+        "x": 3.9805,
         "z": 0.79,
         "rotation": -90,
         "frame": "white",
-        "mat": 0.025,
-        "frameWidth": 0.006,
+        "mat": 0,
+        "frameWidth": 0.05,
         "routeOrder": 16,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "hangingCenterHeight": 2.309485,
-        "framingDescription": "哑光白色细框，正面框条6毫米；每侧2.5厘米白卡纸；外框约48.2×40.10厘米",
-        "frameOuterWidth": 0.482,
-        "frameOuterHeight": 0.40097
+        "framingDescription": "白色宽框，正面框条5厘米，无卡纸"
       },
       {
         "id": "c52aecb0-7234-4b53-8dba-b9db01c61b1f",
@@ -1449,24 +1447,22 @@
         "placed": true,
         "width": 0.3,
         "height": 0.25,
-        "depth": 0.025,
-        "elevation": 2.047011,
+        "depth": 0.035,
+        "elevation": 2.028011,
         "wall": 2,
         "along": 3.45,
         "x": 0.5499999999999998,
-        "z": 2.7355,
+        "z": 2.7305,
         "rotation": -180,
         "frame": "white",
-        "mat": 0.025,
-        "frameWidth": 0.006,
+        "mat": 0,
+        "frameWidth": 0.05,
         "routeOrder": 28,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "hangingCenterHeight": 2.2030109999999996,
-        "framingDescription": "哑光白色细框，正面框条6毫米；每侧2.5厘米白卡纸；外框约36.2×31.20厘米",
-        "imageFit": "cover",
-        "frameOuterWidth": 0.362,
-        "frameOuterHeight": 0.312
+        "framingDescription": "白色宽框，正面框条5厘米，无卡纸",
+        "imageFit": "cover"
       },
       {
         "id": "curation-preface-01",
@@ -1682,19 +1678,21 @@
       "once_11",
       "once_17"
     ],
-    "whiteWide": [],
-    "whiteThinWithMat": [
-      "once_24",
-      "once_27",
+    "whiteWide": [
       "once_32",
       "once_34"
+    ],
+    "whiteThinWithMat": [
+      "once_24",
+      "once_27"
     ],
     "blackThinWithMat": [
       "once_16",
       "once_26",
       "once_31",
       "once_28"
-    ]
+    ],
+    "whiteWideFront_cm": 5
   },
   "sourceLayoutRevision": 56,
   "updatedDate": "2026-10-16",
