@@ -1,5 +1,5 @@
 {
-  "revision": 79,
+  "revision": 80,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1470,8 +1470,8 @@
         "name": "展览前言 · 悬挂条幅（正文暂拟）",
         "isTextPanel": true,
         "placed": true,
-        "image": "images/preface-banner-v79.svg",
-        "thumbnail": "images/preface-banner-v79.svg",
+        "image": "images/preface-banner-v80.svg",
+        "thumbnail": "images/preface-banner-v80.svg",
         "width": 0.9,
         "height": 2.35,
         "depth": 0.025,
@@ -1492,7 +1492,7 @@
         "fabricColor": "#f5f3ed",
         "contentWidth": 0.8,
         "contentCenterHeight": 1.55,
-        "hangingDescription": "布面90×235厘米，上沿2.70米、下沿0.35米、吊点2.90米；唯一大标题“前言”字身110毫米，正文26毫米、行距42毫米，艺术家与策展人等大署名。完整诗作集中为下端约66厘米高的紧凑字群，海水40毫米、动词成对排列，以字级、密度与节奏承担装饰。正文暂拟，悬挂位置与其他布展不变。",
+        "hangingDescription": "布面90×235厘米，上沿2.70米、下沿0.35米、吊点2.90米；110毫米大标题前言、26毫米正文和等大艺术家与策展人署名保持。整组诗上提44厘米，首行与署名净空约7厘米；参照用户图片的书写印刷感，改用厚实楷体，常规24毫米、海水40毫米。完整诗文与紧凑分组保留，正文暂拟，其他布展不变。",
         "poemLines": [
           "月亮升起。",
           "潮水对此一无所知。",
