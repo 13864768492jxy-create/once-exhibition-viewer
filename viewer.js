@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261017-white-frame-22';
-import {walls,cm,sampleImage} from './model.js?v=20261017-white-frame-22';
+import {ExhibitionScene} from './scene.js?v=20261017-thin-white-23';
+import {walls,cm,sampleImage} from './model.js?v=20261017-thin-white-23';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -34,13 +34,13 @@ function renderList(medium,prefaceTrials=[]){
       button.onclick=()=>{changeView(`wall:${w.wall}`);select(w.id);$('view-tip').textContent=`${wall.name} · ${w.name}`;};
     }
   }
-  const frameWorks=photos.filter(work=>work.frameProfile==='wide-flat').sort((a,b)=>a.name.localeCompare(b.name));
+  const frameWorks=photos.filter(work=>work.frameProfile==='thin-white-matted').sort((a,b)=>a.name.localeCompare(b.name));
   if(frameWorks.length){
     const heading=document.createElement('h2');heading.textContent='装裱特写';root.append(heading);
-    for(const work of frameWorks)for(const oblique of [false,true]){
+    for(const work of frameWorks){
       const button=document.createElement('button');button.className='work';const text=document.createElement('span'),title=document.createElement('strong'),caption=document.createElement('small');
-      title.textContent=`${work.name.slice(-2)}号宽白框 · ${oblique?'斜侧':'正面'}`;caption.textContent='平宽框面 · 无卡纸 · 可拖动查看';text.append(title,caption);button.append(text);
-      button.onclick=()=>{changeView(`wall:${work.wall}`);scene.focusArtwork(work.id,oblique);showList(false);$('view-tip').textContent=`${title.textContent} · 拖动旋转，双指或滚轮缩放`;};root.append(button);
+      title.textContent=`${work.name.slice(-2)}号白窄框 · 正视`;caption.textContent=`8毫米白框 · 每侧${cm(work.mat)}厘米白卡纸`;text.append(title,caption);button.append(text);
+      button.onclick=()=>{changeView(`wall:${work.wall}`);scene.focusArtwork(work.id);showList(false);$('view-tip').textContent=`${title.textContent} · 拖动旋转，双指或滚轮缩放`;};root.append(button);
     }
   }
   const textHeading=document.createElement('h2');textHeading.textContent='展览文字';root.append(textHeading);
@@ -50,9 +50,9 @@ function renderList(medium,prefaceTrials=[]){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261017-white-frame-22');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261017-thin-white-23');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
-  const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白色宽框：32、34。白色细框加卡纸：24、27。黑色细框加卡纸：16、26、28、31。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
+  const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白色窄框加卡纸：24、27、28（每侧2.5厘米），32、34（每侧4厘米）。黑色细框加卡纸：16、26、31。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
   if(state.room.measurements?.wall1){
     const note=document.createElement('p');note.className='framing-note';

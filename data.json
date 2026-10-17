@@ -1,5 +1,5 @@
 {
-  "revision": 87,
+  "revision": 88,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1105,22 +1105,23 @@
         "width": 0.42,
         "height": 0.33897,
         "depth": 0.035,
-        "elevation": 2.09,
+        "elevation": 2.092,
         "wall": 1,
         "along": 3.54,
         "x": 3.9805,
         "z": 0.79,
         "rotation": -90,
         "frame": "white",
-        "mat": 0,
-        "frameWidth": 0.05,
+        "mat": 0.04,
+        "frameWidth": 0.008,
         "routeOrder": 16,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "hangingCenterHeight": 2.309485,
-        "framingDescription": "白色宽平框，正面框条5厘米；细倒角，图面退入约3毫米，无卡纸",
-        "frameProfile": "wide-flat",
-        "frameRecess": 0.003
+        "framingDescription": "白色窄框，正面框条8毫米；每侧4厘米白卡纸，斜切内口",
+        "frameProfile": "thin-white-matted",
+        "frameRecess": 0.003,
+        "matThickness": 0.0016
       },
       {
         "id": "c52aecb0-7234-4b53-8dba-b9db01c61b1f",
@@ -1250,7 +1251,7 @@
         "width": 0.5,
         "height": 0.42,
         "depth": 0.025,
-        "elevation": 0.6496192609182532,
+        "elevation": 0.6476192609182532,
         "wall": 0,
         "along": 4.33,
         "x": -0.77,
@@ -1258,13 +1259,16 @@
         "rotation": 0,
         "frame": "white",
         "mat": 0.025,
-        "frameWidth": 0.006,
+        "frameWidth": 0.008,
         "routeOrder": 21,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "hangingCenterHeight": 0.890619260918253,
+        "hangingCenterHeight": 0.8906192609182532,
         "imageFit": "cover",
-        "framingDescription": "白色细框，每侧2.5厘米卡纸；外框约56.2×48.2厘米"
+        "framingDescription": "白色窄框，正面框条8毫米；每侧2.5厘米白卡纸，斜切内口",
+        "frameProfile": "thin-white-matted",
+        "frameRecess": 0.003,
+        "matThickness": 0.0016
       },
       {
         "id": "9bd3459c-32fe-4c64-959e-d6faf5fb29e8",
@@ -1307,23 +1311,25 @@
         "width": 0.56,
         "height": 0.417707,
         "depth": 0.025,
-        "elevation": 1.779,
+        "elevation": 1.7770000000000001,
         "wall": 1,
         "along": 2.26,
         "x": 3.9855,
         "z": -0.4900000000000002,
         "rotation": -90,
-        "frame": "black",
+        "frame": "white",
         "mat": 0.025,
-        "frameWidth": 0.006,
+        "frameWidth": 0.008,
         "routeOrder": 23,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "paperBorder": 0,
         "mounting": "framed",
-        "framingDescription": "哑光黑色细框，正面框条6毫米；每侧2.5厘米白卡纸；外框约62.2×47.97厘米",
-        "frameOuterWidth": 0.622,
-        "frameOuterHeight": 0.479707
+        "framingDescription": "白色窄框，正面框条8毫米；每侧2.5厘米白卡纸，斜切内口",
+        "frameProfile": "thin-white-matted",
+        "frameRecess": 0.003,
+        "matThickness": 0.0016,
+        "hangingCenterHeight": 2.0188535
       },
       {
         "id": "0087a9a5-2b78-4264-9313-cf790ccc8161",
@@ -1450,23 +1456,24 @@
         "width": 0.3,
         "height": 0.25,
         "depth": 0.035,
-        "elevation": 2.028011,
+        "elevation": 2.0300109999999996,
         "wall": 2,
         "along": 3.45,
         "x": 0.5499999999999998,
         "z": 2.7305,
         "rotation": -180,
         "frame": "white",
-        "mat": 0,
-        "frameWidth": 0.05,
+        "mat": 0.04,
+        "frameWidth": 0.008,
         "routeOrder": 28,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "hangingCenterHeight": 2.2030109999999996,
-        "framingDescription": "白色宽平框，正面框条5厘米；细倒角，图面退入约3毫米，无卡纸",
+        "framingDescription": "白色窄框，正面框条8毫米；每侧4厘米白卡纸，斜切内口",
         "imageFit": "cover",
-        "frameProfile": "wide-flat",
-        "frameRecess": 0.003
+        "frameProfile": "thin-white-matted",
+        "frameRecess": 0.003,
+        "matThickness": 0.0016
       },
       {
         "id": "curation-preface-01",
@@ -1644,7 +1651,7 @@
         "width": 0.54,
         "height": 0.45923852183650615,
         "depth": 0.025,
-        "elevation": 1.928761478163494,
+        "elevation": 1.926761478163494,
         "wall": 0,
         "along": 7.179060856760994,
         "x": 2.0790608567609947,
@@ -1652,12 +1659,16 @@
         "rotation": 0,
         "frame": "white",
         "mat": 0.025,
-        "frameWidth": 0.006,
+        "frameWidth": 0.008,
         "imageRatio": 1.175859546452085,
         "lockAspect": true,
         "sourceSha256": "a0acad374469c3c5c9361053c9de58a8ebaaf4c9b2f5fe35741108b4049b1c01",
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "framingDescription": "白色细框，每侧2.5厘米卡纸"
+        "framingDescription": "白色窄框，正面框条8毫米；每侧2.5厘米白卡纸，斜切内口",
+        "frameProfile": "thin-white-matted",
+        "frameRecess": 0.003,
+        "matThickness": 0.0016,
+        "hangingCenterHeight": 2.1893807390817472
       }
     ]
   },
@@ -1684,21 +1695,27 @@
       "once_11",
       "once_17"
     ],
-    "whiteWide": [
-      "once_32",
-      "once_34"
-    ],
+    "whiteWide": [],
     "whiteThinWithMat": [
       "once_24",
-      "once_27"
+      "once_27",
+      "once_28",
+      "once_32",
+      "once_34"
     ],
     "blackThinWithMat": [
       "once_16",
       "once_26",
-      "once_31",
-      "once_28"
+      "once_31"
     ],
-    "whiteWideFront_cm": 5
+    "whiteThinFront_cm": 0.8,
+    "whiteMatEach_cm": {
+      "once_24": 2.5,
+      "once_27": 2.5,
+      "once_28": 2.5,
+      "once_32": 4,
+      "once_34": 4
+    }
   },
   "sourceLayoutRevision": 56,
   "updatedDate": "2026-10-17",
