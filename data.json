@@ -1,5 +1,5 @@
 {
-  "revision": 89,
+  "revision": 90,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1518,8 +1518,8 @@
         "name": "展览前言 · 悬挂条幅（正文暂拟）",
         "isTextPanel": true,
         "placed": true,
-        "image": "images/preface-banner-v85.svg",
-        "thumbnail": "images/preface-banner-v85.svg",
+        "image": "images/preface-banner-v90.svg",
+        "thumbnail": "images/preface-banner-v90.svg",
         "width": 0.9,
         "height": 2.35,
         "depth": 0.025,
@@ -1975,17 +1975,17 @@
     {
       "id": "heiti",
       "label": "黑体",
-      "image": "images/preface-banner-v85-heiti.svg"
+      "image": "images/preface-banner-v90-heiti.svg"
     },
     {
       "id": "printer",
       "label": "打印机感",
-      "image": "images/preface-banner-v85-printer.svg"
+      "image": "images/preface-banner-v90-printer.svg"
     },
     {
       "id": "kai",
       "label": "现用楷体",
-      "image": "images/preface-banner-v85.svg"
+      "image": "images/preface-banner-v90.svg"
     }
   ],
   "framingTrial": {
