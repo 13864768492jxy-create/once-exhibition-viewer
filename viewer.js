@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261017-preface-19';
-import {walls,cm,sampleImage} from './model.js?v=20261017-preface-19';
+import {ExhibitionScene} from './scene.js?v=20261017-preface-20';
+import {walls,cm,sampleImage} from './model.js?v=20261017-preface-20';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -41,7 +41,7 @@ function renderList(medium,prefaceTrials=[]){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261017-preface-19');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261017-preface-20');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
   const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白色宽框：32、34。白色细框加卡纸：24、27。黑色细框加卡纸：16、26、28、31。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}

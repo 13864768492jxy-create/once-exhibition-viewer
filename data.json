@@ -1,5 +1,5 @@
 {
-  "revision": 84,
+  "revision": 85,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1470,8 +1470,8 @@
         "name": "展览前言 · 悬挂条幅（正文暂拟）",
         "isTextPanel": true,
         "placed": true,
-        "image": "images/preface-banner-v84.svg",
-        "thumbnail": "images/preface-banner-v84.svg",
+        "image": "images/preface-banner-v85.svg",
+        "thumbnail": "images/preface-banner-v85.svg",
         "width": 0.9,
         "height": 2.35,
         "depth": 0.025,
@@ -1492,7 +1492,7 @@
         "fabricColor": "#f5f3ed",
         "contentWidth": 0.8,
         "contentCenterHeight": 1.55,
-        "hangingDescription": "布面90×235厘米，上沿2.70米、下沿0.35米、吊点2.90米。标题仅“前言”，26毫米宋体正文与正文上方长细线保持；署名组靠正文右侧：短横线长130毫米，右端与正文版心右边界835毫米对齐；策展人与盛林斌两行均用26毫米宋体，在短线下沿左端705毫米左对齐，行距41毫米。完整诗作首末基线1170—1800毫米，整体下移并适度扩大纵向间距，横向错落与居中轴保留。下半部以20号岩石海浪原图为渐显背景：1450毫米处透明，逐渐过渡到底部28%不透明度，撤掉原灰条及底部收边线。黑体、朝华打字机与现用楷体共用此构图，正文暂拟。摄影、地面诗、建筑与条幅悬挂几何不变。",
+        "hangingDescription": "布面90×235厘米，上沿2.70米、下沿0.35米、吊点2.90米。标题仅“前言”，26毫米宋体正文与正文上方长细线保持；署名组靠正文右侧：短横线长130毫米，右端与正文版心右边界835毫米对齐；策展人与盛林斌两行均用26毫米宋体，在短线下沿左端705毫米左对齐，行距41毫米。完整诗作首末基线1170—1800毫米，整体下移并适度扩大纵向间距，横向错落与居中轴保留。下半部以20号岩石海浪原图为渐显背景：1450毫米处透明，逐渐过渡到底部28%不透明度，撤掉原灰条及底部收边线。黑体、朝华打字机与现用楷体共用此构图，正文暂拟。摄影、地面诗、建筑与条幅悬挂几何不变。诗末行右下方新增18毫米宋体浅灰落款“/姜昕宇”，其他文字与背景保持v84。",
         "poemLines": [
           "月亮升起。",
           "潮水对此一无所知。",
@@ -1897,17 +1897,17 @@
     {
       "id": "heiti",
       "label": "黑体",
-      "image": "images/preface-banner-v84-heiti.svg"
+      "image": "images/preface-banner-v85-heiti.svg"
     },
     {
       "id": "printer",
       "label": "打印机感",
-      "image": "images/preface-banner-v84-printer.svg"
+      "image": "images/preface-banner-v85-printer.svg"
     },
     {
       "id": "kai",
       "label": "现用楷体",
-      "image": "images/preface-banner-v84.svg"
+      "image": "images/preface-banner-v85.svg"
     }
   ]
 }
