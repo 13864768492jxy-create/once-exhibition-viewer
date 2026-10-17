@@ -1,5 +1,5 @@
 {
-  "revision": 82,
+  "revision": 83,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1470,8 +1470,8 @@
         "name": "展览前言 · 悬挂条幅（正文暂拟）",
         "isTextPanel": true,
         "placed": true,
-        "image": "images/preface-banner-v82.svg",
-        "thumbnail": "images/preface-banner-v82.svg",
+        "image": "images/preface-banner-v83.svg",
+        "thumbnail": "images/preface-banner-v83.svg",
         "width": 0.9,
         "height": 2.35,
         "depth": 0.025,
@@ -1492,7 +1492,7 @@
         "fabricColor": "#f5f3ed",
         "contentWidth": 0.8,
         "contentCenterHeight": 1.55,
-        "hangingDescription": "布面90×235厘米，上沿2.70米、下沿0.35米、吊点2.90米。标题仅“前言”，宋体正文26毫米；正文上方长细线，右侧保留策展人盛林斌及短细线，删除艺术家署名。完整诗作横向展开、纵向收紧、围绕450毫米中轴排列；同一版式试排黑体、朝华打字机与现用楷体，常规24毫米、海水40毫米。正文暂拟，其他布展保持。底部增加19.5厘米浅灰背景与一条细收边线，无新增文字，正文与诗的位置保持v81。",
+        "hangingDescription": "布面90×235厘米，上沿2.70米、下沿0.35米、吊点2.90米。标题仅“前言”，26毫米宋体正文与正文上方长细线保持；策展人盛林斌移至短横线右下方，两行右对齐线末端。完整诗作首末基线1170—1800毫米，整体下移并适度扩大纵向间距，横向错落与居中轴保留。下半部以20号岩石海浪原图为渐显背景：1450毫米处透明，逐渐过渡到底部28%不透明度，撤掉原灰条及底部收边线。黑体、朝华打字机与现用楷体共用此构图，正文暂拟。摄影、地面诗、建筑与条幅悬挂几何不变。",
         "poemLines": [
           "月亮升起。",
           "潮水对此一无所知。",
@@ -1897,17 +1897,17 @@
     {
       "id": "heiti",
       "label": "黑体",
-      "image": "images/preface-banner-v82-heiti.svg"
+      "image": "images/preface-banner-v83-heiti.svg"
     },
     {
       "id": "printer",
       "label": "打印机感",
-      "image": "images/preface-banner-v82-printer.svg"
+      "image": "images/preface-banner-v83-printer.svg"
     },
     {
       "id": "kai",
       "label": "现用楷体",
-      "image": "images/preface-banner-v82.svg"
+      "image": "images/preface-banner-v83.svg"
     }
   ]
 }
