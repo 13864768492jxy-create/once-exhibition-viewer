@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261017-material-white-21';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261017-white-frame-22';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -39,8 +39,9 @@ export class ExhibitionScene {
   updateOrtho(aspect){
     const b=this.state?bounds(this.state.room):{width:12,depth:8};
     const focused=this.state?.works.find(work=>work.id===this.focusedTextPanel);
-    const viewWidth=focused?focused.width+.3:this.mode.startsWith('wall:')?walls(this.state.room)[Number(this.mode.split(':')[1])].length+1.5:b.width+2.5;
-    const viewHeight=focused?focused.height+(focused.ropeRise||0)+.3:this.mode.startsWith('wall:')?(this.state.room.ceiling?.enabled?this.state.room.height:walls(this.state.room)[Number(this.mode.split(':')[1])].height)+1.6:b.depth+2.5;
+    const detail=this.state?.works.find(work=>work.id===this.focusedArtwork),detailBounds=detail&&workBounds(detail);
+    const viewWidth=detail?detailBounds.width+.16:focused?focused.width+.3:this.mode.startsWith('wall:')?walls(this.state.room)[Number(this.mode.split(':')[1])].length+1.5:b.width+2.5;
+    const viewHeight=detail?detailBounds.height+.16:focused?focused.height+(focused.ropeRise||0)+.3:this.mode.startsWith('wall:')?(this.state.room.ceiling?.enabled?this.state.room.height:walls(this.state.room)[Number(this.mode.split(':')[1])].height)+1.6:b.depth+2.5;
     const half=Math.max(viewHeight/2,viewWidth/(2*aspect));
     this.orthographic.left=-half*aspect;this.orthographic.right=half*aspect;this.orthographic.top=half;this.orthographic.bottom=-half;this.orthographic.updateProjectionMatrix();
   }
@@ -49,6 +50,26 @@ export class ExhibitionScene {
   }
   box(w,h,d,color,material){
     const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material||new THREE.MeshStandardMaterial({color,roughness:.9}));mesh.castShadow=true;mesh.receiveShadow=true;return mesh;
+  }
+  addWideFlatFrame(group,work){
+    const width=work.frameWidth,front=work.depth/2,back=-front,bevel=.0006,innerBevel=.0008;
+    const profile=[[0,front-.0015],[innerBevel,front],[width-bevel,front],[width,front-bevel],[width,back],[0,back]];
+    const positions=[],corners=offset=>[[-work.width/2-offset,-work.height/2-offset],[work.width/2+offset,-work.height/2-offset],[work.width/2+offset,work.height/2+offset],[-work.width/2-offset,work.height/2+offset]];
+    for(let ring=0;ring<profile.length;ring++){
+      const [a,zA]=profile[ring],[b,zB]=profile[(ring+1)%profile.length],outer=corners(a),inner=corners(b);
+      for(let side=0;side<4;side++){
+        const next=(side+1)%4,A=[...outer[side],zA],B=[...outer[next],zA],C=[...inner[next],zB],D=[...inner[side],zB];
+        positions.push(...A,...C,...B,...A,...D,...C);
+      }
+    }
+    const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geometry.computeVertexNormals();
+    for(let ring=0;ring<profile.length;ring++)geometry.addGroup(ring*24,24,ring===1?0:1);
+    const material=new THREE.MeshStandardMaterial({color:'#ffffff',emissive:'#ffffff',emissiveIntensity:.75,roughness:.82,metalness:0});
+    const edgeMaterial=material.clone();edgeMaterial.emissiveIntensity=.32;
+    const frame=new THREE.Mesh(geometry,[material,edgeMaterial]);frame.castShadow=true;frame.receiveShadow=true;frame.userData.frameProfile='wide-flat';group.add(frame);
+    const seams=[];
+    for(const x of [-1,1])for(const y of [-1,1])seams.push(x*(work.width/2+innerBevel),y*(work.height/2+innerBevel),front+.00002,x*(work.width/2+width-bevel),y*(work.height/2+width-bevel),front+.00002);
+    const joints=new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position',new THREE.Float32BufferAttribute(seams,3)),new THREE.LineBasicMaterial({color:'#b8bbb9',transparent:true,opacity:.13,toneMapped:false}));group.add(joints);
   }
   label(text,size=.45,color='#526652'){
     const c=document.createElement('canvas');c.width=256;c.height=72;const ctx=c.getContext('2d');
@@ -218,6 +239,7 @@ export class ExhibitionScene {
     if(work.type==='art'){
       const outer=workBounds(work),padding=work.frame==='none'?0:(work.frameWidth||.008);
       const floating=work.mounting==='floating'&&work.frame!=='none',hanging=work.mounting==='hanging-banner';
+      const wideFlat=work.frame==='white'&&work.frameProfile==='wide-flat';
       let imageDepth=work.depth/2+.001;
       if(hanging){
         imageDepth=.001;
@@ -233,6 +255,9 @@ export class ExhibitionScene {
       }else if(floating){
         const panelDepth=work.panelDepth||.01,panelFront=work.depth/2-(work.panelRecess??.002);
         const panel=this.box(work.width,work.height,panelDepth,'#393733');panel.position.z=panelFront-panelDepth/2;g.add(panel);imageDepth=panelFront+.0005;
+      }else if(wideFlat){
+        imageDepth=work.depth/2-(work.frameRecess||.003);
+        const backing=this.box(work.width,work.height,.004,'#ffffff');backing.position.z=imageDepth-.0025;g.add(backing);
       }else{
         // White paper is shown independently from the lighting used for walls and frames.
         const paperMaterial=work.frame==='none'&&work.paperBorder>0?new THREE.MeshBasicMaterial({color:'#ffffff',toneMapped:false}):undefined;
@@ -250,7 +275,8 @@ export class ExhibitionScene {
         }
         plastic.dispose();metal.dispose();
       }
-      if(work.frame!=='none'){
+      if(wideFlat)this.addWideFlatFrame(g,work);
+      else if(work.frame!=='none'){
         const color={black:'#292b28',white:'#f9f9f4',wood:'#b5a58b'}[work.frame];
         [[outer.width,padding,0,(outer.height-padding)/2],[outer.width,padding,0,-(outer.height-padding)/2],[padding,outer.height,-(outer.width-padding)/2,0],[padding,outer.height,(outer.width-padding)/2,0]].forEach(([w,h,x,y])=>{const frame=this.box(w,h,floating?work.depth:work.depth+.009,color);frame.position.set(x,y,0);g.add(frame);});
       }
@@ -356,7 +382,7 @@ export class ExhibitionScene {
     });
     if(this.grid)this.grid.visible=this.gridVisible&&selectedWall===null;
     this.roomGroup.traverse(o=>{if(o.userData.wallLabel)o.visible=false;});
-    this.workGroups.forEach(g=>{g.visible=selectedWall===null||(g.userData.work.type==='art'&&g.userData.work.wall===selectedWall);g.traverse(o=>{if(o.userData.marker)o.visible=this.mode==='plan';});});
+    this.workGroups.forEach(g=>{g.visible=this.focusedArtwork?g.userData.workId===this.focusedArtwork:selectedWall===null||(g.userData.work.type==='art'&&g.userData.work.wall===selectedWall);g.traverse(o=>{if(o.userData.marker)o.visible=this.mode==='plan';});});
     if(this.selection)this.selection.visible=selectedWall===null||this.state.works.find(w=>w.id===this.selected)?.wall===selectedWall;this.updateCutaway();
   }
   updateCutaway(){
@@ -373,7 +399,7 @@ export class ExhibitionScene {
     this.loadTexture(work.image).then(texture=>{this.applyArtTexture(g,texture);g.userData.highResolutionApplied=true;g.userData.lowResolution=false;}).catch(()=>{g.userData.highResolutionRequested=false;g.userData.retryAt=performance.now()+10000;});
   }
   view(mode){
-    if(!this.state)return;this.navigation.clear();if(this.mode!==mode||this.focusedTextPanel)this.orthographic.zoom=1;this.focusedTextPanel=null;this.mode=mode;const b=bounds(this.state.room),max=Math.max(b.width,b.depth);
+    if(!this.state)return;this.navigation.clear();if(this.mode!==mode||this.focusedTextPanel||this.focusedArtwork)this.orthographic.zoom=1;this.focusedTextPanel=null;this.focusedArtwork=null;this.mode=mode;const b=bounds(this.state.room),max=Math.max(b.width,b.depth);
     this.camera=mode==='overview'||mode==='eye'?this.perspective:this.orthographic;this.controls.object=this.camera;
     this.perspective.fov=mode==='eye'?70:42;this.perspective.updateProjectionMatrix();
     this.controls.enableRotate=mode==='overview'||mode==='eye';this.controls.enablePan=mode!=='eye';this.controls.enableZoom=mode!=='eye';this.controls.minDistance=mode==='eye'?.03:.5;this.controls.maxDistance=mode==='eye'?.03:100;
@@ -416,6 +442,14 @@ export class ExhibitionScene {
     const wall=walls(this.state.room)[w.wall],height=w.height+(w.ropeRise||0),center=w.elevation+height/2;
     this.controls.target.set(w.x,center,w.z);this.camera.position.set(w.x+wall.normal[0]*30,center,w.z+wall.normal[1]*30);
     this.focusedTextPanel=id;this.orthographic.zoom=1;this.resize();this.camera.lookAt(this.controls.target);this.controls.update();
+  }
+  focusArtwork(id,oblique=false){
+    const work=this.state.works.find(work=>work.id===id);if(!work||!this.mode.startsWith('wall:'))return;
+    const wall=walls(this.state.room)[work.wall],angle=oblique?Math.PI/6:0,height=work.elevation+workBounds(work).height/2;
+    const dx=wall.normal[0]*Math.cos(angle)+wall.tangent[0]*Math.sin(angle),dz=wall.normal[1]*Math.cos(angle)+wall.tangent[1]*Math.sin(angle);
+    this.focusedArtwork=id;this.controls.target.set(work.x,height,work.z);this.camera.position.set(work.x+dx*30,height+(oblique?3:0),work.z+dz*30);
+    this.controls.enableRotate=true;this.controls.maxPolarAngle=Math.PI*.75;this.controls.mouseButtons.LEFT=THREE.MOUSE.ROTATE;this.orthographic.zoom=1;
+    this.upgradeArt(this.workGroups.get(id));this.resize();this.camera.lookAt(this.controls.target);this.controls.update();this.applyVisibility();
   }
   stepWalking(dt){
     if(this.mode!=='eye'||document.hidden||document.querySelector('dialog[open]'))return;

@@ -1,5 +1,5 @@
 {
-  "revision": 86,
+  "revision": 87,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1118,7 +1118,9 @@
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "hangingCenterHeight": 2.309485,
-        "framingDescription": "白色宽框，正面框条5厘米，无卡纸"
+        "framingDescription": "白色宽平框，正面框条5厘米；细倒角，图面退入约3毫米，无卡纸",
+        "frameProfile": "wide-flat",
+        "frameRecess": 0.003
       },
       {
         "id": "c52aecb0-7234-4b53-8dba-b9db01c61b1f",
@@ -1461,8 +1463,10 @@
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "hangingCenterHeight": 2.2030109999999996,
-        "framingDescription": "白色宽框，正面框条5厘米，无卡纸",
-        "imageFit": "cover"
+        "framingDescription": "白色宽平框，正面框条5厘米；细倒角，图面退入约3毫米，无卡纸",
+        "imageFit": "cover",
+        "frameProfile": "wide-flat",
+        "frameRecess": 0.003
       },
       {
         "id": "curation-preface-01",

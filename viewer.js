@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261017-material-white-21';
-import {walls,cm,sampleImage} from './model.js?v=20261017-material-white-21';
+import {ExhibitionScene} from './scene.js?v=20261017-white-frame-22';
+import {walls,cm,sampleImage} from './model.js?v=20261017-white-frame-22';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -34,6 +34,15 @@ function renderList(medium,prefaceTrials=[]){
       button.onclick=()=>{changeView(`wall:${w.wall}`);select(w.id);$('view-tip').textContent=`${wall.name} · ${w.name}`;};
     }
   }
+  const frameWorks=photos.filter(work=>work.frameProfile==='wide-flat').sort((a,b)=>a.name.localeCompare(b.name));
+  if(frameWorks.length){
+    const heading=document.createElement('h2');heading.textContent='装裱特写';root.append(heading);
+    for(const work of frameWorks)for(const oblique of [false,true]){
+      const button=document.createElement('button');button.className='work';const text=document.createElement('span'),title=document.createElement('strong'),caption=document.createElement('small');
+      title.textContent=`${work.name.slice(-2)}号宽白框 · ${oblique?'斜侧':'正面'}`;caption.textContent='平宽框面 · 无卡纸 · 可拖动查看';text.append(title,caption);button.append(text);
+      button.onclick=()=>{changeView(`wall:${work.wall}`);scene.focusArtwork(work.id,oblique);showList(false);$('view-tip').textContent=`${title.textContent} · 拖动旋转，双指或滚轮缩放`;};root.append(button);
+    }
+  }
   const textHeading=document.createElement('h2');textHeading.textContent='展览文字';root.append(textHeading);
   const prefaceEntries=prefaceTrials.length?prefaceTrials.map(trial=>[`悬挂前言 · ${trial.label}`,'同一版式 · 完整引诗','wall:2',null,'curation-preface-01',trial.image]):[['悬挂前言 · 引诗','月亮升起。潮水对此一无所知。','wall:2',null,'curation-preface-01']];
   for(const [title,caption,mode,floorId,textId,variantImage] of [...prefaceEntries,['地面诗 · 阅读动线','我在以后看见他们，','plan'],['地面诗 · 起句','我在以后看见他们，','eye','floor-poem-1'],['地面诗 · 迎着风','迎着风谈论明天。','eye','floor-poem-2'],['地面诗 · 群山','群山还未合拢，','eye','floor-poem-3'],['地面诗 · 21前方','河流带有未命名的方向，从每个人流过。','eye','floor-poem-4'],['地面诗 · 世界','已经发生的世界，横亘在我与他们之间。','eye','floor-poem-5'],['地面诗 · 终句','他们再也看不见我。','eye','floor-poem-6']]){
@@ -41,7 +50,7 @@ function renderList(medium,prefaceTrials=[]){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261017-material-white-21');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261017-white-frame-22');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
   const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白色宽框：32、34。白色细框加卡纸：24、27。黑色细框加卡纸：16、26、28、31。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
