@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261017-preface-byline-25';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261019-preface-editorial-26';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -370,7 +370,9 @@ export class ExhibitionScene {
     if(this.textures.has(source))return this.textures.get(source);
     const promise=(async()=>{
       const url=source.startsWith('sample:')?sampleImage(source.split(':')[1]):await this.callbacks.imageSource(source);
-      const texture=await new THREE.TextureLoader().loadAsync(url),limit=matchMedia('(max-width:600px)').matches?768:1536;
+      const texture=await new THREE.TextureLoader().loadAsync(url),smallScreen=matchMedia('(max-width:600px)').matches;
+      const isPreface=/preface-banner-[^/]+\.svg(?:$|[?#])/.test(source);
+      const limit=Math.min(this.renderer.capabilities.maxTextureSize,isPreface?(smallScreen?2048:4096):(smallScreen?768:1536));
       if(Math.max(texture.image.width,texture.image.height)>limit){const original=texture.image,canvas=document.createElement('canvas'),scale=limit/Math.max(original.width,original.height);canvas.width=Math.round(original.width*scale);canvas.height=Math.round(original.height*scale);canvas.getContext('2d').drawImage(original,0,0,canvas.width,canvas.height);texture.image=canvas;texture.needsUpdate=true;original.src='';}
       texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=Math.min(this.renderer.capabilities.getMaxAnisotropy(),8);return texture;
     })();this.textures.set(source,promise);this.loadingTextures.add(promise);promise.finally(()=>this.loadingTextures.delete(promise)).catch(()=>{if(this.textures.get(source)===promise)this.textures.delete(source);});return promise;

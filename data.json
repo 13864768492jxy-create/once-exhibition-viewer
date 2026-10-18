@@ -1,5 +1,5 @@
 {
-  "revision": 90,
+  "revision": 91,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1518,8 +1518,8 @@
         "name": "展览前言 · 悬挂条幅（正文暂拟）",
         "isTextPanel": true,
         "placed": true,
-        "image": "images/preface-banner-v90.svg",
-        "thumbnail": "images/preface-banner-v90.svg",
+        "image": "images/preface-banner-v91.svg",
+        "thumbnail": "images/preface-banner-v91.svg",
         "width": 0.9,
         "height": 2.35,
         "depth": 0.025,
@@ -1537,10 +1537,10 @@
         "rodDiameter": 0.014,
         "ropeRise": 0.2,
         "fabricOpacity": 0.96,
-        "fabricColor": "#f5f3ed",
+        "fabricColor": "#f0f2ee",
         "contentWidth": 0.8,
         "contentCenterHeight": 1.55,
-        "hangingDescription": "布面90×235厘米，上沿2.70米、下沿0.35米、吊点2.90米。标题仅“前言”，26毫米宋体正文与正文上方长细线保持；署名组靠正文右侧：短横线长130毫米，右端与正文版心右边界835毫米对齐；策展人与盛林斌两行均用26毫米宋体，在短线下沿左端705毫米左对齐，行距41毫米。完整诗作首末基线1170—1800毫米，整体下移并适度扩大纵向间距，横向错落与居中轴保留。下半部以20号岩石海浪原图为渐显背景：1450毫米处透明，逐渐过渡到底部28%不透明度，撤掉原灰条及底部收边线。黑体、朝华打字机与现用楷体共用此构图，正文暂拟。摄影、地面诗、建筑与条幅悬挂几何不变。诗末行右下方新增18毫米宋体浅灰落款“/姜昕宇”，其他文字与背景保持v84。",
+        "hangingDescription": "90×235厘米悬挂前言，上沿2.70米、下沿0.35米、吊点2.90米。整幅浅银灰底，不叠加照片或纹样。思源宋体72毫米标题、24毫米正文，行距38毫米；正文基线离地2.06—1.716米。策展人盛林斌在正文右侧130毫米短线下左对齐；完整引诗使用22毫米常规宋体，海水27毫米，保留横向呼应，同一语义共基线，诗区基线1250—1722毫米。诗署名/姜昕宇在右侧，18毫米。另保留黑体、打印机感比较。正文暂拟；摄影、地面诗与悬挂尺寸不变。",
         "poemLines": [
           "月亮升起。",
           "潮水对此一无所知。",
@@ -1575,7 +1575,7 @@
         "height": 0.76,
         "depth": 0.45,
         "elevation": 0,
-        "x": -1.65,
+        "x": -2.65,
         "z": 1.97,
         "rotation": 0,
         "books": [
@@ -1775,7 +1775,7 @@
     "blackMatEach_cm": 4
   },
   "sourceLayoutRevision": 56,
-  "updatedDate": "2026-10-17",
+  "updatedDate": "2026-10-19",
   "paperMountingPlan": {
     "works": [
       "9.tif",
@@ -1973,19 +1973,19 @@
   },
   "prefaceFontTrials": [
     {
-      "id": "heiti",
-      "label": "黑体",
-      "image": "images/preface-banner-v90-heiti.svg"
+      "id": "serif",
+      "label": "宋体 · 主方案",
+      "image": "images/preface-banner-v91.svg"
+    },
+    {
+      "id": "sans",
+      "label": "黑体比较",
+      "image": "images/preface-banner-v91-sans.svg"
     },
     {
       "id": "printer",
-      "label": "打印机感",
-      "image": "images/preface-banner-v90-printer.svg"
-    },
-    {
-      "id": "kai",
-      "label": "现用楷体",
-      "image": "images/preface-banner-v90.svg"
+      "label": "打印机感比较",
+      "image": "images/preface-banner-v91-printer.svg"
     }
   ],
   "framingTrial": {
@@ -2051,5 +2051,23 @@
     "blackMatEach_cm": 4,
     "blackImagesPreserved": true,
     "productionPhotoTiffsRegenerated": false
+  },
+  "prefaceDesign": {
+    "revision": 91,
+    "concept": "诗与摄影均为不同材料、位置和观看距离中的语言；卷轴以阅读高度、句群、尺度和停顿参与空间。",
+    "primary": "展览前言",
+    "secondary": "完整诗作作为另一段语言",
+    "background": "整幅浅银灰底，保留布的悬挂属性，不使用照片底图或装饰水纹",
+    "defaultPoemTypeface": "Source Han Serif SC Regular",
+    "bodyStatus": "暂拟，正式文字待补",
+    "studyFolder": "outputs/前言卷轴_20261019",
+    "tableMove": {
+      "id": "curation-book-table-01",
+      "dx_m": -1,
+      "direction": "面向前言时向右",
+      "otherParametersPreserved": true,
+      "leftWallClearWidth_m": 2.1,
+      "nearestFloorPoemClearance_m": 0.8533
+    }
   }
 }

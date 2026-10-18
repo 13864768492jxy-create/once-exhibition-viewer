@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261017-preface-byline-25';
-import {walls,cm,sampleImage} from './model.js?v=20261017-preface-byline-25';
+import {ExhibitionScene} from './scene.js?v=20261019-preface-editorial-26';
+import {walls,cm,sampleImage} from './model.js?v=20261019-preface-editorial-26';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -52,7 +52,7 @@ function renderList(medium,prefaceTrials=[]){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261017-preface-byline-25');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261019-preface-editorial-26');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
   const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白窄框24、27、28、32、34保持外框尺寸，27号图面按原版70%、其余85%试排。黑细框16、26、31保持图面，改每侧4厘米白卡纸，外框随之加大。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
