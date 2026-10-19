@@ -1,5 +1,5 @@
 {
-  "revision": 91,
+  "revision": 92,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1269,28 +1269,28 @@
         "width": 0.425,
         "height": 0.357,
         "depth": 0.025,
-        "elevation": 0.6476192609182532,
+        "elevation": 0.6441192609182531,
         "wall": 0,
         "along": 4.33,
         "x": -0.77,
         "z": -2.7355,
         "rotation": 0,
         "frame": "white",
-        "mat": 0.056499999999999995,
+        "mat": 0.06,
         "frameWidth": 0.008,
         "routeOrder": 21,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "hangingCenterHeight": 0.8906192609182532,
         "imageFit": "cover",
-        "framingDescription": "8毫米白窄框；外框不变，画面宽高各缩15%；左右卡纸各6.25厘米，上下各5.65厘米",
+        "framingDescription": "8毫米白窄框；画面尺寸不变，上下左右各6厘米白卡纸",
         "frameProfile": "thin-white-matted",
         "frameRecess": 0.003,
         "matThickness": 0.0016,
-        "frameOuterWidth": 0.5660000000000001,
-        "frameOuterHeight": 0.486,
-        "matX": 0.06250000000000003,
-        "matY": 0.056499999999999995
+        "frameOuterWidth": 0.5609999999999999,
+        "frameOuterHeight": 0.493,
+        "matX": 0.06,
+        "matY": 0.06
       },
       {
         "id": "9bd3459c-32fe-4c64-959e-d6faf5fb29e8",
@@ -1688,28 +1688,28 @@
         "width": 0.378,
         "height": 0.3214669652855543,
         "depth": 0.025,
-        "elevation": 1.926761478163494,
+        "elevation": 1.96064725643897,
         "wall": 0,
         "along": 7.179060856760994,
         "x": 2.0790608567609947,
         "z": -2.7355,
         "rotation": 0,
         "frame": "white",
-        "mat": 0.0938857782754759,
+        "mat": 0.06,
         "frameWidth": 0.008,
         "imageRatio": 1.175859546452085,
         "lockAspect": true,
         "sourceSha256": "a0acad374469c3c5c9361053c9de58a8ebaaf4c9b2f5fe35741108b4049b1c01",
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "framingDescription": "8毫米白窄框；外框不变，画面宽高各缩30%；左右卡纸各10.60厘米，上下各9.39厘米",
+        "framingDescription": "8毫米白窄框；画面尺寸不变，上下左右各6厘米白卡纸",
         "frameProfile": "thin-white-matted",
         "frameRecess": 0.003,
         "matThickness": 0.0016,
         "hangingCenterHeight": 2.1893807390817472,
-        "frameOuterWidth": 0.6060000000000001,
-        "frameOuterHeight": 0.5252385218365061,
-        "matX": 0.10600000000000004,
-        "matY": 0.0938857782754759
+        "frameOuterWidth": 0.514,
+        "frameOuterHeight": 0.4574669652855543,
+        "matX": 0.06,
+        "matY": 0.06
       }
     ]
   },
@@ -1756,8 +1756,8 @@
         "topBottom": 6.542274999999997
       },
       "once_24": {
-        "leftRight": 6.250000000000003,
-        "topBottom": 5.6499999999999995
+        "leftRight": 6,
+        "topBottom": 6
       },
       "once_28": {
         "leftRight": 6.700000000000003,
@@ -1768,8 +1768,8 @@
         "topBottom": 5.874999999999998
       },
       "once_27": {
-        "leftRight": 10.600000000000003,
-        "topBottom": 9.38857782754759
+        "leftRight": 6,
+        "topBottom": 6
       }
     },
     "blackMatEach_cm": 4
@@ -2008,11 +2008,15 @@
           0.5,
           0.42
         ],
-        "fixedFrameOuter_m": [
+        "linearScale": 0.85,
+        "baselineFrameOuter_m": [
           0.5660000000000001,
           0.486
         ],
-        "linearScale": 0.85
+        "currentFrameOuter_m": [
+          0.5609999999999999,
+          0.493
+        ]
       },
       "once_28": {
         "previousImageSize_m": [
@@ -2041,16 +2045,30 @@
           0.54,
           0.45923852183650615
         ],
-        "fixedFrameOuter_m": [
+        "linearScale": 0.7,
+        "baselineFrameOuter_m": [
           0.6060000000000001,
           0.5252385218365061
         ],
-        "linearScale": 0.7
+        "currentFrameOuter_m": [
+          0.514,
+          0.4574669652855543
+        ]
       }
     },
     "blackMatEach_cm": 4,
     "blackImagesPreserved": true,
-    "productionPhotoTiffsRegenerated": false
+    "productionPhotoTiffsRegenerated": false,
+    "matRevision92": {
+      "works": [
+        "once_24",
+        "once_27"
+      ],
+      "matEach_cm": 6,
+      "imageDimensionsAndCentersPreserved": true,
+      "outerFramesAdjusted": true
+    },
+    "latestRevision": 92
   },
   "prefaceDesign": {
     "revision": 91,
