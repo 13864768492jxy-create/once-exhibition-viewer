@@ -1,5 +1,5 @@
 {
-  "revision": 94,
+  "revision": 95,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1683,7 +1683,7 @@
         "type": "art",
         "name": "once_27",
         "sourceFile": "27.tif",
-        "image": "images/once-27-rescan-20261013.jpg",
+        "image": "images/once-27-source-20261019.jpg",
         "thumbnail": "images/thumb-27.jpg",
         "placed": true,
         "width": 0.378,
@@ -1700,7 +1700,7 @@
         "frameWidth": 0.008,
         "imageRatio": 1.175859546452085,
         "lockAspect": true,
-        "sourceSha256": "a0acad374469c3c5c9361053c9de58a8ebaaf4c9b2f5fe35741108b4049b1c01",
+        "sourceSha256": "75477a06289cf304e6d0a0abcf564b1a9c6b1cf88b1f160cafe73e2d74a537f8",
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "framingDescription": "8毫米白窄框；画面尺寸不变，上下左右各6厘米白卡纸",
         "frameProfile": "thin-white-matted",
@@ -1710,7 +1710,12 @@
         "frameOuterWidth": 0.514,
         "frameOuterHeight": 0.4574669652855543,
         "matX": 0.06,
-        "matY": 0.06
+        "matY": 0.06,
+        "sourceImageUpdatedDate": "2026-10-19",
+        "sourceImagePixels": [
+          7765,
+          6603
+        ]
       }
     ]
   },
@@ -2146,5 +2151,11 @@
     "unframed33PaperEach_cm": 2,
     "framed34MatEach_cm": 6,
     "dimensionsMatchBy": "overall outer width; height follows original photograph ratio"
+  },
+  "photoSourceUpdateV95": {
+    "work": "once_27",
+    "updatedDate": "2026-10-19",
+    "sourceSHA256": "75477a06289cf304e6d0a0abcf564b1a9c6b1cf88b1f160cafe73e2d74a537f8",
+    "imageSizeFramingAndPlacementPreserved": true
   }
 }
