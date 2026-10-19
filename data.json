@@ -1,5 +1,5 @@
 {
-  "revision": 93,
+  "revision": 94,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -929,26 +929,27 @@
         "image": "images/d5c4e85fc9ede7d67bd789a03bd37b8b.jpg",
         "thumbnail": "images/thumb-33.jpg",
         "placed": true,
-        "width": 0.36000000000000004,
-        "height": 0.291125,
+        "width": 0.453,
+        "height": 0.3663322916666667,
         "depth": 0.001,
-        "elevation": 1.0799999999999998,
+        "elevation": 2.106318854166666,
         "wall": 1,
-        "along": 4.91,
+        "along": 3.54,
         "x": 3.9975,
-        "z": 2.16,
+        "z": 0.79,
         "rotation": -90,
         "frame": "none",
         "mat": 0,
         "frameWidth": 0.008,
-        "routeOrder": 10,
+        "routeOrder": 16,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "paperBorder": 0.02,
         "mounting": "corner-pins",
         "pinInset": 0.01,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固",
+        "hangingCenterHeight": 2.3094849999999996
       },
       {
         "id": "dc1d202e-d135-4af1-a6e7-fe0c184ab194",
@@ -1102,28 +1103,28 @@
         "image": "images/580ed3eb0869c380ee77592f0beffad0.jpg",
         "thumbnail": "images/thumb-34.jpg",
         "placed": true,
-        "width": 0.357,
-        "height": 0.2881245,
+        "width": 0.255,
+        "height": 0.2058032142857143,
         "depth": 0.035,
-        "elevation": 2.09742275,
+        "elevation": 1.0746608928571428,
         "wall": 1,
-        "along": 3.54,
+        "along": 4.91,
         "x": 3.9805,
-        "z": 0.79,
+        "z": 2.16,
         "rotation": -90,
         "frame": "white",
         "mat": 0.06,
         "frameWidth": 0.008,
-        "routeOrder": 16,
+        "routeOrder": 10,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "hangingCenterHeight": 2.309485,
-        "framingDescription": "8毫米白窄框；画面尺寸不变，上下左右各6厘米白卡纸",
+        "hangingCenterHeight": 1.2455625,
+        "framingDescription": "8毫米白窄框；上下左右各6厘米白卡纸；外框宽39.1厘米，与32号同宽，画面等比例缩小",
         "frameProfile": "thin-white-matted",
         "frameRecess": 0.003,
         "matThickness": 0.0016,
-        "frameOuterWidth": 0.493,
-        "frameOuterHeight": 0.4241245,
+        "frameOuterWidth": 0.391,
+        "frameOuterHeight": 0.3418032142857143,
         "matX": 0.06,
         "matY": 0.06
       },
@@ -2003,8 +2004,8 @@
           0.43496999999999997
         ],
         "currentFrameOuter_m": [
-          0.493,
-          0.4241245
+          0.391,
+          0.3418032142857143
         ]
       },
       "once_24": {
@@ -2080,7 +2081,7 @@
       "imageDimensionsAndCentersPreserved": true,
       "outerFramesAdjusted": true
     },
-    "latestRevision": 93,
+    "latestRevision": 94,
     "matRevision93": {
       "whiteWorks": [
         "once_24",
@@ -2100,6 +2101,17 @@
       "imageDimensionsAndCentersPreserved": true,
       "outerFramesAdjusted": true,
       "alreadyMade08OriginalFramePreserved": true
+    },
+    "sizeRevision94": {
+      "work": "once_34",
+      "currentImage_m": [
+        0.255,
+        0.2058032142857143
+      ],
+      "targetOuterWidthFrom": "once_32",
+      "targetOuterWidth_m": 0.391,
+      "originalPhotoAspectPreserved": true,
+      "matEach_cm": 6
     }
   },
   "prefaceDesign": {
@@ -2119,5 +2131,20 @@
       "leftWallClearWidth_m": 2.1,
       "nearestFloorPoemClearance_m": 0.8533
     }
+  },
+  "layoutAdjustmentV94": {
+    "swappedWorks": [
+      "once_33",
+      "once_34"
+    ],
+    "overallCentersSwapped": true,
+    "photoAspectRatiosAndImageAssetsPreserved": true,
+    "referenceWidthsFromV93": {
+      "once_33From34Outer_m": 0.493,
+      "once_34From32Outer_m": 0.391
+    },
+    "unframed33PaperEach_cm": 2,
+    "framed34MatEach_cm": 6,
+    "dimensionsMatchBy": "overall outer width; height follows original photograph ratio"
   }
 }
