@@ -1,5 +1,5 @@
 {
-  "revision": 92,
+  "revision": 93,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1105,27 +1105,27 @@
         "width": 0.357,
         "height": 0.2881245,
         "depth": 0.035,
-        "elevation": 2.092,
+        "elevation": 2.09742275,
         "wall": 1,
         "along": 3.54,
         "x": 3.9805,
         "z": 0.79,
         "rotation": -90,
         "frame": "white",
-        "mat": 0.06542274999999997,
+        "mat": 0.06,
         "frameWidth": 0.008,
         "routeOrder": 16,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "hangingCenterHeight": 2.309485,
-        "framingDescription": "8毫米白窄框；外框不变，画面宽高各缩15%；左右卡纸各7.15厘米，上下各6.54厘米",
+        "framingDescription": "8毫米白窄框；画面尺寸不变，上下左右各6厘米白卡纸",
         "frameProfile": "thin-white-matted",
         "frameRecess": 0.003,
         "matThickness": 0.0016,
-        "frameOuterWidth": 0.516,
-        "frameOuterHeight": 0.43496999999999997,
-        "matX": 0.07150000000000001,
-        "matY": 0.06542274999999997
+        "frameOuterWidth": 0.493,
+        "frameOuterHeight": 0.4241245,
+        "matX": 0.06,
+        "matY": 0.06
       },
       {
         "id": "c52aecb0-7234-4b53-8dba-b9db01c61b1f",
@@ -1333,29 +1333,29 @@
         "width": 0.47600000000000003,
         "height": 0.35505095,
         "depth": 0.025,
-        "elevation": 1.7770000000000001,
+        "elevation": 1.773328025,
         "wall": 1,
         "along": 2.26,
         "x": 3.9855,
         "z": -0.4900000000000002,
         "rotation": -90,
         "frame": "white",
-        "mat": 0.056328025000000004,
+        "mat": 0.06,
         "frameWidth": 0.008,
         "routeOrder": 23,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "paperBorder": 0,
         "mounting": "framed",
-        "framingDescription": "8毫米白窄框；外框不变，画面宽高各缩15%；左右卡纸各6.70厘米，上下各5.63厘米",
+        "framingDescription": "8毫米白窄框；画面尺寸不变，上下左右各6厘米白卡纸",
         "frameProfile": "thin-white-matted",
         "frameRecess": 0.003,
         "matThickness": 0.0016,
         "hangingCenterHeight": 2.0188535,
-        "frameOuterWidth": 0.6260000000000001,
-        "frameOuterHeight": 0.483707,
-        "matX": 0.06700000000000003,
-        "matY": 0.056328025000000004
+        "frameOuterWidth": 0.6120000000000001,
+        "frameOuterHeight": 0.49105095,
+        "matX": 0.06,
+        "matY": 0.06
       },
       {
         "id": "0087a9a5-2b78-4264-9313-cf790ccc8161",
@@ -1489,28 +1489,28 @@
         "width": 0.255,
         "height": 0.2125,
         "depth": 0.035,
-        "elevation": 2.0300109999999996,
+        "elevation": 2.0287609999999994,
         "wall": 2,
         "along": 3.45,
         "x": 0.5499999999999998,
         "z": 2.7305,
         "rotation": -180,
         "frame": "white",
-        "mat": 0.05874999999999998,
+        "mat": 0.06,
         "frameWidth": 0.008,
         "routeOrder": 28,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "hangingCenterHeight": 2.2030109999999996,
-        "framingDescription": "8毫米白窄框；外框不变，画面宽高各缩15%；左右卡纸各6.25厘米，上下各5.87厘米",
+        "framingDescription": "8毫米白窄框；画面尺寸不变，上下左右各6厘米白卡纸",
         "imageFit": "cover",
         "frameProfile": "thin-white-matted",
         "frameRecess": 0.003,
         "matThickness": 0.0016,
-        "frameOuterWidth": 0.396,
-        "frameOuterHeight": 0.346,
-        "matX": 0.0625,
-        "matY": 0.05874999999999998
+        "frameOuterWidth": 0.391,
+        "frameOuterHeight": 0.34850000000000003,
+        "matX": 0.06,
+        "matY": 0.06
       },
       {
         "id": "curation-preface-01",
@@ -1752,20 +1752,20 @@
     "whiteThinFront_cm": 0.8,
     "whiteMatEachXY_cm": {
       "once_34": {
-        "leftRight": 7.15,
-        "topBottom": 6.542274999999997
+        "leftRight": 6,
+        "topBottom": 6
       },
       "once_24": {
         "leftRight": 6,
         "topBottom": 6
       },
       "once_28": {
-        "leftRight": 6.700000000000003,
-        "topBottom": 5.6328025
+        "leftRight": 6,
+        "topBottom": 6
       },
       "once_32": {
-        "leftRight": 6.25,
-        "topBottom": 5.874999999999998
+        "leftRight": 6,
+        "topBottom": 6
       },
       "once_27": {
         "leftRight": 6,
@@ -1997,11 +1997,15 @@
           0.42,
           0.33897
         ],
-        "fixedFrameOuter_m": [
+        "linearScale": 0.85,
+        "baselineFrameOuter_m": [
           0.516,
           0.43496999999999997
         ],
-        "linearScale": 0.85
+        "currentFrameOuter_m": [
+          0.493,
+          0.4241245
+        ]
       },
       "once_24": {
         "previousImageSize_m": [
@@ -2023,22 +2027,30 @@
           0.56,
           0.417707
         ],
-        "fixedFrameOuter_m": [
+        "linearScale": 0.85,
+        "baselineFrameOuter_m": [
           0.6260000000000001,
           0.483707
         ],
-        "linearScale": 0.85
+        "currentFrameOuter_m": [
+          0.6120000000000001,
+          0.49105095
+        ]
       },
       "once_32": {
         "previousImageSize_m": [
           0.3,
           0.25
         ],
-        "fixedFrameOuter_m": [
+        "linearScale": 0.85,
+        "baselineFrameOuter_m": [
           0.396,
           0.346
         ],
-        "linearScale": 0.85
+        "currentFrameOuter_m": [
+          0.391,
+          0.34850000000000003
+        ]
       },
       "once_27": {
         "previousImageSize_m": [
@@ -2068,7 +2080,27 @@
       "imageDimensionsAndCentersPreserved": true,
       "outerFramesAdjusted": true
     },
-    "latestRevision": 92
+    "latestRevision": 93,
+    "matRevision93": {
+      "whiteWorks": [
+        "once_24",
+        "once_27",
+        "once_28",
+        "once_32",
+        "once_34"
+      ],
+      "whiteMatEach_cm": 6,
+      "blackWorks": [
+        "once_16",
+        "once_26",
+        "once_31"
+      ],
+      "blackMatEach_cm": 4,
+      "allFourSidesEqual": true,
+      "imageDimensionsAndCentersPreserved": true,
+      "outerFramesAdjusted": true,
+      "alreadyMade08OriginalFramePreserved": true
+    }
   },
   "prefaceDesign": {
     "revision": 91,
