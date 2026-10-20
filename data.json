@@ -1,5 +1,5 @@
 {
-  "revision": 96,
+  "revision": 99,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1519,8 +1519,8 @@
         "name": "展览前言 · 宣绒布悬挂条幅",
         "isTextPanel": true,
         "placed": true,
-        "image": "images/preface-banner-v96.svg",
-        "thumbnail": "images/preface-banner-v96.svg",
+        "image": "images/preface-banner-v99.svg",
+        "thumbnail": "images/preface-banner-v99.svg",
         "width": 0.9,
         "height": 2.35,
         "depth": 0.025,
@@ -1541,7 +1541,7 @@
         "fabricColor": "#f0f2ee",
         "contentWidth": 0.8,
         "contentCenterHeight": 1.55,
-        "hangingDescription": "90×235厘米宣绒布悬挂前言，上沿2.70米、下沿0.35米、吊点2.90米。630字正式前言完整保留，思源宋体72毫米标题、22毫米正文/32毫米行距，正文基线离地2.228—1.466米。以本展20号岩石海浪的放大局部形成通幅摄影底图，正文区浅灰、诗区保留礁石与海水形态，无人工布纹。策展人：盛林斌、2026年10月列于正文右侧200毫米短线下。完整引诗常规22毫米、海水29毫米，诗区基线1442—1856毫米；/姜昕宇18毫米右对齐。另保留黑体与打印机感诗歌字体比较。其余布展保持。",
+        "hangingDescription": "90×235厘米宣绒布，位置尺寸保持；938字六段正文26毫米、32毫米行距，各段首行缩进两个汉字52毫米。策展人24毫米，日期18毫米。诗按22／28／40毫米分级，海水与波光40毫米；白色水道和1600—2196毫米诗基线不变。诗作者24毫米右对齐834毫米。",
         "poemLines": [
           "月亮升起。",
           "潮水对此一无所知。",
@@ -1559,16 +1559,15 @@
           "波光，是月亮在海里的迁徙。"
         ],
         "prefaceParagraphs": [
-          "姜昕宇将镜头对准自己的来路，作品的每一个画面，都来自他亲历的人、事、物——喷泉前的人群，母亲单位的墙面与标语，一顶旧棒球帽……它们被一一收进取景框，等待一次跨越时间的重逢。",
-          "“ONCE”，是“一次”，也是“曾经”。“一次”发生时，我们尚不知道，它将成为一个怎样的“曾经”。一个瞬间的意义，常常要由此后的人生来完成，我们走得越远，越能辨认它的分量，而理解它的目光，也早已不属于当时。“后知后觉”，就是这种姗姗来迟的懂得：它既是此次展览作品的系列名称，也是一种可能降临在每个人身上的现象。",
-          "当我们带着后来的目光回望，作品中人物的背影也有了另一层意味。那些人物属于一个已然过去的世界，我们可以透过影像看见他们，他们却无法看见此刻的我们，我们也已无法重新进入那个瞬间。",
-          "置身展厅初看时，作品之间未必存在清晰的叙事。新生老鼠与坟墓、活蛇与死蛇，这些照片分布于不同的展墙，当你带着先前的印象走向后面的作品，可能在不知不觉中联想到它们之间隐约的关系。",
-          "展厅中的某件作品或许也会让你想起一段自己的往事。带着这段记忆重新看向照片，原本属于艺术家的私人片段，开始与你的生活发生联系，眼前的影像也由此生出不同于初见时的意味。",
-          "劳伦斯·韦纳曾提出：艺术的目的在于提问，而非给出答案。这场展览正是这样一次提问，关于时间，关于记忆，关于我们如何面对那些已经发生、却迟来懂得的时刻。",
-          "我们可以重返旧地，却无法回到尚不知道后来的一刻；当我们终于懂得的那一刻，它已经是“后来”。人生就是一场巨大的后知后觉。"
+          "摄影是时间的显影术，亦是记忆的延时性媒介。镜头所定格的每一帧画面，本质上都是对已然消逝的生活现场的切片留存。艺术家姜昕宇将创作视角定格于个体生命经验的原生场域，以私人化的日常图景为载体，记录成长轨迹中亲历的人事、场景与细碎瞬间：公共空间的人群、时代遗存的墙面标语、承载生活温度的旧物件，皆被纳入影像叙事体系，成为可被回望、可被重读的视觉档案。",
+          "展览主题「ONCE 后知后觉」，构成了整套作品的核心观念内核。ONCE 指向事件发生的即时性、唯一性与不可重复性；而「后知后觉」，则阐释了摄影艺术独有的时间差审美与回溯性认知。人类当下的感知往往是浅层、滞后的，诸多日常瞬间在发生的时刻并无特殊意义，唯有经过时间沉淀、生命阅历叠加之后，其价值、重量与隐喻性才得以显现。这种“当下无意识、事后有觉知”的审美体验，既是本系列作品的创作底色，也是个体生命共通的认知规律。",
+          "在影像的时间结构中，过去与现在天然形成不可逆的二元关系。照片中的场景与人物隶属于已然落幕的时空维度，观者可以通过影像凝视过去，但无法重返彼时的现场；被定格的瞬间永久静止，而观看与理解它的目光永远属于未来。摄影由此完成了一场跨时空的对话：影像封存瞬间，时间赋予意义，观者完成解读。",
+          "本次展览作品并未采用线性叙事结构，而是以碎片化图景构建开放式的情绪场域。新生生命与沉寂坟冢、鲜活游蛇与静止残躯，一系列具有冲突性、矛盾性的物象并置呈现，构成生命生长、消逝、循环的隐性隐喻。作品初观看似独立散落、无直接关联，但若以回溯性视角层层品读，即可感知画面之间暗藏的生命思辨与时间逻辑，形成从个体碎片到整体观念的审美闭环。",
+          "艺术作品不应该局限于创作者的私人叙事，而是能够打通个体经验与集体共情的边界。当观者以自身阅历介入作品解读，艺术家的私人记忆便与观众的人生经验产生互文共振，单一的影像文本由此获得多元、开放的解读维度，完成艺术价值的二次生成。",
+          "劳伦斯·韦纳提出，艺术的本质功能是提出问题，而非输出标准答案。本展亦是如此，姜昕宇以镜头为媒介，借日常影像叩问时间的本质、记忆的规律与生命感知的滞后性。在不断向前的生活进程中，我们始终在回望、修正、理解过往。所有深刻的认知，皆是姗姗来迟的觉醒，而人生的本质，便是一场与时间和解的、漫长的后知后觉。"
         ],
         "bannerArtwork": true,
-        "prefaceStatus": "用户提供的正式前言，逐字保留",
+        "prefaceStatus": "用户提供的新版正式前言，938字六段，逐字保留",
         "prefaceCredit": "策展人：盛林斌",
         "prefaceDate": "2026年10月"
       },
@@ -1987,17 +1986,17 @@
     {
       "id": "serif",
       "label": "宋体 · 主方案",
-      "image": "images/preface-banner-v96.svg"
+      "image": "images/preface-banner-v99.svg"
     },
     {
       "id": "sans",
       "label": "黑体比较",
-      "image": "images/preface-banner-v96-sans.svg"
+      "image": "images/preface-banner-v99-sans.svg"
     },
     {
       "id": "printer",
       "label": "打印机感比较",
-      "image": "images/preface-banner-v96-printer.svg"
+      "image": "images/preface-banner-v99-printer.svg"
     }
   ],
   "framingTrial": {
@@ -2126,14 +2125,14 @@
     }
   },
   "prefaceDesign": {
-    "revision": 96,
+    "revision": 99,
     "concept": "诗与摄影均为不同材料、位置和观看距离中的语言；卷轴以阅读高度、句群、尺度和停顿参与空间。",
-    "primary": "展览前言",
+    "primary": "前言",
     "secondary": "完整诗作作为另一段语言",
-    "background": "本展20号岩石海浪放大局部，通幅灰阶摄影底图；宣绒布提供实际表面肌理，不叠加人工布纹",
+    "background": "本展20号岩石海浪局部位于下部；正文区纯白。白色水道膨胀半径100毫米轻收至90毫米，诗沿其走向展开，保留适度字号变化并增加纵向行距。",
     "defaultPoemTypeface": "Source Han Serif SC Regular",
-    "bodyStatus": "用户提供正式前言，630字七段，逐字保留；策展人与日期完整",
-    "studyFolder": "outputs/前言宣绒布_20261019",
+    "bodyStatus": "用户2026年10月20日新版前言，938字六段逐字保留；各段首行缩进两个汉字，策展人与日期保留",
+    "studyFolder": "outputs/前言署名_v99_20261020",
     "tableMove": {
       "id": "curation-book-table-01",
       "dx_m": -1,
@@ -2143,19 +2142,19 @@
       "nearestFloorPoemClearance_m": 0.8533
     },
     "material": "宣绒布",
-    "bodyEm_mm": 22,
+    "bodyEm_mm": 26,
     "bodyLeading_mm": 32,
     "bodyBaseline_m": [
-      2.228,
-      1.4660000000000002
+      2.395,
+      1.2960000000000003
     ],
     "poemBaseline_mm": [
-      1442,
-      1856
+      1600,
+      2196
     ],
     "poemAuthor": "/姜昕宇",
     "backgroundSource": {
-      "kind": "full-bleed-photographic-field",
+      "kind": "lower-photographic-field-with-expanded-existing-white-foam",
       "field": "reef",
       "sourceWork": "20.tif",
       "sourceAsset": "images/47a4058de5a3ba9444166ac07d34aea9.jpg",
@@ -2168,17 +2167,42 @@
       "sourceAssetSHA256": "6eced62b9021b612fba09a2a8c87680c6c5219248aee9f979f0b12d40f16e687",
       "fabric": "宣绒布",
       "fakeFabricTexture": false,
+      "photoTranslation_mm": [
+        0,
+        220
+      ],
+      "photoFadeRange_mm": [
+        1530,
+        1700
+      ],
+      "proseBackgroundRGB": [
+        255,
+        255,
+        255
+      ],
+      "foamExpansionRadius_mm": 90,
+      "foamFeather_mm": 12,
       "bodyRangeApprox_8bit": [
-        194,
-        235
+        255,
+        255
       ],
       "poemRangeApprox_8bit": [
-        150,
-        223
+        172,
+        255
       ],
       "materialColorNotCalibrated": true
     },
-    "physicalPrintSampleVerified": false
+    "physicalPrintSampleVerified": false,
+    "poemDefaultTypeface": "Source Han Serif SC Regular",
+    "minTextContrast": 12.103,
+    "paragraphFirstIndent_mm": 52,
+    "curatorEm_mm": 24,
+    "poemAuthorEm_mm": 24,
+    "poemType_mm": [
+      22,
+      28,
+      40
+    ]
   },
   "layoutAdjustmentV94": {
     "swappedWorks": [
