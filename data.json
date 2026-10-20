@@ -1,5 +1,5 @@
 {
-  "revision": 102,
+  "revision": 103,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1519,8 +1519,8 @@
         "name": "展览前言 · 宣绒布悬挂条幅",
         "isTextPanel": true,
         "placed": true,
-        "image": "images/preface-banner-v102.svg",
-        "thumbnail": "images/preface-banner-v102.svg",
+        "image": "images/preface-banner-v103.svg",
+        "thumbnail": "images/preface-banner-v103.svg",
         "width": 0.9,
         "height": 2.35,
         "depth": 0.025,
@@ -1986,17 +1986,17 @@
     {
       "id": "serif",
       "label": "宋体 · 主方案",
-      "image": "images/preface-banner-v102.svg"
+      "image": "images/preface-banner-v103.svg"
     },
     {
       "id": "sans",
       "label": "黑体比较",
-      "image": "images/preface-banner-v102-sans.svg"
+      "image": "images/preface-banner-v103-sans.svg"
     },
     {
       "id": "printer",
       "label": "打印机感比较",
-      "image": "images/preface-banner-v102-printer.svg"
+      "image": "images/preface-banner-v103-printer.svg"
     }
   ],
   "framingTrial": {
@@ -2125,14 +2125,14 @@
     }
   },
   "prefaceDesign": {
-    "revision": 102,
+    "revision": 103,
     "concept": "诗与摄影均为不同材料、位置和观看距离中的语言；卷轴以阅读高度、句群、尺度和停顿参与空间。",
     "primary": "前言",
     "secondary": "完整诗作作为另一段语言",
     "background": "本展20号岩石海浪局部位于下部；正文区纯白。白色水道膨胀半径100毫米轻收至90毫米，诗沿其走向展开，保留适度字号变化并增加纵向行距。",
     "defaultPoemTypeface": "Source Han Serif SC Regular",
     "bodyStatus": "用户2026年10月20日新版前言，938字六段逐字保留；各段首行缩进两个汉字，策展人与日期保留",
-    "studyFolder": "outputs/前言末句右移_v102_20261020",
+    "studyFolder": "outputs/前言末句右移_v103_20261020",
     "tableMove": {
       "id": "curation-book-table-01",
       "dx_m": -1,
@@ -2222,6 +2222,12 @@
       "text": "波光，是月亮在海里的迁徙。",
       "dx_mm": 25,
       "baselineAndSizeAndColorUnchanged": true
+    },
+    "finalSentenceAlignmentV103": {
+      "additionalDxFrom102_mm": 39,
+      "totalDxFrom101_mm": 64,
+      "inkLeftComparedToPreviousLine_mm": -7.742,
+      "allOtherDesignPreserved": true
     }
   },
   "layoutAdjustmentV94": {
