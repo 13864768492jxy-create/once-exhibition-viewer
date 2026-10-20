@@ -1,5 +1,5 @@
 {
-  "revision": 100,
+  "revision": 101,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1519,8 +1519,8 @@
         "name": "展览前言 · 宣绒布悬挂条幅",
         "isTextPanel": true,
         "placed": true,
-        "image": "images/preface-banner-v99.svg",
-        "thumbnail": "images/preface-banner-v99.svg",
+        "image": "images/preface-banner-v101.svg",
+        "thumbnail": "images/preface-banner-v101.svg",
         "width": 0.9,
         "height": 2.35,
         "depth": 0.025,
@@ -1541,7 +1541,7 @@
         "fabricColor": "#f0f2ee",
         "contentWidth": 0.8,
         "contentCenterHeight": 1.55,
-        "hangingDescription": "90×235厘米宣绒布，位置尺寸保持；938字六段正文26毫米、32毫米行距，各段首行缩进两个汉字52毫米。策展人24毫米，日期18毫米。诗按22／28／40毫米分级，海水与波光40毫米；白色水道和1600—2196毫米诗基线不变。诗作者24毫米右对齐834毫米。",
+        "hangingDescription": "90×235厘米宣绒布，位置尺寸保持；938字六段正文26毫米、32毫米行距，各段首行缩进两个汉字52毫米。策展人24毫米，日期18毫米。诗按20／25／36毫米分级，海水与波光36毫米；诗及诗署名为#5a5c5a深灰。白色水道和1600—2196毫米诗基线不变，诗作者22毫米右对齐834毫米。",
         "poemLines": [
           "月亮升起。",
           "潮水对此一无所知。",
@@ -1986,17 +1986,17 @@
     {
       "id": "serif",
       "label": "宋体 · 主方案",
-      "image": "images/preface-banner-v99.svg"
+      "image": "images/preface-banner-v101.svg"
     },
     {
       "id": "sans",
       "label": "黑体比较",
-      "image": "images/preface-banner-v99-sans.svg"
+      "image": "images/preface-banner-v101-sans.svg"
     },
     {
       "id": "printer",
       "label": "打印机感比较",
-      "image": "images/preface-banner-v99-printer.svg"
+      "image": "images/preface-banner-v101-printer.svg"
     }
   ],
   "framingTrial": {
@@ -2125,14 +2125,14 @@
     }
   },
   "prefaceDesign": {
-    "revision": 99,
+    "revision": 101,
     "concept": "诗与摄影均为不同材料、位置和观看距离中的语言；卷轴以阅读高度、句群、尺度和停顿参与空间。",
     "primary": "前言",
     "secondary": "完整诗作作为另一段语言",
     "background": "本展20号岩石海浪局部位于下部；正文区纯白。白色水道膨胀半径100毫米轻收至90毫米，诗沿其走向展开，保留适度字号变化并增加纵向行距。",
     "defaultPoemTypeface": "Source Han Serif SC Regular",
     "bodyStatus": "用户2026年10月20日新版前言，938字六段逐字保留；各段首行缩进两个汉字，策展人与日期保留",
-    "studyFolder": "outputs/前言署名_v99_20261020",
+    "studyFolder": "outputs/前言诗歌减小减重_v101_20261020",
     "tableMove": {
       "id": "curation-book-table-01",
       "dx_m": -1,
@@ -2194,15 +2194,30 @@
     },
     "physicalPrintSampleVerified": false,
     "poemDefaultTypeface": "Source Han Serif SC Regular",
-    "minTextContrast": 12.103,
+    "minTextContrast": 4.2,
     "paragraphFirstIndent_mm": 52,
     "curatorEm_mm": 24,
-    "poemAuthorEm_mm": 24,
+    "poemAuthorEm_mm": 22,
     "poemType_mm": [
-      22,
-      28,
-      40
-    ]
+      20,
+      25,
+      36
+    ],
+    "poemColor": "#5a5c5a",
+    "poemAuthorColor": "#5a5c5a",
+    "poemChangeV101": {
+      "sizeChange_mm": {
+        "22": 20,
+        "28": 25,
+        "40": 36,
+        "poemAuthor24": 22
+      },
+      "colors": "poem and author only: #5a5c5a",
+      "bodyTitleCuratorDateUnchanged": true,
+      "allPoemBaselinesUnchanged": true,
+      "backgroundPixelsUnchanged": true,
+      "physicalPrintSampleVerified": false
+    }
   },
   "layoutAdjustmentV94": {
     "swappedWorks": [
