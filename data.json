@@ -1,5 +1,5 @@
 {
-  "revision": 99,
+  "revision": 100,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "后知后觉 / once",
@@ -1070,13 +1070,13 @@
         "type": "art",
         "name": "once_10",
         "sourceFile": "10.tif",
-        "image": "images/a49bf8c205bffd7c058e6b93c76a8281.jpg",
-        "thumbnail": "images/thumb-10.jpg",
+        "image": "images/10-full-cleaned-v100-5e5bd54dc89e.jpg",
+        "thumbnail": "images/10-full-cleaned-v100-5e5bd54dc89e-thumb.jpg",
         "placed": true,
         "width": 0.3,
-        "height": 0.25,
+        "height": 0.23793699577410682,
         "depth": 0.001,
-        "elevation": 1.9627525,
+        "elevation": 1.9687840021129464,
         "wall": 2,
         "along": 2.0999999999999996,
         "x": 1.9000000000000004,
@@ -1088,7 +1088,7 @@
         "routeOrder": 15,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "imageFit": "cover",
+        "imageFit": "full",
         "paperBorder": 0.02,
         "mounting": "corner-pins",
         "pinInset": 0.01,
@@ -2224,5 +2224,23 @@
     "updatedDate": "2026-10-19",
     "sourceSHA256": "75477a06289cf304e6d0a0abcf564b1a9c6b1cf88b1f160cafe73e2d74a537f8",
     "imageSizeFramingAndPlacementPreserved": true
+  },
+  "photoSourceUpdateV100": {
+    "scope": "once_10 only, current dust-cleaned source, complete frame",
+    "sourcePixels": [
+      5206,
+      4129
+    ],
+    "sourceSHA256": "5e5bd54dc89e446cf20a8770d513618f54946be6005c4ff4df5bcfbe29b3cdd7",
+    "sourceEmbeddedICC_SHA256": "304f569a83c1e5eddaddac54e99ed03339333db013738bb499ab64f049887e28",
+    "webColorConversion": "embedded source RGB ICC to sRGB for web preview only",
+    "imageWidth_m": 0.3,
+    "imageHeight_m": 0.23793699577410682,
+    "paperBorderEach_m": 0.02,
+    "crop": "none; full [0,0,5206,4129] native field",
+    "imageFit": "full: unmodified texture UV; cover branch bypassed",
+    "elevationMeaning": "bottom edge of outer paper piece; adjusted only to preserve center",
+    "outerPaperCenterHeight_m": 2.1077524999999997,
+    "prefaceDesignRevisionUnchanged": 99
   }
 }
