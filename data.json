@@ -1,8 +1,8 @@
 {
-  "revision": 103,
+  "revision": 104,
   "state": {
     "format": "exhibition-planner-v1",
-    "title": "后知后觉 / once",
+    "title": "ONCE 后知后觉",
     "room": {
       "template": "user-gallery-2026-10",
       "points": [
@@ -632,7 +632,7 @@
               "x": 0.04,
               "y": 0.189,
               "fontSize": 0.085,
-              "fontWeight": 500,
+              "fontWeight": 700,
               "letterSpacing": 0
             },
             {
@@ -640,7 +640,7 @@
               "x": 0.65,
               "y": 0.189,
               "fontSize": 0.11,
-              "fontWeight": 700,
+              "fontWeight": 500,
               "letterSpacing": 0
             }
           ],
@@ -1670,18 +1670,18 @@
         "isTextPanel": true,
         "name": "VESSEL · 作品展签",
         "placed": true,
-        "width": 0.18,
-        "height": 0.12,
+        "width": 0.15,
+        "height": 0.07,
         "depth": 0.001,
         "wall": 3,
         "along": 1.62,
-        "elevation": 1.29,
+        "elevation": 1.3150000000000002,
         "x": -5.097499999999999,
         "z": 1.13,
         "rotation": 90,
         "frame": "none",
-        "image": "images/2396165297f4a24a407a168930e1170b.png",
-        "thumbnail": "images/0e4539e088eea987affa8d41770196df.png"
+        "image": "images/vessel-label-15x7-v104.svg",
+        "thumbnail": "images/vessel-label-15x7-v104.svg"
       },
       {
         "id": "4a88017d-b500-47f3-8ef0-8520057e5fb2",
@@ -1786,7 +1786,7 @@
     "blackMatEach_cm": 4
   },
   "sourceLayoutRevision": 56,
-  "updatedDate": "2026-10-19",
+  "updatedDate": "2026-10-21",
   "paperMountingPlan": {
     "works": [
       "9.tif",
