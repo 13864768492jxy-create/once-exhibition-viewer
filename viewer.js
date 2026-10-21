@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261021-title-label-poem-104';
-import {walls,cm,sampleImage} from './model.js?v=20261021-title-label-poem-104';
+import {ExhibitionScene} from './scene.js?v=20261022-tile-origin-105';
+import {walls,cm,sampleImage} from './model.js?v=20261022-tile-origin-105';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -16,7 +16,7 @@ function changeView(mode){
   scene.view(mode);select(null);document.body.classList.toggle('eye',mode==='eye');
   $('walk-controls').hidden=mode!=='eye';
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===mode)));
-  $('view-tip').textContent=mode==='plan'?'编号对应作品清单 · 拖动平移 · 双指或滚轮缩放':mode==='eye'?'拖动环顾 · 方向键或 W A S D 移动':'拖动转动视角 · 双指或滚轮缩放';
+  $('view-tip').textContent=mode==='plan'?`编号对应作品清单 · 拖动平移 · 双指或滚轮缩放${state.room.tileCalibration?' · 地砖80cm，缝位待现场校准':''}`:mode==='eye'?'拖动环顾 · 方向键或 W A S D 移动':'拖动转动视角 · 双指或滚轮缩放';
   if(mobile.matches)showList(false);
 }
 function renderList(medium,prefaceTrials=[]){
@@ -52,7 +52,7 @@ function renderList(medium,prefaceTrials=[]){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261021-title-label-poem-104');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261022-tile-origin-105');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
   const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白窄框24、27、28、32、34统一上下左右各6厘米白卡纸。黑细框16、26、31保持图面，改每侧4厘米白卡纸，外框随之加大。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}

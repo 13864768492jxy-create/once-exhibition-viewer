@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261021-title-label-poem-104';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261022-tile-origin-105';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -104,9 +104,15 @@ export class ExhibitionScene {
     const edges=new THREE.BufferGeometry().setFromPoints([...room.points,room.points[0]].map(p=>new THREE.Vector3(p[0],.018,p[1])));
     this.roomGroup.add(new THREE.Line(edges,new THREE.LineBasicMaterial({color:'#9eaa99',transparent:true,opacity:.65})));
     if(room.tileSize){
-      const lines=[];
-      for(let x=b.minX;x<=b.maxX+.001;x+=room.tileSize)for(let z=b.minZ;z<b.maxZ;z+=.08){if(contains(room,x+.001,z+.04))lines.push(new THREE.Vector3(x,.002,z),new THREE.Vector3(x,.002,Math.min(z+.08,b.maxZ)));}
-      for(let z=b.minZ;z<=b.maxZ+.001;z+=room.tileSize)for(let x=b.minX;x<b.maxX;x+=.08){if(contains(room,x+.04,z+.001))lines.push(new THREE.Vector3(x,.002,z),new THREE.Vector3(Math.min(x+.08,b.maxX),.002,z));}
+      const lines=[],size=room.tileSize;
+      // A photographed grout intersection anchors the lattice. Wall edges can
+      // cut through tiles; origin-less historical layouts retain their old grid.
+      const originX=Number.isFinite(room.tileOrigin?.x)?room.tileOrigin.x:b.minX;
+      const originZ=Number.isFinite(room.tileOrigin?.z)?room.tileOrigin.z:b.minZ;
+      const startX=originX+Math.ceil((b.minX-originX)/size-1e-9)*size;
+      const startZ=originZ+Math.ceil((b.minZ-originZ)/size-1e-9)*size;
+      for(let x=startX;x<=b.maxX+.001;x+=size)for(let z=b.minZ;z<b.maxZ;z+=.08){if(contains(room,x+.001,z+.04))lines.push(new THREE.Vector3(x,.002,z),new THREE.Vector3(x,.002,Math.min(z+.08,b.maxZ)));}
+      for(let z=startZ;z<=b.maxZ+.001;z+=size)for(let x=b.minX;x<b.maxX;x+=.08){if(contains(room,x+.04,z+.001))lines.push(new THREE.Vector3(x,.002,z),new THREE.Vector3(Math.min(x+.08,b.maxX),.002,z));}
       this.roomGroup.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(lines),new THREE.LineBasicMaterial({color:'#a3a59a',transparent:true,opacity:.45})));
     }
     for(const wall of walls(room)){

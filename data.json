@@ -1,5 +1,5 @@
 {
-  "revision": 104,
+  "revision": 105,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "ONCE 后知后觉",
@@ -646,7 +646,39 @@
           ],
           "glyphDepthScale": 1.35
         }
-      ]
+      ],
+      "tileOrigin": {
+        "x": 2.958,
+        "z": -2.049
+      },
+      "tileCalibration": {
+        "status": "photo-fitted preview; pending on-site wall-offset calibration",
+        "date": "2026-10-22",
+        "tileSide_m": 0.8,
+        "tileSideSource": "user-confirmed 2026-10-22",
+        "originDescription": "IMG_4978 2真实照片所标O砖缝交点；+X沿墙1去墙4，+Y沿墙2去墙3",
+        "originPhoto": "IMG_4978 2.HEIC",
+        "originAnalysisPixels": [
+          1012,
+          706
+        ],
+        "analysisSizePixels": [
+          1600,
+          1200
+        ],
+        "wallOffsetsPreview_m": {
+          "a_fromWall2": 1.042,
+          "b_fromWall1": 0.701
+        },
+        "conservativePhaseUncertainty_m": 0.15,
+        "wallOffsetsStatus": "photo estimate only, not installation dimensions",
+        "requiredOnSiteMeasurements": [
+          "O点垂直到墙2的距离a",
+          "O点垂直到墙1的距离b"
+        ],
+        "wallEdgeNote": "真实墙边存在裁砖，不能按每面墙从整砖起铺。网页格线相位暂作照片校准预览。",
+        "geometryPreservation": "只平移砖缝视觉网格，不移动突出墙、墙面、照片、前言、地诗、家具、灯具。"
+      }
     },
     "works": [
       {
@@ -1786,7 +1818,7 @@
     "blackMatEach_cm": 4
   },
   "sourceLayoutRevision": 56,
-  "updatedDate": "2026-10-21",
+  "updatedDate": "2026-10-22",
   "paperMountingPlan": {
     "works": [
       "9.tif",
