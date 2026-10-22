@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261022-tile-origin-105';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261022-frame08-106';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -258,6 +258,10 @@ export class ExhibitionScene {
       const outer=workBounds(work),padding=work.frame==='none'?0:(work.frameWidth||.008);
       const floating=work.mounting==='floating'&&work.frame!=='none',hanging=work.mounting==='hanging-banner';
       const profiledMat=['thin-white-matted','thin-black-matted'].includes(work.frameProfile);
+      const finishedUnmatted=work.frameImageFit==='contain-opening'&&work.frame!=='none';
+      const sourceRatio=work.imageRatio||work.width/work.height;
+      const displayHeight=finishedUnmatted?Math.min(work.height,work.width/sourceRatio):work.height;
+      const displayWidth=finishedUnmatted?displayHeight*sourceRatio:work.width;
       let imageDepth=work.depth/2+.001;
       if(hanging){
         imageDepth=.001;
@@ -279,9 +283,9 @@ export class ExhibitionScene {
       }else{
         // White paper is shown independently from the lighting used for walls and frames.
         const paperMaterial=work.frame==='none'&&work.paperBorder>0?new THREE.MeshBasicMaterial({color:'#ffffff',toneMapped:false}):undefined;
-        g.add(this.box(outer.width,outer.height,work.depth,work.paperBorder?'#ffffff':'#faf9f5',paperMaterial));
+        g.add(this.box(outer.width,outer.height,work.depth,finishedUnmatted?(work.frameBackingColor||'#111312'):work.paperBorder?'#ffffff':'#faf9f5',paperMaterial));
       }
-      const imagePlane=new THREE.Mesh(new THREE.PlaneGeometry(work.width,work.height),new THREE.MeshBasicMaterial({color:hanging?(work.fabricColor||'#faf9f5'):'#eeede5',side:hanging?THREE.DoubleSide:THREE.FrontSide,transparent:hanging,opacity:hanging?(work.fabricOpacity??.92):1,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-4}));imagePlane.position.z=imageDepth;g.add(imagePlane);
+      const imagePlane=new THREE.Mesh(new THREE.PlaneGeometry(displayWidth,displayHeight),new THREE.MeshBasicMaterial({color:hanging?(work.fabricColor||'#faf9f5'):'#eeede5',side:hanging?THREE.DoubleSide:THREE.FrontSide,transparent:hanging,opacity:hanging?(work.fabricOpacity??.92):1,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-4}));imagePlane.position.z=imageDepth;g.add(imagePlane);
       if(work.mounting==='corner-pins'){
         const inset=work.pinInset,plastic=new THREE.MeshStandardMaterial({color:'#ffffff',roughness:.52}),metal=new THREE.MeshStandardMaterial({color:'#a5aaa8',metalness:.8,roughness:.3});
         for(const x of [-outer.width/2+inset,outer.width/2-inset])for(const y of [-outer.height/2+inset,outer.height/2-inset]){

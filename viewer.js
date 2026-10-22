@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261022-tile-origin-105';
-import {walls,cm,sampleImage} from './model.js?v=20261022-tile-origin-105';
+import {ExhibitionScene} from './scene.js?v=20261022-frame08-106';
+import {walls,cm,sampleImage} from './model.js?v=20261022-frame08-106';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -34,14 +34,14 @@ function renderList(medium,prefaceTrials=[]){
       button.onclick=()=>{changeView(`wall:${w.wall}`);select(w.id);$('view-tip').textContent=`${wall.name} · ${w.name}`;};
     }
   }
-  const frameWorks=photos.filter(work=>['thin-white-matted','thin-black-matted'].includes(work.frameProfile)).sort((a,b)=>a.name.localeCompare(b.name));
+  const frameWorks=photos.filter(work=>['thin-white-matted','thin-black-matted','thin-black-unmatted'].includes(work.frameProfile)).sort((a,b)=>a.name.localeCompare(b.name));
   if(frameWorks.length){
     const heading=document.createElement('h2');heading.textContent='装裱特写';root.append(heading);
     for(const work of frameWorks){
       const button=document.createElement('button');button.className='work';const text=document.createElement('span'),title=document.createElement('strong'),caption=document.createElement('small');
       title.textContent=`${work.name.slice(-2)}号${work.frame==='white'?'白窄框':'黑细框'} · 正视`;
       const mx=work.matX??work.mat,my=work.matY??work.mat;
-      caption.textContent=`${work.frameWidth*1000}毫米${work.frame==='white'?'白':'黑'}框 · ${Math.abs(mx-my)<.00001?`每侧${cm(mx)}厘米`:`左右${cm(mx)}、上下${cm(my)}厘米`}白卡纸`;text.append(title,caption);button.append(text);
+      caption.textContent=work.frameProfile==='thin-black-unmatted'?`${work.frameWidth*1000}毫米黑框 · 无白卡纸 · 画面${cm(work.width)}×${cm(work.height)}厘米`:`${work.frameWidth*1000}毫米${work.frame==='white'?'白':'黑'}框 · ${Math.abs(mx-my)<.00001?`每侧${cm(mx)}厘米`:`左右${cm(mx)}、上下${cm(my)}厘米`}白卡纸`;text.append(title,caption);button.append(text);
       button.onclick=()=>{changeView(`wall:${work.wall}`);scene.focusArtwork(work.id);showList(false);$('view-tip').textContent=`${title.textContent} · 拖动旋转，双指或滚轮缩放`;};root.append(button);
     }
   }
@@ -52,7 +52,7 @@ function renderList(medium,prefaceTrials=[]){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261022-tile-origin-105');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261022-frame08-106');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
   const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白窄框24、27、28、32、34统一上下左右各6厘米白卡纸。黑细框16、26、31保持图面，改每侧4厘米白卡纸，外框随之加大。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
