@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261023-endshift-seam-116';
-import {walls,cm,sampleImage} from './model.js?v=20261023-endshift-seam-116';
+import {ExhibitionScene} from './scene.js?v=20261023-border35-table-right-117';
+import {walls,cm,sampleImage} from './model.js?v=20261023-border35-table-right-117';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -52,9 +52,9 @@ function renderList(medium,prefaceTrials=[]){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261023-endshift-seam-116');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261023-border35-table-right-117');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
-  const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白窄框24、27、28、32、34统一上下左右各6厘米白卡纸。黑细框16、26、31保持图面，改每侧4厘米白卡纸，外框随之加大。08、20、21为8毫米黑窄框，无白卡纸。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
+  const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白窄框24、27、28、32、34统一上下左右各6厘米白卡纸。黑细框16、26、31保持图面，改每侧4厘米白卡纸，外框随之加大。08、20、21为8毫米黑窄框，无白卡纸。未装框照片四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
   if(state.room.measurements?.wall1){
     const note=document.createElement('p');note.className='framing-note';
