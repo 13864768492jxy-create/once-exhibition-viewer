@@ -1,5 +1,5 @@
 {
-  "revision": 115,
+  "revision": 116,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "ONCE 后知后觉",
@@ -771,8 +771,8 @@
           "lines": [
             "他们再也看不见我。"
           ],
-          "x": 1.7389,
-          "z": 1.7511,
+          "x": 1.3853466094067262,
+          "z": 1.3975466094067264,
           "rotation": 135,
           "width": 1.47,
           "height": 0.297,
@@ -2777,5 +2777,20 @@
     "floorPoetry": "04 moves35cm left with21;06 moves131cm toward rear-photo corner and17cm left, restoring exact relative location to protected eight-photo group from111. Forward means toward these photographs, not wall1.",
     "prefaceAndSideWalls": "retain113 complete rebalancing",
     "measuredBuildingAndAllPrintDimensions": "unchanged"
+  },
+  "endPoemShiftV116": {
+    "distance_m": 0.5,
+    "direction": "positive text baseline; screen right in supplied reference",
+    "fromXZ_m": [
+      1.7389,
+      1.7511
+    ],
+    "toXZ_m": [
+      1.3853466094067262,
+      1.3975466094067264
+    ],
+    "rotationUnchanged": 135,
+    "printed20and21": "User confirmed printing complete",
+    "borderProposal": "Pending; no physical print or mounting modification"
   }
 }
