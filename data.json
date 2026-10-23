@@ -1,5 +1,5 @@
 {
-  "revision": 116,
+  "revision": 117,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "ONCE 后知后觉",
@@ -868,7 +868,7 @@
         "width": 0.3,
         "height": 0.25,
         "depth": 0.001,
-        "elevation": 0.9667015,
+        "elevation": 0.9517015,
         "wall": 3,
         "along": 2.015,
         "x": -5.3374999999999995,
@@ -881,11 +881,11 @@
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "imageFit": "cover",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）"
       },
       {
         "id": "77e975f2-9a18-492e-9021-907a5215be2f",
@@ -898,7 +898,7 @@
         "width": 0.42,
         "height": 0.32221,
         "depth": 0.001,
-        "elevation": 1.96,
+        "elevation": 1.945,
         "wall": 3,
         "along": 3.8899999999999997,
         "x": -5.3374999999999995,
@@ -910,11 +910,11 @@
         "routeOrder": 2,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）"
       },
       {
         "id": "0895952c-0dcb-40a8-af83-a75c58e202a2",
@@ -927,7 +927,7 @@
         "width": 1.1,
         "height": 0.903685,
         "depth": 0.001,
-        "elevation": 0.78,
+        "elevation": 0.765,
         "wall": 3,
         "along": 4.23,
         "x": -5.3374999999999995,
@@ -939,11 +939,11 @@
         "routeOrder": 3,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）"
       },
       {
         "id": "63eabf9a-70c1-4520-a270-024ef8888876",
@@ -956,7 +956,7 @@
         "width": 0.54,
         "height": 0.480113,
         "depth": 0.001,
-        "elevation": 1.5299999999999998,
+        "elevation": 1.515,
         "wall": 3,
         "along": 5.21,
         "x": -5.3374999999999995,
@@ -968,11 +968,11 @@
         "routeOrder": 4,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）"
       },
       {
         "id": "c30d7047-5e0c-4160-8a46-b9531987579e",
@@ -1019,7 +1019,7 @@
         "width": 0.42,
         "height": 0.341918,
         "depth": 0.001,
-        "elevation": 0.8,
+        "elevation": 0.785,
         "wall": 0,
         "along": 3.15,
         "x": -2.19,
@@ -1031,11 +1031,11 @@
         "routeOrder": 6,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固",
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）",
         "wallOffset": 0.0105
       },
       {
@@ -1136,7 +1136,7 @@
         "width": 0.8,
         "height": 0.6356429473684211,
         "depth": 0.001,
-        "elevation": 1.564357052631579,
+        "elevation": 1.5493570526315792,
         "wall": 0,
         "along": 8.38,
         "x": 3.040000000000001,
@@ -1148,11 +1148,11 @@
         "routeOrder": 9,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固",
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）",
         "wallOffset": 0.0105
       },
       {
@@ -1166,7 +1166,7 @@
         "width": 0.453,
         "height": 0.3663322916666667,
         "depth": 0.001,
-        "elevation": 2.106318854166666,
+        "elevation": 2.091318854166666,
         "wall": 1,
         "along": 4.35,
         "x": 3.9975,
@@ -1178,11 +1178,11 @@
         "routeOrder": 16,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固",
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）",
         "hangingCenterHeight": 2.3094849999999996
       },
       {
@@ -1196,7 +1196,7 @@
         "width": 0.4,
         "height": 0.32511,
         "depth": 0.001,
-        "elevation": 0.91,
+        "elevation": 0.895,
         "wall": 4,
         "along": 0.52,
         "x": -0.6075,
@@ -1208,11 +1208,11 @@
         "routeOrder": 11,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）"
       },
       {
         "id": "d00c15ed-5ad7-4ed1-a899-641fef9bed8e",
@@ -1225,7 +1225,7 @@
         "width": 1,
         "height": 0.805132,
         "depth": 0.001,
-        "elevation": 1.02,
+        "elevation": 1.0050000000000001,
         "wall": 1,
         "along": 1.05,
         "x": 3.9975,
@@ -1237,11 +1237,11 @@
         "routeOrder": 12,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）"
       },
       {
         "id": "fd648726-c5a8-4d9f-bdba-4f361c65a6ac",
@@ -1254,7 +1254,7 @@
         "width": 0.46,
         "height": 0.373281,
         "depth": 0.001,
-        "elevation": 1.81,
+        "elevation": 1.7950000000000002,
         "wall": 5,
         "along": 2.27,
         "x": -0.7125,
@@ -1266,11 +1266,11 @@
         "routeOrder": 13,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）"
       },
       {
         "id": "187301e7-ddfa-4b9c-a8c3-0c28e7530baa",
@@ -1323,7 +1323,7 @@
         "width": 0.3,
         "height": 0.23793699577410682,
         "depth": 0.001,
-        "elevation": 1.9687840021129464,
+        "elevation": 1.9537840021129464,
         "wall": 2,
         "along": 2.6699999999999995,
         "x": 1.3300000000000005,
@@ -1336,11 +1336,11 @@
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "imageFit": "full",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）"
       },
       {
         "id": "4605b7c7-622e-427f-98e1-241de266ebe8",
@@ -1488,7 +1488,7 @@
         "width": 0.42,
         "height": 0.330671,
         "depth": 0.001,
-        "elevation": 0.81,
+        "elevation": 0.795,
         "wall": 4,
         "along": 1.74,
         "x": -0.6075,
@@ -1500,11 +1500,11 @@
         "routeOrder": 20,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）"
       },
       {
         "id": "092fb034-ea3a-4a23-9450-32c3499ce3e9",
@@ -1552,7 +1552,7 @@
         "width": 0.3,
         "height": 0.25,
         "depth": 0.001,
-        "elevation": 0.8560829999999999,
+        "elevation": 0.8410829999999999,
         "wall": 1,
         "along": 2.115,
         "x": 3.9975,
@@ -1565,11 +1565,11 @@
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "imageFit": "cover",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）"
       },
       {
         "id": "63b176ee-e595-4a2c-a81e-58107b0c11b5",
@@ -1660,7 +1660,7 @@
         "width": 0.62,
         "height": 0.509715,
         "depth": 0.001,
-        "elevation": 1.4,
+        "elevation": 1.385,
         "wall": 2,
         "along": 3.69,
         "x": 0.31000000000000005,
@@ -1672,11 +1672,11 @@
         "routeOrder": 25,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）"
       },
       {
         "id": "9fbb3714-8344-4ab0-89bd-791d0425bbaa",
@@ -1689,7 +1689,7 @@
         "width": 0.54,
         "height": 0.424723,
         "depth": 0.001,
-        "elevation": 0.8,
+        "elevation": 0.785,
         "wall": 2,
         "along": 3.4199999999999995,
         "x": 0.5800000000000005,
@@ -1701,11 +1701,11 @@
         "routeOrder": 26,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）"
       },
       {
         "id": "01294f6b-66b1-400f-8c23-054d210377a9",
@@ -1843,7 +1843,7 @@
         "height": 0.76,
         "depth": 0.45,
         "elevation": 0,
-        "x": -1.25,
+        "x": -3.45,
         "z": 2.65,
         "rotation": 0,
         "books": [
@@ -1882,7 +1882,7 @@
         "width": 0.8,
         "height": 0.6469144444444446,
         "depth": 0.001,
-        "elevation": 0.81,
+        "elevation": 0.795,
         "wall": 0,
         "along": 7.7,
         "x": 2.3600000000000003,
@@ -1892,11 +1892,11 @@
         "mat": 0,
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固",
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）",
         "wallOffset": 0.0105
       },
       {
@@ -1910,7 +1910,7 @@
         "width": 0.3,
         "height": 0.25,
         "depth": 0.001,
-        "elevation": 1.1478994999999999,
+        "elevation": 1.1328995,
         "wall": 5,
         "along": 2.1999999999999997,
         "x": -0.7125,
@@ -1921,11 +1921,11 @@
         "year": 2026,
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "imageFit": "cover",
-        "paperBorder": 0.02,
+        "paperBorder": 0.035,
         "mounting": "corner-pins",
-        "pinInset": 0.01,
+        "pinInset": 0.015,
         "pinDiameter": 0.0096,
-        "framingDescription": "未装框；画面外四周留2厘米白边，四角距纸边各1厘米钉固"
+        "framingDescription": "未装框；画面外四周留3.5厘米纯白边，四角钉点距两条纸边各1.5厘米（距画面各2厘米）"
       },
       {
         "id": "once-vessel-label-20261010",
@@ -2080,12 +2080,14 @@
       "25.tif"
     ],
     "imageSizesAndImageCentersPreserved": true,
-    "paperBorderEach_cm": 2,
-    "pinInsetFromBothPaperEdges_cm": 1,
+    "paperBorderEach_cm": 3.5,
+    "pinInsetFromBothPaperEdges_cm": 1.5,
     "pinHeadDiameter_mm": 9.6,
     "pinCountPerWork": 4,
     "pinCountTotal": 68,
-    "hardwareStatus": "按用户参考图模拟外观，非承重验证"
+    "hardwareStatus": "按用户参考图模拟外观，非承重验证",
+    "pinInsetFromImageEdges_cm": 2,
+    "productionStatus": "B01/B02/B03尚未喷绘，17幅无框照片按每边3.5厘米重新拼版；20、21已喷绘，不变"
   },
   "poetryPlan": {
     "prefacePoem": [
@@ -2792,5 +2794,39 @@
     "rotationUnchanged": 135,
     "printed20and21": "User confirmed printing complete",
     "borderProposal": "Pending; no physical print or mounting modification"
+  },
+  "confirmedPrintAndInstallationV117": {
+    "date": "2026-10-23",
+    "userConfirmed": "其余B组未喷绘；无框白边每边3.5厘米；更新全部安装说明；书台在正视前言的右侧",
+    "unframedWorks": [
+      "once_01",
+      "once_02",
+      "once_04",
+      "once_09",
+      "once_10",
+      "once_12",
+      "once_13",
+      "once_14",
+      "once_18",
+      "once_19",
+      "once_22",
+      "once_23",
+      "once_25",
+      "once_30",
+      "once_33",
+      "once_35",
+      "once_36"
+    ],
+    "paperBorderEach_cm": 3.5,
+    "pinInsetFromPaperEdgesEach_cm": 1.5,
+    "pinToImageEdgeEach_cm": 2,
+    "imageSizesAndImageCentersPreserved": true,
+    "printed20and21Unchanged": true,
+    "tableWorldXZ_m": [
+      -3.45,
+      2.65
+    ],
+    "tableVisualSide": "right when facing preface; world negative X",
+    "installationDocumentation": "Update to current117 positions and outer paper dimensions; user authorized"
   }
 }
