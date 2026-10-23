@@ -1,5 +1,5 @@
 {
-  "revision": 108,
+  "revision": 111,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "ONCE 后知后觉",
@@ -59,7 +59,12 @@
           "start": 8,
           "width": 1.1,
           "height": 2.1,
-          "bottom": 0
+          "bottom": 0,
+          "showLeaf": true,
+          "openAngleDeg": 90,
+          "hinge": "end",
+          "leafColor": "#ba9266",
+          "stateStatus": "user-confirmed"
         },
         {
           "type": "door",
@@ -67,7 +72,12 @@
           "start": 0,
           "width": 1,
           "height": 2.1,
-          "bottom": 0
+          "bottom": 0,
+          "showLeaf": true,
+          "openAngleDeg": 0,
+          "hinge": "start",
+          "leafColor": "#ba9266",
+          "stateStatus": "user-confirmed"
         },
         {
           "id": "wall1-clerestory-1",
@@ -125,12 +135,12 @@
         {
           "name": "中间突出墙",
           "a": [
-            -0.1,
+            -0.5,
             2.635
           ],
           "b": [
-            -0.1,
-            0.135
+            -0.5,
+            -0.165
           ],
           "height": 2.5,
           "thickness": 0.12
@@ -139,53 +149,59 @@
       "columns": [
         {
           "x": -5.1,
-          "z": 0.135,
-          "diameter": 0.4,
-          "height": 3.9
+          "z": -0.165,
+          "diameter": 0.6,
+          "height": 3.9,
+          "positionStatus": "photo-calibrated-aligned-row",
+          "diameterStatus": "photo-calibrated-rounded"
         },
         {
-          "x": -0.1,
-          "z": 0.135,
-          "diameter": 0.4,
-          "height": 3.9
+          "x": -0.5,
+          "z": -0.165,
+          "diameter": 0.6,
+          "height": 3.9,
+          "positionStatus": "photo-calibrated-aligned-row",
+          "diameterStatus": "photo-calibrated-rounded"
         },
         {
           "x": 4,
-          "z": 0.135,
-          "diameter": 0.4,
-          "height": 3.9
+          "z": -0.165,
+          "diameter": 0.6,
+          "height": 3.9,
+          "positionStatus": "photo-calibrated-aligned-row",
+          "diameterStatus": "photo-calibrated-rounded"
         }
       ],
       "fixtures": [
         {
           "type": "switch",
           "wall": 2,
-          "along": 1.295,
+          "along": 1.6949999999999998,
           "elevation": 1.25
         },
         {
           "type": "switch",
           "wall": 2,
-          "along": 7.895,
+          "along": 7.195,
           "elevation": 1.25
         },
         {
           "type": "pipe",
           "wall": 2,
-          "along": 4.333,
+          "along": 4.7330000000000005,
           "elevation": 0
         },
         {
           "type": "pipe",
           "wall": 2,
-          "along": 4.43,
+          "along": 4.83,
           "elevation": 0
         },
         {
           "type": "tv",
           "wall": 3,
-          "along": 1,
-          "elevation": 1.25,
+          "along": 1.65,
+          "elevation": 1.35,
           "width": 0.91,
           "height": 0.52,
           "id": "entrance-tv",
@@ -193,7 +209,8 @@
           "title": "VESSEL",
           "posterOnly": true,
           "dimensionsStatus": "user-measured",
-          "dimensionsDate": "2026-10-23"
+          "dimensionsDate": "2026-10-23",
+          "positionStatus": "photo-calibrated-2026-10-23"
         }
       ],
       "furniture": [
@@ -276,7 +293,9 @@
           "status": "user-confirmed",
           "openAbove": true,
           "clearHeightToCeiling": 1.4,
-          "clearHeightBelowBeamEstimate": 0.9
+          "clearHeightBelowBeamEstimate": 0.9,
+          "length": 2.8,
+          "lengthStatus": "linked to photo-calibrated column row"
         },
         "clerestory": {
           "wall": 0,
@@ -309,8 +328,21 @@
           "height": 0.52,
           "status": "user-measured",
           "date": "2026-10-23",
-          "alongAndElevationPreserved": true,
-          "source": "IMG_5177.HEIC 与用户现场实测"
+          "alongAndElevationPreserved": false,
+          "source": "IMG_5177.HEIC 与用户现场实测",
+          "along": 1.65,
+          "bottom": 1.35,
+          "positionStatus": "photo-calibrated",
+          "photoPositionRange_cm": {
+            "along": [
+              140,
+              180
+            ],
+            "bottom": [
+              130,
+              145
+            ]
+          }
         },
         "depth": {
           "length": 5.385,
@@ -321,6 +353,70 @@
           "userConfirmedRemainderDirection": true,
           "oldModelDepth_m": 5.5,
           "placementPolicy": "墙1固定；后墙、突出墙及柱梁连接组前移11.5cm，保持墙角与作品内部关系；地诗不移动。"
+        },
+        "sideWalls": {
+          "wall2Length_m": 5.385,
+          "wall4Length_m": 5.385,
+          "equalLengthStatus": "user-confirmed 2026-10-23",
+          "columnsAlignedStatus": "user-confirmed 2026-10-23",
+          "columnAxisToRearWall_m": 2.8,
+          "columnAxisToRearWallStatus": "photo-calibrated, not field measured",
+          "photoFittedAxisToRearWall_cm": 277.039,
+          "photoConservativeRange_cm": [
+            255,
+            300
+          ],
+          "columnDiameter_m": 0.6,
+          "columnDiameterStatus": "photo-calibrated-rounded from 60-66cm",
+          "sources": [
+            "IMG_4979.HEIC",
+            "IMG_5177.HEIC"
+          ],
+          "note": "两侧总长保持一致，三柱同轴；柱位、柱径与电视位置由照片校准。门扇不在电视墙同一平面，不能用电视尺度直接量门扇。",
+          "partitionAxisX_m": -0.5
+        },
+        "partitionHorizontal": {
+          "date": "2026-10-23",
+          "status": "photo-calibrated, not a new field measurement",
+          "wall4ToAxis_m": 4.6,
+          "wall2ToAxis_m": 4.5,
+          "wall4ToNearPartitionFace_m": 4.54,
+          "wall2ToNearPartitionFace_m": 4.44,
+          "axisX_m": -0.5,
+          "conservativePhotoAxisXRange_m": [
+            -0.65,
+            -0.2
+          ],
+          "sources": [
+            "IMG_4982.HEIC",
+            "IMG_4977.HEIC",
+            "IMG_4979.HEIC",
+            "IMG_4976.HEIC",
+            "IMG_4986.HEIC"
+          ],
+          "historicalProblem": "v59 expanded the estimated 8m outline to measured 9.1m at the left edge only; the partition was not recalibrated and the left 2.4m chain became 3.5m.",
+          "selection": "Rounded position consistent with independent multi-photo 80cm grout fits, anchored to 9.1m total width; no forced symmetry."
+        },
+        "rearMeasuredSegments": {
+          "left": {
+            "length_m": 2.4,
+            "from": "left switch right edge",
+            "to": "right-hand pipe left edge",
+            "status": "user-measured 2026-10-09; endpoints cross-checked against original sketch and photographs"
+          },
+          "right": {
+            "length_m": 2.7,
+            "from": "partition right face",
+            "to": "right switch left edge",
+            "status": "user-measured 2026-10-09; endpoints cross-checked against original sketch and photographs"
+          },
+          "plateWidth_m": 0.09,
+          "pipeDiameter_m": 0.034,
+          "plateAndPipeDimensionsStatus": "visual model, not field measured"
+        },
+        "doors": {
+          "left": "user-confirmed opens to the left, fully against wall4; end hinge, 90 degrees",
+          "right": "user-confirmed closed"
         }
       },
       "ceiling": {
@@ -333,11 +429,11 @@
             "id": "column-cross-beam",
             "a": [
               -5.1,
-              0.135
+              -0.165
             ],
             "b": [
               4,
-              0.135
+              -0.165
             ],
             "width": 0.4,
             "depth": 0.5,
@@ -346,11 +442,11 @@
           {
             "id": "partition-top-beam",
             "a": [
-              -0.1,
+              -0.5,
               -2.75
             ],
             "b": [
-              -0.1,
+              -0.5,
               2.635
             ],
             "width": 0.36,
@@ -757,9 +853,9 @@
         "depth": 0.001,
         "elevation": 1.96,
         "wall": 3,
-        "along": 3,
+        "along": 3.38,
         "x": -5.097499999999999,
-        "z": -0.3650000000000002,
+        "z": -0.7450000000000001,
         "rotation": 90.0,
         "frame": "none",
         "mat": 0,
@@ -786,9 +882,9 @@
         "depth": 0.001,
         "elevation": 0.78,
         "wall": 3,
-        "along": 3.67,
+        "along": 3.72,
         "x": -5.097499999999999,
-        "z": -1.0350000000000001,
+        "z": -1.0850000000000004,
         "rotation": 90.0,
         "frame": "none",
         "mat": 0,
@@ -936,10 +1032,10 @@
         "image": "images/47a4058de5a3ba9444166ac07d34aea9.jpg",
         "thumbnail": "images/thumb-20.jpg",
         "placed": true,
-        "width": 1.5,
-        "height": 1.188124,
+        "width": 1.47,
+        "height": 1.16,
         "depth": 0.025,
-        "elevation": 0.7538760000000001,
+        "elevation": 0.7679380000000001,
         "wall": 0,
         "along": 5.949999999999999,
         "x": 0.8499999999999996,
@@ -953,21 +1049,30 @@
         "medium": "黑白银盐胶片扫描后艺术微喷于绒面相纸",
         "paperBorder": 0,
         "mounting": "framed",
-        "framingDescription": "与08相同：8毫米黑色窄边框，无白卡纸；画面尺寸及画面中心保持。喷绘白边仅作裁切余量。",
-        "frameOuterWidth": 1.516,
-        "frameOuterHeight": 1.204124,
+        "framingDescription": "8毫米黑色窄边框，无白卡纸；画面147×116厘米，外框148.6×117.6厘米；保留原画面中心，按比例居中微裁，不拉伸。",
+        "frameOuterWidth": 1.486,
+        "frameOuterHeight": 1.176,
         "frameProfile": "thin-black-unmatted",
-        "frameImageFit": "contain-opening",
+        "frameImageFit": "cover-opening",
         "frameBackingColor": "#111312",
-        "imageFit": "full",
-        "imageRatio": 1.2626387176325524,
+        "imageFit": "cover",
+        "imageRatio": 1.2672413793103448,
         "framingReference": {
           "date": "2026-10-23",
           "source": "用户指定采用08相同装裱方式",
           "whiteMat": false,
           "frameFront_mm": 8,
-          "imageDimensionsPreserved": true,
-          "imageCenterPreserved": true
+          "imageDimensionsPreserved": false,
+          "imageCenterPreserved": true,
+          "userSpecifiedImage_cm": [
+            147,
+            116
+          ],
+          "outer_cm": [
+            148.6,
+            117.6
+          ],
+          "crop": "源图上下各约14像素，约0.22厘米；无左右裁切，无拉伸"
         }
       },
       {
@@ -1043,7 +1148,7 @@
         "elevation": 0.91,
         "wall": 4,
         "along": 0.52,
-        "x": -0.037500000000000006,
+        "x": -0.4375,
         "z": 2.1149999999999998,
         "rotation": 90.0,
         "frame": "none",
@@ -1100,8 +1205,8 @@
         "depth": 0.001,
         "elevation": 1.81,
         "wall": 5,
-        "along": 1.9,
-        "x": -0.1625,
+        "along": 2.2,
+        "x": -0.5625,
         "z": 2.035,
         "rotation": -90.0,
         "frame": "none",
@@ -1129,8 +1234,8 @@
         "depth": 0.025,
         "elevation": 1.3499999999999999,
         "wall": 5,
-        "along": 1,
-        "x": -0.17450000000000002,
+        "along": 1.3,
+        "x": -0.5745,
         "z": 1.135,
         "rotation": -90.0,
         "frame": "black",
@@ -1169,8 +1274,8 @@
         "depth": 0.001,
         "elevation": 1.9687840021129464,
         "wall": 2,
-        "along": 2.0999999999999996,
-        "x": 1.9000000000000004,
+        "along": 2.4999999999999996,
+        "x": 1.5000000000000004,
         "z": 2.6325,
         "rotation": -180.0,
         "frame": "none",
@@ -1233,7 +1338,7 @@
         "elevation": 1.2499565000000001,
         "wall": 4,
         "along": 1.45,
-        "x": -0.02550000000000001,
+        "x": -0.4255,
         "z": 1.1849999999999998,
         "rotation": 90.0,
         "frame": "black",
@@ -1300,8 +1405,8 @@
         "depth": 0.046,
         "elevation": 0.8616410000000001,
         "wall": 5,
-        "along": 0.47,
-        "x": -0.185,
+        "along": 0.77,
+        "x": -0.5850000000000001,
         "z": 0.605,
         "rotation": -90.0,
         "frame": "black",
@@ -1335,7 +1440,7 @@
         "elevation": 0.81,
         "wall": 4,
         "along": 1.74,
-        "x": -0.037500000000000006,
+        "x": -0.4375,
         "z": 0.8949999999999998,
         "rotation": 90.0,
         "frame": "none",
@@ -1397,9 +1502,9 @@
         "depth": 0.001,
         "elevation": 0.8560829999999999,
         "wall": 1,
-        "along": 2.33,
+        "along": 2.015,
         "x": 3.9975,
-        "z": -0.41999999999999993,
+        "z": -0.7349999999999999,
         "rotation": -90.0,
         "frame": "none",
         "mat": 0,
@@ -1427,9 +1532,9 @@
         "depth": 0.025,
         "elevation": 1.773328025,
         "wall": 1,
-        "along": 2.26,
+        "along": 1.928,
         "x": 3.9855,
-        "z": -0.4900000000000002,
+        "z": -0.8220000000000001,
         "rotation": -90.0,
         "frame": "white",
         "mat": 0.06,
@@ -1504,8 +1609,8 @@
         "depth": 0.001,
         "elevation": 1.4,
         "wall": 2,
-        "along": 3.12,
-        "x": 0.8799999999999999,
+        "along": 3.52,
+        "x": 0.48,
         "z": 2.6325,
         "rotation": -180.0,
         "frame": "none",
@@ -1533,8 +1638,8 @@
         "depth": 0.001,
         "elevation": 0.8,
         "wall": 2,
-        "along": 2.8499999999999996,
-        "x": 1.1500000000000004,
+        "along": 3.2499999999999996,
+        "x": 0.7500000000000004,
         "z": 2.6325,
         "rotation": -180.0,
         "frame": "none",
@@ -1562,8 +1667,8 @@
         "depth": 0.025,
         "elevation": 0.9679125000000002,
         "wall": 2,
-        "along": 1.9800000000000004,
-        "x": 2.0199999999999996,
+        "along": 2.3800000000000003,
+        "x": 1.6199999999999997,
         "z": 2.6205,
         "rotation": -180.0,
         "frame": "black",
@@ -1596,8 +1701,8 @@
         "depth": 0.035,
         "elevation": 2.0287609999999994,
         "wall": 2,
-        "along": 3.45,
-        "x": 0.5499999999999998,
+        "along": 3.85,
+        "x": 0.1499999999999999,
         "z": 2.6155,
         "rotation": -180.0,
         "frame": "white",
@@ -1753,9 +1858,9 @@
         "depth": 0.001,
         "elevation": 1.1478994999999999,
         "wall": 5,
-        "along": 1.83,
-        "x": -0.1625,
-        "z": 1.965,
+        "along": 2.13,
+        "x": -0.5625,
+        "z": 1.9649999999999999,
         "rotation": -90.0,
         "frame": "none",
         "mat": 0,
@@ -1778,10 +1883,10 @@
         "height": 0.07,
         "depth": 0.001,
         "wall": 3,
-        "along": 1.62,
-        "elevation": 1.3150000000000002,
+        "along": 2.27,
+        "elevation": 1.415,
         "x": -5.097499999999999,
-        "z": 1.0149999999999997,
+        "z": 0.36499999999999977,
         "rotation": 90.0,
         "frame": "none",
         "image": "images/vessel-label-15x7-v104.svg",
@@ -2427,5 +2532,46 @@
         "newBottom_cm": 121.77313848202185
       }
     ]
+  },
+  "size20Revision109": {
+    "image_cm": [
+      147,
+      116
+    ],
+    "outer_cm": [
+      148.6,
+      117.6
+    ],
+    "centreHeight_m": 1.355938,
+    "centerPreserved": true,
+    "same8mmFrameAs08": true,
+    "cropPolicy": "minimal centered top/bottom crop, preserve aspect ratio"
+  },
+  "architectureV110": {
+    "date": "2026-10-23",
+    "sideWallsEqual": true,
+    "columnRowAligned": true,
+    "columnRearDistance_cm": 280,
+    "positionBasis": "photo calibration, no on-site survey",
+    "floorPoemsUnchanged": true,
+    "approvedCornerUnchanged": true,
+    "doorStates": {
+      "left": "fully open, 90 degrees, outer hinge, rests against wall4",
+      "right": "closed"
+    }
+  },
+  "geometryV111": {
+    "date": "2026-10-23",
+    "partitionDeltaX_m": -0.4,
+    "leftWallToPartitionAxis_m": 4.6,
+    "rightWallToPartitionAxis_m": 4.5,
+    "basis": "photo calibration, not on-site measurement",
+    "historicalMeasuredChainsRestored_m": [
+      2.4,
+      2.7
+    ],
+    "doorHingeCorrection": "left=end, fully open against wall4",
+    "protectedCornerPolicy": "five wall3 photographs and three partition-right photographs translated together by -40cm; sizes, heights, framing and all pairwise relationships unchanged",
+    "floorPoemsExact": true
   }
 }
