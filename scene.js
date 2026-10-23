@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261023-holistic-trial-115';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261023-endshift-seam-116';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -151,6 +151,12 @@ export class ExhibitionScene {
         const midOffset=surfaceOffset(wall.index,step.along-.0001)+depth/2;
         edge.position.set(wall.a[0]+wall.tangent[0]*step.along+wall.normal[0]*midOffset,height/2,wall.a[1]+wall.tangent[1]*step.along+wall.normal[1]*midOffset);
         edge.userData.wallIndex=wall.index;edge.userData.measuredStep=step;this.roomGroup.add(edge);
+        // Preview annotation locates the real shallow joint without altering its geometry.
+        const guide=new THREE.Group(),ink='#678077';
+        const point=(along,y)=>new THREE.Vector3(wall.a[0]+wall.tangent[0]*along+wall.normal[0]*(midOffset+.012),y,wall.a[1]+wall.tangent[1]*along+wall.normal[1]*(midOffset+.012));
+        const mark=new THREE.Line(new THREE.BufferGeometry().setFromPoints([point(step.along,.35),point(step.along,2.52)]),new THREE.LineDashedMaterial({color:ink,dashSize:.045,gapSize:.035,transparent:true,opacity:.8}));mark.computeLineDistances();guide.add(mark);
+        const note=this.label('接缝 / 小台阶',.42,ink);note.position.copy(point(step.along-.20,2.61));guide.add(note);
+        guide.userData.wallIndex=wall.index;guide.userData.stepAnnotation=true;this.roomGroup.add(guide);
       }
       for(const o of openings){
         const faceOffset=surfaceOffset(wall.index,o.start+o.width/2);
@@ -435,6 +441,7 @@ export class ExhibitionScene {
     this.roomGroup.children.forEach(o=>{
       if(o.userData.ceilingSurface||o.userData.ceilingFixture)o.visible=this.mode==='eye';
       if(o.userData.overheadStructure&&(this.mode==='overview'||this.mode==='plan'))o.visible=false;
+      if(o.userData.stepAnnotation&&this.mode==='plan')o.visible=false;
     });
     if(this.grid)this.grid.visible=this.gridVisible&&selectedWall===null;
     this.roomGroup.traverse(o=>{if(o.userData.wallLabel)o.visible=false;});
