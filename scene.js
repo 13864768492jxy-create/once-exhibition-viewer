@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261023-partition-calibration-111';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261023-measured-room-112';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -94,6 +94,7 @@ export class ExhibitionScene {
     this.wallData=walls(state.room);
     this.disposeGroup(this.roomGroup);this.disposeGroup(this.worksGroup);this.workGroups.clear();
     const room=state.room,b=bounds(room),shape=new THREE.Shape();
+    const surfaceOffset=(wallIndex,along)=>(room.wallSurfaceSteps||[]).filter(step=>step.wall===wallIndex&&along>step.along).reduce((sum,step)=>sum+step.offsetAfter,0);
     room.points.forEach((p,i)=>i?shape.lineTo(p[0],-p[1]):shape.moveTo(p[0],-p[1]));shape.closePath();
     const floor=new THREE.Mesh(new THREE.ShapeGeometry(shape),new THREE.MeshStandardMaterial({color:room.floorColor||'#dcdacf',roughness:1,side:THREE.DoubleSide}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=false;floor.position.y=-.006;this.roomGroup.add(floor);
     if(room.ceiling?.enabled){
@@ -118,7 +119,8 @@ export class ExhibitionScene {
     for(const wall of walls(room)){
       if(!wall.perimeter)continue;
       const openings=(room.openings||[]).filter(o=>o.wall===wall.index);
-      const stops=[0,wall.length,...openings.flatMap(o=>[o.start,o.start+o.width])].sort((a,b)=>a-b);
+      const steps=(room.wallSurfaceSteps||[]).filter(step=>step.wall===wall.index);
+      const stops=[0,wall.length,...openings.flatMap(o=>[o.start,o.start+o.width]),...steps.map(step=>step.along)].sort((a,b)=>a-b);
       for(let n=0;n<stops.length-1;n++){
         const start=stops[n],end=stops[n+1];if(end-start<.001)continue;
         let spans=[[0,room.height]];
@@ -131,19 +133,28 @@ export class ExhibitionScene {
         for(const [bottom,top] of spans){
           if(top-bottom<.001)continue;
           const mesh=new THREE.Mesh(new THREE.PlaneGeometry(end-start,top-bottom),this.wallMaterial());
-          mesh.rotation.y=wall.rotation;mesh.position.set(wall.a[0]+wall.tangent[0]*(start+end)/2,(bottom+top)/2,wall.a[1]+wall.tangent[1]*(start+end)/2);mesh.receiveShadow=true;
+          const faceOffset=surfaceOffset(wall.index,(start+end)/2);
+          mesh.rotation.y=wall.rotation;mesh.position.set(wall.a[0]+wall.tangent[0]*(start+end)/2+wall.normal[0]*faceOffset,(bottom+top)/2,wall.a[1]+wall.tangent[1]*(start+end)/2+wall.normal[1]*faceOffset);mesh.receiveShadow=true;
           mesh.userData.wallIndex=wall.index;this.roomGroup.add(mesh);
           if(bottom===0 && room.skirting?.walls?.includes(wall.index)){
             const base=room.skirting,strip=this.box(end-start,base.height,base.depth,base.color);
             strip.rotation.y=wall.rotation;
-            strip.position.set(wall.a[0]+wall.tangent[0]*(start+end)/2+wall.normal[0]*base.depth/2,base.height/2,wall.a[1]+wall.tangent[1]*(start+end)/2+wall.normal[1]*base.depth/2);
+            strip.position.set(wall.a[0]+wall.tangent[0]*(start+end)/2+wall.normal[0]*(base.depth/2+faceOffset),base.height/2,wall.a[1]+wall.tangent[1]*(start+end)/2+wall.normal[1]*(base.depth/2+faceOffset));
             strip.userData.wallIndex=wall.index;strip.castShadow=false;this.roomGroup.add(strip);
           }
           const cap=this.box(end-start,.035,.12,'#ffffff',this.wallMaterial());cap.castShadow=false;cap.rotation.y=wall.rotation;cap.position.copy(mesh.position);cap.position.y=top;cap.userData.wallCap={normal:wall.normal};cap.userData.wallIndex=wall.index;this.roomGroup.add(cap);
         }
       }
+      for(const step of steps){
+        const depth=step.offsetAfter,height=step.height||room.height;
+        const edge=this.box(.0015,height,Math.abs(depth),'#ffffff',this.wallMaterial());edge.rotation.y=wall.rotation;
+        const midOffset=surfaceOffset(wall.index,step.along-.0001)+depth/2;
+        edge.position.set(wall.a[0]+wall.tangent[0]*step.along+wall.normal[0]*midOffset,height/2,wall.a[1]+wall.tangent[1]*step.along+wall.normal[1]*midOffset);
+        edge.userData.wallIndex=wall.index;edge.userData.measuredStep=step;this.roomGroup.add(edge);
+      }
       for(const o of openings){
-        const frame=new THREE.Group();frame.position.set(wall.a[0]+wall.tangent[0]*(o.start+o.width/2),o.bottom+o.height/2,wall.a[1]+wall.tangent[1]*(o.start+o.width/2));frame.rotation.y=wall.rotation;frame.userData.wallIndex=wall.index;
+        const faceOffset=surfaceOffset(wall.index,o.start+o.width/2);
+        const frame=new THREE.Group();frame.position.set(wall.a[0]+wall.tangent[0]*(o.start+o.width/2)+wall.normal[0]*faceOffset,o.bottom+o.height/2,wall.a[1]+wall.tangent[1]*(o.start+o.width/2)+wall.normal[1]*faceOffset);frame.rotation.y=wall.rotation;frame.userData.wallIndex=wall.index;
         if(o.type==='window'){
           const recess=o.recessDepth??.18,padding=o.frameWidth??.045,color=o.frameColor||'#24282a';
           const mullion=-o.width/2+o.width*(o.sashSplit??.5),transoms=(o.transoms??[o.horizontalSplit??.28]).map(f=>-o.height/2+o.height*f);
@@ -154,18 +165,21 @@ export class ExhibitionScene {
             const reveal=this.box(width,height,recess,'#ffffff',this.wallMaterial());reveal.position.set(x,y,-recess/2);reveal.castShadow=false;frame.add(reveal);
           }
           if(o.style!=='clerestory'){
-            const sillDepth=o.sillDepth??recess+.11,sill=this.box(o.width+.12,o.sillThickness??.045,sillDepth,o.sillColor||'#696b66');
-            sill.position.set(0,-o.height/2-.018,-recess+sillDepth/2);sill.castShadow=false;frame.add(sill);
+            const sillDepth=o.sillDepth??recess+.11,sillThickness=o.sillThickness??.045,sill=this.box(o.sillWidth??o.width+.12,sillThickness,sillDepth,o.sillColor||'#696b66');
+            const sillY=Number.isFinite(o.sillTop)?o.sillTop-sillThickness/2-(o.bottom+o.height/2):-o.height/2-.018;
+            sill.position.set(0,sillY,-recess+sillDepth/2);sill.castShadow=false;frame.add(sill);
             const handle=this.box(.09,.018,.018,color);handle.position.set(mullion-.06,0,-recess+.06);handle.castShadow=false;frame.add(handle);
           }
           const glass=new THREE.Mesh(new THREE.PlaneGeometry(o.width,o.height),new THREE.MeshStandardMaterial({color:'#cedbda',transparent:true,opacity:.3,side:THREE.DoubleSide,roughness:.25}));
           glass.position.z=-recess-.035;frame.add(glass);
         }else{
-          for(const [width,height,x,y] of [[.055,o.height,-o.width/2,0],[.055,o.height,o.width/2,0],[o.width+.055,.055,0,o.height/2]]){const strip=this.box(width,height,.085,'#a48b6c');strip.position.set(x,y,0);strip.castShadow=false;frame.add(strip);}
+          const jamb=o.frameWidth??.055;
+          // Door width is the measured clear opening; jambs sit outside it.
+          for(const [width,height,x,y] of [[jamb,o.height,-o.width/2-jamb/2,0],[jamb,o.height,o.width/2+jamb/2,0],[o.width+2*jamb,jamb,0,o.height/2+jamb/2]]){const strip=this.box(width,height,.085,'#a48b6c');strip.position.set(x,y,0);strip.castShadow=false;frame.add(strip);}
           if(o.showLeaf){
             // The measured room has one fully open leaf against the adjacent side wall and a closed rear door.
-            const hingeEnd=o.hinge==='end',sign=hingeEnd?-1:1,leafWidth=o.width-.035;
-            const pivot=new THREE.Group();pivot.position.set((hingeEnd?1:-1)*(o.width/2-.0175),0,.025);
+            const hingeEnd=o.hinge==='end',sign=hingeEnd?-1:1,leafWidth=o.width-.01;
+            const pivot=new THREE.Group();pivot.position.set((hingeEnd?1:-1)*(o.width/2-.005),0,.018);
             pivot.rotation.y=(hingeEnd?1:-1)*(o.openAngleDeg||0)*Math.PI/180;
             const body=this.box(leafWidth,o.height-.025,.035,o.leafColor||'#ba9266');body.position.set(sign*leafWidth/2,-.007,0);body.castShadow=true;pivot.add(body);
             for(const face of [-1,1]){
@@ -194,6 +208,12 @@ export class ExhibitionScene {
       const x=wall.a[0]+wall.tangent[0]*fixture.along+wall.normal[0]*.035,z=wall.a[1]+wall.tangent[1]*fixture.along+wall.normal[1]*.035;
       if(fixture.type==='switch'){const plate=this.box(.09,.12,.014,'#dddcd3');plate.position.set(x,fixture.elevation,z);plate.rotation.y=wall.rotation;plate.userData.wallIndex=fixture.wall;this.roomGroup.add(plate);}
       else if(fixture.type==='pipe'){const pipe=new THREE.Mesh(new THREE.CylinderGeometry(.017,.017,room.height,12),new THREE.MeshStandardMaterial({color:'#ecece4',roughness:.8}));pipe.position.set(x,room.height/2,z);pipe.userData.wallIndex=fixture.wall;this.roomGroup.add(pipe);}
+      else if(fixture.type==='sealed-window-sill'){
+        const off=surfaceOffset(fixture.wall,fixture.along)+fixture.depth/2;
+        const sill=this.box(fixture.width,fixture.height,fixture.depth,fixture.color||'#ffffff',this.wallMaterial());
+        sill.rotation.y=wall.rotation;sill.position.set(wall.a[0]+wall.tangent[0]*fixture.along+wall.normal[0]*off,fixture.elevation+fixture.height/2,wall.a[1]+wall.tangent[1]*fixture.along+wall.normal[1]*off);
+        sill.userData.wallIndex=fixture.wall;sill.userData.sealedWindowSill=fixture.id;sill.castShadow=false;this.roomGroup.add(sill);
+      }
       else if(fixture.type==='tv'){
         const tv=new THREE.Group();tv.position.set(x,fixture.elevation+fixture.height/2,z);tv.rotation.y=wall.rotation;tv.userData.wallIndex=fixture.wall;
         tv.add(this.box(fixture.width,fixture.height,.045,'#242727'));
