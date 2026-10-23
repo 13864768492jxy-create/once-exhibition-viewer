@@ -1,5 +1,5 @@
-import {ExhibitionScene} from './scene.js?v=20261022-frame08-107';
-import {walls,cm,sampleImage} from './model.js?v=20261022-frame08-107';
+import {ExhibitionScene} from './scene.js?v=20261023-field-survey-108';
+import {walls,cm,sampleImage} from './model.js?v=20261023-field-survey-108';
 
 const $=id=>document.getElementById(id);
 const mobile=matchMedia('(max-width:760px)');
@@ -16,7 +16,7 @@ function changeView(mode){
   scene.view(mode);select(null);document.body.classList.toggle('eye',mode==='eye');
   $('walk-controls').hidden=mode!=='eye';
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===mode)));
-  $('view-tip').textContent=mode==='plan'?`编号对应作品清单 · 拖动平移 · 双指或滚轮缩放${state.room.tileCalibration?' · 地砖80cm，缝位待现场校准':''}`:mode==='eye'?'拖动环顾 · 方向键或 W A S D 移动':'拖动转动视角 · 双指或滚轮缩放';
+  $('view-tip').textContent=mode==='plan'?`编号对应作品清单 · 拖动平移 · 双指或滚轮缩放${state.room.tileCalibration?' · 地砖80cm，缝位已按实测校准':''}`:mode==='eye'?'拖动环顾 · 方向键或 W A S D 移动':'拖动转动视角 · 双指或滚轮缩放';
   if(mobile.matches)showList(false);
 }
 function renderList(medium,prefaceTrials=[]){
@@ -52,14 +52,14 @@ function renderList(medium,prefaceTrials=[]){
   }
 }
 try{
-  const response=await fetch('data.json?v=20261022-frame08-107');if(!response.ok)throw Error('方案没有载入');
+  const response=await fetch('data.json?v=20261023-field-survey-108');if(!response.ok)throw Error('方案没有载入');
   const data=await response.json();state=data.state;
-  const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白窄框24、27、28、32、34统一上下左右各6厘米白卡纸。黑细框16、26、31保持图面，改每侧4厘米白卡纸，外框随之加大。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
+  const framingNote=data.framingPlan?'黑色木质悬浮框：05、11、17。白窄框24、27、28、32、34统一上下左右各6厘米白卡纸。黑细框16、26、31保持图面，改每侧4厘米白卡纸，外框随之加大。08、20、21为8毫米黑窄框，无白卡纸。未装框照片四周留2厘米白边，四角距纸边各1厘米钉固。':'';
   if(framingNote){const note=document.createElement('p');note.className='framing-note';note.textContent=framingNote;$('works').insertBefore(note,$('work-list'));}
   if(state.room.measurements?.wall1){
     const note=document.createElement('p');note.className='framing-note';
     const measured=state.room.measurements;
-    note.textContent=measured.ceiling?`墙1全长 ${measured.wall1.length.toFixed(2)} m，层高 ${state.room.height.toFixed(2)} m。突出墙高 ${measured.interiorWall.height.toFixed(2)} m，上方通透；高窗下沿 ${measured.clerestory.bottom.toFixed(2)} m。窗宽、窗上沿、梁与灯位按实景暂估。`:`墙1总长 ${measured.wall1.length.toFixed(2)} m（实测）。窗户细部尺寸暂估。`;
+    note.textContent=measured.ceiling?`墙1全长 ${measured.wall1.length.toFixed(2)} m，层高 ${state.room.height.toFixed(2)} m。突出墙高 ${measured.interiorWall.height.toFixed(2)} m，上方通透；高窗下沿 ${measured.clerestory.bottom.toFixed(2)} m。进深5.385m。大窗宽1.365m、左距墙角0.416m为实测；高窗宽、窗上沿、梁与灯位按实景暂估。`:`墙1总长 ${measured.wall1.length.toFixed(2)} m（实测）。窗户细部尺寸暂估。`;
     $('works').insertBefore(note,$('work-list'));
   }
   photos=state.works.filter(w=>w.sourceFile&&w.placed!==false);
