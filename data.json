@@ -1,5 +1,5 @@
 {
-  "revision": 113,
+  "revision": 115,
   "state": {
     "format": "exhibition-planner-v1",
     "title": "ONCE 后知后觉",
@@ -644,7 +644,7 @@
             "河流带有未命名的方向，",
             "从每个人流过。"
           ],
-          "x": -0.55,
+          "x": -0.9,
           "z": -1.62,
           "rotation": 0,
           "width": 1.66,
@@ -771,8 +771,8 @@
           "lines": [
             "他们再也看不见我。"
           ],
-          "x": 1.9089,
-          "z": 0.4411,
+          "x": 1.7389,
+          "z": 1.7511,
           "rotation": 135,
           "width": 1.47,
           "height": 0.297,
@@ -1019,10 +1019,10 @@
         "width": 0.42,
         "height": 0.341918,
         "depth": 0.001,
-        "elevation": 0.85,
+        "elevation": 0.8,
         "wall": 0,
-        "along": 3.0799999999999996,
-        "x": -2.2600000000000002,
+        "along": 3.15,
+        "x": -2.19,
         "z": -2.7395,
         "rotation": -0.0,
         "frame": "none",
@@ -1051,8 +1051,8 @@
         "depth": 0.046,
         "elevation": 1.4928219999999999,
         "wall": 0,
-        "along": 2.24,
-        "x": -3.0999999999999996,
+        "along": 2.38,
+        "x": -2.96,
         "z": -2.725,
         "rotation": -0.0,
         "frame": "black",
@@ -1084,10 +1084,10 @@
         "width": 1.47,
         "height": 1.16,
         "depth": 0.025,
-        "elevation": 0.7679380000000001,
+        "elevation": 0.82,
         "wall": 0,
-        "along": 6.1899999999999995,
-        "x": 0.8499999999999996,
+        "along": 6.0,
+        "x": 0.6600000000000001,
         "z": -2.7275,
         "rotation": -0.0,
         "frame": "black",
@@ -1136,10 +1136,10 @@
         "width": 0.8,
         "height": 0.6356429473684211,
         "depth": 0.001,
-        "elevation": 1.504357052631579,
+        "elevation": 1.564357052631579,
         "wall": 0,
-        "along": 8.53,
-        "x": 3.1899999999999995,
+        "along": 8.38,
+        "x": 3.040000000000001,
         "z": -2.7395,
         "rotation": -0.0,
         "frame": "none",
@@ -1519,8 +1519,8 @@
         "depth": 0.025,
         "elevation": 0.6441192609182531,
         "wall": 0,
-        "along": 4.57,
-        "x": -0.7699999999999996,
+        "along": 4.75,
+        "x": -0.5899999999999999,
         "z": -2.7275,
         "rotation": -0.0,
         "frame": "white",
@@ -1617,10 +1617,10 @@
         "width": 1.35,
         "height": 1.063805,
         "depth": 0.025,
-        "elevation": 1.2177313848202185,
+        "elevation": 1.3,
         "wall": 0,
-        "along": 4.086870274541315,
-        "x": -1.2531297254586846,
+        "along": 3.68,
+        "x": -1.6599999999999997,
         "z": -2.7275,
         "rotation": -0.0,
         "frame": "black",
@@ -1882,10 +1882,10 @@
         "width": 0.8,
         "height": 0.6469144444444446,
         "depth": 0.001,
-        "elevation": 0.75,
+        "elevation": 0.81,
         "wall": 0,
-        "along": 7.85,
-        "x": 2.51,
+        "along": 7.7,
+        "x": 2.3600000000000003,
         "z": -2.7395,
         "rotation": -0.0,
         "frame": "none",
@@ -1959,8 +1959,8 @@
         "depth": 0.025,
         "elevation": 1.96064725643897,
         "wall": 0,
-        "along": 7.419060856760995,
-        "x": 2.0790608567609947,
+        "along": 7.269060856760995,
+        "x": 1.9290608567609953,
         "z": -2.7275,
         "rotation": -0.0,
         "frame": "white",
@@ -2697,5 +2697,85 @@
     "poetry": "opening65cm toward entrance,wind20cm toward left wall and30cm toward entrance,between15cm toward pillar,end50cm toward front wall",
     "protectedEight": "All positions/spacing/framing preserved from112",
     "geometry": "Measured room,doors,TV,windows,sills,seam,tileOrigin unchanged"
+  },
+  "wall1RebalanceV114": {
+    "status": "layout trial awaiting user review",
+    "constraint": "05 entirely left of seam; preserve all printed dimensions",
+    "principle": "Redistribute full-wall rhythm from full window through05/12/21 and24/20 to right trio; use lower24 as bridge; retain13/36 relationship",
+    "coords_m": {
+      "once_05": [
+        2.42,
+        1.4928219999999999
+      ],
+      "once_12": [
+        3.04,
+        0.8
+      ],
+      "once_21": [
+        3.75,
+        1.3
+      ],
+      "once_24": [
+        4.6,
+        0.6441192609182531
+      ],
+      "once_20": [
+        5.82,
+        0.7679380000000001
+      ],
+      "once_27": [
+        7.219060856760995,
+        1.96064725643897
+      ],
+      "once_13": [
+        7.65,
+        0.75
+      ],
+      "once_36": [
+        8.33,
+        1.504357052631579
+      ]
+    }
+  },
+  "holisticTrialV115": {
+    "status": "layout trial awaiting user confirmation; no installation update",
+    "wall1": "All8 positions reviewed as one wall:05 left of seam;12/21 and24 bridge toward20;right trio follows wall rhythm;20/13 raised for sill clearance;13/36 pair preserved",
+    "positions_m": {
+      "once_05": [
+        2.38,
+        1.4928219999999999
+      ],
+      "once_12": [
+        3.15,
+        0.8
+      ],
+      "once_21": [
+        3.68,
+        1.3
+      ],
+      "once_24": [
+        4.75,
+        0.6441192609182531
+      ],
+      "once_20": [
+        6.0,
+        0.82
+      ],
+      "once_27": [
+        7.269060856760995,
+        1.96064725643897
+      ],
+      "once_13": [
+        7.7,
+        0.81
+      ],
+      "once_36": [
+        8.38,
+        1.564357052631579
+      ]
+    },
+    "floorPoetry": "04 moves35cm left with21;06 moves131cm toward rear-photo corner and17cm left, restoring exact relative location to protected eight-photo group from111. Forward means toward these photographs, not wall1.",
+    "prefaceAndSideWalls": "retain113 complete rebalancing",
+    "measuredBuildingAndAllPrintDimensions": "unchanged"
   }
 }
