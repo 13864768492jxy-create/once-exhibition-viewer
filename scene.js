@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261023-field-survey-108';
+import { bounds, walls, wallPosition, workBounds, contains, canWalk, eyeStart, clamp, sampleImage } from './model.js?v=20261023-partition-calibration-111';
 
 export class ExhibitionScene {
   constructor(element,{select,beginDrag,drag,endDrag,imageSource}) {
@@ -162,6 +162,18 @@ export class ExhibitionScene {
           glass.position.z=-recess-.035;frame.add(glass);
         }else{
           for(const [width,height,x,y] of [[.055,o.height,-o.width/2,0],[.055,o.height,o.width/2,0],[o.width+.055,.055,0,o.height/2]]){const strip=this.box(width,height,.085,'#a48b6c');strip.position.set(x,y,0);strip.castShadow=false;frame.add(strip);}
+          if(o.showLeaf){
+            // The measured room has one fully open leaf against the adjacent side wall and a closed rear door.
+            const hingeEnd=o.hinge==='end',sign=hingeEnd?-1:1,leafWidth=o.width-.035;
+            const pivot=new THREE.Group();pivot.position.set((hingeEnd?1:-1)*(o.width/2-.0175),0,.025);
+            pivot.rotation.y=(hingeEnd?1:-1)*(o.openAngleDeg||0)*Math.PI/180;
+            const body=this.box(leafWidth,o.height-.025,.035,o.leafColor||'#ba9266');body.position.set(sign*leafWidth/2,-.007,0);body.castShadow=true;pivot.add(body);
+            for(const face of [-1,1]){
+              const plate=this.box(.035,.14,.008,'#252726');plate.position.set(sign*(leafWidth-.105),-.10,face*.023);pivot.add(plate);
+              const lever=this.box(.12,.018,.027,'#252726');lever.position.set(sign*(leafWidth-.145),-.07,face*.039);pivot.add(lever);
+            }
+            frame.add(pivot);frame.userData.doorLeaf={openAngleDeg:o.openAngleDeg||0,hinge:o.hinge};
+          }
         }
         this.roomGroup.add(frame);
       }
