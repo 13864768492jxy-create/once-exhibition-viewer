@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eeede9">
+  <title>大悦城 ONCE 个展项目 · 空间底模</title>
+  <link rel="stylesheet" href="style.css?v=20261103-r08">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+  <header class="header">
+    <div><h1>大悦城 ONCE<span>空间底模</span></h1><p>现状结构清空展示物 · 空间底稿</p></div>
+    <div class="measurements" aria-label="空间尺寸与当前估值"><strong id="length-value">31.2 m</strong><span>右墙</span><strong id="width-value">约4.4 m</strong><span>宽</span><strong>2.95 m</strong><span>墙高</span></div>
+  </header>
+  <main id="workspace">
+    <div id="canvas-host" tabindex="0" role="region" aria-label="三维空间。整体视图可以拖动旋转；人眼视图可以使用方向键行走。"></div>
+    <nav class="views" aria-label="模型视角">
+      <button data-view="overview" aria-pressed="true">整体</button>
+      <button data-view="plan" aria-pressed="false">平面</button>
+      <button data-view="portal" aria-pressed="false">门外</button>
+      <button data-view="entry" aria-pressed="false">A口看向B口</button>
+      <button data-view="reverse" aria-pressed="false">B口看向A口</button>
+    </nav>
+    <button id="details-button" aria-expanded="false" aria-controls="details-panel">图层与依据</button>
+    <button id="catalog-button" aria-expanded="false" aria-controls="catalog-panel">作品库</button>
+    <aside id="catalog-panel" hidden aria-label="待布置作品库">
+      <div class="panel-title"><h2>待布置作品</h2><button id="close-catalog" aria-label="收起作品库">收起</button></div>
+      <p id="catalog-summary">正在读取作品库…</p>
+      <label class="catalog-select-label" for="catalog-filter">作品分组</label>
+      <select id="catalog-filter" aria-label="作品分组"></select>
+      <ul id="catalog-list"></ul>
+      <section id="catalog-detail" hidden aria-label="作品资料"></section>
+      <section id="catalog-poetry" hidden></section>
+    </aside>
+    <aside id="details-panel" hidden>
+      <div class="panel-title"><h2>空间底稿</h2><button id="close-panel" aria-label="收起图层与依据">收起</button></div>
+      <p class="panel-intro">从A口朝B口看，右侧较短墙可用长31.2米，左墙更长，增量待测。可用墙高2.95米。现有展墙内净宽暂估约4.4米；拆墙后的净宽待测。射灯高于2.95米，本稿轨层暂用3.30米示意，实际标高和总数待测。</p>
+      <fieldset><legend>显示图层</legend>
+        <label><input type="checkbox" id="cutaway" checked>剖开近侧墙</label>
+        <label><input type="checkbox" id="strips" checked>地面金属线（局部示意）</label>
+        <label><input type="checkbox" id="bars" checked>顶部交叉横杆</label>
+        <label><input type="checkbox" id="lighting" checked>上层轨道射灯（点位待测）</label>
+        <label><input type="checkbox" id="dimensions" checked>尺寸与端部标记</label>
+      </fieldset>
+      <h3>还待校准</h3>
+      <p>地面已去掉规则重复X，按新照片保留至少两处偏心交叉、端部跨线及浅斜接续。按你确认的方式将可见走势延至墙脚，补全遮挡段；这是走势示意，交点及纵向站位仍待校准。绿色横杆端点仍待校准。主入口净宽已确认为1.7米；其偏移量、侧门尺寸和砖缝原点仍待校准。</p>
+      <p>左墙靠A口补入向通道内收的短折段，内收量和折点仍为示意。B口（421 SPACE）只画分格轮廓，开合方式暂不确定。A口整面端墙倾斜，外向内看右端更深入；当前斜角只作示意，数值待测。</p>
+      <a href="space.json" download="长廊展厅_空间参数.json">保存空间参数</a>
+      
+    </aside>
+    <div id="status" role="status">正在载入空间…</div>
+    <div class="end-label" id="label-a">A口 · 净宽1.7 m</div>
+    <div class="end-label" id="label-b">B口 · 421 SPACE</div>
+    <div class="end-label" id="label-short" hidden>右墙 · 31.2 m</div>
+    <div class="end-label" id="label-long" hidden>左墙更长 · 差值待测</div>
+    <div id="error" role="alert" hidden></div>
+  </main>
+  <footer>
+    <p id="hint">拖动旋转 · 滚轮缩放 · 右键平移</p>
+    <div id="walk-controls" hidden><label for="position">纵向位置</label><input id="position" type="range" min="0.3" max="30.9" step="0.1" value="0.9"><output id="position-value" for="position">0.9 m</output></div>
+    <span class="footer-note">60 cm地砖 · 可用墙高2.95 m · 上层射灯示意</span>
+  </footer>
+  <script type="module" src="app.js?v=20261103-r08"></script>
+</body>
+</html>
