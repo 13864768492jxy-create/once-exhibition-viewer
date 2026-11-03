@@ -1,35 +1,49 @@
 {
   "schemaVersion": 1,
-  "revision": "20261104-trial01",
-  "title": "第一次试排 · 拉开组间距离",
-  "status": "first_trial_not_installation_plan",
+  "revision": "20261104-trial02",
+  "title": "第二次试排 · 保留完整空墙",
+  "status": "second_trial_not_installation_plan",
   "date": "2026-11-04",
   "sourceLayout": "ONCE v117 的作品组合与相邻关系；不修改旧展",
-  "principle": "左侧延续后知后觉；右侧四幅大图、三对玻璃与行为影像分段展开。两片浅突出墙延长左侧展线，保留长廊视线。",
+  "principle": "先保住少量已有框作品与空墙的关系；主墙15件作为骨架，16件转到三片侧面。照片、文字、金属斜线与局部色域共同组织观看。",
   "partitions": [
     {
-      "id": "wing-early",
+      "id": "early",
       "a": [
-        0.0,
-        5.725
+        0,
+        6.2
       ],
       "b": [
-        1.2000000000000002,
-        5.725
+        1.6,
+        6.2
       ],
       "height": 2.6,
       "thickness": 0.12,
       "status": "proposed"
     },
     {
-      "id": "wing-1",
+      "id": "middle",
       "a": [
-        0.0,
-        23.153
+        0,
+        18
       ],
       "b": [
-        1.2000000000000002,
-        23.153
+        1.8,
+        18
+      ],
+      "height": 2.6,
+      "thickness": 0.12,
+      "status": "proposed"
+    },
+    {
+      "id": "late",
+      "a": [
+        0,
+        26
+      ],
+      "b": [
+        1.5,
+        26
       ],
       "height": 2.6,
       "thickness": 0.12,
@@ -74,12 +88,12 @@
     {
       "id": "early-A",
       "a": [
-        0.0,
-        5.665
+        0,
+        6.140000000000001
       ],
       "b": [
-        1.2000000000000002,
-        5.665
+        1.6,
+        6.140000000000001
       ],
       "normal": [
         0,
@@ -91,12 +105,12 @@
     {
       "id": "early-B",
       "a": [
-        0.0,
-        5.785
+        0,
+        6.26
       ],
       "b": [
-        1.2000000000000002,
-        5.785
+        1.6,
+        6.26
       ],
       "normal": [
         0,
@@ -106,14 +120,14 @@
       "kind": "partition"
     },
     {
-      "id": "wing-A",
+      "id": "middle-A",
       "a": [
-        0.0,
-        23.093
+        0,
+        17.94
       ],
       "b": [
-        1.2000000000000002,
-        23.093
+        1.8,
+        17.94
       ],
       "normal": [
         0,
@@ -123,14 +137,14 @@
       "kind": "partition"
     },
     {
-      "id": "wing-B",
+      "id": "middle-B",
       "a": [
-        0.0,
-        23.213
+        0,
+        18.06
       ],
       "b": [
-        1.2000000000000002,
-        23.213
+        1.8,
+        18.06
       ],
       "normal": [
         0,
@@ -138,6 +152,57 @@
       ],
       "height": 2.6,
       "kind": "partition"
+    },
+    {
+      "id": "late-A",
+      "a": [
+        0,
+        25.94
+      ],
+      "b": [
+        1.5,
+        25.94
+      ],
+      "normal": [
+        0,
+        -1
+      ],
+      "height": 2.6,
+      "kind": "partition"
+    },
+    {
+      "id": "late-B",
+      "a": [
+        0,
+        26.06
+      ],
+      "b": [
+        1.5,
+        26.06
+      ],
+      "normal": [
+        0,
+        1
+      ],
+      "height": 2.6,
+      "kind": "partition"
+    },
+    {
+      "id": "entry-sign",
+      "a": [
+        1.9886223059171826,
+        -0.6461267057759138
+      ],
+      "b": [
+        3.611377694082817,
+        -0.21131071000367896
+      ],
+      "normal": [
+        0.25881904510252074,
+        -0.9659258262890683
+      ],
+      "height": 2.95,
+      "kind": "proposed-sign"
     }
   ],
   "works": [
@@ -145,11 +210,11 @@
       "imageUrl": "library/spatial_once_01.jpg",
       "id": "once_01",
       "catalogId": "once_01",
-      "group": "G2",
+      "group": "main",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 2.948,
-      "centerY": 1.217,
+      "along": 3.2,
+      "centerY": 1.35,
       "imageWidth": 1.1,
       "imageHeight": 0.903685,
       "outerWidth": 1.1960000000000002,
@@ -164,11 +229,11 @@
       "imageUrl": "library/spatial_once_02.jpg",
       "id": "once_02",
       "catalogId": "once_02",
-      "group": "G2",
+      "group": "early-A",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 4.516,
-      "centerY": 1.755,
+      "surfaceId": "early-A",
+      "along": 1.13,
+      "centerY": 1.47,
       "imageWidth": 0.54,
       "imageHeight": 0.480113,
       "outerWidth": 0.636,
@@ -183,11 +248,11 @@
       "imageUrl": "library/spatial_once_04.jpg",
       "id": "once_04",
       "catalogId": "once_04",
-      "group": "G9",
+      "group": "late-A",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 24.251,
-      "centerY": 1.058,
+      "surfaceId": "late-A",
+      "along": 0.34,
+      "centerY": 1.1,
       "imageWidth": 0.4,
       "imageHeight": 0.32511,
       "outerWidth": 0.496,
@@ -202,10 +267,10 @@
       "imageUrl": "library/spatial_once_05.jpg",
       "id": "once_05",
       "catalogId": "once_05",
-      "group": "P1",
+      "group": "main",
       "type": "photo",
-      "surfaceId": "early-B",
-      "along": 0.56,
+      "surfaceId": "once-main",
+      "along": 6.95,
       "centerY": 1.5,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
@@ -221,11 +286,11 @@
       "imageUrl": "library/spatial_once_08.jpg",
       "id": "once_08",
       "catalogId": "once_08",
-      "group": "G8",
+      "group": "main",
       "type": "photo",
-      "surfaceId": "wing-A",
-      "along": 0.68,
-      "centerY": 1.65,
+      "surfaceId": "once-main",
+      "along": 26.8,
+      "centerY": 1.75,
       "imageWidth": 0.738,
       "imageHeight": 0.6,
       "outerWidth": 0.754,
@@ -240,11 +305,11 @@
       "imageUrl": "library/spatial_once_09.jpg",
       "id": "once_09",
       "catalogId": "once_09",
-      "group": "P1",
+      "group": "early-A",
       "type": "photo",
       "surfaceId": "early-A",
-      "along": 0.56,
-      "centerY": 1.2,
+      "along": 0.48,
+      "centerY": 0.93,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.396,
@@ -259,11 +324,11 @@
       "imageUrl": "library/spatial_once_10.jpg",
       "id": "once_10",
       "catalogId": "once_10",
-      "group": "G10",
+      "group": "late-B",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 27.606,
-      "centerY": 2.073,
+      "surfaceId": "late-B",
+      "along": 0.3,
+      "centerY": 2.13,
       "imageWidth": 0.3,
       "imageHeight": 0.23793699577000002,
       "outerWidth": 0.396,
@@ -278,11 +343,11 @@
       "imageUrl": "library/spatial_once_11.jpg",
       "id": "once_11",
       "catalogId": "once_11",
-      "group": "G8",
+      "group": "main",
       "type": "photo",
-      "surfaceId": "wing-A",
-      "along": 0.24,
-      "centerY": 0.987,
+      "surfaceId": "once-main",
+      "along": 26.85,
+      "centerY": 0.9,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.324,
@@ -297,11 +362,11 @@
       "imageUrl": "library/spatial_once_12.jpg",
       "id": "once_12",
       "catalogId": "once_12",
-      "group": "G3",
+      "group": "early-B",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 7.494,
-      "centerY": 0.916,
+      "surfaceId": "early-B",
+      "along": 0.4,
+      "centerY": 1.45,
       "imageWidth": 0.42,
       "imageHeight": 0.341918,
       "outerWidth": 0.516,
@@ -316,11 +381,11 @@
       "imageUrl": "library/spatial_once_13.jpg",
       "id": "once_13",
       "catalogId": "once_13",
-      "group": "G5",
+      "group": "middle-A",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 14.139,
-      "centerY": 1.038,
+      "surfaceId": "middle-A",
+      "along": 0.55,
+      "centerY": 1.08,
       "imageWidth": 0.8,
       "imageHeight": 0.64691444444,
       "outerWidth": 0.896,
@@ -335,11 +400,11 @@
       "imageUrl": "library/spatial_once_14.jpg",
       "id": "once_14",
       "catalogId": "once_14",
-      "group": "G8",
+      "group": "early-B",
       "type": "photo",
-      "surfaceId": "wing-B",
-      "along": 0.65,
-      "centerY": 2.03,
+      "surfaceId": "early-B",
+      "along": 1.14,
+      "centerY": 1.95,
       "imageWidth": 0.46,
       "imageHeight": 0.373281,
       "outerWidth": 0.556,
@@ -354,11 +419,11 @@
       "imageUrl": "library/spatial_once_16.jpg",
       "id": "once_16",
       "catalogId": "once_16",
-      "group": "G7",
+      "group": "main",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 20.543,
-      "centerY": 1.454,
+      "along": 20,
+      "centerY": 1.25,
       "imageWidth": 0.85,
       "imageHeight": 0.7,
       "outerWidth": 0.9420000000000001,
@@ -373,11 +438,11 @@
       "imageUrl": "library/spatial_once_17.jpg",
       "id": "once_17",
       "catalogId": "once_17",
-      "group": "G2",
+      "group": "main",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 5.188,
-      "centerY": 1.237,
+      "along": 4.4,
+      "centerY": 1.15,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.324,
@@ -392,11 +457,11 @@
       "imageUrl": "library/spatial_once_18.jpg",
       "id": "once_18",
       "catalogId": "once_18",
-      "group": "G6",
+      "group": "middle-A",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 18.503,
-      "centerY": 0.966,
+      "surfaceId": "middle-A",
+      "along": 1.35,
+      "centerY": 0.92,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.396,
@@ -411,11 +476,11 @@
       "imageUrl": "library/spatial_once_19.jpg",
       "id": "once_19",
       "catalogId": "once_19",
-      "group": "G2",
+      "group": "early-A",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 2.404,
-      "centerY": 2.106,
+      "surfaceId": "early-A",
+      "along": 0.42,
+      "centerY": 2.1,
       "imageWidth": 0.42,
       "imageHeight": 0.32220999999999994,
       "outerWidth": 0.516,
@@ -430,11 +495,11 @@
       "imageUrl": "library/spatial_once_20.jpg",
       "id": "once_20",
       "catalogId": "once_20",
-      "group": "G4",
+      "group": "main",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 11.743,
-      "centerY": 1.4,
+      "along": 12.2,
+      "centerY": 1.45,
       "imageWidth": 1.47,
       "imageHeight": 1.16,
       "outerWidth": 1.486,
@@ -449,11 +514,11 @@
       "imageUrl": "library/spatial_once_21.jpg",
       "id": "once_21",
       "catalogId": "once_21",
-      "group": "G3",
+      "group": "main",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 8.342,
-      "centerY": 1.832,
+      "along": 9.2,
+      "centerY": 1.55,
       "imageWidth": 1.35,
       "imageHeight": 1.063805,
       "outerWidth": 1.3659999999999999,
@@ -468,11 +533,11 @@
       "imageUrl": "library/spatial_once_22.jpg",
       "id": "once_22",
       "catalogId": "once_22",
-      "group": "G10",
+      "group": "late-A",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 28.656,
-      "centerY": 0.957,
+      "surfaceId": "late-A",
+      "along": 0.83,
+      "centerY": 1.97,
       "imageWidth": 0.54,
       "imageHeight": 0.42472299999999996,
       "outerWidth": 0.636,
@@ -487,11 +552,11 @@
       "imageUrl": "library/spatial_once_23.jpg",
       "id": "once_23",
       "catalogId": "once_23",
-      "group": "G9",
+      "group": "late-A",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 25.959,
-      "centerY": 0.88,
+      "surfaceId": "late-A",
+      "along": 1.14,
+      "centerY": 0.95,
       "imageWidth": 0.42,
       "imageHeight": 0.33067100000000005,
       "outerWidth": 0.516,
@@ -506,11 +571,11 @@
       "imageUrl": "library/spatial_once_24.jpg",
       "id": "once_24",
       "catalogId": "once_24",
-      "group": "G4",
+      "group": "main",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 10.056,
-      "centerY": 1.041,
+      "along": 10.9,
+      "centerY": 1.1,
       "imageWidth": 0.425,
       "imageHeight": 0.35700000000000004,
       "outerWidth": 0.561,
@@ -525,11 +590,11 @@
       "imageUrl": "library/spatial_once_25.jpg",
       "id": "once_25",
       "catalogId": "once_25",
-      "group": "G8",
+      "group": "early-B",
       "type": "photo",
-      "surfaceId": "wing-B",
-      "along": 0.55,
-      "centerY": 1.258,
+      "surfaceId": "early-B",
+      "along": 1,
+      "centerY": 0.9,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.396,
@@ -544,11 +609,11 @@
       "imageUrl": "library/spatial_once_26.jpg",
       "id": "once_26",
       "catalogId": "once_26",
-      "group": "G9",
+      "group": "main",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 25.553,
-      "centerY": 1.68,
+      "along": 25,
+      "centerY": 1.65,
       "imageWidth": 0.85,
       "imageHeight": 0.7,
       "outerWidth": 0.9420000000000001,
@@ -563,11 +628,11 @@
       "imageUrl": "library/spatial_once_27.jpg",
       "id": "once_27",
       "catalogId": "once_27",
-      "group": "G5",
+      "group": "main",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 13.493,
-      "centerY": 2.121,
+      "along": 17,
+      "centerY": 2,
       "imageWidth": 0.37799999999999995,
       "imageHeight": 0.32146696529,
       "outerWidth": 0.514,
@@ -582,11 +647,11 @@
       "imageUrl": "library/spatial_once_28.jpg",
       "id": "once_28",
       "catalogId": "once_28",
-      "group": "G6",
+      "group": "main",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 18.822,
-      "centerY": 1.951,
+      "along": 18.95,
+      "centerY": 1.85,
       "imageWidth": 0.47600000000000003,
       "imageHeight": 0.35505095,
       "outerWidth": 0.612,
@@ -601,11 +666,11 @@
       "imageUrl": "library/spatial_once_30.jpg",
       "id": "once_30",
       "catalogId": "once_30",
-      "group": "G10",
+      "group": "late-B",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 29.034,
-      "centerY": 1.72,
+      "surfaceId": "late-B",
+      "along": 0.99,
+      "centerY": 1.35,
       "imageWidth": 0.62,
       "imageHeight": 0.509715,
       "outerWidth": 0.716,
@@ -620,11 +685,11 @@
       "imageUrl": "library/spatial_once_31.jpg",
       "id": "once_31",
       "catalogId": "once_31",
-      "group": "G10",
+      "group": "main",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 27.438,
-      "centerY": 1.318,
+      "along": 28.3,
+      "centerY": 1.3,
       "imageWidth": 0.85,
       "imageHeight": 0.7,
       "outerWidth": 0.9420000000000001,
@@ -639,11 +704,11 @@
       "imageUrl": "library/spatial_once_32.jpg",
       "id": "once_32",
       "catalogId": "once_32",
-      "group": "G10",
+      "group": "main",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 29.788,
-      "centerY": 2.135,
+      "along": 29.7,
+      "centerY": 2.05,
       "imageWidth": 0.255,
       "imageHeight": 0.2125,
       "outerWidth": 0.391,
@@ -658,11 +723,11 @@
       "imageUrl": "library/spatial_once_33.jpg",
       "id": "once_33",
       "catalogId": "once_33",
-      "group": "G7",
+      "group": "middle-B",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 20.153,
-      "centerY": 2.249,
+      "surfaceId": "middle-B",
+      "along": 1.43,
+      "centerY": 2.16,
       "imageWidth": 0.45299999999999996,
       "imageHeight": 0.36633229167000003,
       "outerWidth": 0.5489999999999999,
@@ -677,11 +742,11 @@
       "imageUrl": "library/spatial_once_34.jpg",
       "id": "once_34",
       "catalogId": "once_34",
-      "group": "G7",
+      "group": "main",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 22.208,
-      "centerY": 1.178,
+      "along": 21.1,
+      "centerY": 1.05,
       "imageWidth": 0.255,
       "imageHeight": 0.20580321429,
       "outerWidth": 0.391,
@@ -696,11 +761,11 @@
       "imageUrl": "library/spatial_once_35.jpg",
       "id": "once_35",
       "catalogId": "once_35",
-      "group": "G6",
+      "group": "middle-B",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 16.905,
-      "centerY": 1.408,
+      "surfaceId": "middle-B",
+      "along": 0.64,
+      "centerY": 1.3,
       "imageWidth": 1.0,
       "imageHeight": 0.805132,
       "outerWidth": 1.096,
@@ -715,11 +780,11 @@
       "imageUrl": "library/spatial_once_36.jpg",
       "id": "once_36",
       "catalogId": "once_36",
-      "group": "G5",
+      "group": "middle-A",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 15.159,
-      "centerY": 1.947,
+      "surfaceId": "middle-A",
+      "along": 1.25,
+      "centerY": 1.98,
       "imageWidth": 0.8,
       "imageHeight": 0.6356429473699999,
       "outerWidth": 0.896,
@@ -808,7 +873,7 @@
       "group": "VESSEL",
       "type": "video",
       "surfaceId": "other-main",
-      "along": 28.111988999999998,
+      "along": 28.311989,
       "centerY": 1.55,
       "imageWidth": 1.22,
       "imageHeight": 0.68625,
@@ -838,6 +903,39 @@
       "matColor": "#ffffff",
       "text": "前言\n\nONCE 后知后觉\n\n首版仅示意前言位置\n内容与形式另行调整",
       "note": "前言占位，不是定稿文件。"
+    },
+    {
+      "id": "entry-title",
+      "catalogId": null,
+      "group": "ENTRY",
+      "type": "text",
+      "surfaceId": "entry-sign",
+      "along": 0.84,
+      "centerY": 2.74,
+      "imageWidth": 1.6,
+      "imageHeight": 0.32,
+      "outerWidth": 1.6,
+      "outerHeight": 0.32,
+      "frameFace": 0,
+      "depth": 0.008,
+      "matColor": "#f1f2ec",
+      "color": "#334239",
+      "fontSize": 0.145,
+      "lineHeight": 1.05,
+      "fontFamily": "sans",
+      "align": "center",
+      "text": "ONCE 后知后觉",
+      "runs": [
+        {
+          "text": "ONCE ",
+          "weight": 600
+        },
+        {
+          "text": "后知后觉",
+          "weight": 600
+        }
+      ],
+      "note": "A口新增轻质门头位置与字样试验，非制作定稿。"
     }
   ],
   "freestandingGlass": [
@@ -846,7 +944,7 @@
       "catalogId": "ga-01",
       "group": "GLASS",
       "x": 4.0200000000000005,
-      "z": 17.2,
+      "z": 16.8,
       "yaw": 95,
       "width": 0.6,
       "height": 0.8,
@@ -858,7 +956,7 @@
       "catalogId": "ga-02",
       "group": "GLASS",
       "x": 3.9800000000000004,
-      "z": 18.6,
+      "z": 19.0,
       "yaw": 85,
       "width": 0.7,
       "height": 1.2,
@@ -870,7 +968,7 @@
       "catalogId": "ga-03",
       "group": "GLASS",
       "x": 4.0200000000000005,
-      "z": 20.8,
+      "z": 21.0,
       "yaw": 95,
       "width": 0.6,
       "height": 1.4,
@@ -882,7 +980,7 @@
       "catalogId": "ga-04",
       "group": "GLASS",
       "x": 3.9800000000000004,
-      "z": 22.2,
+      "z": 22.4,
       "yaw": 85,
       "width": 0.7,
       "height": 1.6,
@@ -894,7 +992,7 @@
       "catalogId": "ga-05",
       "group": "GLASS",
       "x": 4.0200000000000005,
-      "z": 25.4,
+      "z": 24.4,
       "yaw": 95,
       "width": 0.6,
       "height": 1.65,
@@ -906,7 +1004,7 @@
       "catalogId": "ga-06",
       "group": "GLASS",
       "x": 3.9800000000000004,
-      "z": 26.8,
+      "z": 27.3,
       "yaw": 85,
       "width": 0.6,
       "height": 1.8,
@@ -919,29 +1017,31 @@
       "id": "poem-1",
       "text": "我在以后看见他们",
       "position": [
-        1.9000000000000004,
+        2.25,
         0.009,
-        2.45
+        2.62
       ],
-      "rotationY": 0,
-      "fontSize": 0.065,
-      "width": 1.8,
-      "color": "#646862",
-      "surface": "floor"
+      "rotationY": -30.579227751638417,
+      "fontSize": 0.075,
+      "width": 1.75,
+      "color": "#62685f",
+      "surface": "floor",
+      "relationship": "沿入口金属斜线，朝第一组背影照片展开。"
     },
     {
       "id": "poem-2",
       "text": "迎着风谈论明天",
       "position": [
-        2.0500000000000003,
+        1.4,
         0.009,
-        5.55
+        5.77
       ],
       "rotationY": 7,
       "fontSize": 0.065,
-      "width": 1.75,
-      "color": "#646862",
-      "surface": "floor"
+      "width": 1.5,
+      "color": "#62685f",
+      "surface": "floor",
+      "relationship": "进入第一片突出墙前。"
     },
     {
       "id": "poem-3",
@@ -959,71 +1059,77 @@
         }
       ],
       "position": [
-        2.1500000000000004,
+        2.05,
         0.009,
-        6.75
+        9.85
       ],
       "rotationY": 0,
       "fontSize": 0.065,
-      "width": 1.55,
-      "color": "#646862",
-      "surface": "floor"
+      "width": 1.5,
+      "color": "#62685f",
+      "surface": "floor",
+      "relationship": "与20号山间水面相邻。"
     },
     {
       "id": "poem-4",
       "text": "河流带有未命名的方向，\n从每个人流过。",
       "position": [
-        1.8000000000000003,
+        1.58,
         0.009,
-        8.85
+        10.7
       ],
-      "rotationY": 12,
+      "rotationY": -61.69924548838408,
       "fontSize": 0.065,
-      "width": 1.95,
-      "color": "#646862",
-      "surface": "floor"
+      "width": 1.9,
+      "lineHeight": 1.5,
+      "color": "#576258",
+      "surface": "floor",
+      "relationship": "顺中段金属线的斜向，靠近21号水面与右侧向后的通道。"
     },
     {
       "id": "poem-5",
       "text": "已经发生的世界",
       "position": [
-        2.3500000000000005,
+        1.05,
         0.009,
-        20.25
+        17.28
       ],
       "rotationY": 0,
       "fontSize": 0.065,
       "width": 1.7,
-      "color": "#646862",
-      "surface": "floor"
+      "color": "#62685f",
+      "surface": "floor",
+      "relationship": "与中墙上的横亘、对面在我与他们之间共同组成一句。"
     },
     {
       "id": "poem-6",
       "text": "横亘",
       "position": [
-        2.0200000000000005,
-        0.009,
-        23.2
+        1.45,
+        0.23,
+        17.932
       ],
-      "rotationY": 20,
-      "fontSize": 0.115,
-      "width": 0.75,
-      "color": "#5e645c",
-      "surface": "floor"
+      "rotationY": 180,
+      "fontSize": 0.13,
+      "width": 0.8,
+      "color": "#5b655c",
+      "surface": "wall",
+      "relationship": "落在第二片突出墙正面的墙根；整词保留，不拆散笔画。"
     },
     {
       "id": "poem-7",
-      "text": "在我与他们之间",
+      "text": "在我与他们之间，",
       "position": [
-        2.2,
-        0.009,
-        25.15
+        4.367,
+        0.8,
+        19.9
       ],
-      "rotationY": 0,
-      "fontSize": 0.065,
-      "width": 1.7,
-      "color": "#646862",
-      "surface": "floor"
+      "rotationY": -90,
+      "fontSize": 0.055,
+      "width": 1.6,
+      "color": "#606a60",
+      "surface": "wall",
+      "relationship": "同一句的最后一部分在对面玻璃间隙，引导转身跨看空间。"
     },
     {
       "id": "poem-8",
@@ -1041,128 +1147,124 @@
         }
       ],
       "position": [
-        1.8500000000000005,
+        2.25,
         0.009,
-        28.75
+        28.65
       ],
       "rotationY": 0,
-      "fontSize": 0.065,
-      "width": 1.85,
-      "color": "#646862",
-      "surface": "floor"
+      "fontSize": 0.075,
+      "width": 1.8,
+      "color": "#62685f",
+      "surface": "floor",
+      "relationship": "回到泳池与影像之间的观看位置。"
     }
   ],
   "focusGroups": [
     {
-      "id": "G2",
-      "label": "入口：19 · 01 · 02 · 17",
+      "id": "entry-main",
+      "label": "开头：01 · 17",
       "workIds": [
-        "once_19",
         "once_01",
-        "once_02",
         "once_17"
       ],
-      "side": "left",
-      "z": 3.7479999999999998
+      "side": "left"
     },
     {
-      "id": "P1",
-      "label": "突出墙1：09 / 05",
+      "id": "early-A",
+      "label": "第一片突出墙 · A面",
       "workIds": [
+        "once_02",
         "once_09",
-        "once_05"
+        "once_19"
       ],
-      "side": "left",
-      "z": 5.725
+      "surfaceId": "early-A",
+      "side": "left"
     },
     {
-      "id": "G3",
-      "label": "12 · 21",
+      "id": "early-B",
+      "label": "第一片突出墙 · B面",
       "workIds": [
         "once_12",
-        "once_21"
+        "once_14",
+        "once_25"
       ],
-      "side": "left",
-      "z": 8.1
+      "surfaceId": "early-B",
+      "side": "left"
     },
     {
-      "id": "G4",
-      "label": "24 · 20",
+      "id": "water",
+      "label": "21 · 24 · 20",
       "workIds": [
+        "once_21",
         "once_24",
         "once_20"
       ],
-      "side": "left",
-      "z": 11.130500000000001
+      "side": "left"
     },
     {
-      "id": "G5",
-      "label": "27 · 13 · 36",
+      "id": "middle-A",
+      "label": "第二片突出墙 · A面",
       "workIds": [
-        "once_27",
         "once_13",
+        "once_18",
         "once_36"
       ],
-      "side": "left",
-      "z": 14.4215
+      "surfaceId": "middle-A",
+      "side": "left"
     },
     {
-      "id": "G6",
-      "label": "35 · 18 · 28",
-      "workIds": [
-        "once_35",
-        "once_18",
-        "once_28"
-      ],
-      "side": "left",
-      "z": 17.7425
-    },
-    {
-      "id": "G7",
-      "label": "33 · 16 · 34",
+      "id": "middle-B",
+      "label": "第二片突出墙 · B面",
       "workIds": [
         "once_33",
+        "once_35"
+      ],
+      "surfaceId": "middle-B",
+      "side": "left"
+    },
+    {
+      "id": "middle-main",
+      "label": "27 · 28 · 16 · 34",
+      "workIds": [
+        "once_27",
+        "once_28",
         "once_16",
         "once_34"
       ],
-      "side": "left",
-      "z": 21.1405
+      "side": "left"
     },
     {
-      "id": "G8",
-      "label": "突出墙2：11 · 08 / 25 · 14",
-      "workIds": [
-        "once_11",
-        "once_08",
-        "once_25",
-        "once_14"
-      ],
-      "side": "left",
-      "z": 23.153
-    },
-    {
-      "id": "G9",
-      "label": "04 · 26 · 23",
+      "id": "late-A",
+      "label": "第三片突出墙 · A面",
       "workIds": [
         "once_04",
-        "once_26",
+        "once_22",
         "once_23"
       ],
-      "side": "left",
-      "z": 25.11
+      "surfaceId": "late-A",
+      "side": "left"
     },
     {
-      "id": "G10",
-      "label": "31 · 10 · 22 · 30 · 32",
+      "id": "late-B",
+      "label": "第三片突出墙 · B面",
       "workIds": [
-        "once_31",
         "once_10",
-        "once_22",
-        "once_30",
+        "once_30"
+      ],
+      "surfaceId": "late-B",
+      "side": "left"
+    },
+    {
+      "id": "ending",
+      "label": "26 · 08 · 11 · 31 · 32",
+      "workIds": [
+        "once_26",
+        "once_08",
+        "once_11",
+        "once_31",
         "once_32"
       ],
-      "side": "left",
-      "z": 28.475
+      "side": "left"
     },
     {
       "id": "YQZC",
@@ -1173,8 +1275,7 @@
         "yqzc-03",
         "yqzc-04"
       ],
-      "side": "right",
-      "z": 8.7
+      "side": "right"
     },
     {
       "id": "GLASS",
@@ -1187,8 +1288,7 @@
         "ga-05",
         "ga-06"
       ],
-      "side": "right",
-      "z": 20.8
+      "side": "right"
     },
     {
       "id": "VESSEL",
@@ -1196,18 +1296,67 @@
       "workIds": [
         "performance_vessel"
       ],
-      "side": "right",
-      "z": 29.4
+      "side": "right"
     }
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "左侧25幅主墙＋6幅突出墙，共31幅；保留旧展左右与上下组合关系，组间一般75cm净空。",
-    "突出墙净挑出1.2m，当前估计4.4m净宽下端部主通道约3.2m；墙厚与通道均非施工实测。",
-    "玻璃分三对、两对之间留更长间隔，并避开突出墙正对处。支撑形式待设计。",
-    "诗先沿用上一场文本，只试验位置与疏密；后续继续推敲墙面、地面及玻璃之间的文字关系。",
-    "四幅大图均暂按1.6m画面宽等比模拟，04比例保持原图，实物外尺寸待核。",
-    "前言仅标位置，不沿用旧展日期或捏造本次正文。",
-    "侧别以站在A口面向B口为准；左侧主墙略长，但未经实测的额外长度不计入本轮排布预算。"
+    "左侧主墙只留15件：原14件装裱作品＋01；其余16件分到三片展墙六个侧面，所有画面尺寸保持。",
+    "主墙保留约3.8米与3.23米两段完整空墙，既不放照片，也不以文字或色块填入。局部仍有上下紧组。",
+    "三片墙挑出1.6/1.8/1.5米，在暂估4.4米净宽下分别留约2.8/2.6/2.9米通道；非施工实测。",
+    "右侧玻璃区用一整片浅灰绿色；地面只试一块由真实金属线围成的三角色域，原砖缝和金属条保留。",
+    "地诗沿金属线和转向点安排；已经发生的世界／横亘／在我与他们之间作为同一句跨地面、墙根、对面墙。",
+    "A口门头试用浅色轻质面板与深灰绿展名；正文前言仍为位置占位。",
+    "装裱、支撑、色彩、文字排版和新墙均待讨论；当前只作首次空间方案的进一步试验，不是打印或安装文件。"
+  ],
+  "environment": {
+    "wallFields": [
+      {
+        "id": "glass-field",
+        "surfaceId": "other-main",
+        "alongStart": 14.311989,
+        "alongEnd": 26.911989,
+        "bottom": 0,
+        "height": 2.95,
+        "color": "#dfe4dc"
+      }
+    ],
+    "floorFields": [
+      {
+        "id": "metal-crossing-field",
+        "points": [
+          [
+            0.0,
+            8.0
+          ],
+          [
+            2.211784071850457,
+            12.107599206012933
+          ],
+          [
+            0.0,
+            15.754054
+          ]
+        ],
+        "color": "#bbc4bc",
+        "opacity": 0.6,
+        "note": "仅在现有两条金属线和左墙围成的真实三角内试色；保留砖缝、金属条。"
+      }
+    ],
+    "note": "左侧两处完整空墙不加字、不加色块；灰绿色只作为右侧玻璃段的连续背景。"
+  },
+  "blankWallIntervals": [
+    {
+      "surfaceId": "once-main",
+      "from": 12.943,
+      "to": 16.743,
+      "length": 3.8
+    },
+    {
+      "surfaceId": "once-main",
+      "from": 21.296,
+      "to": 24.529,
+      "length": 3.233
+    }
   ]
 }

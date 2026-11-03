@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261104-trial01';
-import { buildExhibition } from './exhibition.js?v=20261104-trial01';
+import { installCatalog } from './catalog.js?v=20261104-trial02';
+import { buildExhibition } from './exhibition.js?v=20261104-trial02';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
@@ -171,6 +171,8 @@ function updateCutaway(){
     const surface=exhibition.surfaces.get(sid);
     object.visible=surface?.kind==='existing'?(surface.normal[0]>0?walls.left.visible:walls.right.visible):true;
   }
+  if(exhibition?.environmentFields)for(const object of exhibition.environmentFields.values()){if(object.userData.kind==='wallField'){const n=object.userData.canonicalNormal;object.visible=n?.[0]>0?walls.left.visible:walls.right.visible;}}
+  if(exhibition?.poemGroups)for(const object of exhibition.poemGroups.values()){const n=object.userData.canonicalNormal;if(object.userData.kind==='wallPoem'&&Math.abs(n?.[0]||0)>.9)object.visible=n[0]>0?walls.left.visible:walls.right.visible;}
 }
 
 function setTrialVisible(value){
@@ -190,29 +192,36 @@ function focusOnWork(id){
   const target=new THREE.Vector3(focus.target[0],focus.target[1],-focus.target[2]);camera.lookAt(target);
   createControls();controls.target.copy(target);controls.maxPolarAngle=Math.PI*.65;controls.update();
   $('#hint').textContent='拖动环看 · 滚轮缩放 · 选择另一组继续看';
-  $('#status').textContent=`试排01 · ${library.items.find(w=>w.id===id)?.title||'前言位置'}`;
+  $('#status').textContent=`试排02 · ${library.items.find(w=>w.id===id)?.title||'前言位置'}`;
   $('#catalog-panel').hidden=true;$('#catalog-button').setAttribute('aria-expanded','false');
   updateCutaway();updateLabels();
 }
 function focusOnGroup(id){
-  const group=trialLayout.focusGroups.find(g=>g.id===id);if(!group)return;
-  if(id==='G8'||id==='P1'){focusOnWork(id==='G8'?'once_08':'once_09');$('#status').textContent=id==='G8'?'突出墙2迎面：08 / 11；绕到背面看14 / 25':'突出墙1迎面：09；绕到背面看05';return;}
-  const members=group.workIds.map(w=>exhibition.works.get(w)?.userData).filter(Boolean);
+  let group=trialLayout.focusGroups.find(g=>g.id===id);
+  if(!group&&id.startsWith('blank-')){const i=Number(id.split('-')[1]),blank=trialLayout.blankWallIntervals?.[i];if(blank)group={id,label:`留白${i+1} · 约${blank.length.toFixed(1)}米`,workIds:[i?'once_26':'once_20'],surfaceId:blank.surfaceId,side:'left',emptyRange:[blank.from,blank.to]};}
+  if(!group)return;
+  let members=group.workIds.map(w=>exhibition.works.get(w)?.userData).filter(Boolean);
+  if(group.emptyRange)members=[{canonicalPosition:[.025,1.45,(group.emptyRange[0]+group.emptyRange[1])/2],layout:{outerWidth:group.emptyRange[1]-group.emptyRange[0],outerHeight:2.2,surfaceId:group.surfaceId}}];
   const selected=group.workIds.find(w=>exhibition.works.has(w));if(!selected)return;
   focusOnWork(selected);
   const targets=members.map(w=>w.canonicalPosition);
   const widths=members.map(w=>w.layout.outerWidth||w.layout.width||.6),heights=members.map(w=>w.layout.outerHeight||w.layout.height||1);
-  const zMin=Math.min(...targets.map((p,i)=>p[2]-widths[i]/2)),zMax=Math.max(...targets.map((p,i)=>p[2]+widths[i]/2));
+  const surface=exhibition.surfaces.get(group.surfaceId||members[0]?.layout.surfaceId);
+  const direction=surface?.direction||[0,1],normal=surface?.normal||(group.side==='right'?[-1,0]:[1,0]);
+  const projected=targets.map(p=>p[0]*direction[0]+p[2]*direction[1]);
+  const hMin=Math.min(...projected.map((v,i)=>v-widths[i]/2)),hMax=Math.max(...projected.map((v,i)=>v+widths[i]/2));
   const yMin=Math.min(...targets.map((p,i)=>p[1]-heights[i]/2)),yMax=Math.max(...targets.map((p,i)=>p[1]+heights[i]/2));
-  const side=group.side==='right'?-1:1,wallX=targets.reduce((sum,p)=>sum+p[0],0)/targets.length;
-  const target=new THREE.Vector3(wallX,(yMin+yMax)/2,-(zMin+zMax)/2);
-  inspectionFrame={width:zMax-zMin+.65,height:yMax-yMin+.65};
+  let x=targets.reduce((sum,p)=>sum+p[0],0)/targets.length,z=targets.reduce((sum,p)=>sum+p[2],0)/targets.length;
+  const mid=(hMin+hMax)/2,current=x*direction[0]+z*direction[1];x+=(mid-current)*direction[0];z+=(mid-current)*direction[1];
+  const target=new THREE.Vector3(x,(yMin+yMax)/2,-z);
+  inspectionFrame={width:hMax-hMin+.65,height:yMax-yMin+.65};
   const aspect=host.clientWidth/host.clientHeight,halfH=Math.max(inspectionFrame.height/2,inspectionFrame.width/2/aspect);
   camera=new THREE.OrthographicCamera(-halfH*1.12*aspect,halfH*1.12*aspect,halfH*1.28,-halfH*.96,.025,120);camera.up.copy(worldUp);
-  camera.position.copy(target).add(new THREE.Vector3(side*3.8,0,0));camera.lookAt(target);
+  const distance=surface?.kind==='partition'?2.1:3.8;
+  camera.position.copy(target).add(new THREE.Vector3(normal[0]*distance,0,-normal[1]*distance));camera.lookAt(target);
   createControls();controls.target.copy(target);controls.maxPolarAngle=Math.PI*.65;controls.update();
   $('#hint').textContent='组合正视 · 滚轮缩放 · 拖动环看';
-  $('#status').textContent=`试排01 · ${group.label}`;updateCutaway();updateLabels();
+  $('#status').textContent=`试排02 · ${group.label}`;updateCutaway();updateLabels();
 }
 function hitsDisplay(x,z){return trialVisible&&exhibition?.collisionRects.some(r=>x>r.minX-.2&&x<r.maxX+.2&&z>r.minZ-.2&&z<r.maxZ+.2);}
 function updateLabels(){
@@ -232,13 +241,14 @@ function resize(){if(!renderer)return;const w=host.clientWidth,h=host.clientHeig
 function animate(now){raf=requestAnimationFrame(animate);const dt=Math.min((now-previousTime)/1000,.05);previousTime=now;if(view==='entry'||view==='reverse'){let forward=0,side=0;if(pressed.has('w')||pressed.has('arrowup'))forward++;if(pressed.has('s')||pressed.has('arrowdown'))forward--;if(pressed.has('d')||pressed.has('arrowright'))side++;if(pressed.has('a')||pressed.has('arrowleft'))side--;if(forward||side){const speed=(pressed.has('shift')?3:1.6)*dt/Math.max(1,Math.hypot(forward,side));const oldX=walkPosition.x,oldZ=walkPosition.z;const nextX=THREE.MathUtils.clamp(oldX+(Math.sin(yaw)*forward-Math.cos(yaw)*side)*speed,Math.max(.25,leftBoundaryX(-oldZ)+.25),data.room.width-.25);if(!hitsDisplay(nextX,-oldZ))walkPosition.x=nextX;const nextZ=THREE.MathUtils.clamp(oldZ+(Math.cos(yaw)*forward+Math.sin(yaw)*side)*speed,-data.room.length+.3,-floorStartZ(walkPosition.x)-.3);if(!hitsDisplay(walkPosition.x,-nextZ))walkPosition.z=nextZ;updateWalk();}}else controls.update();renderer.render(scene,camera);}
 
 async function init(){try{
-  const responses=await Promise.all(['space.json','layout.json','catalog.json'].map(path=>fetch(path+'?v=20261104-trial01',{cache:'no-store'})));
+  const responses=await Promise.all(['space.json','layout.json','catalog.json'].map(path=>fetch(path+'?v=20261104-trial02',{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   [data,trialLayout,library]=await Promise.all(responses.map(r=>r.json()));
   renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(host.clientWidth,host.clientHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;host.appendChild(renderer.domElement);
   scene=new THREE.Scene();scene.background=new THREE.Color(0xeeede9);build();
   exhibition=await buildExhibition({scene,renderer,layout:trialLayout,catalog:library});
   for(const group of trialLayout.focusGroups){const option=document.createElement('option');option.value=group.id;option.textContent=group.label;$('#focus-group').append(option);}
+  trialLayout.blankWallIntervals?.forEach((blank,i)=>{const option=document.createElement('option');option.value=`blank-${i}`;option.textContent=`留白${i+1} · 约${blank.length.toFixed(1)}米`;$('#focus-group').append(option);});
   $('#focus-group').addEventListener('change',event=>focusOnGroup(event.target.value));
   $('#trial-on').addEventListener('click',()=>setTrialVisible(true));$('#trial-off').addEventListener('click',()=>setTrialVisible(false));
   setView('overview');
@@ -257,7 +267,7 @@ async function init(){try{
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();$('#error').hidden=false;$('#error').textContent='三维画面连接中断，请刷新页面重新载入。';cancelAnimationFrame(raf);});
   installCatalog({layout:trialLayout,onInspect:focusOnWork});
   state.loaded=true;requestAnimationFrame(animate);
-  exhibition.ready.then(stats=>{if(stats.errors){$('#status').textContent=`${stats.errors}幅预览读取失败，请刷新重试`;}$('#image-status').textContent=stats.errors?`${stats.loaded}/42 幅图像已载入`:'42件作品 · 第一版试排';});
+  exhibition.ready.then(stats=>{if(stats.errors){$('#status').textContent=`${stats.errors}幅预览读取失败，请刷新重试`;}$('#image-status').textContent=stats.errors?`${stats.loaded}/42 幅图像已载入`:'42件作品 · 当前空间试排';});
   window.spaceModel={exhibition,layout:trialLayout,getState:()=>({trialVisible,exhibitionStats:exhibition.stats,loaded:state.loaded,error:state.error,view,room:data.room,tile:data.tile,camera:{position:camera.position.toArray(),target:controls.target.toArray()},visible:{strips:groups.strips.visible,bars:groups.bars.visible,lighting:groups.lighting.visible,leftWall:walls.left.visible,rightWall:walls.right.visible},counts:{strips:groups.strips.children.length,bars:groups.bars.children.length,lightingRows:data.lighting?.rowPositions.length||0},endBStatus:data.ends.B.openingStatus,renderCalls:renderer.info.render.calls}),setView,focusOnWork,focusOnGroup,setTrialVisible,scene,data};
 }catch(error){state.error=error.message;$('#error').hidden=false;$('#error').textContent=`空间未能载入：${error.message}。请通过“打开空间模型.command”启动后访问本机地址，勿直接双击HTML文件。`;$('#status').hidden=true;console.error(error);}}
 init();

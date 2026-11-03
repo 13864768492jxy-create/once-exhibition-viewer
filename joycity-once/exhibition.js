@@ -30,10 +30,11 @@ function canvasTexture(canvas) {
   return texture;
 }
 
-function textCanvas(text, {fontPixels = 72, color = '#575951', padding = 12, lineHeight = 1.4, runs} = {}) {
+function textCanvas(text, {fontPixels = 72, color = '#575951', padding = 12, lineHeight = 1.4, runs, fontFamily = 'serif'} = {}) {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
-  const fontFor = run => `${run.weight || 300} ${fontPixels * positive(run.fontScale, 1)}px "Songti SC", "Noto Serif CJK SC", "STSong", serif`;
+  const family = fontFamily === 'sans' ? '"PingFang SC", system-ui, sans-serif' : '"Songti SC", "Noto Serif CJK SC", "STSong", serif';
+  const fontFor = run => `${run.weight || 300} ${fontPixels * positive(run.fontScale, 1)}px ${family}`;
   const lines = [[]];
   for (const run of runs?.length ? runs : [{text: String(text)}]) {
     String(run.text || '').replace(/\r\n?/g, '\n').split('\n').forEach((part, index) => {
@@ -172,12 +173,14 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
 
   const surfaces = new Map();
   const works = new Map();
+  const environmentFields = new Map();
+  const poemGroups = new Map();
   const collisionRects = [];
   const focus = new Map();
   const pending = [];
   const stats = {
     works: 0, workCount: 0, photos: 0, large: 0, videos: 0, glass: 0, texts: 0,
-    partitions: 0, surfaces: 0, poems: 0, labels: 0,
+    partitions: 0, surfaces: 0, poems: 0, labels: 0, wallFields: 0, floorFields: 0,
     textures: 0, loaded: 0, errors: 0, pending: 0, texturePixels: 0, textureResamples: 0,
     failures: [], warnings: [], aspectAdjustments: [], ready: false,
   };
@@ -298,6 +301,44 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   }
   stats.surfaces = surfaces.size;
 
+  for (const field of layout.environment?.wallFields || []) {
+    const surface = surfaces.get(field.surfaceId);
+    if (!surface) {
+      stats.warnings.push(`色墙 ${field.id} 缺少挂画面 ${field.surfaceId}`);
+      continue;
+    }
+    const start = finite(field.alongStart, 0), end = finite(field.alongEnd, surface.length);
+    if (end <= start) continue;
+    const middle = (start + end) / 2, height = positive(field.height, surface.height || 2.95);
+    const {a, direction, normal} = surface;
+    const center = [a[0] + direction[0] * middle + normal[0] * .004, finite(field.bottom, 0) + height / 2,
+      a[1] + direction[1] * middle + normal[1] * .004];
+    const fieldGroup = faceGroup(group, `墙面试色_${field.id}`, center, normal);
+    fieldGroup.userData = {environmentId: field.id, kind: 'wallField', layout: field, canonicalPosition: center, canonicalNormal: [...normal], surface};
+    plane(fieldGroup, '墙面试色_画作之后', end - start, height,
+      new THREE.MeshBasicMaterial({color: field.color || '#dfe4dc', side: THREE.DoubleSide, toneMapped: false}));
+    environmentFields.set(field.id, fieldGroup);
+    stats.wallFields++;
+  }
+  for (const field of layout.environment?.floorFields || []) {
+    if (!Array.isArray(field.points) || field.points.length < 3) continue;
+    const shape = new THREE.Shape();
+    field.points.forEach((point, index) => index ? shape.lineTo(point[0], point[1]) : shape.moveTo(point[0], point[1]));
+    shape.closePath();
+    const geometry = new THREE.ShapeGeometry(shape);
+    geometry.rotateX(Math.PI / 2);
+    const material = new THREE.MeshBasicMaterial({color: field.color || '#bbc4bc', transparent: true,
+      opacity: THREE.MathUtils.clamp(finite(field.opacity, .6), 0, 1), side: THREE.DoubleSide,
+      toneMapped: false, depthWrite: false});
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.name = `地面试色_沿现有金属线_${field.id}`;
+    mesh.position.y = .0009;
+    mesh.userData = {environmentId: field.id, kind: 'floorField', layout: field};
+    group.add(mesh);
+    environmentFields.set(field.id, mesh);
+    stats.floorFields++;
+  }
+
   for (const record of layout.works || []) {
     const surface = surfaces.get(record.surfaceId);
     if (!surface) {
@@ -317,14 +358,15 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     if (record.type === 'text') {
       const paper = new THREE.MeshBasicMaterial({color: record.matColor || '#f8f7f2', side: THREE.DoubleSide, toneMapped: false});
       box(work, '前言版面_排版待核', width, height, .008, 0, 0, .004, paper);
-      const raster = textCanvas(record.text || '', {fontPixels: 96, padding: 5, color: record.color || '#42473e', runs: record.runs, lineHeight: finite(record.lineHeight, 1.6)});
+      const raster = textCanvas(record.text || '', {fontPixels: 96, padding: 5, color: record.color || '#42473e', runs: record.runs, lineHeight: finite(record.lineHeight, 1.6), fontFamily: record.fontFamily});
       const fontSize = positive(record.fontSize, .045);
-      const textWidth = Math.min(width - .12, raster.rawWidth / raster.fontPixels * fontSize);
+      const textWidth = Math.min(Math.max(.001, width - .12), raster.rawWidth / raster.fontPixels * fontSize,
+        record.align === 'center' ? Math.max(.001, height - .04) * raster.rawWidth / raster.rawHeight : Infinity);
       const textHeight = textWidth * raster.rawHeight / raster.rawWidth;
       const material = new THREE.MeshBasicMaterial({map: canvasTexture(raster.canvas), transparent: true, side: THREE.DoubleSide, toneMapped: false, depthWrite: false});
       const text = plane(work, '前言原文_不增写内容', textWidth, textHeight, material, .009);
-      text.position.x = -width / 2 + .06 + textWidth / 2;
-      text.position.y = height / 2 - .09 - textHeight / 2;
+      text.position.x = record.align === 'center' ? 0 : -width / 2 + .06 + textWidth / 2;
+      text.position.y = record.align === 'center' ? 0 : height / 2 - .09 - textHeight / 2;
       stats.texts++;
     } else if (record.type === 'video') {
       const caseMaterial = new THREE.MeshStandardMaterial({color: record.frameColor || '#20231f', roughness: .47, side: THREE.DoubleSide});
@@ -430,8 +472,11 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       textGroup = faceGroup(group, record.id, position, [Math.sin(angle), Math.cos(angle)]);
     }
     textGroup.name = `诗句_${record.id}`;
-    textGroup.userData = {poemId: record.id, text: actualText, layout: record};
+    textGroup.userData = {poemId: record.id, text: actualText, layout: record,
+      kind: record.surface === 'wall' ? 'wallPoem' : 'floorPoem', canonicalPosition: position,
+      canonicalNormal: record.surface === 'wall' ? [Math.sin(angle), Math.cos(angle)] : null};
     plane(textGroup, '诗句_保留原文换行', width, height, material, record.surface === 'floor' ? 0 : .003);
+    poemGroups.set(record.id, textGroup);
     stats.poems++;
   }
 
@@ -442,7 +487,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   });
   group.updateMatrixWorld(true);
   return {
-    group, surfaces, works, collisionRects, ready, stats,
+    group, surfaces, works, environmentFields, poemGroups, collisionRects, ready, stats,
     setVisible(visible) { group.visible = Boolean(visible); },
     focusTarget(id) {
       const record = focus.get(id) || [...focus.entries()].find(([key]) => works.get(key)?.userData.catalogId === id)?.[1];
