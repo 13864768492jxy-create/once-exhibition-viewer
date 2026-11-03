@@ -1,0 +1,1213 @@
+{
+  "schemaVersion": 1,
+  "revision": "20261104-trial01",
+  "title": "第一次试排 · 拉开组间距离",
+  "status": "first_trial_not_installation_plan",
+  "date": "2026-11-04",
+  "sourceLayout": "ONCE v117 的作品组合与相邻关系；不修改旧展",
+  "principle": "左侧延续后知后觉；右侧四幅大图、三对玻璃与行为影像分段展开。两片浅突出墙延长左侧展线，保留长廊视线。",
+  "partitions": [
+    {
+      "id": "wing-early",
+      "a": [
+        0.0,
+        5.725
+      ],
+      "b": [
+        1.2000000000000002,
+        5.725
+      ],
+      "height": 2.6,
+      "thickness": 0.12,
+      "status": "proposed"
+    },
+    {
+      "id": "wing-1",
+      "a": [
+        0.0,
+        23.153
+      ],
+      "b": [
+        1.2000000000000002,
+        23.153
+      ],
+      "height": 2.6,
+      "thickness": 0.12,
+      "status": "proposed"
+    }
+  ],
+  "surfaces": [
+    {
+      "id": "once-main",
+      "a": [
+        0.0,
+        0
+      ],
+      "b": [
+        0.0,
+        31.2
+      ],
+      "normal": [
+        1,
+        0
+      ],
+      "height": 2.95,
+      "kind": "existing"
+    },
+    {
+      "id": "other-main",
+      "a": [
+        4.4,
+        1.288011
+      ],
+      "b": [
+        4.4,
+        31.2
+      ],
+      "normal": [
+        -1,
+        0
+      ],
+      "height": 2.95,
+      "kind": "existing"
+    },
+    {
+      "id": "early-A",
+      "a": [
+        0.0,
+        5.665
+      ],
+      "b": [
+        1.2000000000000002,
+        5.665
+      ],
+      "normal": [
+        0,
+        -1
+      ],
+      "height": 2.6,
+      "kind": "partition"
+    },
+    {
+      "id": "early-B",
+      "a": [
+        0.0,
+        5.785
+      ],
+      "b": [
+        1.2000000000000002,
+        5.785
+      ],
+      "normal": [
+        0,
+        1
+      ],
+      "height": 2.6,
+      "kind": "partition"
+    },
+    {
+      "id": "wing-A",
+      "a": [
+        0.0,
+        23.093
+      ],
+      "b": [
+        1.2000000000000002,
+        23.093
+      ],
+      "normal": [
+        0,
+        -1
+      ],
+      "height": 2.6,
+      "kind": "partition"
+    },
+    {
+      "id": "wing-B",
+      "a": [
+        0.0,
+        23.213
+      ],
+      "b": [
+        1.2000000000000002,
+        23.213
+      ],
+      "normal": [
+        0,
+        1
+      ],
+      "height": 2.6,
+      "kind": "partition"
+    }
+  ],
+  "works": [
+    {
+      "imageUrl": "library/spatial_once_01.jpg",
+      "id": "once_01",
+      "catalogId": "once_01",
+      "group": "G2",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 2.948,
+      "centerY": 1.217,
+      "imageWidth": 1.1,
+      "imageHeight": 0.903685,
+      "outerWidth": 1.1960000000000002,
+      "outerHeight": 0.9996849999999999,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_02.jpg",
+      "id": "once_02",
+      "catalogId": "once_02",
+      "group": "G2",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 4.516,
+      "centerY": 1.755,
+      "imageWidth": 0.54,
+      "imageHeight": 0.480113,
+      "outerWidth": 0.636,
+      "outerHeight": 0.576113,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_04.jpg",
+      "id": "once_04",
+      "catalogId": "once_04",
+      "group": "G9",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 24.251,
+      "centerY": 1.058,
+      "imageWidth": 0.4,
+      "imageHeight": 0.32511,
+      "outerWidth": 0.496,
+      "outerHeight": 0.42111,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_05.jpg",
+      "id": "once_05",
+      "catalogId": "once_05",
+      "group": "P1",
+      "type": "photo",
+      "surfaceId": "early-B",
+      "along": 0.56,
+      "centerY": 1.5,
+      "imageWidth": 0.3,
+      "imageHeight": 0.25,
+      "outerWidth": 0.324,
+      "outerHeight": 0.27399999999999997,
+      "frameColor": "#242625",
+      "frameFace": 0.006999999999999999,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_08.jpg",
+      "id": "once_08",
+      "catalogId": "once_08",
+      "group": "G8",
+      "type": "photo",
+      "surfaceId": "wing-A",
+      "along": 0.68,
+      "centerY": 1.65,
+      "imageWidth": 0.738,
+      "imageHeight": 0.6,
+      "outerWidth": 0.754,
+      "outerHeight": 0.616,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_09.jpg",
+      "id": "once_09",
+      "catalogId": "once_09",
+      "group": "P1",
+      "type": "photo",
+      "surfaceId": "early-A",
+      "along": 0.56,
+      "centerY": 1.2,
+      "imageWidth": 0.3,
+      "imageHeight": 0.25,
+      "outerWidth": 0.396,
+      "outerHeight": 0.346,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_10.jpg",
+      "id": "once_10",
+      "catalogId": "once_10",
+      "group": "G10",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 27.606,
+      "centerY": 2.073,
+      "imageWidth": 0.3,
+      "imageHeight": 0.23793699577000002,
+      "outerWidth": 0.396,
+      "outerHeight": 0.33393699577,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_11.jpg",
+      "id": "once_11",
+      "catalogId": "once_11",
+      "group": "G8",
+      "type": "photo",
+      "surfaceId": "wing-A",
+      "along": 0.24,
+      "centerY": 0.987,
+      "imageWidth": 0.3,
+      "imageHeight": 0.25,
+      "outerWidth": 0.324,
+      "outerHeight": 0.27399999999999997,
+      "frameColor": "#242625",
+      "frameFace": 0.006999999999999999,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_12.jpg",
+      "id": "once_12",
+      "catalogId": "once_12",
+      "group": "G3",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 7.494,
+      "centerY": 0.916,
+      "imageWidth": 0.42,
+      "imageHeight": 0.341918,
+      "outerWidth": 0.516,
+      "outerHeight": 0.43791800000000003,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_13.jpg",
+      "id": "once_13",
+      "catalogId": "once_13",
+      "group": "G5",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 14.139,
+      "centerY": 1.038,
+      "imageWidth": 0.8,
+      "imageHeight": 0.64691444444,
+      "outerWidth": 0.896,
+      "outerHeight": 0.74291444444,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_14.jpg",
+      "id": "once_14",
+      "catalogId": "once_14",
+      "group": "G8",
+      "type": "photo",
+      "surfaceId": "wing-B",
+      "along": 0.65,
+      "centerY": 2.03,
+      "imageWidth": 0.46,
+      "imageHeight": 0.373281,
+      "outerWidth": 0.556,
+      "outerHeight": 0.46928099999999995,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_16.jpg",
+      "id": "once_16",
+      "catalogId": "once_16",
+      "group": "G7",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 20.543,
+      "centerY": 1.454,
+      "imageWidth": 0.85,
+      "imageHeight": 0.7,
+      "outerWidth": 0.9420000000000001,
+      "outerHeight": 0.792,
+      "frameColor": "#242625",
+      "frameFace": 0.006,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_17.jpg",
+      "id": "once_17",
+      "catalogId": "once_17",
+      "group": "G2",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 5.188,
+      "centerY": 1.237,
+      "imageWidth": 0.3,
+      "imageHeight": 0.25,
+      "outerWidth": 0.324,
+      "outerHeight": 0.27399999999999997,
+      "frameColor": "#242625",
+      "frameFace": 0.006999999999999999,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_18.jpg",
+      "id": "once_18",
+      "catalogId": "once_18",
+      "group": "G6",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 18.503,
+      "centerY": 0.966,
+      "imageWidth": 0.3,
+      "imageHeight": 0.25,
+      "outerWidth": 0.396,
+      "outerHeight": 0.346,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_19.jpg",
+      "id": "once_19",
+      "catalogId": "once_19",
+      "group": "G2",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 2.404,
+      "centerY": 2.106,
+      "imageWidth": 0.42,
+      "imageHeight": 0.32220999999999994,
+      "outerWidth": 0.516,
+      "outerHeight": 0.41820999999999997,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_20.jpg",
+      "id": "once_20",
+      "catalogId": "once_20",
+      "group": "G4",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 11.743,
+      "centerY": 1.4,
+      "imageWidth": 1.47,
+      "imageHeight": 1.16,
+      "outerWidth": 1.486,
+      "outerHeight": 1.176,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_21.jpg",
+      "id": "once_21",
+      "catalogId": "once_21",
+      "group": "G3",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 8.342,
+      "centerY": 1.832,
+      "imageWidth": 1.35,
+      "imageHeight": 1.063805,
+      "outerWidth": 1.3659999999999999,
+      "outerHeight": 1.0798050000000001,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_22.jpg",
+      "id": "once_22",
+      "catalogId": "once_22",
+      "group": "G10",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 28.656,
+      "centerY": 0.957,
+      "imageWidth": 0.54,
+      "imageHeight": 0.42472299999999996,
+      "outerWidth": 0.636,
+      "outerHeight": 0.5207229999999999,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_23.jpg",
+      "id": "once_23",
+      "catalogId": "once_23",
+      "group": "G9",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 25.959,
+      "centerY": 0.88,
+      "imageWidth": 0.42,
+      "imageHeight": 0.33067100000000005,
+      "outerWidth": 0.516,
+      "outerHeight": 0.426671,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_24.jpg",
+      "id": "once_24",
+      "catalogId": "once_24",
+      "group": "G4",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 10.056,
+      "centerY": 1.041,
+      "imageWidth": 0.425,
+      "imageHeight": 0.35700000000000004,
+      "outerWidth": 0.561,
+      "outerHeight": 0.493,
+      "frameColor": "#f4f4ef",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_25.jpg",
+      "id": "once_25",
+      "catalogId": "once_25",
+      "group": "G8",
+      "type": "photo",
+      "surfaceId": "wing-B",
+      "along": 0.55,
+      "centerY": 1.258,
+      "imageWidth": 0.3,
+      "imageHeight": 0.25,
+      "outerWidth": 0.396,
+      "outerHeight": 0.346,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_26.jpg",
+      "id": "once_26",
+      "catalogId": "once_26",
+      "group": "G9",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 25.553,
+      "centerY": 1.68,
+      "imageWidth": 0.85,
+      "imageHeight": 0.7,
+      "outerWidth": 0.9420000000000001,
+      "outerHeight": 0.792,
+      "frameColor": "#242625",
+      "frameFace": 0.006,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_27.jpg",
+      "id": "once_27",
+      "catalogId": "once_27",
+      "group": "G5",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 13.493,
+      "centerY": 2.121,
+      "imageWidth": 0.37799999999999995,
+      "imageHeight": 0.32146696529,
+      "outerWidth": 0.514,
+      "outerHeight": 0.45746696528999997,
+      "frameColor": "#f4f4ef",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_28.jpg",
+      "id": "once_28",
+      "catalogId": "once_28",
+      "group": "G6",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 18.822,
+      "centerY": 1.951,
+      "imageWidth": 0.47600000000000003,
+      "imageHeight": 0.35505095,
+      "outerWidth": 0.612,
+      "outerHeight": 0.49105095,
+      "frameColor": "#f4f4ef",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_30.jpg",
+      "id": "once_30",
+      "catalogId": "once_30",
+      "group": "G10",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 29.034,
+      "centerY": 1.72,
+      "imageWidth": 0.62,
+      "imageHeight": 0.509715,
+      "outerWidth": 0.716,
+      "outerHeight": 0.605715,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_31.jpg",
+      "id": "once_31",
+      "catalogId": "once_31",
+      "group": "G10",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 27.438,
+      "centerY": 1.318,
+      "imageWidth": 0.85,
+      "imageHeight": 0.7,
+      "outerWidth": 0.9420000000000001,
+      "outerHeight": 0.792,
+      "frameColor": "#242625",
+      "frameFace": 0.006,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_32.jpg",
+      "id": "once_32",
+      "catalogId": "once_32",
+      "group": "G10",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 29.788,
+      "centerY": 2.135,
+      "imageWidth": 0.255,
+      "imageHeight": 0.2125,
+      "outerWidth": 0.391,
+      "outerHeight": 0.34850000000000003,
+      "frameColor": "#f4f4ef",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_33.jpg",
+      "id": "once_33",
+      "catalogId": "once_33",
+      "group": "G7",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 20.153,
+      "centerY": 2.249,
+      "imageWidth": 0.45299999999999996,
+      "imageHeight": 0.36633229167000003,
+      "outerWidth": 0.5489999999999999,
+      "outerHeight": 0.46233229167,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_34.jpg",
+      "id": "once_34",
+      "catalogId": "once_34",
+      "group": "G7",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 22.208,
+      "centerY": 1.178,
+      "imageWidth": 0.255,
+      "imageHeight": 0.20580321429,
+      "outerWidth": 0.391,
+      "outerHeight": 0.34180321429000005,
+      "frameColor": "#f4f4ef",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_35.jpg",
+      "id": "once_35",
+      "catalogId": "once_35",
+      "group": "G6",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 16.905,
+      "centerY": 1.408,
+      "imageWidth": 1.0,
+      "imageHeight": 0.805132,
+      "outerWidth": 1.096,
+      "outerHeight": 0.9011319999999999,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_36.jpg",
+      "id": "once_36",
+      "catalogId": "once_36",
+      "group": "G5",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 15.159,
+      "centerY": 1.947,
+      "imageWidth": 0.8,
+      "imageHeight": 0.6356429473699999,
+      "outerWidth": 0.896,
+      "outerHeight": 0.7316429473699999,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "id": "yqzc-01",
+      "catalogId": "yqzc-01",
+      "group": "YQZC",
+      "type": "large",
+      "surfaceId": "other-main",
+      "along": 2.911989,
+      "centerY": 1.45,
+      "imageWidth": 1.6,
+      "imageHeight": 1.0674285714285714,
+      "outerWidth": 1.616,
+      "outerHeight": 1.0834285714285714,
+      "frameFace": 0.008,
+      "frameColor": "#252725",
+      "depth": 0.03,
+      "matColor": "#ffffff",
+      "note": "现成作品宽1.6米等比例示意；尤其04实物外尺寸待核，不裁切原图。"
+    },
+    {
+      "id": "yqzc-02",
+      "catalogId": "yqzc-02",
+      "group": "YQZC",
+      "type": "large",
+      "surfaceId": "other-main",
+      "along": 5.911989,
+      "centerY": 1.45,
+      "imageWidth": 1.6,
+      "imageHeight": 1.0674285714285714,
+      "outerWidth": 1.616,
+      "outerHeight": 1.0834285714285714,
+      "frameFace": 0.008,
+      "frameColor": "#252725",
+      "depth": 0.03,
+      "matColor": "#ffffff",
+      "note": "现成作品宽1.6米等比例示意；尤其04实物外尺寸待核，不裁切原图。"
+    },
+    {
+      "id": "yqzc-03",
+      "catalogId": "yqzc-03",
+      "group": "YQZC",
+      "type": "large",
+      "surfaceId": "other-main",
+      "along": 8.911988999999998,
+      "centerY": 1.45,
+      "imageWidth": 1.6,
+      "imageHeight": 1.0674285714285714,
+      "outerWidth": 1.616,
+      "outerHeight": 1.0834285714285714,
+      "frameFace": 0.008,
+      "frameColor": "#252725",
+      "depth": 0.03,
+      "matColor": "#ffffff",
+      "note": "现成作品宽1.6米等比例示意；尤其04实物外尺寸待核，不裁切原图。"
+    },
+    {
+      "id": "yqzc-04",
+      "catalogId": "yqzc-04",
+      "group": "YQZC",
+      "type": "large",
+      "surfaceId": "other-main",
+      "along": 11.911988999999998,
+      "centerY": 1.45,
+      "imageWidth": 1.6,
+      "imageHeight": 1.174857142857143,
+      "outerWidth": 1.616,
+      "outerHeight": 1.190857142857143,
+      "frameFace": 0.008,
+      "frameColor": "#252725",
+      "depth": 0.03,
+      "matColor": "#ffffff",
+      "note": "现成作品宽1.6米等比例示意；尤其04实物外尺寸待核，不裁切原图。"
+    },
+    {
+      "id": "performance_vessel",
+      "catalogId": "performance_vessel",
+      "group": "VESSEL",
+      "type": "video",
+      "surfaceId": "other-main",
+      "along": 28.111988999999998,
+      "centerY": 1.55,
+      "imageWidth": 1.22,
+      "imageHeight": 0.68625,
+      "outerWidth": 1.26,
+      "outerHeight": 0.72625,
+      "frameFace": 0.02,
+      "frameColor": "#191b19",
+      "depth": 0.055,
+      "matColor": "#191b19",
+      "note": "放映位置与约55英寸屏幕仅试排，设备尚未定型。"
+    },
+    {
+      "id": "preface-location",
+      "catalogId": null,
+      "group": "PREFACE",
+      "type": "text",
+      "surfaceId": "other-main",
+      "along": 0.6619889999999999,
+      "centerY": 1.62,
+      "imageWidth": 0.85,
+      "imageHeight": 1.3,
+      "outerWidth": 0.85,
+      "outerHeight": 1.3,
+      "frameFace": 0,
+      "frameColor": "#ffffff",
+      "depth": 0.004,
+      "matColor": "#ffffff",
+      "text": "前言\n\nONCE 后知后觉\n\n首版仅示意前言位置\n内容与形式另行调整",
+      "note": "前言占位，不是定稿文件。"
+    }
+  ],
+  "freestandingGlass": [
+    {
+      "id": "ga-01",
+      "catalogId": "ga-01",
+      "group": "GLASS",
+      "x": 4.0200000000000005,
+      "z": 17.2,
+      "yaw": 95,
+      "width": 0.6,
+      "height": 0.8,
+      "bottom": 0.18,
+      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。"
+    },
+    {
+      "id": "ga-02",
+      "catalogId": "ga-02",
+      "group": "GLASS",
+      "x": 3.9800000000000004,
+      "z": 18.6,
+      "yaw": 85,
+      "width": 0.7,
+      "height": 1.2,
+      "bottom": 0.18,
+      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。"
+    },
+    {
+      "id": "ga-03",
+      "catalogId": "ga-03",
+      "group": "GLASS",
+      "x": 4.0200000000000005,
+      "z": 20.8,
+      "yaw": 95,
+      "width": 0.6,
+      "height": 1.4,
+      "bottom": 0.18,
+      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。"
+    },
+    {
+      "id": "ga-04",
+      "catalogId": "ga-04",
+      "group": "GLASS",
+      "x": 3.9800000000000004,
+      "z": 22.2,
+      "yaw": 85,
+      "width": 0.7,
+      "height": 1.6,
+      "bottom": 0.18,
+      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。"
+    },
+    {
+      "id": "ga-05",
+      "catalogId": "ga-05",
+      "group": "GLASS",
+      "x": 4.0200000000000005,
+      "z": 25.4,
+      "yaw": 95,
+      "width": 0.6,
+      "height": 1.65,
+      "bottom": 0.18,
+      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。"
+    },
+    {
+      "id": "ga-06",
+      "catalogId": "ga-06",
+      "group": "GLASS",
+      "x": 3.9800000000000004,
+      "z": 26.8,
+      "yaw": 85,
+      "width": 0.6,
+      "height": 1.8,
+      "bottom": 0.18,
+      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。"
+    }
+  ],
+  "poems": [
+    {
+      "id": "poem-1",
+      "text": "我在以后看见他们",
+      "position": [
+        1.9000000000000004,
+        0.009,
+        2.45
+      ],
+      "rotationY": 0,
+      "fontSize": 0.065,
+      "width": 1.8,
+      "color": "#646862",
+      "surface": "floor"
+    },
+    {
+      "id": "poem-2",
+      "text": "迎着风谈论明天",
+      "position": [
+        2.0500000000000003,
+        0.009,
+        5.55
+      ],
+      "rotationY": 7,
+      "fontSize": 0.065,
+      "width": 1.75,
+      "color": "#646862",
+      "surface": "floor"
+    },
+    {
+      "id": "poem-3",
+      "text": "群山还未合拢",
+      "runs": [
+        {
+          "text": "群山",
+          "weight": 600,
+          "fontScale": 1.25
+        },
+        {
+          "text": "还未合拢",
+          "weight": 400,
+          "fontScale": 1
+        }
+      ],
+      "position": [
+        2.1500000000000004,
+        0.009,
+        6.75
+      ],
+      "rotationY": 0,
+      "fontSize": 0.065,
+      "width": 1.55,
+      "color": "#646862",
+      "surface": "floor"
+    },
+    {
+      "id": "poem-4",
+      "text": "河流带有未命名的方向，\n从每个人流过。",
+      "position": [
+        1.8000000000000003,
+        0.009,
+        8.85
+      ],
+      "rotationY": 12,
+      "fontSize": 0.065,
+      "width": 1.95,
+      "color": "#646862",
+      "surface": "floor"
+    },
+    {
+      "id": "poem-5",
+      "text": "已经发生的世界",
+      "position": [
+        2.3500000000000005,
+        0.009,
+        20.25
+      ],
+      "rotationY": 0,
+      "fontSize": 0.065,
+      "width": 1.7,
+      "color": "#646862",
+      "surface": "floor"
+    },
+    {
+      "id": "poem-6",
+      "text": "横亘",
+      "position": [
+        2.0200000000000005,
+        0.009,
+        23.2
+      ],
+      "rotationY": 20,
+      "fontSize": 0.115,
+      "width": 0.75,
+      "color": "#5e645c",
+      "surface": "floor"
+    },
+    {
+      "id": "poem-7",
+      "text": "在我与他们之间",
+      "position": [
+        2.2,
+        0.009,
+        25.15
+      ],
+      "rotationY": 0,
+      "fontSize": 0.065,
+      "width": 1.7,
+      "color": "#646862",
+      "surface": "floor"
+    },
+    {
+      "id": "poem-8",
+      "text": "他们再也看不见我",
+      "runs": [
+        {
+          "text": "他们",
+          "weight": 700,
+          "fontScale": 1
+        },
+        {
+          "text": "再也看不见我",
+          "weight": 300,
+          "fontScale": 1
+        }
+      ],
+      "position": [
+        1.8500000000000005,
+        0.009,
+        28.75
+      ],
+      "rotationY": 0,
+      "fontSize": 0.065,
+      "width": 1.85,
+      "color": "#646862",
+      "surface": "floor"
+    }
+  ],
+  "focusGroups": [
+    {
+      "id": "G2",
+      "label": "入口：19 · 01 · 02 · 17",
+      "workIds": [
+        "once_19",
+        "once_01",
+        "once_02",
+        "once_17"
+      ],
+      "side": "left",
+      "z": 3.7479999999999998
+    },
+    {
+      "id": "P1",
+      "label": "突出墙1：09 / 05",
+      "workIds": [
+        "once_09",
+        "once_05"
+      ],
+      "side": "left",
+      "z": 5.725
+    },
+    {
+      "id": "G3",
+      "label": "12 · 21",
+      "workIds": [
+        "once_12",
+        "once_21"
+      ],
+      "side": "left",
+      "z": 8.1
+    },
+    {
+      "id": "G4",
+      "label": "24 · 20",
+      "workIds": [
+        "once_24",
+        "once_20"
+      ],
+      "side": "left",
+      "z": 11.130500000000001
+    },
+    {
+      "id": "G5",
+      "label": "27 · 13 · 36",
+      "workIds": [
+        "once_27",
+        "once_13",
+        "once_36"
+      ],
+      "side": "left",
+      "z": 14.4215
+    },
+    {
+      "id": "G6",
+      "label": "35 · 18 · 28",
+      "workIds": [
+        "once_35",
+        "once_18",
+        "once_28"
+      ],
+      "side": "left",
+      "z": 17.7425
+    },
+    {
+      "id": "G7",
+      "label": "33 · 16 · 34",
+      "workIds": [
+        "once_33",
+        "once_16",
+        "once_34"
+      ],
+      "side": "left",
+      "z": 21.1405
+    },
+    {
+      "id": "G8",
+      "label": "突出墙2：11 · 08 / 25 · 14",
+      "workIds": [
+        "once_11",
+        "once_08",
+        "once_25",
+        "once_14"
+      ],
+      "side": "left",
+      "z": 23.153
+    },
+    {
+      "id": "G9",
+      "label": "04 · 26 · 23",
+      "workIds": [
+        "once_04",
+        "once_26",
+        "once_23"
+      ],
+      "side": "left",
+      "z": 25.11
+    },
+    {
+      "id": "G10",
+      "label": "31 · 10 · 22 · 30 · 32",
+      "workIds": [
+        "once_31",
+        "once_10",
+        "once_22",
+        "once_30",
+        "once_32"
+      ],
+      "side": "left",
+      "z": 28.475
+    },
+    {
+      "id": "YQZC",
+      "label": "一切正常 · 四幅大图",
+      "workIds": [
+        "yqzc-01",
+        "yqzc-02",
+        "yqzc-03",
+        "yqzc-04"
+      ],
+      "side": "right",
+      "z": 8.7
+    },
+    {
+      "id": "GLASS",
+      "label": "growing again · 六块玻璃",
+      "workIds": [
+        "ga-01",
+        "ga-02",
+        "ga-03",
+        "ga-04",
+        "ga-05",
+        "ga-06"
+      ],
+      "side": "right",
+      "z": 20.8
+    },
+    {
+      "id": "VESSEL",
+      "label": "VESSEL · 行为影像",
+      "workIds": [
+        "performance_vessel"
+      ],
+      "side": "right",
+      "z": 29.4
+    }
+  ],
+  "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
+  "notes": [
+    "左侧25幅主墙＋6幅突出墙，共31幅；保留旧展左右与上下组合关系，组间一般75cm净空。",
+    "突出墙净挑出1.2m，当前估计4.4m净宽下端部主通道约3.2m；墙厚与通道均非施工实测。",
+    "玻璃分三对、两对之间留更长间隔，并避开突出墙正对处。支撑形式待设计。",
+    "诗先沿用上一场文本，只试验位置与疏密；后续继续推敲墙面、地面及玻璃之间的文字关系。",
+    "四幅大图均暂按1.6m画面宽等比模拟，04比例保持原图，实物外尺寸待核。",
+    "前言仅标位置，不沿用旧展日期或捏造本次正文。",
+    "侧别以站在A口面向B口为准；左侧主墙略长，但未经实测的额外长度不计入本轮排布预算。"
+  ]
+}

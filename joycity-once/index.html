@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#eeede9">
-  <title>大悦城 ONCE 个展项目 · 空间底模</title>
-  <link rel="stylesheet" href="style.css?v=20261103-r08">
+  <title>大悦城 ONCE 个展项目 · 第一次试排</title>
+  <link rel="stylesheet" href="style.css?v=20261104-trial01">
   <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 </head>
 <body>
   <header class="header">
-    <div><h1>大悦城 ONCE<span>空间底模</span></h1><p>现状结构清空展示物 · 空间底稿</p></div>
+    <div><h1>大悦城 ONCE<span>第一次试排</span></h1><p>保留旧展组合，拉开组间距离</p></div>
     <div class="measurements" aria-label="空间尺寸与当前估值"><strong id="length-value">31.2 m</strong><span>右墙</span><strong id="width-value">约4.4 m</strong><span>宽</span><strong>2.95 m</strong><span>墙高</span></div>
   </header>
   <main id="workspace">
@@ -19,13 +19,17 @@
       <button data-view="overview" aria-pressed="true">整体</button>
       <button data-view="plan" aria-pressed="false">平面</button>
       <button data-view="portal" aria-pressed="false">门外</button>
-      <button data-view="entry" aria-pressed="false">A口看向B口</button>
-      <button data-view="reverse" aria-pressed="false">B口看向A口</button>
+      <button data-view="entry" aria-label="A口看向B口" aria-pressed="false"><span class="desktop-view-label" aria-hidden="true">A口看向B口</span><span class="mobile-view-label" aria-hidden="true">A→B</span></button>
+      <button data-view="reverse" aria-label="B口看向A口" aria-pressed="false"><span class="desktop-view-label" aria-hidden="true">B口看向A口</span><span class="mobile-view-label" aria-hidden="true">B→A</span></button>
     </nav>
+    <div class="trial-tools" aria-label="试排查看">
+      <div class="trial-mode"><button id="trial-on" aria-pressed="true">试排01</button><button id="trial-off" aria-pressed="false">空场</button></div>
+      <label class="focus-select"><span>看这一组</span><select id="focus-group" aria-label="看这一组"><option value="">选择作品组合</option></select></label>
+    </div>
     <button id="details-button" aria-expanded="false" aria-controls="details-panel">图层与依据</button>
     <button id="catalog-button" aria-expanded="false" aria-controls="catalog-panel">作品库</button>
-    <aside id="catalog-panel" hidden aria-label="待布置作品库">
-      <div class="panel-title"><h2>待布置作品</h2><button id="close-catalog" aria-label="收起作品库">收起</button></div>
+    <aside id="catalog-panel" hidden aria-label="试排作品库">
+      <div class="panel-title"><h2>作品与试排位置</h2><button id="close-catalog" aria-label="收起作品库">收起</button></div>
       <p id="catalog-summary">正在读取作品库…</p>
       <label class="catalog-select-label" for="catalog-filter">作品分组</label>
       <select id="catalog-filter" aria-label="作品分组"></select>
@@ -35,6 +39,7 @@
     </aside>
     <aside id="details-panel" hidden>
       <div class="panel-title"><h2>空间底稿</h2><button id="close-panel" aria-label="收起图层与依据">收起</button></div>
+      <section id="trial-description"><h3>第一版的空间关系</h3><p>左侧25幅主墙＋6幅分到两片突出墙；保留原展的上下呼应，组合之间拉开。两片墙各挑出1.2米，端部通道暂约3.2米。</p><p>右侧四幅大图、三对玻璃板与VESSEL分段展开。装裱、玻璃支撑及地诗均为试排，位置和形式继续调整。</p></section>
       <p class="panel-intro">从A口朝B口看，右侧较短墙可用长31.2米，左墙更长，增量待测。可用墙高2.95米。现有展墙内净宽暂估约4.4米；拆墙后的净宽待测。射灯高于2.95米，本稿轨层暂用3.30米示意，实际标高和总数待测。</p>
       <fieldset><legend>显示图层</legend>
         <label><input type="checkbox" id="cutaway" checked>剖开近侧墙</label>
@@ -59,8 +64,8 @@
   <footer>
     <p id="hint">拖动旋转 · 滚轮缩放 · 右键平移</p>
     <div id="walk-controls" hidden><label for="position">纵向位置</label><input id="position" type="range" min="0.3" max="30.9" step="0.1" value="0.9"><output id="position-value" for="position">0.9 m</output></div>
-    <span class="footer-note">60 cm地砖 · 可用墙高2.95 m · 上层射灯示意</span>
+    <span class="footer-note" id="image-status">第一版试排 · 正在载入作品图像</span>
   </footer>
-  <script type="module" src="app.js?v=20261103-r08"></script>
+  <script type="module" src="app.js?v=20261104-trial01"></script>
 </body>
 </html>
