@@ -26,4 +26,4 @@ footer{min-height:65px;display:flex;justify-content:space-between;align-items:ce
 
 .trial-mode #baseline-compare{display:inline-flex;align-items:center;padding:9px 11px;min-height:42px;color:#314d3a;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;font-size:12px}
 
-@media(max-width:760px){.trial-mode{width:max-content;max-width:100%}}
+@media(max-width:760px){.trial-mode{width:max-content;max-width:100%}#catalog-button,#details-button{top:168px}#catalog-button{left:14px;right:auto}#details-button{left:104px;right:auto}#catalog-panel,#details-panel{top:220px;max-height:calc(100% - 242px)}}
