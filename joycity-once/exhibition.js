@@ -67,14 +67,25 @@ function textCanvas(text, {fontPixels = 72, color = '#575951', padding = 12, lin
   const measured = Math.max(1, ...lineWidths);
   // Keep the supplied line breaks. A uniform raster scale limits texture size;
   // it does not change the text or its physical aspect ratio.
-  const rawWidth = measured + padding * 2;
-  const rawHeight = lineScales.reduce((height, scale) => height + fontPixels * lineHeight * scale, 0) + padding * 2;
-  const rasterScale = Math.min(1, 4096 / rawWidth, 4096 / rawHeight);
-  canvas.width = Math.max(2, Math.ceil(rawWidth * rasterScale));
-  canvas.height = Math.max(2, Math.ceil(rawHeight * rasterScale));
-  context.scale(rasterScale, rasterScale);
-  context.fillStyle = color;
+  const logicalWidth = measured + padding * 2;
+  const logicalHeight = lineScales.reduce((height, scale) => height + fontPixels * lineHeight * scale, 0) + padding * 2;
+  // Tight author line spacing can place a punctuation descender outside the
+  // typographic advance box. Expand transparent pixels around actual ink,
+  // retaining the original logical box for containment and spatial anchoring.
+  const draws = [];
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
   context.textBaseline = 'alphabetic';
+  const collect = (text, x, baseline, run) => {
+    context.font = fontFor(run);
+    const metrics = context.measureText(text);
+    if (text) {
+      minX = Math.min(minX, x - finite(metrics.actualBoundingBoxLeft, 0));
+      maxX = Math.max(maxX, x + finite(metrics.actualBoundingBoxRight, metrics.width));
+      minY = Math.min(minY, baseline - finite(metrics.actualBoundingBoxAscent, 0));
+      maxY = Math.max(maxY, baseline + finite(metrics.actualBoundingBoxDescent, 0));
+    }
+    draws.push({text, x, baseline, run});
+  };
   let y = padding;
   lines.forEach((segments, index) => {
     const lineAlign = segments.find(run => run.align)?.align || align;
@@ -85,16 +96,35 @@ function textCanvas(text, {fontPixels = 72, color = '#575951', padding = 12, lin
       if (trackingPixels && [...run.text].length > 1) {
         let cursor = x;
         for (const character of [...run.text]) {
-          context.fillText(character, cursor, baseline);
+          collect(character, cursor, baseline, run);
           cursor += context.measureText(character).width + trackingPixels;
         }
-      } else context.fillText(run.text, x, baseline);
+      } else collect(run.text, x, baseline, run);
       x += run.width;
       if (run.text && segments.slice(segments.indexOf(run) + 1).some(next => next.text)) x += trackingPixels;
     }
     y += fontPixels * lineHeight * lineScales[index];
   });
-  return {canvas, rawWidth, rawHeight, fontPixels};
+  const extraLeft = minX < 1 ? Math.max(0, Math.ceil(2 - minX)) : 0;
+  const extraTop = minY < 1 ? Math.max(0, Math.ceil(2 - minY)) : 0;
+  const extraRight = maxX > logicalWidth - 1 ? Math.max(0, Math.ceil(maxX + 2 - logicalWidth)) : 0;
+  const extraBottom = maxY > logicalHeight - 1 ? Math.max(0, Math.ceil(maxY + 2 - logicalHeight)) : 0;
+  const rawWidth = logicalWidth + extraLeft + extraRight;
+  const rawHeight = logicalHeight + extraTop + extraBottom;
+  const rasterScale = Math.min(1, 4096 / rawWidth, 4096 / rawHeight);
+  canvas.width = Math.max(2, Math.ceil(rawWidth * rasterScale));
+  canvas.height = Math.max(2, Math.ceil(rawHeight * rasterScale));
+  context.scale(rasterScale, rasterScale);
+  context.fillStyle = color;
+  context.textBaseline = 'alphabetic';
+  for (const draw of draws) {
+    context.font = fontFor(draw.run);
+    context.fillText(draw.text, draw.x + extraLeft, draw.baseline + extraTop);
+  }
+  return {canvas, rawWidth, rawHeight, logicalWidth, logicalHeight, fontPixels,
+    centerOffsetX: (extraRight - extraLeft) / 2,
+    centerOffsetY: (extraTop - extraBottom) / 2,
+    inkPadding: {left: extraLeft, top: extraTop, right: extraRight, bottom: extraBottom}};
 }
 
 // Deterministic, low-poly material markers. Broad folded ribbons, alternating
@@ -563,15 +593,16 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       const fontSize = positive(record.fontSize, .045);
       const raster = textCanvas(record.text || '', {fontPixels: 96, padding: 5, color: record.color || '#42473e', runs: textRuns(record), lineHeight: finite(record.fontLineHeight, finite(record.lineHeight, 1.6)), fontFamily: textFamily(record), weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96});
       const widthScale = THREE.MathUtils.clamp(finite(record.fontWidthScale, 1), .001, 1);
-      const naturalWidth = raster.rawWidth / raster.fontPixels * fontSize * widthScale, naturalHeight = raster.rawHeight / raster.fontPixels * fontSize;
+      const naturalWidth = raster.logicalWidth / raster.fontPixels * fontSize * widthScale, naturalHeight = raster.logicalHeight / raster.fontPixels * fontSize;
       const contain = Math.min(1, Math.max(.001, width - .12) / naturalWidth, record.align === 'center' ? Math.max(.001, height - .04) / naturalHeight : Infinity);
-      const textWidth = naturalWidth * contain, textHeight = naturalHeight * contain;
+      const textWidth = raster.rawWidth / raster.fontPixels * fontSize * widthScale * contain, textHeight = raster.rawHeight / raster.fontPixels * fontSize * contain;
+      const centerOffsetX = raster.centerOffsetX / raster.fontPixels * fontSize * widthScale * contain, centerOffsetY = raster.centerOffsetY / raster.fontPixels * fontSize * contain;
       const material = new THREE.MeshBasicMaterial({map: canvasTexture(raster.canvas), transparent: true, side: THREE.DoubleSide, toneMapped: false, depthWrite: false});
       const text = plane(work, '前言原文_不增写内容', textWidth, textHeight, material, .009);
-      text.position.x = record.align === 'center' ? 0 : record.align === 'right' ? width / 2 - .06 - textWidth / 2 : -width / 2 + .06 + textWidth / 2;
-      text.position.y = record.align === 'center' ? 0 : height / 2 - .09 - textHeight / 2;
+      text.position.x = (record.align === 'center' ? 0 : record.align === 'right' ? width / 2 - .06 - naturalWidth * contain / 2 : -width / 2 + .06 + naturalWidth * contain / 2) + centerOffsetX;
+      text.position.y = (record.align === 'center' ? 0 : height / 2 - .09 - naturalHeight * contain / 2) + centerOffsetY;
       text.userData.requestedFontSize = fontSize;
-      Object.assign(text.userData, {effectiveFontSize: fontSize * contain, fontWidthScale: widthScale, uniformContainScale: contain, effectiveEmWidth: fontSize * widthScale * contain, physicalWidth: textWidth, physicalHeight: textHeight});
+      Object.assign(text.userData, {effectiveFontSize: fontSize * contain, fontWidthScale: widthScale, uniformContainScale: contain, effectiveEmWidth: fontSize * widthScale * contain, physicalWidth: textWidth, physicalHeight: textHeight, inkPadding: raster.inkPadding, glyphCenterCompensation: [centerOffsetX, centerOffsetY]});
       Object.assign(text.userData, {width: textWidth, height: textHeight});
       work.userData.textDimensions = {...text.userData};
       if (text.userData.effectiveFontSize < fontSize * .99) stats.textScales.push({id: record.id, requested: fontSize, effective: text.userData.effectiveFontSize});
@@ -732,9 +763,10 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     const fontSize = positive(record.fontSize, .06);
     const raster = textCanvas(actualText, {fontPixels: 96, color: record.color || '#666b58', padding: 5, lineHeight: finite(record.fontLineHeight, finite(record.lineHeight, 1.45)), runs, fontFamily: textFamily(record), weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96});
     const widthScale = THREE.MathUtils.clamp(finite(record.fontWidthScale, 1), .001, 1);
-    const naturalWidth = raster.rawWidth / raster.fontPixels * fontSize * widthScale;
-    const width = Math.min(naturalWidth, positive(record.width, naturalWidth));
-    const contain = width / naturalWidth, height = raster.rawHeight / raster.fontPixels * fontSize * contain;
+    const naturalWidth = raster.logicalWidth / raster.fontPixels * fontSize * widthScale;
+    const contain = Math.min(naturalWidth, positive(record.width, naturalWidth)) / naturalWidth;
+    const width = raster.rawWidth / raster.fontPixels * fontSize * widthScale * contain, height = raster.rawHeight / raster.fontPixels * fontSize * contain;
+    const centerOffsetX = raster.centerOffsetX / raster.fontPixels * fontSize * widthScale * contain, centerOffsetY = raster.centerOffsetY / raster.fontPixels * fontSize * contain;
     const material = new THREE.MeshBasicMaterial({
       map: canvasTexture(raster.canvas), transparent: true, side: THREE.DoubleSide,
       toneMapped: false, depthWrite: false, polygonOffset: true,
@@ -763,9 +795,10 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       kind: record.surface === 'wall' ? 'wallPoem' : 'floorPoem', canonicalPosition: position,
       textScreenId: record.textScreenId || null,
       canonicalNormal: record.surface === 'wall' ? [Math.sin(angle), Math.cos(angle)] : null,
-      requestedFontSize: fontSize, effectiveFontSize: fontSize * contain, fontWidthScale: widthScale, uniformContainScale: contain, effectiveEmWidth: fontSize * widthScale * contain, physicalWidth: width, physicalHeight: height, width, height};
-    if (width < naturalWidth * .99) stats.textScales.push({id: record.id, requested: fontSize, effective: textGroup.userData.effectiveFontSize});
-    plane(textGroup, '诗句_保留原文换行', width, height, material, record.surface === 'floor' ? 0 : .003);
+      requestedFontSize: fontSize, effectiveFontSize: fontSize * contain, fontWidthScale: widthScale, uniformContainScale: contain, effectiveEmWidth: fontSize * widthScale * contain, physicalWidth: width, physicalHeight: height, width, height, inkPadding: raster.inkPadding, glyphCenterCompensation: [centerOffsetX, centerOffsetY]};
+    if (contain < .99) stats.textScales.push({id: record.id, requested: fontSize, effective: textGroup.userData.effectiveFontSize});
+    const text = plane(textGroup, '诗句_保留原文换行', width, height, material, record.surface === 'floor' ? 0 : .003);
+    text.position.x = centerOffsetX; text.position.y = centerOffsetY;
     poemGroups.set(record.id, textGroup);
     stats.poems++;
   }

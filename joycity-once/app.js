@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { installCatalog } from './catalog.js?v=20261104-trial04';
-import { buildExhibition } from './exhibition.js?v=20261104-trial04';
+import { buildExhibition } from './exhibition.js?v=20261104-trial04-ink2';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
