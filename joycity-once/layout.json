@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "revision": "20261104-trial02",
-  "title": "第二次试排 · 保留完整空墙",
-  "status": "second_trial_not_installation_plan",
+  "revision": "20261104-trial03",
+  "title": "第三次试排 · 透明文字与疏松展墙",
+  "status": "third_trial_not_installation_plan",
   "date": "2026-11-04",
   "sourceLayout": "ONCE v117 的作品组合与相邻关系；不修改旧展",
-  "principle": "先保住少量已有框作品与空墙的关系；主墙15件作为骨架，16件转到三片侧面。照片、文字、金属斜线与局部色域共同组织观看。",
+  "principle": "两片疏松白墙承载摄影，两片沿墙的透明屏承载诗；读字仍能看见其后的空墙、作品与行人。",
   "partitions": [
     {
       "id": "early",
@@ -14,22 +14,8 @@
         6.2
       ],
       "b": [
-        1.6,
+        2.0,
         6.2
-      ],
-      "height": 2.6,
-      "thickness": 0.12,
-      "status": "proposed"
-    },
-    {
-      "id": "middle",
-      "a": [
-        0,
-        18
-      ],
-      "b": [
-        1.8,
-        18
       ],
       "height": 2.6,
       "thickness": 0.12,
@@ -42,7 +28,7 @@
         26
       ],
       "b": [
-        1.5,
+        1.8,
         26
       ],
       "height": 2.6,
@@ -86,13 +72,30 @@
       "kind": "existing"
     },
     {
+      "id": "entry-sign",
+      "a": [
+        1.9886223059171826,
+        -0.6461267057759138
+      ],
+      "b": [
+        3.611377694082817,
+        -0.21131071000367896
+      ],
+      "normal": [
+        0.25881904510252074,
+        -0.9659258262890683
+      ],
+      "height": 2.95,
+      "kind": "proposed-sign"
+    },
+    {
       "id": "early-A",
       "a": [
         0,
         6.140000000000001
       ],
       "b": [
-        1.6,
+        2.0,
         6.140000000000001
       ],
       "normal": [
@@ -109,42 +112,8 @@
         6.26
       ],
       "b": [
-        1.6,
+        2.0,
         6.26
-      ],
-      "normal": [
-        0,
-        1
-      ],
-      "height": 2.6,
-      "kind": "partition"
-    },
-    {
-      "id": "middle-A",
-      "a": [
-        0,
-        17.94
-      ],
-      "b": [
-        1.8,
-        17.94
-      ],
-      "normal": [
-        0,
-        -1
-      ],
-      "height": 2.6,
-      "kind": "partition"
-    },
-    {
-      "id": "middle-B",
-      "a": [
-        0,
-        18.06
-      ],
-      "b": [
-        1.8,
-        18.06
       ],
       "normal": [
         0,
@@ -160,7 +129,7 @@
         25.94
       ],
       "b": [
-        1.5,
+        1.8,
         25.94
       ],
       "normal": [
@@ -177,7 +146,7 @@
         26.06
       ],
       "b": [
-        1.5,
+        1.8,
         26.06
       ],
       "normal": [
@@ -186,23 +155,6 @@
       ],
       "height": 2.6,
       "kind": "partition"
-    },
-    {
-      "id": "entry-sign",
-      "a": [
-        1.9886223059171826,
-        -0.6461267057759138
-      ],
-      "b": [
-        3.611377694082817,
-        -0.21131071000367896
-      ],
-      "normal": [
-        0.25881904510252074,
-        -0.9659258262890683
-      ],
-      "height": 2.95,
-      "kind": "proposed-sign"
     }
   ],
   "works": [
@@ -232,8 +184,8 @@
       "group": "early-A",
       "type": "photo",
       "surfaceId": "early-A",
-      "along": 1.13,
-      "centerY": 1.47,
+      "along": 1.4,
+      "centerY": 1.16,
       "imageWidth": 0.54,
       "imageHeight": 0.480113,
       "outerWidth": 0.636,
@@ -251,8 +203,8 @@
       "group": "late-A",
       "type": "photo",
       "surfaceId": "late-A",
-      "along": 0.34,
-      "centerY": 1.1,
+      "along": 0.55,
+      "centerY": 1.12,
       "imageWidth": 0.4,
       "imageHeight": 0.32511,
       "outerWidth": 0.496,
@@ -271,7 +223,7 @@
       "type": "photo",
       "surfaceId": "once-main",
       "along": 6.95,
-      "centerY": 1.5,
+      "centerY": 1.65,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.324,
@@ -305,11 +257,11 @@
       "imageUrl": "library/spatial_once_09.jpg",
       "id": "once_09",
       "catalogId": "once_09",
-      "group": "early-A",
+      "group": "main",
       "type": "photo",
-      "surfaceId": "early-A",
-      "along": 0.48,
-      "centerY": 0.93,
+      "surfaceId": "once-main",
+      "along": 2.1,
+      "centerY": 1.15,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.396,
@@ -327,8 +279,8 @@
       "group": "late-B",
       "type": "photo",
       "surfaceId": "late-B",
-      "along": 0.3,
-      "centerY": 2.13,
+      "along": 0.4,
+      "centerY": 1.97,
       "imageWidth": 0.3,
       "imageHeight": 0.23793699577000002,
       "outerWidth": 0.396,
@@ -365,8 +317,8 @@
       "group": "early-B",
       "type": "photo",
       "surfaceId": "early-B",
-      "along": 0.4,
-      "centerY": 1.45,
+      "along": 0.55,
+      "centerY": 1.15,
       "imageWidth": 0.42,
       "imageHeight": 0.341918,
       "outerWidth": 0.516,
@@ -381,11 +333,11 @@
       "imageUrl": "library/spatial_once_13.jpg",
       "id": "once_13",
       "catalogId": "once_13",
-      "group": "middle-A",
+      "group": "main",
       "type": "photo",
-      "surfaceId": "middle-A",
-      "along": 0.55,
-      "centerY": 1.08,
+      "surfaceId": "once-main",
+      "along": 7.5,
+      "centerY": 0.9,
       "imageWidth": 0.8,
       "imageHeight": 0.64691444444,
       "outerWidth": 0.896,
@@ -403,8 +355,8 @@
       "group": "early-B",
       "type": "photo",
       "surfaceId": "early-B",
-      "along": 1.14,
-      "centerY": 1.95,
+      "along": 1.42,
+      "centerY": 1.8,
       "imageWidth": 0.46,
       "imageHeight": 0.373281,
       "outerWidth": 0.556,
@@ -422,7 +374,7 @@
       "group": "main",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 20,
+      "along": 20.1,
       "centerY": 1.25,
       "imageWidth": 0.85,
       "imageHeight": 0.7,
@@ -457,11 +409,11 @@
       "imageUrl": "library/spatial_once_18.jpg",
       "id": "once_18",
       "catalogId": "once_18",
-      "group": "middle-A",
+      "group": "main",
       "type": "photo",
-      "surfaceId": "middle-A",
-      "along": 1.35,
-      "centerY": 0.92,
+      "surfaceId": "once-main",
+      "along": 17.0,
+      "centerY": 0.95,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.396,
@@ -479,8 +431,8 @@
       "group": "early-A",
       "type": "photo",
       "surfaceId": "early-A",
-      "along": 0.42,
-      "centerY": 2.1,
+      "along": 0.6,
+      "centerY": 1.82,
       "imageWidth": 0.42,
       "imageHeight": 0.32220999999999994,
       "outerWidth": 0.516,
@@ -536,8 +488,8 @@
       "group": "late-A",
       "type": "photo",
       "surfaceId": "late-A",
-      "along": 0.83,
-      "centerY": 1.97,
+      "along": 1.25,
+      "centerY": 1.9,
       "imageWidth": 0.54,
       "imageHeight": 0.42472299999999996,
       "outerWidth": 0.636,
@@ -552,11 +504,11 @@
       "imageUrl": "library/spatial_once_23.jpg",
       "id": "once_23",
       "catalogId": "once_23",
-      "group": "late-A",
+      "group": "main",
       "type": "photo",
-      "surfaceId": "late-A",
-      "along": 1.14,
-      "centerY": 0.95,
+      "surfaceId": "once-main",
+      "along": 25.15,
+      "centerY": 0.75,
       "imageWidth": 0.42,
       "imageHeight": 0.33067100000000005,
       "outerWidth": 0.516,
@@ -590,11 +542,11 @@
       "imageUrl": "library/spatial_once_25.jpg",
       "id": "once_25",
       "catalogId": "once_25",
-      "group": "early-B",
+      "group": "main",
       "type": "photo",
-      "surfaceId": "early-B",
-      "along": 1,
-      "centerY": 0.9,
+      "surfaceId": "once-main",
+      "along": 5.05,
+      "centerY": 1.0,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.396,
@@ -669,8 +621,8 @@
       "group": "late-B",
       "type": "photo",
       "surfaceId": "late-B",
-      "along": 0.99,
-      "centerY": 1.35,
+      "along": 1.15,
+      "centerY": 1.15,
       "imageWidth": 0.62,
       "imageHeight": 0.509715,
       "outerWidth": 0.716,
@@ -723,11 +675,11 @@
       "imageUrl": "library/spatial_once_33.jpg",
       "id": "once_33",
       "catalogId": "once_33",
-      "group": "middle-B",
+      "group": "main",
       "type": "photo",
-      "surfaceId": "middle-B",
-      "along": 1.43,
-      "centerY": 2.16,
+      "surfaceId": "once-main",
+      "along": 29.9,
+      "centerY": 1.1,
       "imageWidth": 0.45299999999999996,
       "imageHeight": 0.36633229167000003,
       "outerWidth": 0.5489999999999999,
@@ -761,11 +713,11 @@
       "imageUrl": "library/spatial_once_35.jpg",
       "id": "once_35",
       "catalogId": "once_35",
-      "group": "middle-B",
+      "group": "main",
       "type": "photo",
-      "surfaceId": "middle-B",
-      "along": 0.64,
-      "centerY": 1.3,
+      "surfaceId": "once-main",
+      "along": 18.8,
+      "centerY": 0.99,
       "imageWidth": 1.0,
       "imageHeight": 0.805132,
       "outerWidth": 1.096,
@@ -780,11 +732,11 @@
       "imageUrl": "library/spatial_once_36.jpg",
       "id": "once_36",
       "catalogId": "once_36",
-      "group": "middle-A",
+      "group": "main",
       "type": "photo",
-      "surfaceId": "middle-A",
-      "along": 1.25,
-      "centerY": 1.98,
+      "surfaceId": "once-main",
+      "along": 10.9,
+      "centerY": 2.18,
       "imageWidth": 0.8,
       "imageHeight": 0.6356429473699999,
       "outerWidth": 0.896,
@@ -1014,149 +966,289 @@
   ],
   "poems": [
     {
-      "id": "poem-1",
-      "text": "我在以后看见他们",
+      "id": "invitation",
+      "text": "脱下你的鞋子吧，\n我们要穿过溪流了。",
       "position": [
-        2.25,
+        2.15,
         0.009,
-        2.62
+        2.45
       ],
-      "rotationY": -30.579227751638417,
-      "fontSize": 0.075,
-      "width": 1.75,
-      "color": "#62685f",
+      "fontSize": 0.1,
+      "width": 1.7,
       "surface": "floor",
-      "relationship": "沿入口金属斜线，朝第一组背影照片展开。"
+      "rotationY": -30.5,
+      "weight": 500,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.2,
+      "align": "left"
     },
     {
-      "id": "poem-2",
-      "text": "迎着风谈论明天",
+      "id": "future",
+      "text": "我在以后\n看见他们，",
       "position": [
-        1.4,
-        0.009,
-        5.77
+        0.466,
+        1.97,
+        14.614583333333332
       ],
-      "rotationY": 7,
-      "fontSize": 0.065,
-      "width": 1.5,
-      "color": "#62685f",
-      "surface": "floor",
-      "relationship": "进入第一片突出墙前。"
+      "fontSize": 0.28,
+      "width": 1.55,
+      "surface": "wall",
+      "rotationY": 90,
+      "weight": 700,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.12,
+      "align": "left",
+      "textScreenId": "poetry-screen-1"
     },
     {
-      "id": "poem-3",
-      "text": "群山还未合拢",
-      "runs": [
-        {
-          "text": "群山",
-          "weight": 600,
-          "fontScale": 1.25
-        },
-        {
-          "text": "还未合拢",
-          "weight": 400,
-          "fontScale": 1
-        }
+      "id": "tomorrow",
+      "text": "迎着风谈论明天。",
+      "position": [
+        0.466,
+        1.12,
+        14.365989583333333
       ],
+      "fontSize": 0.115,
+      "width": 1.65,
+      "surface": "wall",
+      "rotationY": 90,
+      "weight": 500,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.2,
+      "align": "left",
+      "textScreenId": "poetry-screen-1"
+    },
+    {
+      "id": "mountains",
+      "text": "群山还未合拢，",
       "position": [
         2.05,
         0.009,
         9.85
       ],
-      "rotationY": 0,
-      "fontSize": 0.065,
+      "fontSize": 0.105,
       "width": 1.5,
-      "color": "#62685f",
       "surface": "floor",
-      "relationship": "与20号山间水面相邻。"
+      "rotationY": 0,
+      "weight": 600,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.2,
+      "align": "left"
     },
     {
-      "id": "poem-4",
+      "id": "river",
       "text": "河流带有未命名的方向，\n从每个人流过。",
       "position": [
-        1.58,
+        2.15,
         0.009,
-        10.7
+        11.3
       ],
-      "rotationY": -61.69924548838408,
-      "fontSize": 0.065,
-      "width": 1.9,
-      "lineHeight": 1.5,
-      "color": "#576258",
+      "fontSize": 0.085,
+      "width": 2.0,
       "surface": "floor",
-      "relationship": "顺中段金属线的斜向，靠近21号水面与右侧向后的通道。"
+      "rotationY": -61.699,
+      "weight": 500,
+      "color": "#30332f",
+      "fontFamily": "mono",
+      "lineHeight": 1.4,
+      "align": "left"
     },
     {
-      "id": "poem-5",
+      "id": "world",
       "text": "已经发生的世界",
       "position": [
-        1.05,
-        0.009,
-        17.28
+        0.466,
+        1.95,
+        22.618333333333332
       ],
-      "rotationY": 0,
-      "fontSize": 0.065,
-      "width": 1.7,
-      "color": "#62685f",
-      "surface": "floor",
-      "relationship": "与中墙上的横亘、对面在我与他们之间共同组成一句。"
+      "fontSize": 0.16,
+      "width": 1.65,
+      "surface": "wall",
+      "rotationY": 90,
+      "weight": 600,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.2,
+      "align": "left",
+      "textScreenId": "poetry-screen-2"
     },
     {
-      "id": "poem-6",
+      "id": "across",
       "text": "横亘",
       "position": [
-        1.45,
-        0.23,
-        17.932
+        0.466,
+        1.24,
+        22.51291666666667
       ],
-      "rotationY": 180,
-      "fontSize": 0.13,
-      "width": 0.8,
-      "color": "#5b655c",
+      "fontSize": 0.44,
+      "width": 1.25,
       "surface": "wall",
-      "relationship": "落在第二片突出墙正面的墙根；整词保留，不拆散笔画。"
+      "rotationY": 90,
+      "weight": 700,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.08,
+      "align": "left",
+      "textScreenId": "poetry-screen-2"
     },
     {
-      "id": "poem-7",
+      "id": "between",
       "text": "在我与他们之间，",
       "position": [
-        4.367,
-        0.8,
-        19.9
+        0.466,
+        0.73,
+        22.617291666666667
       ],
-      "rotationY": -90,
-      "fontSize": 0.055,
-      "width": 1.6,
-      "color": "#606a60",
+      "fontSize": 0.14,
+      "width": 1.65,
       "surface": "wall",
-      "relationship": "同一句的最后一部分在对面玻璃间隙，引导转身跨看空间。"
+      "rotationY": 90,
+      "weight": 500,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.2,
+      "align": "left",
+      "textScreenId": "poetry-screen-2"
     },
     {
-      "id": "poem-8",
-      "text": "他们再也看不见我",
+      "id": "ending",
+      "text": "他们再也看不见我。",
+      "position": [
+        4.367,
+        2.43,
+        29.6
+      ],
+      "fontSize": 0.14,
+      "width": 1.6,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 500,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.2,
+      "align": "left",
       "runs": [
         {
           "text": "他们",
-          "weight": 700,
-          "fontScale": 1
+          "weight": 700
         },
         {
-          "text": "再也看不见我",
-          "weight": 300,
-          "fontScale": 1
+          "text": "再也看不见我。",
+          "weight": 400
         }
-      ],
+      ]
+    },
+    {
+      "id": "moon",
+      "text": "月亮升起。",
       "position": [
-        2.25,
-        0.009,
-        28.65
+        4.367,
+        2.51,
+        21.6
       ],
-      "rotationY": 0,
-      "fontSize": 0.075,
-      "width": 1.8,
-      "color": "#62685f",
+      "fontSize": 0.28,
+      "width": 1.7,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 700,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.2,
+      "align": "left"
+    },
+    {
+      "id": "tide",
+      "text": "潮水对此一无所知。\n海水越过海水，\n让夜晚走向岸边。",
+      "position": [
+        4.367,
+        1.78,
+        17.7
+      ],
+      "fontSize": 0.095,
+      "width": 1.2,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 500,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.42,
+      "align": "left"
+    },
+    {
+      "id": "islands",
+      "text": "礁石沉默，\n群岛浮出黑暗。\n更远的浪正在赶来。",
+      "position": [
+        4.367,
+        2.02,
+        19.9
+      ],
+      "fontSize": 0.085,
+      "width": 1.25,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 500,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.42,
+      "align": "left"
+    },
+    {
+      "id": "waves",
+      "text": "它聚拢，它抬升，\n它倾覆，它盘旋。",
+      "position": [
+        4.367,
+        2.3,
+        23.45
+      ],
+      "fontSize": 0.11,
+      "width": 1.3,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 600,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.3,
+      "align": "left"
+    },
+    {
+      "id": "stars",
+      "text": "夜空向海面缓缓倾斜，\n群星随波浪起伏。",
+      "position": [
+        4.367,
+        2.34,
+        26.0
+      ],
+      "fontSize": 0.09,
+      "width": 1.4,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 500,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.4,
+      "align": "left"
+    },
+    {
+      "id": "moonlight",
+      "text": "波光，是月亮在海里的迁徙。",
+      "position": [
+        2.4,
+        0.009,
+        27.2
+      ],
+      "fontSize": 0.09,
+      "width": 1.7,
       "surface": "floor",
-      "relationship": "回到泳池与影像之间的观看位置。"
+      "rotationY": -25,
+      "weight": 500,
+      "color": "#30332f",
+      "fontFamily": "sans",
+      "lineHeight": 1.2,
+      "align": "left"
     }
   ],
   "focusGroups": [
@@ -1164,8 +1256,10 @@
       "id": "entry-main",
       "label": "开头：01 · 17",
       "workIds": [
+        "once_09",
         "once_01",
-        "once_17"
+        "once_17",
+        "once_25"
       ],
       "side": "left"
     },
@@ -1173,9 +1267,8 @@
       "id": "early-A",
       "label": "第一片突出墙 · A面",
       "workIds": [
-        "once_02",
-        "once_09",
-        "once_19"
+        "once_19",
+        "once_02"
       ],
       "surfaceId": "early-A",
       "side": "left"
@@ -1185,8 +1278,7 @@
       "label": "第一片突出墙 · B面",
       "workIds": [
         "once_12",
-        "once_14",
-        "once_25"
+        "once_14"
       ],
       "surfaceId": "early-B",
       "side": "left"
@@ -1195,31 +1287,13 @@
       "id": "water",
       "label": "21 · 24 · 20",
       "workIds": [
+        "once_05",
+        "once_13",
         "once_21",
         "once_24",
+        "once_36",
         "once_20"
       ],
-      "side": "left"
-    },
-    {
-      "id": "middle-A",
-      "label": "第二片突出墙 · A面",
-      "workIds": [
-        "once_13",
-        "once_18",
-        "once_36"
-      ],
-      "surfaceId": "middle-A",
-      "side": "left"
-    },
-    {
-      "id": "middle-B",
-      "label": "第二片突出墙 · B面",
-      "workIds": [
-        "once_33",
-        "once_35"
-      ],
-      "surfaceId": "middle-B",
       "side": "left"
     },
     {
@@ -1227,7 +1301,9 @@
       "label": "27 · 28 · 16 · 34",
       "workIds": [
         "once_27",
+        "once_18",
         "once_28",
+        "once_35",
         "once_16",
         "once_34"
       ],
@@ -1235,18 +1311,17 @@
     },
     {
       "id": "late-A",
-      "label": "第三片突出墙 · A面",
+      "label": "第二片突出墙 · A面",
       "workIds": [
         "once_04",
-        "once_22",
-        "once_23"
+        "once_22"
       ],
       "surfaceId": "late-A",
       "side": "left"
     },
     {
       "id": "late-B",
-      "label": "第三片突出墙 · B面",
+      "label": "第二片突出墙 · B面",
       "workIds": [
         "once_10",
         "once_30"
@@ -1258,11 +1333,13 @@
       "id": "ending",
       "label": "26 · 08 · 11 · 31 · 32",
       "workIds": [
+        "once_23",
         "once_26",
         "once_08",
         "once_11",
         "once_31",
-        "once_32"
+        "once_32",
+        "once_33"
       ],
       "side": "left"
     },
@@ -1297,17 +1374,59 @@
         "performance_vessel"
       ],
       "side": "right"
+    },
+    {
+      "id": "spatial-screen-1",
+      "label": "透明文字屏 · 我在以后",
+      "camera": [
+        3.0,
+        1.6,
+        13.1
+      ],
+      "target": [
+        0.45,
+        1.45,
+        14.7
+      ]
+    },
+    {
+      "id": "spatial-screen-2",
+      "label": "透明文字屏 · 横亘",
+      "camera": [
+        3.0,
+        1.6,
+        21.1
+      ],
+      "target": [
+        0.45,
+        1.35,
+        22.85
+      ]
+    },
+    {
+      "id": "spatial-glass-maize",
+      "label": "玻璃 · 枯秸秆 · 月亮",
+      "camera": [
+        1.0,
+        1.6,
+        24.8
+      ],
+      "target": [
+        4.0,
+        1.45,
+        22.6
+      ]
     }
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "左侧主墙只留15件：原14件装裱作品＋01；其余16件分到三片展墙六个侧面，所有画面尺寸保持。",
-    "主墙保留约3.8米与3.23米两段完整空墙，既不放照片，也不以文字或色块填入。局部仍有上下紧组。",
-    "三片墙挑出1.6/1.8/1.5米，在暂估4.4米净宽下分别留约2.8/2.6/2.9米通道；非施工实测。",
-    "右侧玻璃区用一整片浅灰绿色；地面只试一块由真实金属线围成的三角色域，原砖缝和金属条保留。",
-    "地诗沿金属线和转向点安排；已经发生的世界／横亘／在我与他们之间作为同一句跨地面、墙根、对面墙。",
-    "A口门头试用浅色轻质面板与深灰绿展名；正文前言仍为位置占位。",
-    "装裱、支撑、色彩、文字排版和新墙均待讨论；当前只作首次空间方案的进一步试验，不是打印或安装文件。"
+    "撤去中间白墙；两片白墙每面只放两幅，主墙23幅，共31幅摄影原尺寸不变。",
+    "新增两片透明文字屏沿左墙平行人流，基座最外沿约距左墙72.5cm；避免在通道中横插透明障碍。",
+    "两段主墙仍无摄影，透明屏靠在这两段之前；透明屏文字用黑体块面，不仿旧或模仿Fluxus字标。",
+    "两首诗均保留全文，换行和尺度按空间重新组织；入口新句作为可继续修改的写作稿。",
+    "金属条试暖石墨灰，提供原金属灰、暗氧化褐比较；取消旧三角地面色块。",
+    "一组枯玉米秸秆与growing again并列，不将每片玻璃配成花束，不遮图。",
+    "透明屏为体量与动线试排，玻璃、显识与固定构造、秸秆处理仍需场地与制作方核定；不是施工文件。"
   ],
   "environment": {
     "wallFields": [
@@ -1321,29 +1440,28 @@
         "color": "#dfe4dc"
       }
     ],
-    "floorFields": [
-      {
-        "id": "metal-crossing-field",
-        "points": [
-          [
-            0.0,
-            8.0
-          ],
-          [
-            2.211784071850457,
-            12.107599206012933
-          ],
-          [
-            0.0,
-            15.754054
-          ]
-        ],
-        "color": "#bbc4bc",
-        "opacity": 0.6,
-        "note": "仅在现有两条金属线和左墙围成的真实三角内试色；保留砖缝、金属条。"
-      }
-    ],
-    "note": "左侧两处完整空墙不加字、不加色块；灰绿色只作为右侧玻璃段的连续背景。"
+    "floorFields": [],
+    "note": "以金属条自身的色泽组织地面；暂撤三角地面色块，保留原砖面。玻璃区浅灰绿墙为可更改候选。",
+    "metalFinish": {
+      "color": "#68645e",
+      "metalness": 0.32,
+      "roughness": 0.58,
+      "label": "暖石墨灰",
+      "alternatives": [
+        {
+          "label": "原金属灰",
+          "color": "#707870"
+        },
+        {
+          "label": "暖石墨灰",
+          "color": "#68645e"
+        },
+        {
+          "label": "暗氧化褐",
+          "color": "#876653"
+        }
+      ]
+    }
   },
   "blankWallIntervals": [
     {
@@ -1357,6 +1475,100 @@
       "from": 21.296,
       "to": 24.529,
       "length": 3.233
+    }
+  ],
+  "textScreens": [
+    {
+      "id": "poetry-screen-1",
+      "x": 0.45,
+      "z": 14.7,
+      "width": 2.1,
+      "height": 2.2,
+      "bottom": 0.18,
+      "yaw": 90,
+      "normal": [
+        1,
+        0
+      ],
+      "frameColor": "#81877e",
+      "frameFace": 0.012,
+      "baseColor": "#b6b8af",
+      "baseWidth": 2.2,
+      "baseDepth": 0.55,
+      "baseHeight": 0.18,
+      "manifestation": [
+        {
+          "height": 0.95,
+          "bandHeight": 0.035
+        },
+        {
+          "height": 1.58,
+          "bandHeight": 0.035
+        }
+      ],
+      "note": "沿通道平行布置的透明文字屏；全边框＋连续底座作可见边界，夹层安全玻璃及固定构造待核定。"
+    },
+    {
+      "id": "poetry-screen-2",
+      "x": 0.45,
+      "z": 22.85,
+      "width": 2.1,
+      "height": 2.2,
+      "bottom": 0.18,
+      "yaw": 90,
+      "normal": [
+        1,
+        0
+      ],
+      "frameColor": "#81877e",
+      "frameFace": 0.012,
+      "baseColor": "#b6b8af",
+      "baseWidth": 2.2,
+      "baseDepth": 0.55,
+      "baseHeight": 0.18,
+      "manifestation": [
+        {
+          "height": 0.95,
+          "bandHeight": 0.035
+        },
+        {
+          "height": 1.58,
+          "bandHeight": 0.035
+        }
+      ],
+      "note": "沿通道平行布置的透明文字屏；全边框＋连续底座作可见边界，夹层安全玻璃及固定构造待核定。"
+    }
+  ],
+  "botanicalGroups": [
+    {
+      "id": "dried-maize-01",
+      "x": 3.94,
+      "z": 23.45,
+      "height": 1.48,
+      "width": 0.55,
+      "stalkCount": 3,
+      "seed": 31,
+      "yaw": 15,
+      "bottom": 0,
+      "color": "#9a805b",
+      "leafColor": "#ad956d",
+      "earCount": 1,
+      "note": "一组枯玉米秸秆与玻璃并列，不遮挡图像；清洁、固定与场地防火条件需落实。"
+    }
+  ],
+  "poetryArchive": [
+    {
+      "id": "poem-future",
+      "text": "我在以后看见他们，\n迎着风谈论明天。\n群山还未合拢，\n河流带有未命名的方向，\n从每个人流过。\n\n已经发生的世界横亘在我与他们之间，\n他们再也看不见我。"
+    },
+    {
+      "id": "poem-moon",
+      "text": "月亮升起。\n潮水对此一无所知。\n海水越过海水，\n让夜晚走向岸边。\n\n礁石沉默，\n群岛浮出黑暗。\n更远的浪正在赶来。\n它聚拢，它抬升，它倾覆，它盘旋。\n\n夜空向海面缓缓倾斜，\n群星随波浪起伏。\n\n波光，是月亮在海里的迁徙。"
+    },
+    {
+      "id": "invitation",
+      "text": "脱下你的鞋子吧，我们要穿过溪流了。",
+      "status": "用户继续写作中"
     }
   ]
 }

@@ -30,22 +30,39 @@ function canvasTexture(canvas) {
   return texture;
 }
 
-function textCanvas(text, {fontPixels = 72, color = '#575951', padding = 12, lineHeight = 1.4, runs, fontFamily = 'serif'} = {}) {
+function textRuns(record) {
+  if (Array.isArray(record.lines)) {
+    const runs = [];
+    record.lines.forEach((line, index) => {
+      if (index) runs.push({text: '\n'});
+      if (typeof line === 'string') runs.push({text: line});
+      else if (Array.isArray(line?.runs)) {
+        const {runs: lineRuns, text: _text, ...style} = line;
+        runs.push(...lineRuns.map(run => ({...style, ...run})));
+      }
+      else if (line) runs.push(line);
+    });
+    return runs;
+  }
+  return record.runs?.length ? record.runs : [{text: record.text || ''}];
+}
+
+function textCanvas(text, {fontPixels = 72, color = '#575951', padding = 12, lineHeight = 1.4, runs, fontFamily = 'serif', weight = 300, align = 'left', trackingPixels = 0} = {}) {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
-  const family = fontFamily === 'sans' ? '"PingFang SC", system-ui, sans-serif' : '"Songti SC", "Noto Serif CJK SC", "STSong", serif';
-  const fontFor = run => `${run.weight || 300} ${fontPixels * positive(run.fontScale, 1)}px ${family}`;
+  const familyFor = family => family === 'mono' ? '"Menlo", "Courier New", "ONCE Text", "Noto Sans CJK SC", sans-serif' : family === 'sans' ? '"ONCE Text", "Noto Sans CJK SC", "PingFang SC", sans-serif' : '"Songti SC", "Noto Serif CJK SC", "STSong", serif';
+  const fontFor = run => `${run.weight || weight} ${fontPixels * positive(run.fontScale, 1)}px ${familyFor(run.fontFamily || fontFamily)}`;
   const lines = [[]];
   for (const run of runs?.length ? runs : [{text: String(text)}]) {
     String(run.text || '').replace(/\r\n?/g, '\n').split('\n').forEach((part, index) => {
       if (index) lines.push([]);
       const segment = {...run, text: part};
       context.font = fontFor(segment);
-      segment.width = context.measureText(part).width;
+      segment.width = context.measureText(part).width + Math.max(0, [...part].length - 1) * trackingPixels;
       lines[lines.length - 1].push(segment);
     });
   }
-  const lineWidths = lines.map(segments => segments.reduce((width, run) => width + run.width, 0));
+  const lineWidths = lines.map(segments => segments.reduce((width, run) => width + run.width, 0) + Math.max(0, segments.filter(run => run.text).length - 1) * trackingPixels);
   const lineScales = lines.map(segments => Math.max(1, ...segments.map(run => positive(run.fontScale, 1))));
   const measured = Math.max(1, ...lineWidths);
   // Keep the supplied line breaks. A uniform raster scale limits texture size;
@@ -60,16 +77,135 @@ function textCanvas(text, {fontPixels = 72, color = '#575951', padding = 12, lin
   context.textBaseline = 'alphabetic';
   let y = padding;
   lines.forEach((segments, index) => {
-    let x = padding;
+    const lineAlign = segments.find(run => run.align)?.align || align;
+    let x = padding + (lineAlign === 'center' ? (measured - lineWidths[index]) / 2 : lineAlign === 'right' ? measured - lineWidths[index] : 0);
     const baseline = y + fontPixels * lineScales[index];
     for (const run of segments) {
       context.font = fontFor(run);
-      context.fillText(run.text, x, baseline);
+      if (trackingPixels && [...run.text].length > 1) {
+        let cursor = x;
+        for (const character of [...run.text]) {
+          context.fillText(character, cursor, baseline);
+          cursor += context.measureText(character).width + trackingPixels;
+        }
+      } else context.fillText(run.text, x, baseline);
       x += run.width;
+      if (run.text && segments.slice(segments.indexOf(run) + 1).some(next => next.text)) x += trackingPixels;
     }
     y += fontPixels * lineHeight * lineScales[index];
   });
   return {canvas, rawWidth, rawHeight, fontPixels};
+}
+
+// Deterministic, low-poly material markers. Broad folded ribbons, alternating
+// leaf nodes and a few husked cobs distinguish dry maize from reed bouquets.
+// Parts are merged by material to keep the botanical groups inexpensive.
+function botanicalGeometry(record) {
+  const height = positive(record.height, 1.65), width = positive(record.width, .55);
+  const stalkCount = THREE.MathUtils.clamp(Math.round(finite(record.stalkCount, 3)), 1, 8);
+  const earCount = THREE.MathUtils.clamp(Math.round(finite(record.earCount, 1)), 0, Math.min(stalkCount, 3));
+  let seed = finite(record.seed, 31) >>> 0;
+  const random = () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296);
+  const parts = Object.fromEntries(['stem', 'joint', 'leaf', 'ear'].map(kind => [kind, {kind, vertices: [], indices: []}]));
+  const add = (kind, vertices, indices) => {
+    const part = parts[kind], offset = part.vertices.length / 3;
+    vertices.forEach(vertex => part.vertices.push(...vertex));
+    part.indices.push(...indices.map(index => index + offset));
+  };
+  const lathe = (kind, a, b, radii, sides = 8) => {
+    const start = new THREE.Vector3(...a), end = new THREE.Vector3(...b);
+    const axis = end.clone().sub(start).normalize();
+    const reference = Math.abs(axis.y) > .9 ? new THREE.Vector3(1, 0, 0) : new THREE.Vector3(0, 1, 0);
+    const u = axis.clone().cross(reference).normalize(), v = axis.clone().cross(u).normalize();
+    const vertices = [], indices = [];
+    radii.forEach((radius, ring) => {
+      const center = start.clone().lerp(end, ring / (radii.length - 1));
+      for (let j = 0; j < sides; j++) {
+        const angle = j * Math.PI * 2 / sides;
+        vertices.push(center.clone().addScaledVector(u, Math.cos(angle) * radius).addScaledVector(v, Math.sin(angle) * radius).toArray());
+      }
+    });
+    for (let ring = 0; ring < radii.length - 1; ring++) for (let j = 0; j < sides; j++) {
+      const n = (j + 1) % sides, p = ring * sides, q = (ring + 1) * sides;
+      indices.push(p + j, p + n, q + n, p + j, q + n, q + j);
+    }
+    const bottom = vertices.length; vertices.push(a);
+    const top = vertices.length; vertices.push(b);
+    for (let j = 0; j < sides; j++) {
+      const n = (j + 1) % sides, q = (radii.length - 1) * sides;
+      indices.push(bottom, n, j, top, q + j, q + n);
+    }
+    add(kind, vertices, indices);
+  };
+  const leaf = (base, angle, length, breadth, twist, phase, kind = 'leaf') => {
+    const direction = [Math.cos(angle), Math.sin(angle)], lateral = [-direction[1], direction[0]];
+    const vertices = [], indices = [], steps = 12;
+    for (let j = 0; j <= steps; j++) {
+      const t = j / steps, reach = length * (.92 * t - .32 * t * t);
+      const drop = Math.min(length * .76, Math.max(.015, base[1] - .035)) * t * t;
+      const rise = length * .22 * Math.sin(Math.PI * t);
+      const wave = length * .045 * Math.sin(3 * Math.PI * t + phase) * t;
+      const half = breadth / 2 * (.03 + .97 * Math.pow(Math.sin(Math.PI * t), .55));
+      const turn = twist * (t - .1);
+      for (const side of [-1, 0, 1]) vertices.push([
+        base[0] + direction[0] * reach + lateral[0] * (wave + side * half * Math.cos(turn)),
+        base[1] + rise - drop + side * half * Math.sin(turn) - Math.abs(side) * half * .16,
+        base[2] + direction[1] * reach + lateral[1] * (wave + side * half * Math.cos(turn)),
+      ]);
+    }
+    for (let j = 0; j < steps; j++) for (let side = 0; side < 2; side++) {
+      const p = j * 3 + side, q = (j + 1) * 3 + side;
+      indices.push(p, q, q + 1, p, q + 1, p + 1);
+    }
+    add(kind, vertices, indices);
+  };
+  let leafCount = 0;
+  for (let stalk = 0; stalk < stalkCount; stalk++) {
+    const h = stalk === 0 ? height : height * (.8 + random() * .18);
+    const phase = random() * Math.PI * 2, spread = width * .14 * Math.sqrt(random());
+    const foot = [Math.cos(phase) * spread, Math.sin(phase) * spread];
+    const lean = [width * .12 * (random() - .5), width * .12 * (random() - .5)];
+    const segments = 7, radius = THREE.MathUtils.clamp(height * .007, .008, .018), nodes = [];
+    for (let j = 0; j <= segments; j++) {
+      const t = j / segments;
+      nodes.push([foot[0] + lean[0] * t + Math.sin(Math.PI * t) * width * .018, h * t, foot[1] + lean[1] * t]);
+    }
+    for (let j = 0; j < segments; j++) lathe('stem', nodes[j], nodes[j + 1], [radius * (1 - j / segments * .55), radius * (1 - (j + 1) / segments * .55)]);
+    for (let j = 1; j < segments; j++) {
+      const node = nodes[j], r = radius * (1 - j / segments * .55) * 1.28;
+      lathe('joint', [node[0], node[1] - height * .005, node[2]], [node[0], node[1] + height * .005, node[2]], [r, r]);
+    }
+    for (let j = 1; j <= 5; j++) {
+      const length = height * (.22 + random() * .13), breadth = length * (.14 + random() * .07);
+      leaf(nodes[j], phase + j * Math.PI + (random() - .5) * .55, length, breadth, (random() - .5) * 2.2, random() * Math.PI * 2);
+      leafCount++;
+    }
+    if (stalk < earCount) {
+      const base = nodes[4], angle = phase + Math.PI * .35;
+      const end = [base[0] + Math.cos(angle) * height * .045, base[1] + height * .115, base[2] + Math.sin(angle) * height * .045];
+      const r = height * .018;
+      lathe('ear', base, end, [.16 * r, .8 * r, r, .9 * r, .55 * r, .12 * r]);
+      leaf(base, angle + .4, height * .145, height * .024, .9, phase, 'ear');
+      leaf(base, angle - .6, height * .13, height * .02, -.8, phase + 1, 'ear');
+    }
+  }
+  const all = Object.values(parts).flatMap(part => {
+    const points = [];
+    for (let i = 0; i < part.vertices.length; i += 3) points.push(part.vertices.slice(i, i + 3));
+    return points;
+  });
+  const min = [0, 1, 2].map(axis => Math.min(...all.map(p => p[axis]))), max = [0, 1, 2].map(axis => Math.max(...all.map(p => p[axis])));
+  const cx = (min[0] + max[0]) / 2, cz = (min[2] + max[2]) / 2;
+  const radius = Math.max(...all.map(p => Math.hypot(p[0] - cx, p[2] - cz)));
+  const horizontalScale = width / (radius * 2), verticalScale = height / (max[1] - min[1]);
+  const angle = finite(record.yaw, 0) * RAD, c = Math.cos(angle), s = Math.sin(angle);
+  for (const part of Object.values(parts)) for (let i = 0; i < part.vertices.length; i += 3) {
+    const x = (part.vertices[i] - cx) * horizontalScale, z = (part.vertices[i + 2] - cz) * horizontalScale;
+    part.vertices[i] = c * x - s * z;
+    part.vertices[i + 1] = (part.vertices[i + 1] - min[1]) * verticalScale;
+    part.vertices[i + 2] = s * x + c * z;
+  }
+  return {parts: Object.values(parts).filter(part => part.vertices.length), stalkCount, leafCount, earCount, height, width};
 }
 
 function messageTexture(message) {
@@ -175,12 +311,15 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   const works = new Map();
   const environmentFields = new Map();
   const poemGroups = new Map();
+  const botanicalGroups = new Map();
+  const textScreens = new Map();
   const collisionRects = [];
   const focus = new Map();
   const pending = [];
   const stats = {
     works: 0, workCount: 0, photos: 0, large: 0, videos: 0, glass: 0, texts: 0,
     partitions: 0, surfaces: 0, poems: 0, labels: 0, wallFields: 0, floorFields: 0,
+    botanicalGroups: 0, stalks: 0, leaves: 0, ears: 0, textScreens: 0, textScales: [],
     textures: 0, loaded: 0, errors: 0, pending: 0, texturePixels: 0, textureResamples: 0,
     failures: [], warnings: [], aspectAdjustments: [], ready: false,
   };
@@ -358,15 +497,18 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     if (record.type === 'text') {
       const paper = new THREE.MeshBasicMaterial({color: record.matColor || '#f8f7f2', side: THREE.DoubleSide, toneMapped: false});
       box(work, '前言版面_排版待核', width, height, .008, 0, 0, .004, paper);
-      const raster = textCanvas(record.text || '', {fontPixels: 96, padding: 5, color: record.color || '#42473e', runs: record.runs, lineHeight: finite(record.lineHeight, 1.6), fontFamily: record.fontFamily});
       const fontSize = positive(record.fontSize, .045);
+      const raster = textCanvas(record.text || '', {fontPixels: 96, padding: 5, color: record.color || '#42473e', runs: textRuns(record), lineHeight: finite(record.lineHeight, 1.6), fontFamily: record.fontFamily, weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96});
       const textWidth = Math.min(Math.max(.001, width - .12), raster.rawWidth / raster.fontPixels * fontSize,
         record.align === 'center' ? Math.max(.001, height - .04) * raster.rawWidth / raster.rawHeight : Infinity);
       const textHeight = textWidth * raster.rawHeight / raster.rawWidth;
       const material = new THREE.MeshBasicMaterial({map: canvasTexture(raster.canvas), transparent: true, side: THREE.DoubleSide, toneMapped: false, depthWrite: false});
       const text = plane(work, '前言原文_不增写内容', textWidth, textHeight, material, .009);
-      text.position.x = record.align === 'center' ? 0 : -width / 2 + .06 + textWidth / 2;
+      text.position.x = record.align === 'center' ? 0 : record.align === 'right' ? width / 2 - .06 - textWidth / 2 : -width / 2 + .06 + textWidth / 2;
       text.position.y = record.align === 'center' ? 0 : height / 2 - .09 - textHeight / 2;
+      text.userData.requestedFontSize = fontSize;
+      text.userData.effectiveFontSize = fontSize * textWidth / (raster.rawWidth / raster.fontPixels * fontSize);
+      if (text.userData.effectiveFontSize < fontSize * .99) stats.textScales.push({id: record.id, requested: fontSize, effective: text.userData.effectiveFontSize});
       stats.texts++;
     } else if (record.type === 'video') {
       const caseMaterial = new THREE.MeshStandardMaterial({color: record.frameColor || '#20231f', roughness: .47, side: THREE.DoubleSide});
@@ -440,11 +582,71 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     stats.glass++;
   }
 
+  for (const record of layout.textScreens || []) {
+    const angle = finite(record.yaw, 90) * RAD, direction = [Math.cos(angle), Math.sin(angle)];
+    const normal = [-direction[1], direction[0]];
+    if (record.normal && normal[0] * record.normal[0] + normal[1] * record.normal[1] < 0) {
+      normal[0] *= -1; normal[1] *= -1;
+    }
+    const width = positive(record.width, 2.1), height = positive(record.height, 2.2), bottom = Math.max(0, finite(record.bottom, .18));
+    const baseWidth = positive(record.baseWidth, width + .1), baseDepth = positive(record.baseDepth, .55), baseHeight = positive(record.baseHeight, .18);
+    const face = THREE.MathUtils.clamp(finite(record.frameFace, .02), .003, Math.min(width, height) * .15), depth = positive(record.depth, .026);
+    const center = [finite(record.x, .45), bottom + height / 2, finite(record.z, 14.7)];
+    const screen = faceGroup(group, `透明文字屏_${record.id}_固定待核定`, center, normal);
+    screen.userData = {textScreenId: record.id, type: 'textScreen', notArtwork: true, layout: record, canonicalPosition: center, canonicalNormal: normal};
+    const frame = new THREE.MeshStandardMaterial({color: record.frameColor || '#61675f', roughness: .72, metalness: .15, side: THREE.DoubleSide});
+    const base = record.baseColor ? new THREE.MeshStandardMaterial({color: record.baseColor, roughness: .85, side: THREE.DoubleSide}) : frame;
+    const clear = new THREE.MeshStandardMaterial({color: record.glassColor || '#dce5df', roughness: .16, transparent: true, opacity: finite(record.opacity, .09), depthWrite: false, side: THREE.DoubleSide});
+    box(screen, '文字屏透明面_材质厚度待核', width - face * 2, height - face * 2, .008, 0, 0, 0, clear);
+    box(screen, '文字屏上框', width, face, depth, 0, (height - face) / 2, 0, frame);
+    box(screen, '文字屏下框', width, face, depth, 0, -(height - face) / 2, 0, frame);
+    for (const side of [-1, 1]) box(screen, '文字屏竖框', face, height - face * 2, depth, side * (width - face) / 2, 0, 0, frame);
+    box(screen, '文字屏连续底座_非施工构造', baseWidth, baseHeight, baseDepth, 0, baseHeight / 2 - center[1], 0, base);
+    for (const marking of record.manifestation || []) {
+      const bandHeight = positive(marking.bandHeight, .035), lineHeight = positive(marking.lineHeight, .004);
+      const y = finite(marking.height, .95) - center[1];
+      const band = new THREE.MeshBasicMaterial({color: marking.bandColor || '#f1f1e7', side: THREE.DoubleSide, toneMapped: false});
+      const line = new THREE.MeshBasicMaterial({color: marking.lineColor || '#4f5651', side: THREE.DoubleSide, toneMapped: false});
+      for (const side of [-1, 1]) {
+        const strip = plane(screen, '文字屏乳白显识带_设计试验', width - face * 2, bandHeight, band, side * .006);
+        strip.position.y = y;
+        const keyline = plane(screen, '文字屏深灰细线_双背景对比', width - face * 2, lineHeight, line, side * .0065);
+        keyline.position.y = y + bandHeight / 2 + lineHeight / 2 + .001;
+      }
+    }
+    textScreens.set(record.id, screen);
+    const a = [center[0] - direction[0] * baseWidth / 2, center[2] - direction[1] * baseWidth / 2];
+    const b = [center[0] + direction[0] * baseWidth / 2, center[2] + direction[1] * baseWidth / 2];
+    collisionRects.push(segmentRect(record.id, 'textScreen', a, b, baseDepth));
+    focus.set(record.id, {position: center, normal, dimensions: [width, height]});
+    stats.textScreens++;
+  }
+
+  for (const record of layout.botanicalGroups || []) {
+    const descriptor = botanicalGeometry(record), cluster = new THREE.Group();
+    cluster.name = `枯玉米秸秆_${record.id}_体量试排`;
+    cluster.position.set(finite(record.x, 0), Math.max(0, finite(record.bottom, 0)), finite(record.z, 0));
+    cluster.userData = {botanicalGroupId: record.id, notArtwork: true, layout: record, stalkCount: descriptor.stalkCount, earCount: descriptor.earCount};
+    const colors = {stem: record.color || '#9b8968', joint: record.jointColor || '#75664d', leaf: record.leafColor || '#9a8b6a', ear: record.earColor || '#b19a70'};
+    for (const part of descriptor.parts) {
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute(part.vertices, 3));
+      geometry.setIndex(part.indices); geometry.computeVertexNormals();
+      const mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({color: colors[part.kind], roughness: .94, side: THREE.DoubleSide}));
+      mesh.name = {stem: '玉米秸秆茎', joint: '明显茎节', leaf: '扭曲下垂宽叶', ear: '少量带苞穗'}[part.kind];
+      mesh.userData = {botanicalGroupId: record.id, botanicalPart: part.kind, notArtwork: true};
+      cluster.add(mesh);
+    }
+    group.add(cluster); botanicalGroups.set(record.id, cluster);
+    if (record.collidable) collisionRects.push({id: record.id, type: 'botanical', minX: cluster.position.x - descriptor.width / 2, maxX: cluster.position.x + descriptor.width / 2, minZ: cluster.position.z - descriptor.width / 2, maxZ: cluster.position.z + descriptor.width / 2});
+    stats.botanicalGroups++; stats.stalks += descriptor.stalkCount; stats.leaves += descriptor.leafCount; stats.ears += descriptor.earCount;
+  }
+
   for (const record of layout.poems || []) {
-    const actualText = record.runs?.length ? record.runs.map(run => run.text || '').join('') : String(record.text || '');
+    const runs = textRuns(record), actualText = runs.map(run => run.text || '').join('');
     if (!actualText.trim()) continue;
-    const raster = textCanvas(actualText, {fontPixels: 96, color: record.color || '#666b58', padding: 5, lineHeight: finite(record.lineHeight, 1.45), runs: record.runs});
     const fontSize = positive(record.fontSize, .06);
+    const raster = textCanvas(actualText, {fontPixels: 96, color: record.color || '#666b58', padding: 5, lineHeight: finite(record.lineHeight, 1.45), runs, fontFamily: record.fontFamily || 'serif', weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96});
     const naturalWidth = raster.rawWidth / raster.fontPixels * fontSize;
     const width = Math.min(naturalWidth, positive(record.width, naturalWidth));
     const height = width * raster.rawHeight / raster.rawWidth;
@@ -474,7 +676,10 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     textGroup.name = `诗句_${record.id}`;
     textGroup.userData = {poemId: record.id, text: actualText, layout: record,
       kind: record.surface === 'wall' ? 'wallPoem' : 'floorPoem', canonicalPosition: position,
-      canonicalNormal: record.surface === 'wall' ? [Math.sin(angle), Math.cos(angle)] : null};
+      textScreenId: record.textScreenId || null,
+      canonicalNormal: record.surface === 'wall' ? [Math.sin(angle), Math.cos(angle)] : null,
+      requestedFontSize: fontSize, effectiveFontSize: fontSize * width / naturalWidth};
+    if (width < naturalWidth * .99) stats.textScales.push({id: record.id, requested: fontSize, effective: textGroup.userData.effectiveFontSize});
     plane(textGroup, '诗句_保留原文换行', width, height, material, record.surface === 'floor' ? 0 : .003);
     poemGroups.set(record.id, textGroup);
     stats.poems++;
@@ -487,7 +692,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   });
   group.updateMatrixWorld(true);
   return {
-    group, surfaces, works, environmentFields, poemGroups, collisionRects, ready, stats,
+    group, surfaces, works, environmentFields, poemGroups, botanicalGroups, textScreens, collisionRects, ready, stats,
     setVisible(visible) { group.visible = Boolean(visible); },
     focusTarget(id) {
       const record = focus.get(id) || [...focus.entries()].find(([key]) => works.get(key)?.userData.catalogId === id)?.[1];
