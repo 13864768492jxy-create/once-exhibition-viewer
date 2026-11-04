@@ -470,7 +470,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   let errorTexture;
   const white = new THREE.MeshStandardMaterial({color: '#f2f1ec', roughness: .86, side: THREE.DoubleSide});
   const backing = new THREE.MeshStandardMaterial({color: '#e5e3dc', roughness: .9, side: THREE.DoubleSide});
-  const textFamily = (record, fallback = 'serif') => /trial0[45]/.test(String(layout.revision || '')) && (!record.fontFamily || record.fontFamily === 'sans') ? 'plex' : record.fontFamily || fallback;
+  const textFamily = (record, fallback = 'serif') => /trial0[456]/.test(String(layout.revision || '')) && (!record.fontFamily || record.fontFamily === 'sans') ? 'plex' : record.fontFamily || fallback;
 
   function register(record, object, item, position, normal, dimensions) {
     works.set(record.id, object);

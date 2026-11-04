@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "revision": "20261104-trial05",
-  "title": "第五次试排 · 漂浮的语言",
-  "status": "fifth_trial_not_installation_plan",
+  "revision": "20261104-trial06",
+  "title": "第六次试排 · 文字的高低与呼吸",
+  "status": "sixth_trial_not_installation_plan",
   "date": "2026-11-04",
-  "sourceLayout": "ONCE v117 的作品组合与相邻关系；不修改旧展",
-  "principle": "文字改变空间的深度感，摄影的直接观看保持清楚；透明载体退后，句子在留白中出现。",
+  "sourceLayout": "source/layout-baselines/trial05.json",
+  "principle": "右墙文字从顶部字幕带转为高位锚点、中位动词、玻璃间低位小句与末端收束；透明载体收窄，让出更多通行空间。",
   "partitions": [
     {
       "id": "early",
@@ -1081,12 +1081,12 @@
       "id": "world",
       "text": "已经发生的世界",
       "position": [
-        0.7740933333333333,
+        0.7190933333333334,
         2.03,
         14.784
       ],
       "fontSize": 0.16,
-      "width": 1.42,
+      "width": 1.26,
       "surface": "wall",
       "rotationY": 180,
       "weight": 400,
@@ -1102,12 +1102,12 @@
       "id": "across",
       "text": "横亘",
       "position": [
-        0.6020716666666667,
+        0.5470716666666666,
         1.46,
         14.784
       ],
       "fontSize": 0.38,
-      "width": 1.42,
+      "width": 1.26,
       "surface": "wall",
       "rotationY": 180,
       "weight": 400,
@@ -1123,12 +1123,12 @@
       "id": "between",
       "text": "在我与他们之间，",
       "position": [
-        0.8141125,
+        0.7591125,
         1.08,
         14.784
       ],
       "fontSize": 0.15,
-      "width": 1.42,
+      "width": 1.26,
       "surface": "wall",
       "rotationY": 180,
       "weight": 400,
@@ -1145,11 +1145,11 @@
       "text": "他们再也看不见我。",
       "position": [
         4.367,
-        2.43,
+        2.17,
         29.6
       ],
-      "fontSize": 0.22,
-      "width": 2.2,
+      "fontSize": 0.25,
+      "width": 2.6,
       "surface": "wall",
       "rotationY": -90,
       "weight": 400,
@@ -1158,7 +1158,7 @@
       "lineHeight": 1.16,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.00264,
+      "letterSpacing": 0.003,
       "runs": [
         {
           "text": "他们",
@@ -1175,10 +1175,10 @@
       "text": "月亮升起。",
       "position": [
         4.367,
-        2.47,
+        2.4,
         17.0
       ],
-      "fontSize": 0.36,
+      "fontSize": 0.38,
       "width": 2.1,
       "surface": "wall",
       "rotationY": -90,
@@ -1188,7 +1188,7 @@
       "lineHeight": 1.16,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.00432
+      "letterSpacing": 0.00456
     },
     {
       "id": "tide",
@@ -1214,33 +1214,12 @@
       "id": "sea",
       "text": "海水越过海水，",
       "position": [
-        0.6523316666666668,
+        0.59057,
         1.86,
         22.984
       ],
-      "fontSize": 0.14,
-      "width": 1.02,
-      "surface": "wall",
-      "rotationY": 180,
-      "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
-      "lineHeight": 1.15,
-      "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.0016800000000000003,
-      "textScreenId": "poetry-screen-3"
-    },
-    {
-      "id": "shore",
-      "text": "让夜晚走向岸边。",
-      "position": [
-        0.6412899999999999,
-        1.3,
-        22.984
-      ],
       "fontSize": 0.12,
-      "width": 1.02,
+      "width": 0.88,
       "surface": "wall",
       "rotationY": 180,
       "weight": 400,
@@ -1250,6 +1229,27 @@
       "align": "left",
       "color": "#42473e",
       "letterSpacing": 0.0014399999999999999,
+      "textScreenId": "poetry-screen-3"
+    },
+    {
+      "id": "shore",
+      "text": "让夜晚走向岸边。",
+      "position": [
+        0.58987875,
+        1.3,
+        22.984
+      ],
+      "fontSize": 0.105,
+      "width": 0.88,
+      "surface": "wall",
+      "rotationY": 180,
+      "weight": 400,
+      "fontFamily": "huiwen",
+      "fontWidthScale": 1.0,
+      "lineHeight": 1.15,
+      "align": "left",
+      "color": "#42473e",
+      "letterSpacing": 0.00126,
       "textScreenId": "poetry-screen-3"
     },
     {
@@ -1297,11 +1297,11 @@
       "text": "更远的浪正在赶来。",
       "position": [
         4.367,
-        2.37,
-        25.5
+        1.25,
+        25.8
       ],
-      "fontSize": 0.17,
-      "width": 2.0,
+      "fontSize": 0.13,
+      "width": 1.65,
       "surface": "wall",
       "rotationY": -90,
       "weight": 400,
@@ -1310,18 +1310,18 @@
       "lineHeight": 1.16,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.00204
+      "letterSpacing": 0.0015600000000000002
     },
     {
       "id": "waves",
       "text": "它聚拢，它抬升，\n它倾覆，它盘旋。",
       "position": [
         4.367,
-        2.18,
+        1.85,
         20.4
       ],
-      "fontSize": 0.17,
-      "width": 1.8,
+      "fontSize": 0.24,
+      "width": 2.3,
       "surface": "wall",
       "rotationY": -90,
       "weight": 400,
@@ -1330,18 +1330,18 @@
       "lineHeight": 1.25,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.00204
+      "letterSpacing": 0.0028799999999999997
     },
     {
       "id": "stars",
       "text": "夜空向海面缓缓倾斜，\n群星随波浪起伏。",
       "position": [
         4.367,
-        2.44,
-        27.6
+        2.62,
+        27.35
       ],
-      "fontSize": 0.18,
-      "width": 2.1,
+      "fontSize": 0.15,
+      "width": 1.75,
       "surface": "wall",
       "rotationY": -90,
       "weight": 400,
@@ -1350,7 +1350,7 @@
       "lineHeight": 1.25,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.00216
+      "letterSpacing": 0.0018
     },
     {
       "id": "moonlight",
@@ -1534,7 +1534,7 @@
         12.66
       ],
       "target": [
-        0.9,
+        0.775,
         1.35,
         14.8
       ]
@@ -1548,7 +1548,7 @@
         21.67
       ],
       "target": [
-        0.65,
+        0.6,
         1.35,
         23.0
       ]
@@ -1566,16 +1566,30 @@
         1.5,
         4.8
       ]
+    },
+    {
+      "id": "spatial-right-rhythm",
+      "label": "右墙文字 · 高低与大小",
+      "camera": [
+        2.1,
+        1.6,
+        30.9
+      ],
+      "target": [
+        4.35,
+        1.85,
+        23.5
+      ]
     }
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "撤去贴近第一片白墙的文字屏；两片透明屏改置两段无摄影墙面中部，仍与左墙成90度，原31幅摄影位置和尺寸不动。",
-    "两屏均高2.3米；中段宽1.6米，后段因对面玻璃与秸秆收窄到1.1米。10毫米可辨边、4.5厘米低基座和两端短显识段是视觉候选。",
-    "对每幅摄影的正常正视位和突出墙正视位反查，透明屏不进入视线；入厅沿中线的直接视线也避开透明屏。",
-    "中文试用户提供的汇文明朝体，真实Regular400、原生字宽，不伪粗；仅公开自有诗歌的PNG字面，字体原件保留在项目资产中。",
-    "Growing again夹架移到左右边缘，玻璃下沿降至底梁橡胶承托；每片两只，具体尺寸仍需实测。",
-    "按约4.4米暂估宽度，计入全部支架、基座及植物体量后，试排目标保留约2.4米局部通行余量；未扣驻足观众，不是疏散合规结论。现场须复测净空、核定安全玻璃与防倾覆固定，必要时再缩减载体。"
+    "31幅摄影、两片白墙、Growing again六块作品玻璃与夹架、植物、VESSEL均保持试排05位置和尺寸。",
+    "两片诗句玻璃仍与左墙90度；中屏1.60→1.35米，后屏1.10→1.00米。底座同步收窄，墙侧位置不变。",
+    "右墙五段诗以38/24/13/15/25厘米字身及2.40/1.85/1.25/2.62/2.17米中心高形成高—中—低—高—中节奏。",
+    "更远的浪降至两块玻璃之间；动词字带与终句需核对实际墨迹下沿，避免叠到玻璃画面或电视。",
+    "沿用用户提供的真实汇文明朝体Regular400、原生字宽；字号差异不靠伪粗、缩放或透视补偿。",
+    "净宽约4.4米仍待实测，通行按底座、夹架与秸秆外沿检查，未计驻足观众；本候选不作为安全施工认证。"
   ],
   "environment": {
     "wallFields": [
@@ -1629,9 +1643,9 @@
   "textScreens": [
     {
       "id": "poetry-screen-2",
-      "x": 0.9,
+      "x": 0.775,
       "z": 14.8,
-      "width": 1.6,
+      "width": 1.35,
       "height": 2.3,
       "bottom": 0.045,
       "yaw": 0,
@@ -1644,7 +1658,7 @@
       "depth": 0.018,
       "opacity": 0.025,
       "baseColor": "#bfc1b8",
-      "baseWidth": 1.7,
+      "baseWidth": 1.45,
       "baseDepth": 0.55,
       "baseHeight": 0.045,
       "manifestation": [
@@ -1665,9 +1679,9 @@
     },
     {
       "id": "poetry-screen-3",
-      "x": 0.65,
+      "x": 0.6,
       "z": 23.0,
-      "width": 1.1,
+      "width": 1.0,
       "height": 2.3,
       "bottom": 0.045,
       "yaw": 0,
@@ -1680,7 +1694,7 @@
       "depth": 0.018,
       "opacity": 0.025,
       "baseColor": "#979e92",
-      "baseWidth": 1.2,
+      "baseWidth": 1.1,
       "baseDepth": 0.55,
       "baseHeight": 0.045,
       "manifestation": [
@@ -1732,5 +1746,5 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/trial05/manifest.json"
+  "poetryRasterManifest": "poetry/trial06/manifest.json"
 }
