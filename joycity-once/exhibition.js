@@ -557,7 +557,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     works: 0, workCount: 0, photos: 0, large: 0, videos: 0, glass: 0, texts: 0,
     partitions: 0, surfaces: 0, poems: 0, labels: 0, wallFields: 0, floorFields: 0,
     botanicalGroups: 0, stalks: 0, leaves: 0, ears: 0, textScreens: 0, joinedGlassGroups: 0, sharedClampStations: 0, tileClampRacks: 0, clampPads: 0, poemRasters: 0, textScales: [],
-    textures: 0, loaded: 0, errors: 0, pending: 0, texturePixels: 0, textureResamples: 0,
+    textures: 0, loaded: 0, errors: 0, pending: 0, imageRetries: 0, imageAttempts: 0, texturePixels: 0, textureResamples: 0,
     failures: [], warnings: [], aspectAdjustments: [], ready: false,
   };
   const items = catalog instanceof Map ? catalog : new Map((Array.isArray(catalog) ? catalog : catalog.items || []).map(item => [item.id, item]));
@@ -579,6 +579,10 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     const values={'glass-gpu-status':gpuStatus,'glass-panes':panes,'glass-loaded':loaded,'glass-gpu-drawn':printedGpuSeen.size,'glass-captures':stats.reflectionCaptures||0,'glass-capture-ms':(stats.lastReflectionCaptureMs||0).toFixed(2),'glass-probe-mib':(stats.reflectionProbeMiB||0).toFixed(3),'glass-probe-resolution':stats.reflectionProbeResolution||0,'glass-probe-id':glassProbe?.renderTarget?.texture?.uuid||'','glass-errors':stats.printedGlassErrors||0,'glass-scene-textures':renderer?.info?.memory?.textures||0};
     for (const [key,value] of Object.entries(values)) canvas.setAttribute('data-'+key,String(value));
     canvas.setAttribute('data-glass-study-stats',JSON.stringify({...values,reflectionError:stats.reflectionError||null,parameters:stats.printedGlassStudy||null}));
+  }
+
+  function publishImageLoadDebug() {
+    renderer?.domElement?.setAttribute?.('data-image-load-stats', JSON.stringify({loaded: stats.loaded, errors: stats.errors, pending: stats.pending, textures: stats.textures, retries: stats.imageRetries, attempts: stats.imageAttempts, failures: stats.failures}));
   }
 
   function register(record, object, item, position, normal, dimensions) {
@@ -606,8 +610,12 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     image.userData.slotDimensions = [width, height];
     stats.textures++;
     stats.pending++;
+    publishImageLoadDebug();
     const task = new Promise(resolve => {
+      let attempt = 0, finished = false, lastURL = src;
       const fail = error => {
+        if (finished) return;
+        finished = true;
         errorTexture ||= messageTexture('图像未能载入');
         material.map = errorTexture;
         if (printed) { material.uniforms.printMap.value = errorTexture; material.uniforms.imageReady.value = 1; }
@@ -618,19 +626,40 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
         image.userData.loadError = true;
         stats.errors++;
         stats.pending--;
-        stats.failures.push({id: record.id, catalogId: record.catalogId, source: src || null, message: error?.message || '图像读取失败'});
+        stats.failures.push({id: record.id, catalogId: record.catalogId, source: src || null, attemptedURL: lastURL || null, attempts: image.userData.loadAttempts || 0, message: error?.message || '图像读取失败'});
+        publishImageLoadDebug();
         resolve();
       };
       if (!src || typeof src !== 'string') {
         fail(new Error('作品目录未提供预览图'));
         return;
       }
-      loader.load(src, texture => {
+      const loadOne = () => {
+        const requestAttempt = attempt;
+        let attemptSettled = false;
+        // The second retry bypasses a cached transient failure. Data/blob URLs
+        // retain their exact content; relative paths and URL fragments survive.
+        const hashAt = src.indexOf('#'), base = hashAt < 0 ? src : src.slice(0, hashAt), fragment = hashAt < 0 ? '' : src.slice(hashAt);
+        lastURL = requestAttempt === 2 && !/^(data|blob):/i.test(src) ? `${base}${base.includes('?') ? '&' : '?'}_image_retry=2-${Date.now()}${fragment}` : src;
+        image.userData.loadAttempts = requestAttempt + 1;
+        stats.imageAttempts++;
+        const retryOrFail = error => {
+          if (finished || attemptSettled) return;
+          attemptSettled = true;
+          if (requestAttempt < 2) {
+            attempt = requestAttempt + 1;
+            stats.imageRetries++;
+            publishImageLoadDebug();
+            setTimeout(loadOne, requestAttempt === 0 ? 180 : 420);
+          } else fail(error);
+        };
+        loader.load(lastURL, texture => {
+        if (finished || attemptSettled) { texture.dispose(); return; }
         const nativeWidth = texture.image?.naturalWidth || texture.image?.width;
         const nativeHeight = texture.image?.naturalHeight || texture.image?.height;
         if (!nativeWidth || !nativeHeight) {
           texture.dispose();
-          fail(new Error('图像像素尺寸无效'));
+          retryOrFail(new Error('图像像素尺寸无效'));
           return;
         }
         // Read the complete higher-quality source, then bound GPU memory for
@@ -669,10 +698,15 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
         if (printed) { stats.printedGlassLoaded=(stats.printedGlassLoaded||0)+1; publishGlassDebug(); }
         if (inkColor) material.opacity = opacity;
         material.needsUpdate = true;
+        attemptSettled = true;
+        finished = true;
         stats.loaded++;
         stats.pending--;
+        publishImageLoadDebug();
         resolve();
-      }, undefined, fail);
+        }, undefined, retryOrFail);
+      };
+      loadOne();
     });
     pending.push(task);
     return image;
