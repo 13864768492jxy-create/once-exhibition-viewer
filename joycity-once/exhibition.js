@@ -59,14 +59,16 @@ function printedGlassParameters(base = {}, override = {}) {
 function printedGlassMaterial(texture, p) {
   const mat = new THREE.ShaderMaterial({
     transparent: true, depthWrite: false, side: THREE.DoubleSide, forceSinglePass: true, toneMapped: false,
-    uniforms: {printMap: {value: texture}, envProbe: {value: null}, imageReady: {value: 0}, probeReady: {value: 0}, lightOpacity: {value: p.lightOpacity}, darkOpacity: {value: p.darkOpacity}, densityGamma: {value: p.densityGamma}, reflectionStrength: {value: p.reflectionStrength}, fresnelF0: {value: p.fresnelF0}, reflectionMip: {value: p.roughness * Math.log2(p.probeResolution)}},
+    uniforms: {printMap: {value: texture}, printContain: {value: new THREE.Vector2(1, 1)}, envProbe: {value: null}, imageReady: {value: 0}, probeReady: {value: 0}, lightOpacity: {value: p.lightOpacity}, darkOpacity: {value: p.darkOpacity}, densityGamma: {value: p.densityGamma}, reflectionStrength: {value: p.reflectionStrength}, fresnelF0: {value: p.fresnelF0}, reflectionMip: {value: p.roughness * Math.log2(p.probeResolution)}},
     vertexShader: `varying vec2 printUv; varying vec3 worldPoint; varying vec3 worldNormal;
       void main(){printUv=uv; vec4 p=modelMatrix*vec4(position,1.0); worldPoint=p.xyz; worldNormal=normalize(mat3(modelMatrix)*normal); gl_Position=projectionMatrix*viewMatrix*p;}`,
-    fragmentShader: `uniform sampler2D printMap; uniform samplerCube envProbe;
+    fragmentShader: `uniform sampler2D printMap; uniform samplerCube envProbe; uniform vec2 printContain;
       uniform float imageReady,probeReady,lightOpacity,darkOpacity,densityGamma,reflectionStrength,fresnelF0,reflectionMip;
       varying vec2 printUv; varying vec3 worldPoint; varying vec3 worldNormal;
       void main(){
-        vec4 ink=texture2D(printMap,printUv);
+        vec2 sourceUv=(printUv-.5)/printContain+.5;
+        float printedArea=step(0.0,sourceUv.x)*step(sourceUv.x,1.0)*step(0.0,sourceUv.y)*step(sourceUv.y,1.0);
+        vec4 ink=texture2D(printMap,clamp(sourceUv,0.0,1.0)); ink.a*=printedArea;
         float y=clamp(dot(ink.rgb,vec3(.2126,.7152,.0722)),0.0,1.0);
         float a=ink.a*mix(lightOpacity,darkOpacity,pow(1.0-y,densityGamma));
         vec3 n=normalize(worldNormal); vec3 v=normalize(cameraPosition-worldPoint);
@@ -100,7 +102,7 @@ function textRuns(record) {
   return record.runs?.length ? record.runs : [{text: record.text || ''}];
 }
 
-function textCanvas(text, {fontPixels = 72, color = '#575951', padding = 12, lineHeight = 1.4, runs, fontFamily = 'serif', weight = 300, align = 'left', trackingPixels = 0} = {}) {
+function textCanvas(text, {fontPixels = 72, color = '#575951', padding = 12, lineHeight = 1.4, runs, fontFamily = 'serif', weight = 300, align = 'left', trackingPixels = 0, glyphMode = 'fill', strokeWidth = .002, strokeColor = null, fontSizeMetres = 1, widthScale = 1} = {}) {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
   const familyFor = family => family === 'plex' ? '"ONCE Grotesk", "IBM Plex Sans SC", "PingFang SC", sans-serif' : family === 'mono' ? '"Menlo", "Courier New", "ONCE Grotesk", "ONCE Text", "Noto Sans CJK SC", sans-serif' : family === 'serif' ? '"Songti SC", "Noto Serif CJK SC", "STSong", serif' : '"ONCE Text", "Noto Sans CJK SC", "PingFang SC", sans-serif';
@@ -131,19 +133,21 @@ function textCanvas(text, {fontPixels = 72, color = '#575951', padding = 12, lin
   const collect = (text, x, baseline, run) => {
     context.font = fontFor(run);
     const metrics = context.measureText(text);
+    const mode = run.glyphMode || glyphMode, stroke = mode === 'fill' ? 0 : Math.max(0, finite(run.strokeWidth, strokeWidth)) * fontPixels / fontSizeMetres;
     if (text) {
-      minX = Math.min(minX, x - finite(metrics.actualBoundingBoxLeft, 0));
-      maxX = Math.max(maxX, x + finite(metrics.actualBoundingBoxRight, metrics.width));
-      minY = Math.min(minY, baseline - finite(metrics.actualBoundingBoxAscent, 0));
-      maxY = Math.max(maxY, baseline + finite(metrics.actualBoundingBoxDescent, 0));
+      minX = Math.min(minX, x - finite(metrics.actualBoundingBoxLeft, 0) - stroke / 2);
+      maxX = Math.max(maxX, x + finite(metrics.actualBoundingBoxRight, metrics.width) + stroke / 2);
+      minY = Math.min(minY, baseline - finite(metrics.actualBoundingBoxAscent, 0) - stroke / 2);
+      maxY = Math.max(maxY, baseline + finite(metrics.actualBoundingBoxDescent, 0) + stroke / 2);
     }
     draws.push({text, x, baseline, run});
   };
   let y = padding;
   lines.forEach((segments, index) => {
     const lineAlign = segments.find(run => run.align)?.align || align;
-    let x = padding + (lineAlign === 'center' ? (measured - lineWidths[index]) / 2 : lineAlign === 'right' ? measured - lineWidths[index] : 0);
-    const baseline = y + fontPixels * lineScales[index];
+    const lineStyle = segments.find(run => run.offsetX != null || run.offsetY != null) || {};
+    let x = padding + (lineAlign === 'center' ? (measured - lineWidths[index]) / 2 : lineAlign === 'right' ? measured - lineWidths[index] : 0) + finite(lineStyle.offsetX, 0) * fontPixels / fontSizeMetres / widthScale;
+    const baseline = y + fontPixels * lineScales[index] - finite(lineStyle.offsetY, 0) * fontPixels / fontSizeMetres;
     for (const run of segments) {
       context.font = fontFor(run);
       if (trackingPixels && [...run.text].length > 1) {
@@ -174,7 +178,10 @@ function textCanvas(text, {fontPixels = 72, color = '#575951', padding = 12, lin
   context.textBaseline = 'alphabetic';
   for (const draw of draws) {
     context.font = fontFor(draw.run);
-    context.fillText(draw.text, draw.x + extraLeft, draw.baseline + extraTop);
+    const mode = draw.run.glyphMode || glyphMode;
+    context.fillStyle = draw.run.color || color;
+    if (mode !== 'fill') { context.lineJoin = 'round'; context.lineWidth = Math.max(0, finite(draw.run.strokeWidth, strokeWidth)) * fontPixels / fontSizeMetres; context.strokeStyle = draw.run.strokeColor || strokeColor || draw.run.color || color; context.strokeText(draw.text, draw.x + extraLeft, draw.baseline + extraTop); }
+    if (mode !== 'outline') context.fillText(draw.text, draw.x + extraLeft, draw.baseline + extraTop);
   }
   return {canvas, rawWidth, rawHeight, logicalWidth, logicalHeight, fontPixels,
     centerOffsetX: (extraRight - extraLeft) / 2,
@@ -425,8 +432,8 @@ function tileClampGeometry(record, paneWidth, paneHeight, bottom) {
     for (let j = 0; j < sides; j++) {const n = (j + 1) % sides, q = (rings - 1) * sides; indices.push(a, n, j, b, q + j, q + n);}
     add(kind, vertices, indices);
   };
-  for (const station of [-1, 1]) {
-    const x = station * spacing / 2;
+  const stations = record.supportStations || [-spacing / 2, spacing / 2];
+  for (const x of stations) {
     cube('metal', .045, beamHeight, depth, [x, beamHeight / 2, 0]);
     for (const side of [-1, 1]) {
       cube('metal', tube, height - beamHeight, tube, [x, (height + beamHeight) / 2, side * postZ]);
@@ -447,7 +454,41 @@ function tileClampGeometry(record, paneWidth, paneHeight, bottom) {
     if (!edge) cube('metal', .075, tube, postZ * 2 + tube, [x, bottom - .01 - tube / 2, 0]);
     cube('rubber', bearingPadWidth, bearingPadHeight, .065, [x, bottom - bearingPadHeight / 2, 0]);
   }
-  return {parts: Object.values(parts), count: 2, postCount: 4, braceCount: 4, clampPadCount: 8, bearingPadCount: 2, depth, height, tube, spacing, placement, edgeClearance: edge ? edgeClearance : null, beamHeight, bearingPadHeight, bearingPadWidth, raisedBearing: !edge, footprintWidth: Math.max(paneWidth, spacing + Math.max(.045, padRadius * 2, bearingPadWidth)), bearingElevation: bottom, clampLevels: [lower, upper], dimensionsStatus: 'illustrative, not measured'};
+  return {parts: Object.values(parts), count: stations.length, postCount: stations.length * 2, braceCount: stations.length * 2, clampPadCount: stations.length * 4, bearingPadCount: stations.length, depth, height, tube, spacing, placement, edgeClearance: edge ? edgeClearance : null, beamHeight, bearingPadHeight, bearingPadWidth, raisedBearing: !edge, footprintWidth: Math.max(paneWidth, spacing + Math.max(.045, padRadius * 2, bearingPadWidth)), bearingElevation: bottom, clampLevels: [lower, upper], dimensionsStatus: 'illustrative, not measured'};
+}
+
+// Coordinates are derived from pane edges, never a second placement source.
+// Shared seam clamps are a spatial proposal, not validated hardware capacity.
+function joinedGlassPlans(layout) {
+  const plans = [], records = layout.freestandingGlass || [];
+  const specs = new Map((layout.joinedGlassGroups || []).map(group => [group.id, group]));
+  for (const id of new Set(records.map(record => record.joinedGroup).filter(Boolean))) {
+    const members = records.filter(record => record.joinedGroup === id);
+    if (members.length < 2) throw new Error(`连续玻璃组 ${id} 至少需要两片`);
+    const spec = specs.get(id) || {id, supportType: 'shared-seam-clamp'};
+    if (spec.supportType !== 'shared-seam-clamp') throw new Error(`连续玻璃组 ${id} 支撑类型无效`);
+    const first = members[0], a = finite(first.yaw, 0) * RAD, direction = [Math.cos(a), Math.sin(a)];
+    let normal = [-direction[1], direction[0]];
+    if (first.normal && normal[0] * first.normal[0] + normal[1] * first.normal[1] < 0) normal = normal.map(n => -n);
+    const right = [-normal[1], normal[0]], projection = record => record.x * direction[0] + record.z * direction[1];
+    members.sort((a, b) => projection(a) - projection(b));
+    const bottom = finite(first.bottom, .035), height = positive(first.height, 1.8);
+    const cross = first.x * normal[0] + first.z * normal[1];
+    members.forEach((record, index) => {
+      const parallel = Math.cos((finite(record.yaw, 0) - finite(first.yaw, 0)) * RAD);
+      if (parallel < .999999 || Math.abs(record.x * normal[0] + record.z * normal[1] - cross) > .00001 || Math.abs(record.height - height) > .00001 || Math.abs(finite(record.bottom, .035) - bottom) > .00001) throw new Error(`连续玻璃组 ${id} 必须共面、同高同底`);
+      if (index && Math.abs(projection(record) - record.width / 2 - projection(members[index - 1]) - members[index - 1].width / 2) > .00001) throw new Error(`连续玻璃组 ${id} 片间未贴边`);
+    });
+    const lo = projection(members[0]) - members[0].width / 2, hi = projection(members.at(-1)) + members.at(-1).width / 2;
+    const mid = (lo + hi) / 2, width = hi - lo, center = [first.x + direction[0] * (mid - projection(first)), bottom + height / 2, first.z + direction[1] * (mid - projection(first))];
+    const tube = positive(spec.supportTube, .03), clearance = THREE.MathUtils.clamp(finite(spec.supportEdgeClearance, .002), 0, .006), offset = tube / 2 + clearance;
+    const edges = [lo - offset, ...members.slice(0, -1).map(record => projection(record) + record.width / 2), hi + offset];
+    const stations = edges.map((t, index) => ({id: `${id}-support-${String(index + 1).padStart(2, '0')}`, kind: index === 0 || index === edges.length - 1 ? 'outer' : 'seam', localX: (t - mid) * (right[0] * direction[0] + right[1] * direction[1]), canonicalPosition: [center[0] + direction[0] * (t - mid), 0, center[2] + direction[1] * (t - mid)], touchingWorkIds: index === 0 ? [members[0].id] : index === edges.length - 1 ? [members.at(-1).id] : [members[index - 1].id, members[index].id]}));
+    const supportRecord = {...spec, supportPlacement: 'edge', supportStations: stations.map(station => station.localX)};
+    const descriptor = tileClampGeometry(supportRecord, width, height, bottom);
+    plans.push({id, members, center, normal, right, direction, width, height, bottom, stations, descriptor});
+  }
+  return plans;
 }
 
 /**
@@ -515,7 +556,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   const stats = {
     works: 0, workCount: 0, photos: 0, large: 0, videos: 0, glass: 0, texts: 0,
     partitions: 0, surfaces: 0, poems: 0, labels: 0, wallFields: 0, floorFields: 0,
-    botanicalGroups: 0, stalks: 0, leaves: 0, ears: 0, textScreens: 0, tileClampRacks: 0, clampPads: 0, poemRasters: 0, textScales: [],
+    botanicalGroups: 0, stalks: 0, leaves: 0, ears: 0, textScreens: 0, joinedGlassGroups: 0, sharedClampStations: 0, tileClampRacks: 0, clampPads: 0, poemRasters: 0, textScales: [],
     textures: 0, loaded: 0, errors: 0, pending: 0, texturePixels: 0, textureResamples: 0,
     failures: [], warnings: [], aspectAdjustments: [], ready: false,
   };
@@ -528,7 +569,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   let errorTexture;
   const white = new THREE.MeshStandardMaterial({color: activePalette.wall || '#f2f1ec', roughness: .86, side: THREE.DoubleSide});
   const backing = new THREE.MeshStandardMaterial({color: '#e5e3dc', roughness: .9, side: THREE.DoubleSide});
-  const textFamily = (record, fallback = 'serif') => /trial0[45678]/.test(String(layout.revision || '')) && (!record.fontFamily || record.fontFamily === 'sans') ? 'plex' : record.fontFamily || fallback;
+  const textFamily = (record, fallback = 'serif') => /trial0[456789]/.test(String(layout.revision || '')) && (!record.fontFamily || record.fontFamily === 'sans') ? 'plex' : record.fontFamily || fallback;
 
   function publishGlassDebug() {
     const canvas=renderer?.domElement;
@@ -615,7 +656,9 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
         const ratio = nativeWidth / nativeHeight;
         const renderedWidth = preserveDimensions ? width : Math.min(width, height * ratio);
         const renderedHeight = preserveDimensions ? height : renderedWidth / ratio;
-        image.scale.set(renderedWidth / width, renderedHeight / height, 1);
+        const fullPrintedPane = printed && record.imageFit === 'contain';
+        image.scale.set(fullPrintedPane ? 1 : renderedWidth / width, fullPrintedPane ? 1 : renderedHeight / height, 1);
+        if (fullPrintedPane) { material.uniforms.printContain.value.set(renderedWidth / width, renderedHeight / height); image.userData.transparentPrintMargins = [(width-renderedWidth)/2, (height-renderedHeight)/2]; image.userData.fullGlassDimensions = [width, height]; }
         image.userData.nativePixels = [nativeWidth, nativeHeight];
         image.userData.renderedDimensions = [renderedWidth, renderedHeight];
         if (!preserveDimensions && Math.abs(width / height / ratio - 1) > .012) {
@@ -730,8 +773,8 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       const paper = new THREE.MeshBasicMaterial({color: record.matColor || '#f8f7f2', side: THREE.DoubleSide, toneMapped: false});
       box(work, '前言版面_排版待核', width, height, .008, 0, 0, .004, paper);
       const fontSize = positive(record.fontSize, .045);
-      const raster = textCanvas(record.text || '', {fontPixels: 96, padding: 5, color: record.color || '#42473e', runs: textRuns(record), lineHeight: finite(record.fontLineHeight, finite(record.lineHeight, 1.6)), fontFamily: textFamily(record), weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96});
       const widthScale = THREE.MathUtils.clamp(finite(record.fontWidthScale, 1), .001, 1);
+      const raster = textCanvas(record.text || '', {fontPixels: 96, padding: 5, color: record.color || '#42473e', runs: textRuns(record), lineHeight: finite(record.fontLineHeight, finite(record.lineHeight, 1.6)), fontFamily: textFamily(record), weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96, glyphMode: record.glyphMode || 'fill', strokeWidth: finite(record.strokeWidth, .002), strokeColor: record.strokeColor, fontSizeMetres: fontSize, widthScale});
       const naturalWidth = raster.logicalWidth / raster.fontPixels * fontSize * widthScale, naturalHeight = raster.logicalHeight / raster.fontPixels * fontSize;
       const contain = Math.min(1, Math.max(.001, width - .12) / naturalWidth, record.align === 'center' ? Math.max(.001, height - .04) / naturalHeight : Infinity);
       const textWidth = raster.rawWidth / raster.fontPixels * fontSize * widthScale * contain, textHeight = raster.rawHeight / raster.fontPixels * fontSize * contain;
@@ -781,6 +824,8 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
 
   const supportMaterial = new THREE.MeshStandardMaterial({color: '#777b70', metalness: .4, roughness: .48, side: THREE.DoubleSide});
   const glassMaterial = new THREE.MeshStandardMaterial({color: '#dfebe6', transparent: true, opacity: .17, roughness: .18, side: THREE.DoubleSide, depthWrite: false});
+  const joinedPlans = joinedGlassPlans(layout), joinedByMember = new Map(joinedPlans.flatMap(plan => plan.members.map(member => [member.id, plan])));
+  const joinedGlassGroups = new Map();
   for (const record of layout.freestandingGlass || []) {
     const item = items.get(record.catalogId);
     // yaw is a plan angle: pane width runs from +X towards +canonical Z.
@@ -798,16 +843,24 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     const center = [finite(record.x, 0), bottom + height / 2, finite(record.z, 0)];
     const workRecord = {...record, type: 'glass'};
     const work = faceGroup(group, `玻璃板_${record.id}_支撑仅为试排示意`, center, normal);
+    const joinedPlan = joinedByMember.get(record.id);
     const materialStudy = printedStudy?.mode === 'density-reflection' ? printedGlassParameters(printedStudy, record.materialStudy) : null;
     const substrate = box(work, '玻璃基板_厚度待核', width, height, .01, 0, 0, 0, glassMaterial);
     if (materialStudy) { substrate.visible = false; substrate.userData.dimensionalReferenceOnly = true; }
-    const edges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(width, height, .01)), new THREE.LineBasicMaterial({color: '#819087', transparent: true, opacity: .78}));
+    let edgeGeometry = new THREE.EdgesGeometry(new THREE.BoxGeometry(width, height, .01));
+    if (joinedPlan && joinedPlan.members.at(-1).id !== record.id) {
+      const positions=edgeGeometry.getAttribute('position').array, kept=[];
+      for (let i=0;i<positions.length;i+=6) if (!(Math.abs(positions[i]+width/2)<1e-6 && Math.abs(positions[i+3]+width/2)<1e-6)) kept.push(...positions.slice(i,i+6));
+      edgeGeometry.dispose();edgeGeometry=new THREE.BufferGeometry();edgeGeometry.setAttribute('position',new THREE.Float32BufferAttribute(kept,3));
+    }
+    const edges = new THREE.LineSegments(edgeGeometry, new THREE.LineBasicMaterial({color: '#819087', transparent: true, opacity: .78}));
     edges.name = '玻璃边缘';
     if (materialStudy) probeExcluded.add(edges);
     work.add(edges);
     imageOn(work, item, workRecord, width, height, .006, materialStudy ? {alpha: true, printed: materialStudy} : {opacity: .85});
     let supportDepth = .28, supportWidth = width;
-    if (record.supportType === 'tile-display-clamp') {
+    if (joinedPlan) { work.userData.joinedGroup = joinedPlan.id; supportDepth = .01; }
+    else if (record.supportType === 'tile-display-clamp') {
       const placement = record.supportPlacement || (/trial0[1-4]/.test(String(layout.revision || '')) ? 'inset' : 'edge');
       const descriptor = tileClampGeometry({...record, supportPlacement: placement}, width, height, bottom);
       const materials = {
@@ -838,6 +891,24 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     collisionRects.push(segmentRect(record.id, 'glass', a, b, supportDepth));
     register(workRecord, work, item, center, normal, [width, height]);
     stats.glass++;
+  }
+
+  for (const plan of joinedPlans) {
+    const first = works.get(plan.members[0].id), delta = [plan.center[0] - plan.members[0].x, plan.center[2] - plan.members[0].z];
+    const shared = new THREE.Group(); shared.name = `连续玻璃共用夹架_${plan.id}_尺寸未实测`;
+    shared.position.x = delta[0] * plan.right[0] + delta[1] * plan.right[1]; first.add(shared);
+    const materials = {metal: new THREE.MeshStandardMaterial({color:'#181a19',roughness:.68,metalness:.2,flatShading:true,side:THREE.DoubleSide}),screw:new THREE.MeshStandardMaterial({color:'#464944',roughness:.52,metalness:.5,side:THREE.DoubleSide}),rubber:new THREE.MeshStandardMaterial({color:'#121310',roughness:.98,side:THREE.DoubleSide})};
+    for (const part of plan.descriptor.parts) {
+      const geometry = new THREE.BufferGeometry(); geometry.setAttribute('position',new THREE.Float32BufferAttribute(part.vertices,3));geometry.setIndex(part.indices);geometry.computeVertexNormals();
+      const mesh = new THREE.Mesh(geometry,materials[part.kind]);mesh.name=`连续玻璃共用夹架_${part.kind}`;mesh.userData={joinedGroup:plan.id,notArtwork:true};shared.add(mesh);
+    }
+    const {parts:_parts,...summary}=plan.descriptor;
+    shared.userData={joinedGroup:plan.id,memberIds:plan.members.map(member=>member.id),canonicalPosition:plan.center,canonicalNormal:plan.normal,supportSummary:summary,stations:plan.stations,notArtwork:true,dimensionsStatus:'illustrative, not measured; shared clamp suitability unverified'};
+    first.userData.joinedSupportSummary=summary;
+    joinedGlassGroups.set(plan.id,shared);
+    const half=plan.descriptor.footprintWidth/2, a=[plan.center[0]-plan.direction[0]*half,plan.center[2]-plan.direction[1]*half], b=[plan.center[0]+plan.direction[0]*half,plan.center[2]+plan.direction[1]*half];
+    collisionRects.push(segmentRect(plan.id,'joined-glass-support',a,b,plan.descriptor.depth));
+    stats.joinedGlassGroups++;stats.sharedClampStations+=summary.count;stats.tileClampRacks+=summary.count;stats.clampPads+=summary.clampPadCount;
   }
 
   for (const record of layout.textScreens || []) {
@@ -923,7 +994,8 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       contain = finite(suppliedRaster.uniformContainScale, 1);
       stats.poemRasters++;
     } else {
-      const raster = textCanvas(actualText, {fontPixels: 96, color: record.color || '#666b58', padding: 5, lineHeight: finite(record.fontLineHeight, finite(record.lineHeight, 1.45)), runs, fontFamily: textFamily(record), weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96});
+      if (/trial09/.test(String(layout.revision || '')) && /[^\x00-\x7F]/.test(actualText)) throw new Error(`诗句 ${record.id} 需要已核对字形覆盖的共享PNG，拒绝静默字体替换`);
+      const raster = textCanvas(actualText, {fontPixels: 96, color: record.color || '#666b58', padding: 5, lineHeight: finite(record.fontLineHeight, finite(record.lineHeight, 1.45)), runs, fontFamily: textFamily(record), weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96, glyphMode: record.glyphMode || 'fill', strokeWidth: finite(record.strokeWidth, .002), strokeColor: record.strokeColor, fontSizeMetres: fontSize, widthScale});
       const naturalWidth = raster.logicalWidth / raster.fontPixels * fontSize * widthScale;
       contain = Math.min(naturalWidth, positive(record.width, naturalWidth)) / naturalWidth;
       width = raster.rawWidth / raster.fontPixels * fontSize * widthScale * contain;
@@ -957,12 +1029,15 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       // Wall rotationY = 0 faces +canonical Z; +90 faces +canonical X.
       textGroup = faceGroup(group, record.id, position, [Math.sin(angle), Math.cos(angle)]);
     }
+    const inPlaneRotation = finite(record.rotationInPlane, 0);
+    if (inPlaneRotation) textGroup.matrix.multiply(new THREE.Matrix4().makeRotationZ(inPlaneRotation * RAD));
     textGroup.name = `诗句_${record.id}`;
     textGroup.userData = {poemId: record.id, text: actualText, layout: record,
       kind: record.surface === 'wall' ? 'wallPoem' : record.surface === 'ceiling' ? 'ceilingPoem' : 'floorPoem', canonicalPosition: position,
       textScreenId: record.textScreenId || null,
       canonicalNormal: record.surface === 'wall' ? [Math.sin(angle), Math.cos(angle)] : null,
       canonicalNormal3D: record.surface === 'ceiling' ? [0, -1, 0] : record.surface === 'floor' ? [0, 1, 0] : [Math.sin(angle), 0, Math.cos(angle)],
+      rotationInPlane: inPlaneRotation,
       requestedFontSize: fontSize, effectiveFontSize: fontSize * contain, fontWidthScale: widthScale, uniformContainScale: contain, effectiveEmWidth: fontSize * widthScale * contain, physicalWidth: width, physicalHeight: height, width, height, inkPadding, glyphCenterCompensation: [centerOffsetX, centerOffsetY], raster: suppliedRaster, preRasterized: Boolean(suppliedRaster)};
     if (contain < .99) stats.textScales.push({id: record.id, requested: fontSize, effective: textGroup.userData.effectiveFontSize});
     const horizontal = record.surface === 'floor' || record.surface === 'ceiling';
@@ -1047,7 +1122,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   });
   group.updateMatrixWorld(true);
   return {
-    group, surfaces, works, environmentFields, poemGroups, botanicalGroups, textScreens, ceilingStudy, collisionRects, ready, stats, setFinish, setPrintedGlassStudy, refreshGlassReflections,
+    group, surfaces, works, environmentFields, poemGroups, botanicalGroups, textScreens, joinedGlassGroups, ceilingStudy, collisionRects, ready, stats, setFinish, setPrintedGlassStudy, refreshGlassReflections,
     setVisible(visible) { group.visible = Boolean(visible); },
     focusTarget(id) {
       const record = focus.get(id) || [...focus.entries()].find(([key]) => works.get(key)?.userData.catalogId === id)?.[1];

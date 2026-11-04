@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "revision": "20261104-trial08",
-  "title": "第八次试排 · 床面、脚下与上方",
-  "status": "eighth_trial_not_installation_plan",
+  "revision": "20261104-trial09",
+  "title": "第九次试排 · 连续玻璃与文字层次",
+  "status": "ninth_trial_not_installation_plan",
   "date": "2026-11-04",
-  "sourceLayout": "source/layout-baselines/trial07.json",
-  "principle": "让脱鞋与经过、看床与抬头成为同一个观看区域的身体动作；诗句由墙、地与顶之间的距离完成，透明影像与背后的空间同时存在。",
+  "sourceLayout": "source/layout-baselines/trial08.json",
+  "principle": "六块玻璃以同一尺度并成连续透明面；诗句通过原生窄字、扁字、轮廓与错位组成句形，以空间行为建立远近阅读，小字保留细读节奏。",
   "partitions": [
     {
       "id": "early",
@@ -895,85 +895,109 @@
       "id": "ga-01",
       "catalogId": "ga-01",
       "group": "GLASS",
-      "x": 4.0200000000000005,
-      "z": 16.8,
-      "yaw": 95,
-      "width": 0.6,
-      "height": 0.8,
+      "x": 4.0,
+      "z": 20.3,
+      "yaw": 90,
+      "width": 0.7,
+      "height": 1.8,
       "bottom": 0.035,
-      "note": "夹架在玻璃左右边缘，玻璃落到底梁橡胶托面；形态按实物照片，尺寸为试排参数。",
+      "note": "统一70×180厘米；六块边对边组成4.2米连续玻璃。源图比例保留，余区透明；夹架在接缝共用，具体结构为展示候选。",
       "supportType": "tile-display-clamp",
-      "supportPlacement": "edge"
+      "supportPlacement": "edge",
+      "imageFit": "contain",
+      "sourceImageWidth": 0.6,
+      "sourceImageHeight": 0.8,
+      "joinedGroup": "growing-again-continuous"
     },
     {
       "id": "ga-02",
       "catalogId": "ga-02",
       "group": "GLASS",
-      "x": 3.9800000000000004,
-      "z": 19.0,
-      "yaw": 85,
+      "x": 4.0,
+      "z": 21.0,
+      "yaw": 90,
       "width": 0.7,
-      "height": 1.2,
+      "height": 1.8,
       "bottom": 0.035,
-      "note": "夹架在玻璃左右边缘，玻璃落到底梁橡胶托面；形态按实物照片，尺寸为试排参数。",
+      "note": "统一70×180厘米；六块边对边组成4.2米连续玻璃。源图比例保留，余区透明；夹架在接缝共用，具体结构为展示候选。",
       "supportType": "tile-display-clamp",
-      "supportPlacement": "edge"
+      "supportPlacement": "edge",
+      "imageFit": "contain",
+      "sourceImageWidth": 0.7,
+      "sourceImageHeight": 1.2,
+      "joinedGroup": "growing-again-continuous"
     },
     {
       "id": "ga-03",
       "catalogId": "ga-03",
       "group": "GLASS",
-      "x": 4.0200000000000005,
-      "z": 21.0,
-      "yaw": 95,
-      "width": 0.6,
-      "height": 1.4,
+      "x": 4.0,
+      "z": 21.7,
+      "yaw": 90,
+      "width": 0.7,
+      "height": 1.8,
       "bottom": 0.035,
-      "note": "夹架在玻璃左右边缘，玻璃落到底梁橡胶托面；形态按实物照片，尺寸为试排参数。",
+      "note": "统一70×180厘米；六块边对边组成4.2米连续玻璃。源图比例保留，余区透明；夹架在接缝共用，具体结构为展示候选。",
       "supportType": "tile-display-clamp",
-      "supportPlacement": "edge"
+      "supportPlacement": "edge",
+      "imageFit": "contain",
+      "sourceImageWidth": 0.6,
+      "sourceImageHeight": 1.4,
+      "joinedGroup": "growing-again-continuous"
     },
     {
       "id": "ga-04",
       "catalogId": "ga-04",
       "group": "GLASS",
-      "x": 3.9800000000000004,
+      "x": 4.0,
       "z": 22.4,
-      "yaw": 85,
+      "yaw": 90,
       "width": 0.7,
-      "height": 1.6,
+      "height": 1.8,
       "bottom": 0.035,
-      "note": "夹架在玻璃左右边缘，玻璃落到底梁橡胶托面；形态按实物照片，尺寸为试排参数。",
+      "note": "统一70×180厘米；六块边对边组成4.2米连续玻璃。源图比例保留，余区透明；夹架在接缝共用，具体结构为展示候选。",
       "supportType": "tile-display-clamp",
-      "supportPlacement": "edge"
+      "supportPlacement": "edge",
+      "imageFit": "contain",
+      "sourceImageWidth": 0.7,
+      "sourceImageHeight": 1.6,
+      "joinedGroup": "growing-again-continuous"
     },
     {
       "id": "ga-05",
       "catalogId": "ga-05",
       "group": "GLASS",
-      "x": 4.0200000000000005,
-      "z": 24.4,
-      "yaw": 95,
-      "width": 0.6,
-      "height": 1.65,
+      "x": 4.0,
+      "z": 23.1,
+      "yaw": 90,
+      "width": 0.7,
+      "height": 1.8,
       "bottom": 0.035,
-      "note": "夹架在玻璃左右边缘，玻璃落到底梁橡胶托面；形态按实物照片，尺寸为试排参数。",
+      "note": "统一70×180厘米；六块边对边组成4.2米连续玻璃。源图比例保留，余区透明；夹架在接缝共用，具体结构为展示候选。",
       "supportType": "tile-display-clamp",
-      "supportPlacement": "edge"
+      "supportPlacement": "edge",
+      "imageFit": "contain",
+      "sourceImageWidth": 0.6,
+      "sourceImageHeight": 1.65,
+      "joinedGroup": "growing-again-continuous"
     },
     {
       "id": "ga-06",
       "catalogId": "ga-06",
       "group": "GLASS",
-      "x": 3.9800000000000004,
-      "z": 27.3,
-      "yaw": 85,
-      "width": 0.6,
+      "x": 4.0,
+      "z": 23.8,
+      "yaw": 90,
+      "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
-      "note": "夹架在玻璃左右边缘，玻璃落到底梁橡胶托面；形态按实物照片，尺寸为试排参数。",
+      "note": "统一70×180厘米；六块边对边组成4.2米连续玻璃。源图比例保留，余区透明；夹架在接缝共用，具体结构为展示候选。",
       "supportType": "tile-display-clamp",
-      "supportPlacement": "edge"
+      "supportPlacement": "edge",
+      "imageFit": "contain",
+      "sourceImageWidth": 0.6,
+      "sourceImageHeight": 1.8,
+      "joinedGroup": "growing-again-continuous"
     }
   ],
   "poems": [
@@ -985,18 +1009,20 @@
         0.009,
         5.8
       ],
-      "fontSize": 0.22,
-      "width": 2.05,
+      "fontSize": 0.3,
+      "width": 2.5,
       "surface": "floor",
       "rotationY": 90,
       "weight": 500,
-      "fontFamily": "plex",
-      "fontWidthScale": 1.0,
+      "fontFamily": "qi-narrow",
+      "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.0005,
-      "note": "原句第一部分；面向四幅卧室摄影阅读，先遇到脱鞋的邀请。避开现有金属线，不作为实际脱鞋要求。"
+      "letterSpacing": 0,
+      "note": "原句第一部分；面向四幅卧室摄影阅读，先遇到脱鞋的邀请。避开现有金属线，不作为实际脱鞋要求。",
+      "glyphMode": "fill",
+      "rotationInPlane": 0
     },
     {
       "id": "invitation-crossing",
@@ -1006,18 +1032,21 @@
         0.009,
         9.0
       ],
-      "fontSize": 0.2,
-      "width": 2.15,
+      "fontSize": 0.27,
+      "width": 2.5,
       "surface": "floor",
       "rotationY": 90,
-      "weight": 500,
-      "fontFamily": "plex",
-      "fontWidthScale": 1.0,
+      "weight": 700,
+      "fontFamily": "qi-narrow",
+      "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.0005,
-      "note": "同一句原诗的后半；沿观看带前行后再读到，两个字面之间的距离由身体完成。"
+      "letterSpacing": 0,
+      "note": "同一句原诗的后半；沿观看带前行后再读到，两个字面之间的距离由身体完成。",
+      "glyphMode": "outline",
+      "rotationInPlane": 0,
+      "strokeWidth": 0.0035
     },
     {
       "id": "future",
@@ -1067,30 +1096,35 @@
         1.45,
         11.7
       ],
-      "fontSize": 0.28,
-      "width": 1.12,
+      "fontSize": 0.34,
+      "width": 1.22,
       "surface": "wall",
       "rotationY": -90,
       "weight": 700,
-      "fontFamily": "plex",
-      "fontWidthScale": 1.0,
-      "lineHeight": 0.94,
+      "fontFamily": "qi-flat",
+      "fontWidthScale": 1,
+      "lineHeight": 0.86,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0,
+      "letterSpacing": 0.012,
       "lines": [
         {
           "text": "群山",
+          "fontFamily": "qi-flat",
           "weight": 700,
-          "fontScale": 1.0
+          "fontScale": 1
         },
         {
           "text": "还未合拢，",
+          "fontFamily": "qi-narrow",
           "weight": 400,
-          "fontScale": 0.5
+          "fontScale": 0.36,
+          "offsetX": 0.25
         }
       ],
-      "note": "从地面迁入03/04之间空墙；大词与小句形成停顿，与床褥起伏保持开放的视觉联系，不给单幅照片配标题。"
+      "note": "从地面迁入03/04之间空墙；大词与小句形成停顿，与床褥起伏保持开放的视觉联系，不给单幅照片配标题。",
+      "glyphMode": "fill",
+      "rotationInPlane": 0
     },
     {
       "id": "river",
@@ -1116,94 +1150,106 @@
       "id": "world",
       "text": "已经发生的世界",
       "position": [
-        0.7190933333333334,
+        0.775,
         2.03,
         14.784
       ],
-      "fontSize": 0.16,
+      "fontSize": 0.17,
       "width": 1.26,
       "surface": "wall",
       "rotationY": 180,
-      "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "weight": 500,
+      "fontFamily": "qi-narrow",
+      "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.00192,
-      "textScreenId": "poetry-screen-2"
+      "letterSpacing": 0,
+      "textScreenId": "poetry-screen-2",
+      "glyphMode": "fill",
+      "rotationInPlane": 0
     },
     {
       "id": "across",
       "text": "横亘",
       "position": [
-        0.5470716666666666,
+        0.775,
         1.46,
         14.784
       ],
-      "fontSize": 0.38,
+      "fontSize": 0.5,
       "width": 1.26,
       "surface": "wall",
       "rotationY": 180,
-      "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "weight": 700,
+      "fontFamily": "qi-flat",
+      "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.00456,
-      "textScreenId": "poetry-screen-2"
+      "letterSpacing": 0,
+      "textScreenId": "poetry-screen-2",
+      "glyphMode": "outline",
+      "rotationInPlane": 0,
+      "strokeWidth": 0.006
     },
     {
       "id": "between",
       "text": "在我与他们之间，",
       "position": [
-        0.7591125,
+        0.775,
         1.08,
         14.784
       ],
-      "fontSize": 0.15,
+      "fontSize": 0.17,
       "width": 1.26,
       "surface": "wall",
       "rotationY": 180,
       "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "fontFamily": "qi-narrow",
+      "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.0018,
-      "textScreenId": "poetry-screen-2"
+      "letterSpacing": 0,
+      "textScreenId": "poetry-screen-2",
+      "glyphMode": "fill",
+      "rotationInPlane": 0
     },
     {
       "id": "ending",
       "text": "他们再也看不见我。",
       "position": [
         4.367,
-        2.17,
+        2.25,
         29.6
       ],
-      "fontSize": 0.25,
+      "fontSize": 0.31,
       "width": 2.6,
       "surface": "wall",
       "rotationY": -90,
       "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "fontFamily": "qi-narrow",
+      "fontWidthScale": 1,
       "lineHeight": 1.16,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.003,
+      "letterSpacing": 0,
       "runs": [
         {
           "text": "他们",
-          "weight": 400
+          "fontFamily": "qi-flat",
+          "weight": 700,
+          "fontScale": 1.15
         },
         {
           "text": "再也看不见我。",
+          "fontFamily": "qi-narrow",
           "weight": 400
         }
-      ]
+      ],
+      "glyphMode": "fill",
+      "rotationInPlane": 0
     },
     {
       "id": "moon",
@@ -1213,17 +1259,19 @@
         2.4,
         17.0
       ],
-      "fontSize": 0.38,
-      "width": 2.1,
+      "fontSize": 0.52,
+      "width": 2.25,
       "surface": "wall",
       "rotationY": -90,
-      "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "weight": 700,
+      "fontFamily": "qi-narrow",
+      "fontWidthScale": 1,
       "lineHeight": 1.16,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.00456
+      "letterSpacing": 0.006,
+      "glyphMode": "fill",
+      "rotationInPlane": 8
     },
     {
       "id": "tide",
@@ -1295,17 +1343,19 @@
         2.45,
         12.2
       ],
-      "fontSize": 0.23,
+      "fontSize": 0.27,
       "width": 1.5,
       "surface": "wall",
       "rotationY": 90,
-      "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "weight": 700,
+      "fontFamily": "qi-narrow",
+      "fontWidthScale": 1,
       "lineHeight": 1.16,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.0027600000000000003
+      "letterSpacing": 0,
+      "glyphMode": "fill",
+      "rotationInPlane": 0
     },
     {
       "id": "islands",
@@ -1349,23 +1399,37 @@
     },
     {
       "id": "waves",
-      "text": "它聚拢，它抬升，\n它倾覆，它盘旋。",
+      "text": "它聚拢，\n它抬升，",
       "position": [
         4.367,
-        1.85,
-        20.4
+        2.13,
+        18.95
       ],
       "fontSize": 0.24,
-      "width": 2.3,
+      "width": 1.55,
       "surface": "wall",
       "rotationY": -90,
-      "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
-      "lineHeight": 1.25,
+      "weight": 500,
+      "fontFamily": "qi-narrow",
+      "fontWidthScale": 1,
+      "lineHeight": 0.86,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.0028799999999999997
+      "letterSpacing": 0,
+      "glyphMode": "fill",
+      "rotationInPlane": 0,
+      "lines": [
+        {
+          "text": "它聚拢，",
+          "fontScale": 0.85
+        },
+        {
+          "text": "它抬升，",
+          "fontScale": 1.15,
+          "offsetX": 0.25,
+          "offsetY": 0.035
+        }
+      ]
     },
     {
       "id": "stars",
@@ -1457,14 +1521,14 @@
         3.595,
         9.6
       ],
-      "fontSize": 0.21,
-      "width": 1.6,
+      "fontSize": 0.27,
+      "width": 1.8,
       "surface": "ceiling",
       "rotationY": 90,
       "weight": 500,
-      "fontFamily": "plex",
-      "fontWidthScale": 1.0,
-      "lineHeight": 1.12,
+      "fontFamily": "qi-narrow",
+      "fontWidthScale": 1,
+      "lineHeight": 1.05,
       "align": "left",
       "color": "#42473e",
       "letterSpacing": 0,
@@ -1472,13 +1536,56 @@
       "lines": [
         {
           "text": "夜空向海面",
+          "fontFamily": "qi-narrow",
           "weight": 400,
-          "fontScale": 1.0
+          "fontScale": 0.9
         },
         {
           "text": "缓缓倾斜，",
+          "fontFamily": "qi-narrow",
           "weight": 500,
-          "fontScale": 1.2857142857142858
+          "fontScale": 1.2,
+          "offsetX": 0.13,
+          "offsetY": 0.02
+        }
+      ],
+      "glyphMode": "fill",
+      "rotationInPlane": -6
+    },
+    {
+      "id": "waves-after",
+      "text": "它倾覆，\n它盘旋。",
+      "position": [
+        4.367,
+        2.35,
+        24.95
+      ],
+      "fontSize": 0.24,
+      "width": 1.55,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 500,
+      "fontFamily": "qi-narrow",
+      "fontWidthScale": 1,
+      "lineHeight": 0.86,
+      "align": "left",
+      "color": "#42473e",
+      "letterSpacing": 0,
+      "glyphMode": "fill",
+      "rotationInPlane": 0,
+      "lines": [
+        {
+          "text": "它倾覆，",
+          "fontScale": 1
+        },
+        {
+          "text": "它盘旋。",
+          "fontScale": 0.85,
+          "offsetX": 0.16,
+          "offsetY": -0.025,
+          "glyphMode": "outline",
+          "weight": 700,
+          "strokeWidth": 0.0035
         }
       ]
     }
@@ -1609,16 +1716,16 @@
     },
     {
       "id": "spatial-glass-maize",
-      "label": "玻璃支架 · 枯秸秆",
+      "label": "连续玻璃 · 排首与秸秆",
       "camera": [
-        1.0,
+        1.8,
         1.6,
-        24.8
+        18.2
       ],
       "target": [
-        4.0,
-        1.35,
-        22.6
+        4,
+        0.95,
+        21.1
       ]
     },
     {
@@ -1796,28 +1903,68 @@
     },
     {
       "id": "spatial-glass-transmission",
-      "label": "Growing Again · 透光与反射",
+      "label": "Growing Again · 六块并板",
       "camera": [
-        2.1,
+        1.25,
         1.6,
-        22.4
+        22.05
       ],
       "target": [
         4.0,
-        0.88,
-        22.4
+        0.95,
+        22.05
       ]
+    },
+    {
+      "id": "sentence-moon",
+      "label": "句形 · 月亮升起",
+      "camera": [
+        1.2,
+        2.0,
+        17
+      ],
+      "target": [
+        4.367,
+        2.0,
+        17
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 4.0,
+        "height": 3.1
+      }
+    },
+    {
+      "id": "sentence-waves",
+      "label": "句形 · 沿玻璃读完",
+      "camera": [
+        1.2,
+        1.55,
+        22.05
+      ],
+      "target": [
+        4.0,
+        1.55,
+        22.05
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 8.6,
+        "height": 3.8
+      }
     }
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "全部42项原作、31幅摄影、四幅一切正常、六玻璃及其支架、白展墙和文字屏位置尺寸均保持07；不增加任何落地障碍。",
-    "仅将原脱鞋句拆作地面先后两处，原群山从地面迁入03/04之间，原顶诗转为面向右墙的两行。其他诗句保持07。",
-    "本区域试用IBM Plex Sans SC真实400/500/700与原生字宽；其他区域汇文字形保留，不假称UCCA原中文字体。",
-    "参考UCCA 2024韦纳的横梁分句、地面路径、墙面句法和留白；不复制其原作语句，不把细绿斜杆加厚为可写的大梁。",
-    "Growing Again按用户实物改为密度相关半透明打印和表面反射；参数为视觉试验，源RGB和所有打印原件不变。",
-    "3.6米仍为未实测顶面试字附着标高，不是新吊板、承载构件或安装图。",
-    "三套07配色、地砖与金属走势、现有通行包络保留；实际净宽、支脚、锚固与驻足通行仍须现场核定。"
+    "Growing Again六块玻璃统一70×180厘米，以04原中心22.4米为锚点；整组沿墙长4.2米，中心22.05米。",
+    "统一玻璃板幅，不拉伸源图；源画布同比例容纳在板内，余区透明。不是已改制的喷绘原件。",
+    "接缝支架共用，不叠放原来的两套侧架；实物夹持、玻璃规格与防倾覆须另行确定。",
+    "秸秆移到连续玻璃排首；文字屏与两片白墙不动。",
+    "指定大字使用用户字体库的汉仪旗黑X4/Y4真实窄字与扁字面；通过句形、实心与轮廓区分语义，不作机械压缩或伪粗。",
+    "月亮句轻微上扬，群山退为局部提示；动词句拆在玻璃排首与排尾，观众经过六片后才补全。横亘为空心轮廓，减少透明屏在摄影视线中的墨迹占比。",
+    "地面两处邀请与顶句只改字体与句形，位置保留08；摄影、两片白墙、透明诗屏的落地占位均不动。",
+    "08三套配色、密度半透明与表面反射保留；材质参数仍为视觉试排。",
+    "31.2米、2.95米与A口1.7米为已确认空间输入；净宽约4.4米及3.6米顶面试字标高仍待实测。"
   ],
   "environment": {
     "wallFields": [
@@ -2011,7 +2158,7 @@
     {
       "id": "dried-maize-01",
       "x": 3.94,
-      "z": 23.45,
+      "z": 19.25,
       "height": 1.48,
       "width": 0.55,
       "stalkCount": 3,
@@ -2021,7 +2168,7 @@
       "color": "#9a805b",
       "leafColor": "#ad956d",
       "earCount": 1,
-      "note": "一组枯玉米秸秆与玻璃并列，不遮挡图像；清洁、固定与场地防火条件需落实。"
+      "note": "移至连续玻璃排首，与板边留空；固定与实物范围另核。"
     }
   ],
   "poetryArchive": [
@@ -2039,7 +2186,7 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/trial08/manifest.json",
+  "poetryRasterManifest": "poetry/trial09/manifest.json",
   "occupancyStudy": {
     "status": "illustrative_not_observed_people",
     "diameters": [
@@ -2071,7 +2218,8 @@
       {
         "id": "ga05",
         "x": 3.05,
-        "z": 24.4
+        "z": 23.1,
+        "note": "更新到并板05与诗屏相对断面；仅为驻足比较假设。"
       },
       {
         "id": "late-B",
@@ -2079,5 +2227,16 @@
         "z": 27.06
       }
     ]
-  }
+  },
+  "joinedGlassGroups": [
+    {
+      "id": "growing-again-continuous",
+      "supportType": "shared-seam-clamp",
+      "supportTube": 0.03,
+      "supportDepth": 0.52,
+      "supportHeight": 0.42,
+      "supportEdgeClearance": 0.002,
+      "status": "illustrative_unmeasured"
+    }
+  ]
 }
