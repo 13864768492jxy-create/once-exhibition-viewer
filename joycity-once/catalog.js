@@ -10,7 +10,7 @@ function showDetail(work){
   const back=node('button','catalog-back','返回作品列表');back.type='button';back.addEventListener('click',()=>{target.hidden=true;get('catalog-list').hidden=false;get('catalog-filter').hidden=false;});target.append(back);
   target.append(node('h3','',work.title));const img=node('img','catalog-large');img.src=work.detailImage||work.image;img.alt=work.title;target.append(img);
   const placement=placementFor(work.id);
-  for(const text of [placement?.joinedGroup?displayDimensions(work):null,work.dimensions,work.dimensionNote,work.medium,placement?.joinedGroup?'六块玻璃边对边并列，整组420 × 180 cm；保留原图比例，余区透明。':work.presentation,placement?'位置：当前空间试排，可继续调整':'位置：待布置',placement?.note].filter(Boolean))target.append(node('p','',text));
+  for(const text of [placement?.joinedGroup?displayDimensions(work):null,work.dimensions,work.dimensionNote,work.medium,placement?.joinedGroup?(currentLayout.poetryGlassPanels?.length?'六件作品与两块透明诗板并列，整排560 × 180 cm；原图比例保留，未印区透明。':'六块作品玻璃边对边并列，整组420 × 180 cm；保留原图比例，余区透明。'):work.presentation,placement?'位置：当前空间试排，可继续调整':'位置：待布置',placement?.note].filter(Boolean))target.append(node('p','',text));
   if(placement&&inspectWork){const inspect=node('button','inspect-work','在空间中查看');inspect.type='button';inspect.addEventListener('click',()=>inspectWork(placement.id));target.append(inspect);}
   get('catalog-list').hidden=true;get('catalog-filter').hidden=true;target.hidden=false;get('catalog-panel').scrollTop=0;back.focus({preventScroll:true});
 }
@@ -21,7 +21,7 @@ function render(){
   if(value==='poetry')return;
   for(const work of library.items.filter(x=>value==='all'||x.group===value)){
     const li=node('li','catalog-item');const button=node('button','catalog-work');button.type='button';button.setAttribute('aria-label','查看 '+work.title);
-    const img=node('img','');img.src=work.image;img.alt='';img.loading='lazy';button.append(img,node('strong','',work.title),node('span','',displayDimensions(work)),node('small','',placementFor(work.id)?'试排09':'待布置'));button.addEventListener('click',()=>showDetail(work));li.append(button);list.append(li);
+    const img=node('img','');img.src=work.image;img.alt='';img.loading='lazy';button.append(img,node('strong','',work.title),node('span','',displayDimensions(work)),node('small','',placementFor(work.id)?'当前试排':'待布置'));button.addEventListener('click',()=>showDetail(work));li.append(button);list.append(li);
   }
 }
 export function installCatalog({layout=null,onInspect=null}={}){

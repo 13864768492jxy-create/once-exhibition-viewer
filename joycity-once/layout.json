@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "revision": "20261104-trial09",
-  "title": "第九次试排 · 连续玻璃与文字层次",
-  "status": "ninth_trial_not_installation_plan",
-  "date": "2026-11-04",
-  "sourceLayout": "source/layout-baselines/trial08.json",
-  "principle": "六块玻璃以同一尺度并成连续透明面；诗句通过原生窄字、扁字、轮廓与错位组成句形，以空间行为建立远近阅读，小字保留细读节奏。",
+  "revision": "20261105-trial10",
+  "title": "第十次试排 · 留白、顺读与透明诗板",
+  "status": "tenth_trial_not_installation_plan",
+  "date": "2026-11-05",
+  "sourceLayout": "source/layout-baselines/trial09.json",
+  "principle": "长墙小画、短墙大画，以整段留白形成聚散；诗句能沿观看接续，透明与消退属于文字的物质试验，保留已认可的句形。",
   "partitions": [
     {
       "id": "early",
@@ -162,11 +162,11 @@
       "imageUrl": "library/spatial_once_01.jpg",
       "id": "once_01",
       "catalogId": "once_01",
-      "group": "main",
+      "group": "late-B-large",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 3.2,
-      "centerY": 1.35,
+      "surfaceId": "late-B",
+      "along": 0.75,
+      "centerY": 1.42,
       "imageWidth": 1.1,
       "imageHeight": 0.903685,
       "outerWidth": 1.1960000000000002,
@@ -181,11 +181,11 @@
       "imageUrl": "library/spatial_once_02.jpg",
       "id": "once_02",
       "catalogId": "once_02",
-      "group": "early-A",
+      "group": "B-figure",
       "type": "photo",
-      "surfaceId": "early-A",
-      "along": 1.12,
-      "centerY": 1.16,
+      "surfaceId": "once-main",
+      "along": 27.9,
+      "centerY": 1.5,
       "imageWidth": 0.54,
       "imageHeight": 0.480113,
       "outerWidth": 0.636,
@@ -200,11 +200,11 @@
       "imageUrl": "library/spatial_once_04.jpg",
       "id": "once_04",
       "catalogId": "once_04",
-      "group": "late-A",
+      "group": "place-night",
       "type": "photo",
-      "surfaceId": "late-A",
-      "along": 0.45,
-      "centerY": 1.12,
+      "surfaceId": "once-main",
+      "along": 18.65,
+      "centerY": 1.95,
       "imageWidth": 0.4,
       "imageHeight": 0.32511,
       "outerWidth": 0.496,
@@ -219,11 +219,11 @@
       "imageUrl": "library/spatial_once_05.jpg",
       "id": "once_05",
       "catalogId": "once_05",
-      "group": "main",
+      "group": "sea",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 6.95,
-      "centerY": 1.65,
+      "along": 6.9,
+      "centerY": 1.9,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.324,
@@ -238,11 +238,11 @@
       "imageUrl": "library/spatial_once_08.jpg",
       "id": "once_08",
       "catalogId": "once_08",
-      "group": "main",
+      "group": "place-night",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 26.8,
-      "centerY": 1.75,
+      "along": 19.65,
+      "centerY": 1.78,
       "imageWidth": 0.738,
       "imageHeight": 0.6,
       "outerWidth": 0.754,
@@ -257,11 +257,11 @@
       "imageUrl": "library/spatial_once_09.jpg",
       "id": "once_09",
       "catalogId": "once_09",
-      "group": "main",
+      "group": "B-figure",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 2.1,
-      "centerY": 1.15,
+      "along": 26.75,
+      "centerY": 0.7,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.396,
@@ -276,11 +276,11 @@
       "imageUrl": "library/spatial_once_10.jpg",
       "id": "once_10",
       "catalogId": "once_10",
-      "group": "late-B",
+      "group": "A-city",
       "type": "photo",
-      "surfaceId": "late-B",
-      "along": 0.35,
-      "centerY": 1.97,
+      "surfaceId": "once-main",
+      "along": 3.05,
+      "centerY": 2.25,
       "imageWidth": 0.3,
       "imageHeight": 0.23793699577000002,
       "outerWidth": 0.396,
@@ -295,11 +295,11 @@
       "imageUrl": "library/spatial_once_11.jpg",
       "id": "once_11",
       "catalogId": "once_11",
-      "group": "main",
+      "group": "place-night",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 26.85,
-      "centerY": 0.9,
+      "along": 19.65,
+      "centerY": 0.8,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.324,
@@ -314,11 +314,11 @@
       "imageUrl": "library/spatial_once_12.jpg",
       "id": "once_12",
       "catalogId": "once_12",
-      "group": "early-B",
+      "group": "sea",
       "type": "photo",
-      "surfaceId": "early-B",
-      "along": 0.45,
-      "centerY": 1.15,
+      "surfaceId": "once-main",
+      "along": 7.4,
+      "centerY": 0.95,
       "imageWidth": 0.42,
       "imageHeight": 0.341918,
       "outerWidth": 0.516,
@@ -333,11 +333,11 @@
       "imageUrl": "library/spatial_once_13.jpg",
       "id": "once_13",
       "catalogId": "once_13",
-      "group": "main",
+      "group": "sea",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 7.5,
-      "centerY": 0.9,
+      "along": 10.2,
+      "centerY": 1.15,
       "imageWidth": 0.8,
       "imageHeight": 0.64691444444,
       "outerWidth": 0.896,
@@ -352,11 +352,11 @@
       "imageUrl": "library/spatial_once_14.jpg",
       "id": "once_14",
       "catalogId": "once_14",
-      "group": "early-B",
+      "group": "place-night",
       "type": "photo",
-      "surfaceId": "early-B",
-      "along": 1.15,
-      "centerY": 1.8,
+      "surfaceId": "once-main",
+      "along": 20.55,
+      "centerY": 1.85,
       "imageWidth": 0.46,
       "imageHeight": 0.373281,
       "outerWidth": 0.556,
@@ -371,11 +371,11 @@
       "imageUrl": "library/spatial_once_16.jpg",
       "id": "once_16",
       "catalogId": "once_16",
-      "group": "main",
+      "group": "snow",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 20.1,
-      "centerY": 1.25,
+      "along": 25,
+      "centerY": 1.35,
       "imageWidth": 0.85,
       "imageHeight": 0.7,
       "outerWidth": 0.9420000000000001,
@@ -390,11 +390,11 @@
       "imageUrl": "library/spatial_once_17.jpg",
       "id": "once_17",
       "catalogId": "once_17",
-      "group": "main",
+      "group": "B-figure",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 4.4,
-      "centerY": 1.15,
+      "along": 28.75,
+      "centerY": 1.1,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.324,
@@ -409,11 +409,11 @@
       "imageUrl": "library/spatial_once_18.jpg",
       "id": "once_18",
       "catalogId": "once_18",
-      "group": "main",
+      "group": "snow",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 17.0,
-      "centerY": 0.95,
+      "along": 25.3,
+      "centerY": 0.6,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.396,
@@ -428,11 +428,11 @@
       "imageUrl": "library/spatial_once_19.jpg",
       "id": "once_19",
       "catalogId": "once_19",
-      "group": "early-A",
+      "group": "B-figure",
       "type": "photo",
-      "surfaceId": "early-A",
-      "along": 0.48,
-      "centerY": 1.82,
+      "surfaceId": "once-main",
+      "along": 26.75,
+      "centerY": 2.15,
       "imageWidth": 0.42,
       "imageHeight": 0.32220999999999994,
       "outerWidth": 0.516,
@@ -447,10 +447,10 @@
       "imageUrl": "library/spatial_once_20.jpg",
       "id": "once_20",
       "catalogId": "once_20",
-      "group": "main",
+      "group": "early-A-large",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 12.2,
+      "surfaceId": "early-A",
+      "along": 0.8,
       "centerY": 1.45,
       "imageWidth": 1.47,
       "imageHeight": 1.16,
@@ -466,11 +466,11 @@
       "imageUrl": "library/spatial_once_21.jpg",
       "id": "once_21",
       "catalogId": "once_21",
-      "group": "main",
+      "group": "early-B-large",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 9.2,
-      "centerY": 1.55,
+      "surfaceId": "early-B",
+      "along": 0.8,
+      "centerY": 1.45,
       "imageWidth": 1.35,
       "imageHeight": 1.063805,
       "outerWidth": 1.3659999999999999,
@@ -485,11 +485,11 @@
       "imageUrl": "library/spatial_once_22.jpg",
       "id": "once_22",
       "catalogId": "once_22",
-      "group": "late-A",
+      "group": "A-city",
       "type": "photo",
-      "surfaceId": "late-A",
-      "along": 1.02,
-      "centerY": 1.9,
+      "surfaceId": "once-main",
+      "along": 4.15,
+      "centerY": 0.95,
       "imageWidth": 0.54,
       "imageHeight": 0.42472299999999996,
       "outerWidth": 0.636,
@@ -504,11 +504,11 @@
       "imageUrl": "library/spatial_once_23.jpg",
       "id": "once_23",
       "catalogId": "once_23",
-      "group": "main",
+      "group": "place-night",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 25.15,
-      "centerY": 0.75,
+      "along": 18.65,
+      "centerY": 0.95,
       "imageWidth": 0.42,
       "imageHeight": 0.33067100000000005,
       "outerWidth": 0.516,
@@ -523,11 +523,11 @@
       "imageUrl": "library/spatial_once_24.jpg",
       "id": "once_24",
       "catalogId": "once_24",
-      "group": "main",
+      "group": "sea",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 10.9,
-      "centerY": 1.1,
+      "along": 8.5,
+      "centerY": 1.35,
       "imageWidth": 0.425,
       "imageHeight": 0.35700000000000004,
       "outerWidth": 0.561,
@@ -542,11 +542,11 @@
       "imageUrl": "library/spatial_once_25.jpg",
       "id": "once_25",
       "catalogId": "once_25",
-      "group": "main",
+      "group": "place-night",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 5.05,
-      "centerY": 1.0,
+      "along": 20.55,
+      "centerY": 0.95,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.396,
@@ -561,11 +561,11 @@
       "imageUrl": "library/spatial_once_26.jpg",
       "id": "once_26",
       "catalogId": "once_26",
-      "group": "main",
+      "group": "place-night",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 25,
-      "centerY": 1.65,
+      "along": 17.7,
+      "centerY": 1.45,
       "imageWidth": 0.85,
       "imageHeight": 0.7,
       "outerWidth": 0.9420000000000001,
@@ -580,10 +580,10 @@
       "imageUrl": "library/spatial_once_27.jpg",
       "id": "once_27",
       "catalogId": "once_27",
-      "group": "main",
+      "group": "sea",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 17,
+      "along": 9.4,
       "centerY": 2,
       "imageWidth": 0.37799999999999995,
       "imageHeight": 0.32146696529,
@@ -599,11 +599,11 @@
       "imageUrl": "library/spatial_once_28.jpg",
       "id": "once_28",
       "catalogId": "once_28",
-      "group": "main",
+      "group": "snow",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 18.95,
-      "centerY": 1.85,
+      "along": 25,
+      "centerY": 2.25,
       "imageWidth": 0.47600000000000003,
       "imageHeight": 0.35505095,
       "outerWidth": 0.612,
@@ -618,11 +618,11 @@
       "imageUrl": "library/spatial_once_30.jpg",
       "id": "once_30",
       "catalogId": "once_30",
-      "group": "late-B",
+      "group": "A-city",
       "type": "photo",
-      "surfaceId": "late-B",
-      "along": 0.97,
-      "centerY": 1.15,
+      "surfaceId": "once-main",
+      "along": 5,
+      "centerY": 1.5,
       "imageWidth": 0.62,
       "imageHeight": 0.509715,
       "outerWidth": 0.716,
@@ -637,11 +637,11 @@
       "imageUrl": "library/spatial_once_31.jpg",
       "id": "once_31",
       "catalogId": "once_31",
-      "group": "main",
+      "group": "A-city",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 28.3,
-      "centerY": 1.3,
+      "along": 3,
+      "centerY": 1.35,
       "imageWidth": 0.85,
       "imageHeight": 0.7,
       "outerWidth": 0.9420000000000001,
@@ -656,11 +656,11 @@
       "imageUrl": "library/spatial_once_32.jpg",
       "id": "once_32",
       "catalogId": "once_32",
-      "group": "main",
+      "group": "A-city",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 29.7,
-      "centerY": 2.05,
+      "along": 4.95,
+      "centerY": 0.65,
       "imageWidth": 0.255,
       "imageHeight": 0.2125,
       "outerWidth": 0.391,
@@ -675,11 +675,11 @@
       "imageUrl": "library/spatial_once_33.jpg",
       "id": "once_33",
       "catalogId": "once_33",
-      "group": "main",
+      "group": "snow",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 29.9,
-      "centerY": 1.1,
+      "along": 24.22,
+      "centerY": 2.2,
       "imageWidth": 0.45299999999999996,
       "imageHeight": 0.36633229167000003,
       "outerWidth": 0.5489999999999999,
@@ -694,11 +694,11 @@
       "imageUrl": "library/spatial_once_34.jpg",
       "id": "once_34",
       "catalogId": "once_34",
-      "group": "main",
+      "group": "snow",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 21.1,
-      "centerY": 1.05,
+      "along": 24.2,
+      "centerY": 0.9,
       "imageWidth": 0.255,
       "imageHeight": 0.20580321429,
       "outerWidth": 0.391,
@@ -713,11 +713,11 @@
       "imageUrl": "library/spatial_once_35.jpg",
       "id": "once_35",
       "catalogId": "once_35",
-      "group": "main",
+      "group": "late-A-large",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 18.8,
-      "centerY": 0.99,
+      "surfaceId": "late-A",
+      "along": 0.75,
+      "centerY": 1.48,
       "imageWidth": 1.0,
       "imageHeight": 0.805132,
       "outerWidth": 1.096,
@@ -732,11 +732,11 @@
       "imageUrl": "library/spatial_once_36.jpg",
       "id": "once_36",
       "catalogId": "once_36",
-      "group": "main",
+      "group": "sea",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 10.9,
-      "centerY": 2.18,
+      "along": 11.7,
+      "centerY": 1.65,
       "imageWidth": 0.8,
       "imageHeight": 0.6356429473699999,
       "outerWidth": 0.896,
@@ -901,7 +901,7 @@
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
-      "note": "统一70×180厘米；六块边对边组成4.2米连续玻璃。源图比例保留，余区透明；夹架在接缝共用，具体结构为展示候选。",
+      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
       "supportType": "tile-display-clamp",
       "supportPlacement": "edge",
       "imageFit": "contain",
@@ -919,7 +919,7 @@
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
-      "note": "统一70×180厘米；六块边对边组成4.2米连续玻璃。源图比例保留，余区透明；夹架在接缝共用，具体结构为展示候选。",
+      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
       "supportType": "tile-display-clamp",
       "supportPlacement": "edge",
       "imageFit": "contain",
@@ -932,12 +932,12 @@
       "catalogId": "ga-03",
       "group": "GLASS",
       "x": 4.0,
-      "z": 21.7,
+      "z": 22.4,
       "yaw": 90,
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
-      "note": "统一70×180厘米；六块边对边组成4.2米连续玻璃。源图比例保留，余区透明；夹架在接缝共用，具体结构为展示候选。",
+      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
       "supportType": "tile-display-clamp",
       "supportPlacement": "edge",
       "imageFit": "contain",
@@ -950,12 +950,12 @@
       "catalogId": "ga-04",
       "group": "GLASS",
       "x": 4.0,
-      "z": 22.4,
+      "z": 23.1,
       "yaw": 90,
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
-      "note": "统一70×180厘米；六块边对边组成4.2米连续玻璃。源图比例保留，余区透明；夹架在接缝共用，具体结构为展示候选。",
+      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
       "supportType": "tile-display-clamp",
       "supportPlacement": "edge",
       "imageFit": "contain",
@@ -968,12 +968,12 @@
       "catalogId": "ga-05",
       "group": "GLASS",
       "x": 4.0,
-      "z": 23.1,
+      "z": 24.5,
       "yaw": 90,
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
-      "note": "统一70×180厘米；六块边对边组成4.2米连续玻璃。源图比例保留，余区透明；夹架在接缝共用，具体结构为展示候选。",
+      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
       "supportType": "tile-display-clamp",
       "supportPlacement": "edge",
       "imageFit": "contain",
@@ -986,12 +986,12 @@
       "catalogId": "ga-06",
       "group": "GLASS",
       "x": 4.0,
-      "z": 23.8,
+      "z": 25.2,
       "yaw": 90,
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
-      "note": "统一70×180厘米；六块边对边组成4.2米连续玻璃。源图比例保留，余区透明；夹架在接缝共用，具体结构为展示候选。",
+      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
       "supportType": "tile-display-clamp",
       "supportPlacement": "edge",
       "imageFit": "contain",
@@ -1130,9 +1130,9 @@
       "id": "river",
       "text": "河流带有未命名的方向，\n从每个人流过。",
       "position": [
-        1.98,
+        2.4,
         0.009,
-        10.98
+        13.65
       ],
       "fontSize": 0.16,
       "width": 2.25,
@@ -1220,14 +1220,14 @@
       "id": "ending",
       "text": "他们再也看不见我。",
       "position": [
-        4.367,
-        2.25,
-        29.6
+        0.018,
+        1.45,
+        15.85
       ],
       "fontSize": 0.31,
       "width": 2.6,
       "surface": "wall",
-      "rotationY": -90,
+      "rotationY": 90,
       "weight": 400,
       "fontFamily": "qi-narrow",
       "fontWidthScale": 1,
@@ -1257,7 +1257,7 @@
       "position": [
         4.367,
         2.4,
-        17.0
+        15.25
       ],
       "fontSize": 0.52,
       "width": 2.25,
@@ -1279,7 +1279,7 @@
       "position": [
         2.65,
         0.009,
-        18.5
+        15.85
       ],
       "fontSize": 0.17,
       "width": 2.2,
@@ -1297,56 +1297,54 @@
       "id": "sea",
       "text": "海水越过海水，",
       "position": [
-        0.59057,
-        1.86,
-        22.984
+        4.367,
+        1.75,
+        16.0
       ],
       "fontSize": 0.12,
       "width": 0.88,
       "surface": "wall",
-      "rotationY": 180,
+      "rotationY": -90,
       "weight": 400,
       "fontFamily": "huiwen",
       "fontWidthScale": 1.0,
       "lineHeight": 1.15,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.0014399999999999999,
-      "textScreenId": "poetry-screen-3"
+      "letterSpacing": 0.0014399999999999999
     },
     {
       "id": "shore",
       "text": "让夜晚走向岸边。",
       "position": [
-        0.58987875,
-        1.3,
-        22.984
+        4.367,
+        1.15,
+        16.0
       ],
       "fontSize": 0.105,
       "width": 0.88,
       "surface": "wall",
-      "rotationY": 180,
+      "rotationY": -90,
       "weight": 400,
       "fontFamily": "huiwen",
       "fontWidthScale": 1.0,
       "lineHeight": 1.15,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.00126,
-      "textScreenId": "poetry-screen-3"
+      "letterSpacing": 0.00126
     },
     {
       "id": "reef",
       "text": "礁石沉默，",
       "position": [
-        0.018,
-        2.45,
-        12.2
+        4.367,
+        1.45,
+        17.0
       ],
       "fontSize": 0.27,
       "width": 1.5,
       "surface": "wall",
-      "rotationY": 90,
+      "rotationY": -90,
       "weight": 700,
       "fontFamily": "qi-narrow",
       "fontWidthScale": 1,
@@ -1361,14 +1359,14 @@
       "id": "islands",
       "text": "群岛浮出黑暗。",
       "position": [
-        0.018,
-        1.23,
-        26.8
+        4.367,
+        2.1,
+        17.45
       ],
       "fontSize": 0.17,
       "width": 1.5,
       "surface": "wall",
-      "rotationY": 90,
+      "rotationY": -90,
       "weight": 400,
       "fontFamily": "huiwen",
       "fontWidthScale": 1.0,
@@ -1382,8 +1380,8 @@
       "text": "更远的浪正在赶来。",
       "position": [
         4.367,
-        1.25,
-        25.8
+        0.65,
+        18.25
       ],
       "fontSize": 0.13,
       "width": 1.65,
@@ -1433,11 +1431,11 @@
     },
     {
       "id": "stars",
-      "text": "夜空向海面缓缓倾斜，\n群星随波浪起伏。",
+      "text": "群星随波浪起伏。",
       "position": [
         4.367,
-        2.62,
-        27.35
+        2.65,
+        28
       ],
       "fontSize": 0.15,
       "width": 1.75,
@@ -1455,14 +1453,14 @@
       "id": "moonlight",
       "text": "波光，是月亮在海里的迁徙。",
       "position": [
-        2.4,
+        3.1,
         0.009,
-        27.2
+        29.3
       ],
       "fontSize": 0.16,
       "width": 2.4,
       "surface": "floor",
-      "rotationY": -25,
+      "rotationY": -61.82,
       "weight": 400,
       "fontFamily": "huiwen",
       "fontWidthScale": 1.0,
@@ -1472,54 +1470,12 @@
       "letterSpacing": 0.00192
     },
     {
-      "id": "wall-tide-echo",
-      "text": "潮水对此一无所知。",
-      "position": [
-        0.018,
-        2.55,
-        8.65
-      ],
-      "fontSize": 0.19,
-      "width": 2.15,
-      "surface": "wall",
-      "rotationY": 90,
-      "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
-      "lineHeight": 1.16,
-      "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.00228,
-      "note": "从原诗选出的空间回声；不是新增诗文。"
-    },
-    {
-      "id": "wall-sea-echo",
-      "text": "海水越过海水，",
-      "position": [
-        0.018,
-        0.55,
-        10.1
-      ],
-      "fontSize": 0.16,
-      "width": 1.7,
-      "surface": "wall",
-      "rotationY": 90,
-      "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
-      "lineHeight": 1.16,
-      "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.00192,
-      "note": "从原诗选出的空间回声；不是新增诗文。"
-    },
-    {
       "id": "ceiling-night",
       "text": "夜空向海面\n缓缓倾斜，",
       "position": [
-        3.0,
+        3,
         3.595,
-        9.6
+        27.35
       ],
       "fontSize": 0.27,
       "width": 1.8,
@@ -1558,7 +1514,7 @@
       "position": [
         4.367,
         2.35,
-        24.95
+        26.35
       ],
       "fontSize": 0.24,
       "width": 1.55,
@@ -1588,100 +1544,69 @@
           "strokeWidth": 0.0035
         }
       ]
+    },
+    {
+      "id": "glass-growing",
+      "text": "growing\nagain",
+      "surface": "wall",
+      "position": [
+        3.984,
+        0.935,
+        21.7
+      ],
+      "rotationY": -90,
+      "fontFamily": "qi-narrow",
+      "weight": 700,
+      "fontWidthScale": 1,
+      "fontSize": 0.2,
+      "width": 0.6,
+      "lineHeight": 1.1,
+      "align": "left",
+      "color": "#424a40",
+      "glassPanelId": "ga-poetry-title",
+      "rasterOverride": {
+        "path": "assets/typography/trial10/glass-growing.png",
+        "physicalWidth": 0.6,
+        "physicalHeight": 1.54,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "sha256": "6012962257cb13fb71cb2dbef310d6c55bb0978b58508299e830d09069faa4d0",
+        "sourceSVG": "assets/typography/trial10/glass-growing.svg"
+      },
+      "note": "两行小写；逐字轻转、下部曲线位移和退淡，字句仍能完整辨认。参考字作为事件的机制，不重复参考图的列式叠印。"
+    },
+    {
+      "id": "glass-sea-echo",
+      "text": "海水\n越过\n海水，",
+      "surface": "wall",
+      "position": [
+        3.984,
+        0.935,
+        23.8
+      ],
+      "rotationY": -90,
+      "fontFamily": "qi-narrow",
+      "weight": 700,
+      "fontWidthScale": 1,
+      "fontSize": 0.2,
+      "width": 0.6,
+      "lineHeight": 1.1,
+      "align": "left",
+      "color": "#424a40",
+      "glassPanelId": "ga-poetry-sea",
+      "rasterOverride": {
+        "path": "assets/typography/trial10/glass-sea-echo.png",
+        "physicalWidth": 0.6,
+        "physicalHeight": 1.54,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "sha256": "ce55b2f00427437f7a1c3d303f6105b6f9a196982b4281b22c93ffd1f13a403b",
+        "sourceSVG": "assets/typography/trial10/glass-sea-echo.svg"
+      },
+      "note": "上方海水凝聚，越过保持细小清晰，下方海水沿向下的字形退淡；只回响已读原诗，不插入新的缺章。"
     }
   ],
   "focusGroups": [
-    {
-      "id": "entry-main",
-      "label": "开头：01 · 17",
-      "workIds": [
-        "once_09",
-        "once_01",
-        "once_17",
-        "once_25"
-      ],
-      "side": "left"
-    },
-    {
-      "id": "early-A",
-      "label": "第一片突出墙 · A面",
-      "workIds": [
-        "once_19",
-        "once_02"
-      ],
-      "surfaceId": "early-A",
-      "side": "left"
-    },
-    {
-      "id": "early-B",
-      "label": "第一片突出墙 · B面",
-      "workIds": [
-        "once_12",
-        "once_14"
-      ],
-      "surfaceId": "early-B",
-      "side": "left"
-    },
-    {
-      "id": "water",
-      "label": "21 · 24 · 20",
-      "workIds": [
-        "once_05",
-        "once_13",
-        "once_21",
-        "once_24",
-        "once_36",
-        "once_20"
-      ],
-      "side": "left"
-    },
-    {
-      "id": "middle-main",
-      "label": "27 · 28 · 16 · 34",
-      "workIds": [
-        "once_27",
-        "once_18",
-        "once_28",
-        "once_35",
-        "once_16",
-        "once_34"
-      ],
-      "side": "left"
-    },
-    {
-      "id": "late-A",
-      "label": "第二片突出墙 · A面",
-      "workIds": [
-        "once_04",
-        "once_22"
-      ],
-      "surfaceId": "late-A",
-      "side": "left"
-    },
-    {
-      "id": "late-B",
-      "label": "第二片突出墙 · B面",
-      "workIds": [
-        "once_10",
-        "once_30"
-      ],
-      "surfaceId": "late-B",
-      "side": "left"
-    },
-    {
-      "id": "ending",
-      "label": "26 · 08 · 11 · 31 · 32",
-      "workIds": [
-        "once_23",
-        "once_26",
-        "once_08",
-        "once_11",
-        "once_31",
-        "once_32",
-        "once_33"
-      ],
-      "side": "left"
-    },
     {
       "id": "YQZC",
       "label": "一切正常 · 四幅原图正视",
@@ -1734,12 +1659,12 @@
       "camera": [
         3.2,
         1.6,
-        8.8
+        11.6
       ],
       "target": [
-        1.9,
+        1.98,
         0.05,
-        11.0
+        13.35
       ]
     },
     {
@@ -1758,16 +1683,16 @@
     },
     {
       "id": "spatial-screen-3",
-      "label": "漂浮文字 · 海水越过海水",
+      "label": "顺读 · 海水与岸边",
       "camera": [
-        3.5,
         1.6,
-        21.67
+        1.6,
+        16.04
       ],
       "target": [
-        0.6,
-        1.35,
-        23.0
+        4.367,
+        1.5,
+        16.0
       ]
     },
     {
@@ -1800,30 +1725,30 @@
     },
     {
       "id": "spatial-left-language",
-      "label": "左墙 · 水与岸边",
+      "label": "回望 · 他们再也看不见我",
       "camera": [
         2.65,
         1.6,
-        7.5
+        14.8
       ],
       "target": [
         0.03,
-        1.5,
-        10.0
+        1.45,
+        15.85
       ]
     },
     {
       "id": "spatial-ceiling-language",
-      "label": "抬头 · 卧室上方的诗",
+      "label": "抬头 · 夜空与群星",
       "camera": [
         1.6,
         1.6,
-        9.6
+        27.35
       ],
       "target": [
-        3.0,
+        3,
         3.595,
-        9.6
+        27.35
       ]
     },
     {
@@ -1903,16 +1828,16 @@
     },
     {
       "id": "spatial-glass-transmission",
-      "label": "Growing Again · 六块并板",
+      "label": "Growing Again · 六件作品与两块诗板",
       "camera": [
-        1.25,
+        2.2,
         1.6,
-        22.05
+        22.75
       ],
       "target": [
-        4.0,
+        4,
         0.95,
-        22.05
+        22.75
       ]
     },
     {
@@ -1920,13 +1845,13 @@
       "label": "句形 · 月亮升起",
       "camera": [
         1.2,
-        2.0,
-        17
+        2,
+        15.25
       ],
       "target": [
         4.367,
-        2.0,
-        17
+        2,
+        15.25
       ],
       "framing": {
         "projection": "orthographic",
@@ -1936,35 +1861,177 @@
     },
     {
       "id": "sentence-waves",
-      "label": "句形 · 沿玻璃读完",
+      "label": "连续玻璃 · 两块透明诗板",
       "camera": [
-        1.2,
+        2.2,
         1.55,
-        22.05
+        22.75
       ],
       "target": [
-        4.0,
+        4,
         1.55,
-        22.05
+        22.75
       ],
       "framing": {
         "projection": "orthographic",
-        "width": 8.6,
+        "width": 10.0,
         "height": 3.8
+      }
+    },
+    {
+      "id": "A-city",
+      "label": "长墙 · 建筑与人物",
+      "workIds": [
+        "once_31",
+        "once_10",
+        "once_22",
+        "once_30",
+        "once_32"
+      ],
+      "surfaceId": "once-main",
+      "side": "left"
+    },
+    {
+      "id": "sea",
+      "label": "长墙 · 海岸",
+      "workIds": [
+        "once_05",
+        "once_12",
+        "once_24",
+        "once_27",
+        "once_13",
+        "once_36"
+      ],
+      "surfaceId": "once-main",
+      "side": "left"
+    },
+    {
+      "id": "place-night",
+      "label": "长墙 · 场所与夜景",
+      "workIds": [
+        "once_26",
+        "once_04",
+        "once_23",
+        "once_08",
+        "once_11",
+        "once_25",
+        "once_14"
+      ],
+      "surfaceId": "once-main",
+      "side": "left"
+    },
+    {
+      "id": "snow",
+      "label": "长墙 · 雪地",
+      "workIds": [
+        "once_33",
+        "once_34",
+        "once_28",
+        "once_16",
+        "once_18"
+      ],
+      "surfaceId": "once-main",
+      "side": "left"
+    },
+    {
+      "id": "B-figure",
+      "label": "长墙 · 身体与树影",
+      "workIds": [
+        "once_19",
+        "once_09",
+        "once_02",
+        "once_17"
+      ],
+      "surfaceId": "once-main",
+      "side": "left"
+    },
+    {
+      "id": "early-A-large",
+      "label": "短墙A面 · 20",
+      "workIds": [
+        "once_20"
+      ],
+      "surfaceId": "early-A",
+      "side": "left"
+    },
+    {
+      "id": "early-B-large",
+      "label": "短墙B面 · 21",
+      "workIds": [
+        "once_21"
+      ],
+      "surfaceId": "early-B",
+      "side": "left"
+    },
+    {
+      "id": "late-A-large",
+      "label": "短墙A面 · 35",
+      "workIds": [
+        "once_35"
+      ],
+      "surfaceId": "late-A",
+      "side": "left"
+    },
+    {
+      "id": "late-B-large",
+      "label": "短墙B面 · 01",
+      "workIds": [
+        "once_01"
+      ],
+      "surfaceId": "late-B",
+      "side": "left"
+    },
+    {
+      "id": "glass-growing-type",
+      "label": "透明诗板 · growing again",
+      "camera": [
+        1.2,
+        1.0,
+        21.7
+      ],
+      "target": [
+        4,
+        0.935,
+        21.7
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 1.25,
+        "height": 2.25
+      }
+    },
+    {
+      "id": "glass-sea-type",
+      "label": "透明诗板 · 海水的消退",
+      "camera": [
+        1.2,
+        1,
+        23.8
+      ],
+      "target": [
+        4,
+        0.935,
+        23.8
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 1.25,
+        "height": 2.25
       }
     }
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "Growing Again六块玻璃统一70×180厘米，以04原中心22.4米为锚点；整组沿墙长4.2米，中心22.05米。",
-    "统一玻璃板幅，不拉伸源图；源画布同比例容纳在板内，余区透明。不是已改制的喷绘原件。",
-    "接缝支架共用，不叠放原来的两套侧架；实物夹持、玻璃规格与防倾覆须另行确定。",
-    "秸秆移到连续玻璃排首；文字屏与两片白墙不动。",
-    "指定大字使用用户字体库的汉仪旗黑X4/Y4真实窄字与扁字面；通过句形、实心与轮廓区分语义，不作机械压缩或伪粗。",
-    "月亮句轻微上扬，群山退为局部提示；动词句拆在玻璃排首与排尾，观众经过六片后才补全。横亘为空心轮廓，减少透明屏在摄影视线中的墨迹占比。",
-    "地面两处邀请与顶句只改字体与句形，位置保留08；摄影、两片白墙、透明诗屏的落地占位均不动。",
-    "08三套配色、密度半透明与表面反射保留；材质参数仍为视觉试排。",
-    "31.2米、2.95米与A口1.7米为已确认空间输入；净宽约4.4米及3.6米顶面试字标高仍待实测。"
+    "31原作尺寸、图像、裁切及装裱外尺寸未改；27上长墙，20/21/35/01各占一短墙面。",
+    "长墙两段摄影留白5.081米与3.1175米；不是把全部空白都补字。",
+    "20号在1.6米面上每侧仅5.7厘米，作为强占面候选，未扩展突出墙。",
+    "六件GA与两块70×180透明诗板边对边，整排5.6米；九站共享夹持仅为构型示意。",
+    "两端动词字形完全保留；后端随排尾向B平移1.4米。",
+    "撤去一片横向小诗屏；海水/岸边转右墙前段，不再提前泄露或遗漏主诗。",
+    "首诗终句在横亘之后回望可读；月亮诗依次由右墙、地面、玻璃回声接到天花与波光。",
+    "插板无新增原诗，growing again为原作品标题；另一片只回响已读的海水句。",
+    "变形与渐淡为可编辑轮廓字的静态视觉研究，材料工艺仍待试样。",
+    "约4.4米净宽、3.6米顶字标高、玻璃夹架结构和实际驻足通行尚未现场核定。"
   ],
   "environment": {
     "wallFields": [
@@ -2069,15 +2136,39 @@
   "blankWallIntervals": [
     {
       "surfaceId": "once-main",
-      "from": 12.943,
-      "to": 16.743,
-      "length": 3.8
+      "from": 0,
+      "to": 2.529,
+      "length": 2.529,
+      "textScreensInFront": [],
+      "partitionRootsInside": []
     },
     {
       "surfaceId": "once-main",
-      "from": 21.296,
-      "to": 24.529,
-      "length": 3.233
+      "from": 12.148,
+      "to": 17.229,
+      "length": 5.081,
+      "textScreensInFront": [
+        "poetry-screen-2"
+      ],
+      "partitionRootsInside": []
+    },
+    {
+      "surfaceId": "once-main",
+      "from": 20.828,
+      "to": 23.9455,
+      "length": 3.1175,
+      "textScreensInFront": [
+        "poetry-screen-3"
+      ],
+      "partitionRootsInside": []
+    },
+    {
+      "surfaceId": "once-main",
+      "from": 28.912,
+      "to": 31.2,
+      "length": 2.288,
+      "textScreensInFront": [],
+      "partitionRootsInside": []
     }
   ],
   "textScreens": [
@@ -2099,42 +2190,6 @@
       "opacity": 0.025,
       "baseColor": "#bfc1b8",
       "baseWidth": 1.45,
-      "baseDepth": 0.55,
-      "baseHeight": 0.045,
-      "manifestation": [
-        {
-          "height": 0.95,
-          "bandHeight": 0.04,
-          "width": 0.13,
-          "placement": "edges"
-        },
-        {
-          "height": 1.58,
-          "bandHeight": 0.04,
-          "width": 0.13,
-          "placement": "edges"
-        }
-      ],
-      "note": "位于无摄影墙段，保持与左墙90度；薄边和低基座只作视觉候选，显识与固定另行核定。"
-    },
-    {
-      "id": "poetry-screen-3",
-      "x": 0.6,
-      "z": 23.0,
-      "width": 1.0,
-      "height": 2.3,
-      "bottom": 0.045,
-      "yaw": 0,
-      "normal": [
-        0,
-        -1
-      ],
-      "frameColor": "#a5ada5",
-      "frameFace": 0.01,
-      "depth": 0.018,
-      "opacity": 0.025,
-      "baseColor": "#979e92",
-      "baseWidth": 1.1,
       "baseDepth": 0.55,
       "baseHeight": 0.045,
       "manifestation": [
@@ -2186,7 +2241,7 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/trial09/manifest.json",
+  "poetryRasterManifest": "poetry/trial10/manifest.json",
   "occupancyStudy": {
     "status": "illustrative_not_observed_people",
     "diameters": [
@@ -2218,7 +2273,7 @@
       {
         "id": "ga05",
         "x": 3.05,
-        "z": 23.1,
+        "z": 24.5,
         "note": "更新到并板05与诗屏相对断面；仅为驻足比较假设。"
       },
       {
@@ -2238,5 +2293,79 @@
       "supportEdgeClearance": 0.002,
       "status": "illustrative_unmeasured"
     }
-  ]
+  ],
+  "poetryGlassPanels": [
+    {
+      "id": "ga-poetry-title",
+      "joinedGroup": "growing-again-continuous",
+      "x": 4.0,
+      "z": 21.7,
+      "yaw": 90,
+      "width": 0.7,
+      "height": 1.8,
+      "bottom": 0.035,
+      "viewingNormal": [
+        -1,
+        0
+      ],
+      "role": "transparent_poetry_panel_not_artwork",
+      "note": "透明空白为诗句的载体；与作品共面，不再向通道挑出。字迹静态退淡试验，非已确定水溶材料。"
+    },
+    {
+      "id": "ga-poetry-sea",
+      "joinedGroup": "growing-again-continuous",
+      "x": 4.0,
+      "z": 23.8,
+      "yaw": 90,
+      "width": 0.7,
+      "height": 1.8,
+      "bottom": 0.035,
+      "viewingNormal": [
+        -1,
+        0
+      ],
+      "role": "transparent_poetry_panel_not_artwork",
+      "note": "透明空白为诗句的载体；与作品共面，不再向通道挑出。字迹静态退淡试验，非已确定水溶材料。"
+    }
+  ],
+  "readingSequences": [
+    {
+      "id": "future-poem",
+      "direction": "A-to-B then turn back at world-screen",
+      "ids": [
+        "future",
+        "tomorrow",
+        "mountains",
+        "river",
+        "world",
+        "across",
+        "between",
+        "ending"
+      ]
+    },
+    {
+      "id": "moon-poem",
+      "direction": "A-to-B on right, ground and ceiling",
+      "ids": [
+        "moon",
+        "tide",
+        "sea",
+        "shore",
+        "reef",
+        "islands",
+        "far-waves",
+        "waves",
+        "waves-after",
+        "ceiling-night",
+        "stars",
+        "moonlight"
+      ]
+    }
+  ],
+  "approvedBaseline": {
+    "revision": "20261104-trial09",
+    "path": "layouts/trial09.json",
+    "sha256": "7ba244ad5e37994419e08616c147c814251750f102ba3678ac3aa7546ce19b87",
+    "frozen": "原六图顺序、图像、70×180板幅与两端动词字体句形；10新增透明板，后端动词随新增1.4m同步平移，09完整可对照。"
+  }
 }

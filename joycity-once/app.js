@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261104-trial09b';
-import { buildExhibition } from './exhibition.js?v=20261104-trial09b';
+import { installCatalog } from './catalog.js?v=20261105-trial10';
+import { buildExhibition } from './exhibition.js?v=20261105-trial10';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
@@ -174,7 +174,7 @@ function updateCutaway(){
     object.visible=surface?.kind==='existing'?(surface.normal[0]>0?walls.left.visible:walls.right.visible):true;
   }
   if(exhibition?.environmentFields)for(const object of exhibition.environmentFields.values()){if(object.userData.kind==='wallField'){const n=object.userData.canonicalNormal;object.visible=n?.[0]>0?walls.left.visible:walls.right.visible;}}
-  if(exhibition?.poemGroups)for(const object of exhibition.poemGroups.values()){const n=object.userData.canonicalNormal;if(!object.userData.layout?.textScreenId&&object.userData.kind==='wallPoem'&&Math.abs(n?.[0]||0)>.9)object.visible=n[0]>0?walls.left.visible:walls.right.visible;}
+  if(exhibition?.poemGroups)for(const object of exhibition.poemGroups.values()){const n=object.userData.canonicalNormal;if(!object.userData.layout?.textScreenId&&!object.userData.layout?.glassPanelId&&object.userData.kind==='wallPoem'&&Math.abs(n?.[0]||0)>.9)object.visible=n[0]>0?walls.left.visible:walls.right.visible;}
 }
 
 function setTrialVisible(value){
@@ -216,7 +216,7 @@ function focusOnWork(id){
   const target=new THREE.Vector3(focus.target[0],focus.target[1],-focus.target[2]);camera.lookAt(target);
   createControls();controls.target.copy(target);controls.maxPolarAngle=Math.PI*.65;controls.update();
   $('#hint').textContent='拖动环看 · 滚轮缩放 · 选择另一组继续看';
-  $('#status').textContent=`试排09 · ${library.items.find(w=>w.id===id)?.title||'前言位置'}`;
+  $('#status').textContent=`${trialLayout.revision.includes("trial09")?"已认可09":"试排10"} · ${library.items.find(w=>w.id===id)?.title||'前言位置'}`;
   $('#catalog-panel').hidden=true;$('#catalog-button').setAttribute('aria-expanded','false');
   updateCutaway();updateLabels();
 }
@@ -247,7 +247,7 @@ function focusOnGroup(id){
     createControls();
     if(group.id==='spatial-ceiling-language')controls.maxPolarAngle=Math.PI-.04;
     controls.target.copy(target);controls.update();
-    $('#status').textContent='试排09 · '+group.label;$('#hint').textContent=group.id==='spatial-ceiling-language'?'顶部试字 · 暂用3.6 m附着标高，实际顶高待测':'拖动环看 · 滚轮缩放 · 字幕与玻璃均为当前试排';
+    $('#status').textContent=(trialLayout.revision.includes('trial09')?'已认可09 · ':'试排10 · ')+group.label;$('#hint').textContent=group.id==='spatial-ceiling-language'?'顶部试字 · 暂用3.6 m附着标高，实际顶高待测':'拖动环看 · 滚轮缩放 · 字幕与玻璃均为当前试排';
     $('#catalog-panel').hidden=true;$('#catalog-button').setAttribute('aria-expanded','false');updateCutaway();updateLabels();return;
   }
   let members=group.workIds.map(w=>exhibition.works.get(w)?.userData).filter(Boolean);
@@ -271,7 +271,7 @@ function focusOnGroup(id){
   camera.position.copy(target).add(new THREE.Vector3(normal[0]*distance,0,-normal[1]*distance));camera.lookAt(target);
   createControls();controls.target.copy(target);controls.maxPolarAngle=Math.PI*.65;controls.update();
   $('#hint').textContent='组合正视 · 滚轮缩放 · 拖动环看';
-  $('#status').textContent=`试排09 · ${group.label}`;updateCutaway();updateLabels();
+  $('#status').textContent=`${trialLayout.revision.includes("trial09")?"已认可09":"试排10"} · ${group.label}`;updateCutaway();updateLabels();
 }
 const walkBodyRadius=.30; // Preview body envelope; no crowd or construction claim.
 function hitsDisplay(x,z){return trialVisible&&exhibition?.collisionRects.some(r=>x>r.minX-walkBodyRadius&&x<r.maxX+walkBodyRadius&&z>r.minZ-walkBodyRadius&&z<r.maxZ+walkBodyRadius);}
@@ -292,10 +292,18 @@ function resize(){if(!renderer)return;const w=host.clientWidth,h=host.clientHeig
 function animate(now){raf=requestAnimationFrame(animate);const dt=Math.min((now-previousTime)/1000,.05);previousTime=now;if(view==='entry'||view==='reverse'){let forward=0,side=0;if(pressed.has('w')||pressed.has('arrowup'))forward++;if(pressed.has('s')||pressed.has('arrowdown'))forward--;if(pressed.has('d')||pressed.has('arrowright'))side++;if(pressed.has('a')||pressed.has('arrowleft'))side--;if(forward||side){const speed=(pressed.has('shift')?3:1.6)*dt/Math.max(1,Math.hypot(forward,side));const oldX=walkPosition.x,oldZ=walkPosition.z;const nextX=THREE.MathUtils.clamp(oldX+(Math.sin(yaw)*forward-Math.cos(yaw)*side)*speed,Math.max(walkBodyRadius,leftBoundaryX(-oldZ)+walkBodyRadius),data.room.width-walkBodyRadius);if(!hitsDisplay(nextX,-oldZ))walkPosition.x=nextX;const nextZ=THREE.MathUtils.clamp(oldZ+(Math.cos(yaw)*forward+Math.sin(yaw)*side)*speed,-data.room.length+.3,-floorStartZ(walkPosition.x)-.3);if(!hitsDisplay(walkPosition.x,-nextZ))walkPosition.z=nextZ;updateWalk();}}else controls.update();renderer.render(scene,camera);}
 
 async function init(){try{
-  const responses=await Promise.all(['space.json','layout.json','catalog.json'].map(path=>fetch(path+'?v=20261104-trial09b',{cache:'no-store'})));
+  const approvedBaseline=new URLSearchParams(location.search).get('trial')==='09';
+  const layoutURL=approvedBaseline?'layouts/trial09.json':'layout.json';
+  const responses=await Promise.all(['space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261105-trial10',{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   const inputTexts=await Promise.all(responses.map(r=>r.text()));
   [data,trialLayout,library]=inputTexts.map(text=>JSON.parse(text));
+  $('#trial-on').textContent=approvedBaseline?'已认可09':'试排10';
+  $('#baseline-compare').textContent=approvedBaseline?'看试排10':'对照已认可09';
+  $('#baseline-compare').href=approvedBaseline?'?v=20261105-trial10&focus=sentence-waves':'?trial=09&v=20261105-trial10&focus=sentence-waves';
+  if(approvedBaseline){$('.header h1 span').textContent='已认可09';$('.header p').textContent='六块并板 · 原位置与句形';document.title='大悦城 ONCE · 已认可09';}
+  if(approvedBaseline)$('#trial-description').innerHTML='<h3>已认可的09基准</h3><p>六片70×180厘米玻璃并成4.2米；两端动词的字形和错落保持。此处是用户认可的基准，可与插入两块透明诗板的试排10比较。</p>';
+  const initialFocus=new URLSearchParams(location.search).get('focus');
   renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(host.clientWidth,host.clientHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;host.appendChild(renderer.domElement);
   scene=new THREE.Scene();scene.background=new THREE.Color(0xeeede9);build();
   await Promise.all([document.fonts.load('400 96px "ONCE Text"','我横'),document.fonts.load('700 96px "ONCE Text"','我横'),document.fonts.load('400 96px "ONCE Grotesk"','我横'),document.fonts.load('500 96px "ONCE Grotesk"','我横'),document.fonts.load('700 96px "ONCE Grotesk"','我横')]);
@@ -309,6 +317,7 @@ async function init(){try{
   $('#focus-group').addEventListener('change',event=>focusOnGroup(event.target.value));
   $('#trial-on').addEventListener('click',()=>setTrialVisible(true));$('#trial-off').addEventListener('click',()=>setTrialVisible(false));
   setView('overview');
+  if(initialFocus&&trialLayout.focusGroups.some(g=>g.id===initialFocus)){$('#focus-group').value=initialFocus;focusOnGroup(initialFocus);}
   document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
   const panel=(open)=>{$('#details-panel').hidden=!open;$('#details-button').setAttribute('aria-expanded',String(open));};
   $('#details-button').addEventListener('click',()=>panel($('#details-panel').hidden));$('#close-panel').addEventListener('click',()=>panel(false));

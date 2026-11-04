@@ -460,7 +460,7 @@ function tileClampGeometry(record, paneWidth, paneHeight, bottom) {
 // Coordinates are derived from pane edges, never a second placement source.
 // Shared seam clamps are a spatial proposal, not validated hardware capacity.
 function joinedGlassPlans(layout) {
-  const plans = [], records = layout.freestandingGlass || [];
+  const plans = [], records = [...(layout.freestandingGlass || []), ...(layout.poetryGlassPanels || [])];
   const specs = new Map((layout.joinedGlassGroups || []).map(group => [group.id, group]));
   for (const id of new Set(records.map(record => record.joinedGroup).filter(Boolean))) {
     const members = records.filter(record => record.joinedGroup === id);
@@ -544,19 +544,19 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   const environmentFields = new Map();
   const poemGroups = new Map();
   const botanicalGroups = new Map();
-  const textScreens = new Map();
+  const textScreens = new Map(), poetryGlassPanels = new Map(), allGlassPanelRoots = new Map();
   const collisionRects = [];
   const focus = new Map();
   const pending = [];
   const wallFieldMaterials = new Set(), screenBaseMaterials = new Set(), floorPoemMaterials = new Set();
   let activePalette = finishPaletteFor(layout), ceilingStudy = null;
   const printedStudy = layout.environment?.printedGlassStudy;
-  const printedMeshes = new Set(), probeExcluded = new Set(), printedGpuSeen = new Set(); let glassProbe = null, probeQueued = false;
+  const printedMeshes = new Set(), reflectiveMeshes = new Set(), poetryGlassMeshes = new Set(), probeExcluded = new Set(), printedGpuSeen = new Set(), poetryGlassGpuSeen = new Set(); let glassProbe = null, probeQueued = false;
   let activePrintedStudy = {...printedStudy};
   const stats = {
     works: 0, workCount: 0, photos: 0, large: 0, videos: 0, glass: 0, texts: 0,
     partitions: 0, surfaces: 0, poems: 0, labels: 0, wallFields: 0, floorFields: 0,
-    botanicalGroups: 0, stalks: 0, leaves: 0, ears: 0, textScreens: 0, joinedGlassGroups: 0, sharedClampStations: 0, tileClampRacks: 0, clampPads: 0, poemRasters: 0, textScales: [],
+    botanicalGroups: 0, stalks: 0, leaves: 0, ears: 0, textScreens: 0, poetryGlassPanels: 0, joinedGlassGroups: 0, sharedClampStations: 0, tileClampRacks: 0, clampPads: 0, poemRasters: 0, textScales: [],
     textures: 0, loaded: 0, errors: 0, pending: 0, imageRetries: 0, imageAttempts: 0, texturePixels: 0, textureResamples: 0,
     failures: [], warnings: [], aspectAdjustments: [], ready: false,
   };
@@ -569,14 +569,14 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   let errorTexture;
   const white = new THREE.MeshStandardMaterial({color: activePalette.wall || '#f2f1ec', roughness: .86, side: THREE.DoubleSide});
   const backing = new THREE.MeshStandardMaterial({color: '#e5e3dc', roughness: .9, side: THREE.DoubleSide});
-  const textFamily = (record, fallback = 'serif') => /trial0[456789]/.test(String(layout.revision || '')) && (!record.fontFamily || record.fontFamily === 'sans') ? 'plex' : record.fontFamily || fallback;
+  const textFamily = (record, fallback = 'serif') => Number(String(layout.revision || '').match(/trial(\d+)/)?.[1] || 1) >= 4 && (!record.fontFamily || record.fontFamily === 'sans') ? 'plex' : record.fontFamily || fallback;
 
   function publishGlassDebug() {
     const canvas=renderer?.domElement;
     if (!canvas?.setAttribute) return;
     const panes=printedMeshes.size,loaded=stats.printedGlassLoaded||0;
     const gpuStatus=(stats.printedGlassErrors||stats.reflectionError) ? 'error' : loaded===panes && panes>0 && printedGpuSeen.size>0 && stats.reflectionCaptures>0 ? 'ready' : loaded===panes && panes>0 ? 'textures-loaded-awaiting-draw-or-probe' : 'loading';
-    const values={'glass-gpu-status':gpuStatus,'glass-panes':panes,'glass-loaded':loaded,'glass-gpu-drawn':printedGpuSeen.size,'glass-captures':stats.reflectionCaptures||0,'glass-capture-ms':(stats.lastReflectionCaptureMs||0).toFixed(2),'glass-probe-mib':(stats.reflectionProbeMiB||0).toFixed(3),'glass-probe-resolution':stats.reflectionProbeResolution||0,'glass-probe-id':glassProbe?.renderTarget?.texture?.uuid||'','glass-errors':stats.printedGlassErrors||0,'glass-scene-textures':renderer?.info?.memory?.textures||0};
+    const values={'glass-gpu-status':gpuStatus,'glass-panes':panes,'glass-loaded':loaded,'glass-gpu-drawn':printedGpuSeen.size,'glass-captures':stats.reflectionCaptures||0,'glass-capture-ms':(stats.lastReflectionCaptureMs||0).toFixed(2),'glass-probe-mib':(stats.reflectionProbeMiB||0).toFixed(3),'glass-probe-resolution':stats.reflectionProbeResolution||0,'glass-probe-id':glassProbe?.renderTarget?.texture?.uuid||'','glass-errors':stats.printedGlassErrors||0,'glass-scene-textures':renderer?.info?.memory?.textures||0,'glass-poem-panes':poetryGlassMeshes.size,'glass-poem-gpu-drawn':poetryGlassGpuSeen.size,'glass-reflective-panes':reflectiveMeshes.size};
     for (const [key,value] of Object.entries(values)) canvas.setAttribute('data-'+key,String(value));
     canvas.setAttribute('data-glass-study-stats',JSON.stringify({...values,reflectionError:stats.reflectionError||null,parameters:stats.printedGlassStudy||null}));
   }
@@ -603,7 +603,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     });
     if (inkColor) { alphaInkMaterial(material, inkColor); floorPoemMaterials.add(material); material.opacity = 0; }
     const image = plane(object, '原始图像_完整比例', width, height, material, z);
-    if (printed) { printedMeshes.add(image); probeExcluded.add(image); image.userData.printedGlassStudy = printed; image.userData.printedGlassRecord = record; }
+    if (printed) { printedMeshes.add(image); reflectiveMeshes.add(image); probeExcluded.add(image); image.userData.printedGlassStudy = printed; image.userData.printedGlassRecord = record; }
     if (printed) image.onAfterRender=()=>{if (!printedGpuSeen.has(image) && material.uniforms.imageReady.value>0) {printedGpuSeen.add(image);publishGlassDebug();}};
     const src = record.imageUrl || record.image || (record.type === 'photo' ? item?.detailImage : null) || item?.image || item?.preview || item?.previewImage;
     image.userData.source = src || null;
@@ -925,10 +925,38 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     collisionRects.push(segmentRect(record.id, 'glass', a, b, supportDepth));
     register(workRecord, work, item, center, normal, [width, height]);
     stats.glass++;
+    allGlassPanelRoots.set(record.id, work);
+  }
+
+  for (const record of layout.poetryGlassPanels || []) {
+    if (!record.joinedGroup || !joinedByMember.has(record.id)) throw new Error(`诗玻璃板 ${record.id} 必须绑定连续玻璃组`);
+    const angle = finite(record.yaw, 90) * RAD, direction = [Math.cos(angle), Math.sin(angle)];
+    let normal = [-direction[1], direction[0]];
+    if (record.normal && normal[0] * record.normal[0] + normal[1] * record.normal[1] < 0) normal = normal.map(n => -n);
+    const width = positive(record.width, .7), height = positive(record.height, 1.8), bottom = Math.max(0, finite(record.bottom, .035));
+    const center = [finite(record.x, 4), bottom + height / 2, finite(record.z, 0)];
+    const carrier = faceGroup(group, `行内诗玻璃板_${record.id}`, center, normal);
+    carrier.userData = {poetryGlassPanelId: record.id, joinedGroup: record.joinedGroup, notArtwork: true, type: 'poetryGlassPanel', layout: record, canonicalPosition: center, canonicalNormal: normal, dimensions: [width, height]};
+    const transparent = new THREE.DataTexture(new Uint8Array([0, 0, 0, 0]), 1, 1); transparent.colorSpace = THREE.SRGBColorSpace; transparent.needsUpdate = true;
+    const study = printedGlassParameters(printedStudy || {}, record.materialStudy), material = printedGlassMaterial(transparent, study);
+    material.uniforms.imageReady.value = 1;
+    const body = plane(carrier, '透明诗板_全幅反光_无艺术图像', width, height, material, .006);
+    body.userData = {poetryGlassPanelId: record.id, printedGlassRecord: record, printedGlassStudy: study, notArtwork: true};
+    reflectiveMeshes.add(body); poetryGlassMeshes.add(body); probeExcluded.add(body);
+    body.onAfterRender = () => { if (!poetryGlassGpuSeen.has(body)) { poetryGlassGpuSeen.add(body); publishGlassDebug(); } };
+    let edgeGeometry = new THREE.EdgesGeometry(new THREE.BoxGeometry(width, height, .01));
+    const joinedPlan = joinedByMember.get(record.id);
+    if (joinedPlan.members.at(-1).id !== record.id) {
+      const positions = edgeGeometry.getAttribute('position').array, kept = [];
+      for (let i = 0; i < positions.length; i += 6) if (!(Math.abs(positions[i] + width / 2) < 1e-6 && Math.abs(positions[i + 3] + width / 2) < 1e-6)) kept.push(...positions.slice(i, i + 6));
+      edgeGeometry.dispose(); edgeGeometry = new THREE.BufferGeometry(); edgeGeometry.setAttribute('position', new THREE.Float32BufferAttribute(kept, 3));
+    }
+    const edges = new THREE.LineSegments(edgeGeometry, new THREE.LineBasicMaterial({color: '#819087', transparent: true, opacity: .78})); edges.name = '诗玻璃边缘'; carrier.add(edges); probeExcluded.add(edges);
+    poetryGlassPanels.set(record.id, carrier); allGlassPanelRoots.set(record.id, carrier); stats.poetryGlassPanels++;
   }
 
   for (const plan of joinedPlans) {
-    const first = works.get(plan.members[0].id), delta = [plan.center[0] - plan.members[0].x, plan.center[2] - plan.members[0].z];
+    const first = allGlassPanelRoots.get(plan.members[0].id), delta = [plan.center[0] - plan.members[0].x, plan.center[2] - plan.members[0].z];
     const shared = new THREE.Group(); shared.name = `连续玻璃共用夹架_${plan.id}_尺寸未实测`;
     shared.position.x = delta[0] * plan.right[0] + delta[1] * plan.right[1]; first.add(shared);
     const materials = {metal: new THREE.MeshStandardMaterial({color:'#181a19',roughness:.68,metalness:.2,flatShading:true,side:THREE.DoubleSide}),screw:new THREE.MeshStandardMaterial({color:'#464944',roughness:.52,metalness:.5,side:THREE.DoubleSide}),rubber:new THREE.MeshStandardMaterial({color:'#121310',roughness:.98,side:THREE.DoubleSide})};
@@ -1028,7 +1056,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       contain = finite(suppliedRaster.uniformContainScale, 1);
       stats.poemRasters++;
     } else {
-      if (/trial09/.test(String(layout.revision || '')) && /[^\x00-\x7F]/.test(actualText)) throw new Error(`诗句 ${record.id} 需要已核对字形覆盖的共享PNG，拒绝静默字体替换`);
+      if (Number(String(layout.revision || '').match(/trial(\d+)/)?.[1] || 1) >= 9 && /[^\x00-\x7F]/.test(actualText)) throw new Error(`诗句 ${record.id} 需要已核对字形覆盖的共享PNG，拒绝静默字体替换`);
       const raster = textCanvas(actualText, {fontPixels: 96, color: record.color || '#666b58', padding: 5, lineHeight: finite(record.fontLineHeight, finite(record.lineHeight, 1.45)), runs, fontFamily: textFamily(record), weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96, glyphMode: record.glyphMode || 'fill', strokeWidth: finite(record.strokeWidth, .002), strokeColor: record.strokeColor, fontSizeMetres: fontSize, widthScale});
       const naturalWidth = raster.logicalWidth / raster.fontPixels * fontSize * widthScale;
       contain = Math.min(naturalWidth, positive(record.width, naturalWidth)) / naturalWidth;
@@ -1068,7 +1096,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     textGroup.name = `诗句_${record.id}`;
     textGroup.userData = {poemId: record.id, text: actualText, layout: record,
       kind: record.surface === 'wall' ? 'wallPoem' : record.surface === 'ceiling' ? 'ceilingPoem' : 'floorPoem', canonicalPosition: position,
-      textScreenId: record.textScreenId || null,
+      textScreenId: record.textScreenId || null, glassPanelId: record.glassPanelId || null,
       canonicalNormal: record.surface === 'wall' ? [Math.sin(angle), Math.cos(angle)] : null,
       canonicalNormal3D: record.surface === 'ceiling' ? [0, -1, 0] : record.surface === 'floor' ? [0, 1, 0] : [Math.sin(angle), 0, Math.cos(angle)],
       rotationInPlane: inPlaneRotation,
@@ -1084,19 +1112,26 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     text.name = suppliedRaster ? '诗句_共享原生PNG_透明底' : text.name;
     text.material.polygonOffset = true; text.material.polygonOffsetFactor = -2; text.material.polygonOffsetUnits = -2;
     text.position.x = centerOffsetX; text.position.y = centerOffsetY;
+    if (record.glassPanelId) {
+      const carrier = poetryGlassPanels.get(record.glassPanelId);
+      if (!carrier) throw new Error(`诗句 ${record.id} 缺少诗玻璃板 ${record.glassPanelId}`);
+      group.updateMatrixWorld(true); const world = textGroup.matrixWorld.clone();
+      carrier.add(textGroup); textGroup.matrix.copy(carrier.matrixWorld.clone().invert().multiply(world)); textGroup.matrixAutoUpdate = false;
+      probeExcluded.add(text);
+    }
     poemGroups.set(record.id, textGroup);
     stats.poems++;
   }
 
   function refreshGlassReflections() {
-    if (!printedMeshes.size || !renderer?.render || !scene) return false;
+    if (!reflectiveMeshes.size || !renderer?.render || !scene) return false;
     const p = printedGlassParameters(activePrintedStudy);
     if (!glassProbe) {
       const resolution = Math.min(p.probeResolution, globalThis.matchMedia?.('(pointer: coarse)')?.matches ? 128 : 256);
       const target = new THREE.WebGLCubeRenderTarget(resolution, {type: THREE.UnsignedByteType, generateMipmaps: true, minFilter: THREE.LinearMipmapLinearFilter, magFilter: THREE.LinearFilter});
       target.texture.colorSpace = THREE.LinearSRGBColorSpace;
       glassProbe = new THREE.CubeCamera(.08, 80, target);
-      const records = layout.freestandingGlass || [];
+      const records = [...(layout.freestandingGlass || []), ...(layout.poetryGlassPanels || [])];
       const pos = p.probePosition || [2.2, 1.55, records.reduce((sum,r)=>sum+finite(r.z,0),0)/Math.max(1,records.length)];
       glassProbe.position.set(pos[0],pos[1],-pos[2]);
       stats.reflectionProbeResolution = resolution; stats.reflectionProbeMiB = resolution*resolution*6*4*4/3/1048576;
@@ -1106,14 +1141,14 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     const started = globalThis.performance?.now?.() || 0;
     try { glassProbe.update(renderer, scene); }
     finally { [...probeExcluded].forEach((mesh,i)=>{mesh.visible=visible[i];}); }
-    printedMeshes.forEach(mesh => {mesh.material.uniforms.envProbe.value=glassProbe.renderTarget.texture;mesh.material.uniforms.probeReady.value=1;});
+    reflectiveMeshes.forEach(mesh => {mesh.material.uniforms.envProbe.value=glassProbe.renderTarget.texture;mesh.material.uniforms.probeReady.value=1;});
     stats.reflectionCaptures=(stats.reflectionCaptures||0)+1;
     stats.lastReflectionCaptureMs=(globalThis.performance?.now?.()||started)-started;
     publishGlassDebug();
     return true;
   }
   function queueGlassReflectionRefresh() {
-    if (!stats.ready || probeQueued || !printedMeshes.size) return;
+    if (!stats.ready || probeQueued || !reflectiveMeshes.size) return;
     probeQueued=true;
     const schedule=globalThis.requestAnimationFrame || (callback=>setTimeout(callback,0));
     schedule(()=>{probeQueued=false;refreshGlassReflections();});
@@ -1121,7 +1156,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
 
   function setPrintedGlassStudy(overrides = {}) {
     activePrintedStudy = {...activePrintedStudy, ...overrides};
-    printedMeshes.forEach(mesh => {
+    reflectiveMeshes.forEach(mesh => {
       const p = printedGlassParameters(activePrintedStudy, mesh.userData.printedGlassRecord?.materialStudy);
       for (const key of ['lightOpacity','darkOpacity','densityGamma','reflectionStrength','fresnelF0']) mesh.material.uniforms[key].value=p[key];
       mesh.material.uniforms.reflectionMip.value=p.roughness*Math.log2(stats.reflectionProbeResolution||p.probeResolution);
@@ -1146,7 +1181,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     return {...activePalette};
   }
   setFinish(activePalette);
-  if (printedMeshes.size) setPrintedGlassStudy();
+  if (reflectiveMeshes.size) setPrintedGlassStudy();
 
   const ready = Promise.allSettled(pending).then(() => {
     stats.ready = true;
@@ -1156,7 +1191,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   });
   group.updateMatrixWorld(true);
   return {
-    group, surfaces, works, environmentFields, poemGroups, botanicalGroups, textScreens, joinedGlassGroups, ceilingStudy, collisionRects, ready, stats, setFinish, setPrintedGlassStudy, refreshGlassReflections,
+    group, surfaces, works, environmentFields, poemGroups, botanicalGroups, textScreens, poetryGlassPanels, joinedGlassGroups, ceilingStudy, collisionRects, ready, stats, setFinish, setPrintedGlassStudy, refreshGlassReflections,
     setVisible(visible) { group.visible = Boolean(visible); },
     focusTarget(id) {
       const record = focus.get(id) || [...focus.entries()].find(([key]) => works.get(key)?.userData.catalogId === id)?.[1];
