@@ -30,6 +30,27 @@ function canvasTexture(canvas) {
   return texture;
 }
 
+function finishPaletteFor(layout) {
+  const env = layout.environment || {};
+  const id = layout.activeFinish || env.activeFinish || 'warm-stone';
+  const study = (layout.finishStudies || env.finishStudies || []).find(item => item.id === id) || {};
+  return {...(study.palette || study.colors || study)};
+}
+
+function alphaInkMaterial(material, inkColor) {
+  // Only RGB is replaced after Three samples the PNG; source alpha, UVs and
+  // antialias coverage remain untouched. This also supports pale ink on dark floors.
+  const enabled = {value: 1};
+  material.userData.alphaInk = {color: inkColor, enabled};
+  material.onBeforeCompile = shader => {
+    shader.uniforms.poemInkColor = {value: inkColor};
+    shader.uniforms.poemInkEnabled = enabled;
+    shader.fragmentShader = 'uniform vec3 poemInkColor;\nuniform float poemInkEnabled;\n' + shader.fragmentShader.replace(
+      '#include <map_fragment>', '#include <map_fragment>\nif (poemInkEnabled > 0.5) diffuseColor.rgb = poemInkColor;');
+  };
+  material.customProgramCacheKey = () => 'once-poem-alpha-ink-v1';
+}
+
 function textRuns(record) {
   if (Array.isArray(record.lines)) {
     const runs = [];
@@ -454,6 +475,8 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   const collisionRects = [];
   const focus = new Map();
   const pending = [];
+  const wallFieldMaterials = new Set(), screenBaseMaterials = new Set(), floorPoemMaterials = new Set();
+  let activePalette = finishPaletteFor(layout), ceilingStudy = null;
   const stats = {
     works: 0, workCount: 0, photos: 0, large: 0, videos: 0, glass: 0, texts: 0,
     partitions: 0, surfaces: 0, poems: 0, labels: 0, wallFields: 0, floorFields: 0,
@@ -468,9 +491,9 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   stats.poetryTextureCap = poetryTextureCap;
   const loadingTexture = messageTexture('图像载入中');
   let errorTexture;
-  const white = new THREE.MeshStandardMaterial({color: '#f2f1ec', roughness: .86, side: THREE.DoubleSide});
+  const white = new THREE.MeshStandardMaterial({color: activePalette.wall || '#f2f1ec', roughness: .86, side: THREE.DoubleSide});
   const backing = new THREE.MeshStandardMaterial({color: '#e5e3dc', roughness: .9, side: THREE.DoubleSide});
-  const textFamily = (record, fallback = 'serif') => /trial0[456]/.test(String(layout.revision || '')) && (!record.fontFamily || record.fontFamily === 'sans') ? 'plex' : record.fontFamily || fallback;
+  const textFamily = (record, fallback = 'serif') => /trial0[4567]/.test(String(layout.revision || '')) && (!record.fontFamily || record.fontFamily === 'sans') ? 'plex' : record.fontFamily || fallback;
 
   function register(record, object, item, position, normal, dimensions) {
     works.set(record.id, object);
@@ -482,12 +505,13 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     stats.workCount = stats.works;
   }
 
-  function imageOn(object, item, record, width, height, z, {opacity = 1, alpha = false, preserveDimensions = false, maxTextureSide: textureLimit} = {}) {
+  function imageOn(object, item, record, width, height, z, {opacity = 1, alpha = false, preserveDimensions = false, maxTextureSide: textureLimit, inkColor = null} = {}) {
     const material = new THREE.MeshBasicMaterial({
       color: '#ffffff', map: loadingTexture, side: THREE.DoubleSide,
       toneMapped: false, transparent: alpha || opacity < 1, opacity,
       depthWrite: !alpha && opacity === 1,
     });
+    if (inkColor) { alphaInkMaterial(material, inkColor); floorPoemMaterials.add(material); material.opacity = 0; }
     const image = plane(object, '原始图像_完整比例', width, height, material, z);
     const src = record.imageUrl || record.image || (record.type === 'photo' ? item?.detailImage : null) || item?.image || item?.preview || item?.previewImage;
     image.userData.source = src || null;
@@ -498,6 +522,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       const fail = error => {
         errorTexture ||= messageTexture('图像未能载入');
         material.map = errorTexture;
+        if (inkColor) { material.userData.alphaInk.enabled.value = 0; material.opacity = opacity; }
         material.needsUpdate = true;
         image.name = '图像读取失败_灰色占位';
         image.userData.loadError = true;
@@ -548,6 +573,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
           stats.aspectAdjustments.push({id: record.id, declared: [width, height], rendered: [renderedWidth, renderedHeight], nativePixels: [nativeWidth, nativeHeight]});
         }
         material.map = texture;
+        if (inkColor) material.opacity = opacity;
         material.needsUpdate = true;
         stats.loaded++;
         stats.pending--;
@@ -595,8 +621,9 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       a[1] + direction[1] * middle + normal[1] * .004];
     const fieldGroup = faceGroup(group, `墙面试色_${field.id}`, center, normal);
     fieldGroup.userData = {environmentId: field.id, kind: 'wallField', layout: field, canonicalPosition: center, canonicalNormal: [...normal], surface};
-    plane(fieldGroup, '墙面试色_画作之后', end - start, height,
-      new THREE.MeshBasicMaterial({color: field.color || '#dfe4dc', side: THREE.DoubleSide, toneMapped: false}));
+    const fieldMaterial = new THREE.MeshBasicMaterial({color: activePalette.glassWall || field.color || '#dfe4dc', side: THREE.DoubleSide, toneMapped: false});
+    wallFieldMaterials.add(fieldMaterial);
+    plane(fieldGroup, '墙面试色_画作之后', end - start, height, fieldMaterial);
     environmentFields.set(field.id, fieldGroup);
     stats.wallFields++;
   }
@@ -617,6 +644,19 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     group.add(mesh);
     environmentFields.set(field.id, mesh);
     stats.floorFields++;
+  }
+
+  const ceiling = layout.environment?.ceilingStudy;
+  if (ceiling) {
+    ceilingStudy = new THREE.Group();
+    ceilingStudy.name = '局部顶面试字附着基面_实际顶高未知';
+    ceilingStudy.matrix.makeBasis(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, -1), new THREE.Vector3(0, -1, 0));
+    ceilingStudy.matrix.setPosition(finite(ceiling.x, 2.2), finite(ceiling.height, 3.6), finite(ceiling.z, 11.2));
+    ceilingStudy.matrixAutoUpdate = false;
+    ceilingStudy.userData = {kind: 'ceilingStudy', attachmentOnly: true, notArtwork: true, actualCeilingHeightUnknown: true, layout: ceiling};
+    plane(ceilingStudy, '无厚度局部附着平面_非实测吊顶', positive(ceiling.width, 4.4), positive(ceiling.depth, 4.8),
+      new THREE.MeshBasicMaterial({color: ceiling.color || '#F4F4F0', side: THREE.FrontSide, toneMapped: false}));
+    group.add(ceilingStudy); stats.ceilingStudyPlanes = 1;
   }
 
   for (const record of layout.works || []) {
@@ -759,7 +799,8 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     const screen = faceGroup(group, `透明文字屏_${record.id}_固定待核定`, center, normal);
     screen.userData = {textScreenId: record.id, type: 'textScreen', notArtwork: true, layout: record, canonicalPosition: center, canonicalNormal: normal};
     const frame = new THREE.MeshStandardMaterial({color: record.frameColor || '#61675f', roughness: .72, metalness: .15, side: THREE.DoubleSide});
-    const base = record.baseColor ? new THREE.MeshStandardMaterial({color: record.baseColor, roughness: .85, side: THREE.DoubleSide}) : frame;
+    const base = new THREE.MeshStandardMaterial({color: activePalette.screenBase || record.baseColor || record.frameColor || '#61675f', roughness: .85, side: THREE.DoubleSide});
+    screenBaseMaterials.add(base);
     const clear = new THREE.MeshStandardMaterial({color: record.glassColor || '#dce5df', roughness: .16, transparent: true, opacity: finite(record.opacity, .09), depthWrite: false, side: THREE.DoubleSide});
     box(screen, '文字屏透明面_材质厚度待核', width - face * 2, height - face * 2, .008, 0, 0, 0, clear);
     box(screen, '文字屏上框', width, face, depth, 0, (height - face) / 2, 0, frame);
@@ -846,14 +887,15 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     const angle = finite(record.rotationY, 0) * RAD;
     const position = [finite(record.position?.[0], 0), finite(record.position?.[1], record.surface === 'floor' ? .006 : 1.5), finite(record.position?.[2], 0)];
     let textGroup;
-    if (record.surface === 'floor') {
+    if (record.surface === 'floor' || record.surface === 'ceiling') {
       textGroup = new THREE.Group();
       // At rotationY = 0, text top points towards B and is readable from A.
       // Positive rotation follows a conventional Three.js rotation about Y.
       const right = new THREE.Vector3(Math.cos(angle), 0, -Math.sin(angle));
-      const top = new THREE.Vector3(Math.sin(angle), 0, Math.cos(angle));
-      textGroup.matrix.makeBasis(right, top, UP);
-      position[1] = Math.max(.004, position[1]);
+      const isCeiling = record.surface === 'ceiling';
+      const top = new THREE.Vector3(Math.sin(angle) * (isCeiling ? -1 : 1), 0, Math.cos(angle) * (isCeiling ? -1 : 1));
+      textGroup.matrix.makeBasis(right, top, isCeiling ? new THREE.Vector3(0, -1, 0) : UP);
+      if (!isCeiling) position[1] = Math.max(.004, position[1]);
       textGroup.matrix.setPosition(...position);
       textGroup.matrixAutoUpdate = false;
       group.add(textGroup);
@@ -863,20 +905,36 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     }
     textGroup.name = `诗句_${record.id}`;
     textGroup.userData = {poemId: record.id, text: actualText, layout: record,
-      kind: record.surface === 'wall' ? 'wallPoem' : 'floorPoem', canonicalPosition: position,
+      kind: record.surface === 'wall' ? 'wallPoem' : record.surface === 'ceiling' ? 'ceilingPoem' : 'floorPoem', canonicalPosition: position,
       textScreenId: record.textScreenId || null,
       canonicalNormal: record.surface === 'wall' ? [Math.sin(angle), Math.cos(angle)] : null,
+      canonicalNormal3D: record.surface === 'ceiling' ? [0, -1, 0] : record.surface === 'floor' ? [0, 1, 0] : [Math.sin(angle), 0, Math.cos(angle)],
       requestedFontSize: fontSize, effectiveFontSize: fontSize * contain, fontWidthScale: widthScale, uniformContainScale: contain, effectiveEmWidth: fontSize * widthScale * contain, physicalWidth: width, physicalHeight: height, width, height, inkPadding, glyphCenterCompensation: [centerOffsetX, centerOffsetY], raster: suppliedRaster, preRasterized: Boolean(suppliedRaster)};
     if (contain < .99) stats.textScales.push({id: record.id, requested: fontSize, effective: textGroup.userData.effectiveFontSize});
+    const horizontal = record.surface === 'floor' || record.surface === 'ceiling';
+    const inkColor = record.surface === 'floor' ? new THREE.Color(activePalette.floorPoem || record.color || '#42473e') : null;
     const text = suppliedRaster
-      ? imageOn(textGroup, null, {...record, imageUrl: suppliedRaster.imageUrl || suppliedRaster.url, type: 'poetry-raster'}, width, height, record.surface === 'floor' ? 0 : .003, {alpha: true, preserveDimensions: true, maxTextureSide: poetryTextureCap})
-      : plane(textGroup, '诗句_保留原文换行', width, height, material, record.surface === 'floor' ? 0 : .003);
+      ? imageOn(textGroup, null, {...record, imageUrl: suppliedRaster.imageUrl || suppliedRaster.url, type: 'poetry-raster'}, width, height, horizontal ? 0 : .003, {alpha: true, preserveDimensions: true, maxTextureSide: poetryTextureCap, inkColor})
+      : plane(textGroup, '诗句_保留原文换行', width, height, material, horizontal ? 0 : .003);
+    if (!suppliedRaster && inkColor) { alphaInkMaterial(text.material, inkColor); floorPoemMaterials.add(text.material); }
+    if (record.surface === 'ceiling') text.material.side = THREE.FrontSide;
     text.name = suppliedRaster ? '诗句_共享原生PNG_透明底' : text.name;
     text.material.polygonOffset = true; text.material.polygonOffsetFactor = -2; text.material.polygonOffsetUnits = -2;
     text.position.x = centerOffsetX; text.position.y = centerOffsetY;
     poemGroups.set(record.id, textGroup);
     stats.poems++;
   }
+
+  function setFinish(palette = {}) {
+    activePalette = {...activePalette, ...palette};
+    if (palette.wall) white.color.set(palette.wall);
+    if (palette.glassWall) wallFieldMaterials.forEach(material => material.color.set(palette.glassWall));
+    if (palette.screenBase) screenBaseMaterials.forEach(material => material.color.set(palette.screenBase));
+    if (palette.floorPoem) floorPoemMaterials.forEach(material => material.userData.alphaInk.color.set(palette.floorPoem));
+    group.userData.finishPalette = {...activePalette};
+    return {...activePalette};
+  }
+  setFinish(activePalette);
 
   const ready = Promise.allSettled(pending).then(() => {
     stats.ready = true;
@@ -885,7 +943,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   });
   group.updateMatrixWorld(true);
   return {
-    group, surfaces, works, environmentFields, poemGroups, botanicalGroups, textScreens, collisionRects, ready, stats,
+    group, surfaces, works, environmentFields, poemGroups, botanicalGroups, textScreens, ceilingStudy, collisionRects, ready, stats, setFinish,
     setVisible(visible) { group.visible = Boolean(visible); },
     focusTarget(id) {
       const record = focus.get(id) || [...focus.entries()].find(([key]) => works.get(key)?.userData.catalogId === id)?.[1];

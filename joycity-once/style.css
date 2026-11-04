@@ -21,3 +21,5 @@ footer{min-height:65px;display:flex;justify-content:space-between;align-items:ce
 
 .mobile-view-label{display:none}
 @media(max-width:760px){.desktop-view-label{display:none}.mobile-view-label{display:inline}.views button,.trial-mode button,#details-button,#catalog-button,.focus-select select{min-height:44px}#catalog-panel,#details-panel{top:178px;max-height:calc(100% - 200px)}}
+
+.finish-swatches{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 8px;font-size:12px;color:#586056}.finish-swatches span{display:flex;align-items:center;gap:6px}.finish-swatches i{display:inline-block;width:19px;height:19px;border:1px solid #999b91;border-radius:2px}

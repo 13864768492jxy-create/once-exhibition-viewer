@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#eeede9">
-  <title>大悦城 ONCE 个展项目 · 文字的高低与呼吸</title>
-  <link rel="stylesheet" href="style.css?v=20261104-trial06">
+  <title>大悦城 ONCE 个展项目 · 材质、通行与抬头</title>
+  <link rel="stylesheet" href="style.css?v=20261104-trial07">
   <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 </head>
 <body>
   <header class="header">
-    <div><h1>大悦城 ONCE<span>文字的高低与呼吸</span></h1><p>两片白墙 · 两片透明文字层</p></div>
+    <div><h1>大悦城 ONCE<span>材质、通行与抬头</span></h1><p>两片白墙 · 两片透明文字层</p></div>
     <div class="measurements" aria-label="空间尺寸与当前估值"><strong id="length-value">31.2 m</strong><span>右墙</span><strong id="width-value">约4.4 m</strong><span>宽</span><strong>2.95 m</strong><span>墙高</span></div>
   </header>
   <main id="workspace">
@@ -23,10 +23,10 @@
       <button data-view="reverse" aria-label="B口看向A口" aria-pressed="false"><span class="desktop-view-label" aria-hidden="true">B口看向A口</span><span class="mobile-view-label" aria-hidden="true">B→A</span></button>
     </nav>
     <div class="trial-tools" aria-label="试排查看">
-      <div class="trial-mode"><button id="trial-on" aria-pressed="true">试排06</button><button id="trial-off" aria-pressed="false">空场</button></div>
+      <div class="trial-mode"><button id="trial-on" aria-pressed="true">试排07</button><button id="trial-off" aria-pressed="false">空场</button></div>
       <label class="focus-select"><span>看这一组</span><select id="focus-group" aria-label="看这一组"><option value="">选择作品组合</option></select></label>
     </div>
-    <button id="details-button" aria-expanded="false" aria-controls="details-panel">图层与依据</button>
+    <button id="details-button" aria-expanded="false" aria-controls="details-panel">配色与图层</button>
     <button id="catalog-button" aria-expanded="false" aria-controls="catalog-panel">作品库</button>
     <aside id="catalog-panel" hidden aria-label="试排作品库">
       <div class="panel-title"><h2>作品与试排位置</h2><button id="close-catalog" aria-label="收起作品库">收起</button></div>
@@ -38,8 +38,8 @@
       <section id="catalog-poetry" hidden></section>
     </aside>
     <aside id="details-panel" hidden>
-      <div class="panel-title"><h2>空间底稿</h2><button id="close-panel" aria-label="收起图层与依据">收起</button></div>
-      <section id="trial-description"><h3>当前试排</h3><p>两片白墙四面各两幅摄影，主墙23幅。两片文字玻璃继续收窄至1.35米与1米，底座同步收窄，仍与左墙保持90度，给通行和看照片多留余量。</p><p>右墙诗句以高位大字、中位动词、玻璃间低位小句和末端收束形成节奏。沿用你提供的汇文明朝体，保留原生字宽和真实印刷肌理。19个诗段分布在墙、地面与透明玻璃上，地面字身16–18厘米。Growing again夹架置于玻璃两侧边缘，玻璃下沿落到底部橡胶托面。</p><p>透明屏的浅细边、低基座和两端短显识段为当前视觉方案；实际玻璃材料、固定、照明与通行仍需现场确认。</p></section>
+      <div class="panel-title"><h2>空间底稿</h2><button id="close-panel" aria-label="收起配色与图层">收起</button></div>
+      <section id="trial-description"><h3>当前试排</h3><p>两片白展墙缩短至1.6米、1.5米；八幅作品沿墙收拢，画面、框尺寸及高度保持。两片文字玻璃仍为1.35米与1米。</p><p>左墙增加两处原诗回声，顶部试一句“夜空向海面缓缓倾斜”。局部顶面暂用3.6米标高示意，实际吊顶高度尚未实测；这不是新增低垂板或施工构造。</p><p>下方可比较三套整场配色：连续地面、玻璃区墙域、近白摄影墙和金属线共同变化，作品图像与白边保持原色。</p></section>
       <p class="panel-intro">从A口朝B口看，右侧较短墙可用长31.2米，左墙更长，增量待测。可用墙高2.95米。现有展墙内净宽暂估约4.4米；拆墙后的净宽待测。射灯高于2.95米，本稿轨层暂用3.30米示意，实际标高和总数待测。</p>
       <fieldset><legend>显示图层</legend>
         <label><input type="checkbox" id="cutaway" checked>剖开近侧墙</label>
@@ -48,7 +48,10 @@
         <label><input type="checkbox" id="lighting" checked>上层轨道射灯（点位待测）</label>
         <label><input type="checkbox" id="dimensions" checked>尺寸与端部标记</label>
       </fieldset>
-      <label class="catalog-select-label" for="metal-color">金属条试色</label><select id="metal-color" aria-label="金属条试色"><option value="#707870">原金属灰</option><option value="#68645e" selected>暖石墨灰</option><option value="#876653">暗氧化褐</option></select>
+      <label class="catalog-select-label" for="finish-study">整体配色</label>
+      <select id="finish-study" aria-label="整体配色"></select>
+      <div id="finish-swatches" class="finish-swatches" aria-label="当前环境色"></div>
+      <p id="finish-note" class="panel-intro"></p>
       <h3>还待校准</h3>
       <p>地面已去掉规则重复X，按新照片保留至少两处偏心交叉、端部跨线及浅斜接续。按你确认的方式将可见走势延至墙脚，补全遮挡段；这是走势示意，交点及纵向站位仍待校准。绿色横杆端点仍待校准。主入口净宽已确认为1.7米；其偏移量、侧门尺寸和砖缝原点仍待校准。</p>
       <p>左墙靠A口补入向通道内收的短折段，内收量和折点仍为示意。B口（421 SPACE）只画分格轮廓，开合方式暂不确定。A口整面端墙倾斜，外向内看右端更深入；当前斜角只作示意，数值待测。</p>
@@ -65,8 +68,8 @@
   <footer>
     <p id="hint">拖动旋转 · 滚轮缩放 · 右键平移</p>
     <div id="walk-controls" hidden><label for="position">纵向位置</label><input id="position" type="range" min="0.3" max="30.9" step="0.1" value="0.9"><output id="position-value" for="position">0.9 m</output></div>
-    <span class="footer-note" id="image-status">试排06 · 正在载入作品图像</span>
+    <span class="footer-note" id="image-status">试排07 · 正在载入作品图像</span>
   </footer>
-  <script type="module" src="app.js?v=20261104-trial06"></script>
+  <script type="module" src="app.js?v=20261104-trial07"></script>
 </body>
 </html>

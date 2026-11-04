@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "revision": "20261104-trial06",
-  "title": "第六次试排 · 文字的高低与呼吸",
-  "status": "sixth_trial_not_installation_plan",
+  "revision": "20261104-trial07",
+  "title": "第七次试排 · 材质、通行与抬头",
+  "status": "seventh_trial_not_installation_plan",
   "date": "2026-11-04",
-  "sourceLayout": "source/layout-baselines/trial05.json",
-  "principle": "右墙文字从顶部字幕带转为高位锚点、中位动词、玻璃间低位小句与末端收束；透明载体收窄，让出更多通行空间。",
+  "sourceLayout": "source/layout-baselines/trial06.json",
+  "principle": "两片白墙退让通道，整套颜色衬托原作；左墙补原诗的回声，顶部文字让抬头成为观看的一部分。",
   "partitions": [
     {
       "id": "early",
@@ -14,7 +14,7 @@
         6.2
       ],
       "b": [
-        2.0,
+        1.6,
         6.2
       ],
       "height": 2.6,
@@ -28,7 +28,7 @@
         26
       ],
       "b": [
-        1.8,
+        1.5,
         26
       ],
       "height": 2.6,
@@ -95,7 +95,7 @@
         6.140000000000001
       ],
       "b": [
-        2.0,
+        1.6,
         6.140000000000001
       ],
       "normal": [
@@ -112,7 +112,7 @@
         6.26
       ],
       "b": [
-        2.0,
+        1.6,
         6.26
       ],
       "normal": [
@@ -129,7 +129,7 @@
         25.94
       ],
       "b": [
-        1.8,
+        1.5,
         25.94
       ],
       "normal": [
@@ -146,7 +146,7 @@
         26.06
       ],
       "b": [
-        1.8,
+        1.5,
         26.06
       ],
       "normal": [
@@ -184,7 +184,7 @@
       "group": "early-A",
       "type": "photo",
       "surfaceId": "early-A",
-      "along": 1.4,
+      "along": 1.12,
       "centerY": 1.16,
       "imageWidth": 0.54,
       "imageHeight": 0.480113,
@@ -203,7 +203,7 @@
       "group": "late-A",
       "type": "photo",
       "surfaceId": "late-A",
-      "along": 0.55,
+      "along": 0.45,
       "centerY": 1.12,
       "imageWidth": 0.4,
       "imageHeight": 0.32511,
@@ -279,7 +279,7 @@
       "group": "late-B",
       "type": "photo",
       "surfaceId": "late-B",
-      "along": 0.4,
+      "along": 0.35,
       "centerY": 1.97,
       "imageWidth": 0.3,
       "imageHeight": 0.23793699577000002,
@@ -317,7 +317,7 @@
       "group": "early-B",
       "type": "photo",
       "surfaceId": "early-B",
-      "along": 0.55,
+      "along": 0.45,
       "centerY": 1.15,
       "imageWidth": 0.42,
       "imageHeight": 0.341918,
@@ -355,7 +355,7 @@
       "group": "early-B",
       "type": "photo",
       "surfaceId": "early-B",
-      "along": 1.42,
+      "along": 1.15,
       "centerY": 1.8,
       "imageWidth": 0.46,
       "imageHeight": 0.373281,
@@ -431,7 +431,7 @@
       "group": "early-A",
       "type": "photo",
       "surfaceId": "early-A",
-      "along": 0.6,
+      "along": 0.48,
       "centerY": 1.82,
       "imageWidth": 0.42,
       "imageHeight": 0.32220999999999994,
@@ -488,7 +488,7 @@
       "group": "late-A",
       "type": "photo",
       "surfaceId": "late-A",
-      "along": 1.25,
+      "along": 1.02,
       "centerY": 1.9,
       "imageWidth": 0.54,
       "imageHeight": 0.42472299999999996,
@@ -621,7 +621,7 @@
       "group": "late-B",
       "type": "photo",
       "surfaceId": "late-B",
-      "along": 1.15,
+      "along": 0.97,
       "centerY": 1.15,
       "imageWidth": 0.62,
       "imageHeight": 0.509715,
@@ -1371,6 +1371,69 @@
       "align": "left",
       "color": "#42473e",
       "letterSpacing": 0.00192
+    },
+    {
+      "id": "wall-tide-echo",
+      "text": "潮水对此一无所知。",
+      "position": [
+        0.018,
+        2.55,
+        8.65
+      ],
+      "fontSize": 0.19,
+      "width": 2.15,
+      "surface": "wall",
+      "rotationY": 90,
+      "weight": 400,
+      "fontFamily": "huiwen",
+      "fontWidthScale": 1.0,
+      "lineHeight": 1.16,
+      "align": "left",
+      "color": "#42473e",
+      "letterSpacing": 0.00228,
+      "note": "从原诗选出的空间回声；不是新增诗文。"
+    },
+    {
+      "id": "wall-sea-echo",
+      "text": "海水越过海水，",
+      "position": [
+        0.018,
+        0.55,
+        10.1
+      ],
+      "fontSize": 0.16,
+      "width": 1.7,
+      "surface": "wall",
+      "rotationY": 90,
+      "weight": 400,
+      "fontFamily": "huiwen",
+      "fontWidthScale": 1.0,
+      "lineHeight": 1.16,
+      "align": "left",
+      "color": "#42473e",
+      "letterSpacing": 0.00192,
+      "note": "从原诗选出的空间回声；不是新增诗文。"
+    },
+    {
+      "id": "ceiling-night",
+      "text": "夜空向海面缓缓倾斜，",
+      "position": [
+        2.2,
+        3.595,
+        9.6
+      ],
+      "fontSize": 0.25,
+      "width": 3.6,
+      "surface": "ceiling",
+      "rotationY": 0,
+      "weight": 400,
+      "fontFamily": "huiwen",
+      "fontWidthScale": 1.0,
+      "lineHeight": 1.16,
+      "align": "left",
+      "color": "#42473e",
+      "letterSpacing": 0.003,
+      "note": "从原诗选出的空间回声；不是新增诗文。"
     }
   ],
   "focusGroups": [
@@ -1562,7 +1625,7 @@
         3.3
       ],
       "target": [
-        0.8,
+        0.65,
         1.5,
         4.8
       ]
@@ -1580,16 +1643,73 @@
         1.85,
         23.5
       ]
+    },
+    {
+      "id": "spatial-left-language",
+      "label": "左墙 · 水与岸边",
+      "camera": [
+        2.65,
+        1.6,
+        7.5
+      ],
+      "target": [
+        0.03,
+        1.5,
+        10.0
+      ]
+    },
+    {
+      "id": "spatial-ceiling-language",
+      "label": "抬头 · 顶面诗句",
+      "camera": [
+        2.2,
+        1.6,
+        8.8
+      ],
+      "target": [
+        2.2,
+        3.595,
+        9.6
+      ]
+    },
+    {
+      "id": "spatial-short-wing",
+      "label": "短展墙 · 行走与停留",
+      "camera": [
+        3.05,
+        1.6,
+        4.3
+      ],
+      "target": [
+        0.9,
+        1.35,
+        6.2
+      ]
+    },
+    {
+      "id": "spatial-colour-study",
+      "label": "整体配色 · 同一视点",
+      "camera": [
+        2.2,
+        1.6,
+        10.0
+      ],
+      "target": [
+        2.2,
+        1.55,
+        20.0
+      ]
     }
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "31幅摄影、两片白墙、Growing again六块作品玻璃与夹架、植物、VESSEL均保持试排05位置和尺寸。",
-    "两片诗句玻璃仍与左墙90度；中屏1.60→1.35米，后屏1.10→1.00米。底座同步收窄，墙侧位置不变。",
-    "右墙五段诗以38/24/13/15/25厘米字身及2.40/1.85/1.25/2.62/2.17米中心高形成高—中—低—高—中节奏。",
-    "更远的浪降至两块玻璃之间；动词字带与终句需核对实际墨迹下沿，避免叠到玻璃画面或电视。",
-    "沿用用户提供的真实汇文明朝体Regular400、原生字宽；字号差异不靠伪粗、缩放或透视补偿。",
-    "净宽约4.4米仍待实测，通行按底座、夹架与秸秆外沿检查，未计驻足观众；本候选不作为安全施工认证。"
+    "两片白墙伸出2.0/1.8米改为1.6/1.5米；仅8幅沿墙位置收拢，全部原作画面、框尺寸及中心高度保持06。",
+    "两片文字玻璃、Growing again及夹架、植物、VESSEL、左主墙其他摄影不动。",
+    "左墙增加原诗两处回声，避开画框；顶部试一句原诗，实际顶高未知，局部基面为3.6米暂定示意。",
+    "三套整套配色只更改环境面、线、地诗颜色与诗屏底座，艺术图像、白卡和白边保持。",
+    "A暖石雾绿为默认、B冷灰银盐与C暗潮可在网页比较；C地诗转浅色，砖缝和金属走势保留。",
+    "按约4.4米估计，墙端空厅余2.8/2.9米；驻足和对侧观看会进一步压缩，必须核对实际支脚和观众停留。",
+    "顶部不作为新吊挂方案；墙体锚固、防倾覆、材料耐燃/防滑、通行疏散与照明均需场地及施工方现场核定。"
   ],
   "environment": {
     "wallFields": [
@@ -1600,30 +1720,81 @@
         "alongEnd": 26.911989,
         "bottom": 0,
         "height": 2.95,
-        "color": "#dfe4dc"
+        "color": "#D6DED7"
       }
     ],
     "floorFields": [],
-    "note": "以金属条自身的色泽组织地面；暂撤三角地面色块，保留原砖面。玻璃区浅灰绿墙为可更改候选。",
+    "note": "整体配色比较；连续哑光地面保留砖缝与金属走势，不填三角色块。A为本轮默认，颜色仍需现场样板。",
     "metalFinish": {
-      "color": "#68645e",
+      "color": "#786D5E",
       "metalness": 0.32,
       "roughness": 0.58,
-      "label": "暖石墨灰",
+      "label": "暗褐灰",
       "alternatives": [
         {
-          "label": "原金属灰",
-          "color": "#707870"
+          "label": "A 暖石与雾绿",
+          "color": "#786D5E"
         },
         {
-          "label": "暖石墨灰",
-          "color": "#68645e"
+          "label": "B 冷灰与银盐",
+          "color": "#697575"
         },
         {
-          "label": "暗氧化褐",
-          "color": "#876653"
+          "label": "C 暗潮地面",
+          "color": "#B3A48B"
         }
       ]
+    },
+    "activeFinish": "warm-stone",
+    "finishStudies": [
+      {
+        "id": "warm-stone",
+        "label": "A 暖石与雾绿",
+        "wall": "#F6F5F1",
+        "glassWall": "#D6DED7",
+        "floor": "#C7C3B8",
+        "grout": "#AAA79D",
+        "metal": "#786D5E",
+        "floorPoem": "#42473E",
+        "screenBase": "#ABAFA5"
+      },
+      {
+        "id": "silver-grey",
+        "label": "B 冷灰与银盐",
+        "wall": "#F4F5F2",
+        "glassWall": "#E1E5E3",
+        "floor": "#B9C0C1",
+        "grout": "#9AA4A4",
+        "metal": "#697575",
+        "floorPoem": "#42473E",
+        "screenBase": "#A2AFAC"
+      },
+      {
+        "id": "night-tide",
+        "label": "C 暗潮地面",
+        "wall": "#F5F3ED",
+        "glassWall": "#E3E0D8",
+        "floor": "#788783",
+        "grout": "#657570",
+        "metal": "#B3A48B",
+        "floorPoem": "#F3F0E6",
+        "screenBase": "#C7C3B7"
+      }
+    ],
+    "roomFinish": {
+      "wall": "#F6F5F1",
+      "floor": "#C7C3B8",
+      "grout": "#AAA79D"
+    },
+    "ceilingStudy": {
+      "height": 3.6,
+      "x": 2.2,
+      "z": 11.2,
+      "width": 4.4,
+      "depth": 4.8,
+      "color": "#F4F4F0",
+      "status": "illustrative_attachment_plane_not_surveyed_ceiling",
+      "note": "实际吊顶高度仍未知；3.6m只用于试排贴顶诗句，位于示意灯轨上方，不是新增低垂板或吊挂承载说明。"
     }
   },
   "blankWallIntervals": [
@@ -1746,5 +1917,45 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/trial06/manifest.json"
+  "poetryRasterManifest": "poetry/trial07/manifest.json",
+  "occupancyStudy": {
+    "status": "illustrative_not_observed_people",
+    "diameters": [
+      0.6,
+      0.8
+    ],
+    "note": "位置、人数及等效圆直径均为假设，只用于比较驻足与通过的关系，不是实际人流或安全认证。",
+    "dwellPoints": [
+      {
+        "id": "early-A",
+        "x": 0.8,
+        "z": 5.14
+      },
+      {
+        "id": "early-B",
+        "x": 0.8,
+        "z": 7.26
+      },
+      {
+        "id": "right-photo",
+        "x": 3.35,
+        "z": 7.2
+      },
+      {
+        "id": "late-A",
+        "x": 0.75,
+        "z": 24.94
+      },
+      {
+        "id": "ga05",
+        "x": 3.05,
+        "z": 24.4
+      },
+      {
+        "id": "late-B",
+        "x": 0.75,
+        "z": 27.06
+      }
+    ]
+  }
 }

@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261104-trial06';
-import { buildExhibition } from './exhibition.js?v=20261104-trial06';
+import { installCatalog } from './catalog.js?v=20261104-trial07';
+import { buildExhibition } from './exhibition.js?v=20261104-trial07';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
-let stripMaterial;
+let stripMaterial, architectureMaterials, selectedFinishId;
 let data, renderer, scene, camera, controls, groups, walls, view = 'overview';
 let exhibition, trialLayout, library, trialVisible=true, inspectionFrame=null;
 let yaw = 0, pitch = 0, walkPosition, pointerStart, pressed = new Set();
@@ -52,13 +52,13 @@ function line(points, color, parent, dashed = false) {
   const material = dashed ? new THREE.LineDashedMaterial({color, dashSize:.13, gapSize:.1}) : new THREE.LineBasicMaterial({color});
   const mesh = new THREE.Line(geometry, material); if(dashed) mesh.computeLineDistances(); parent.add(mesh); return mesh;
 }
-function makeTileTexture() {
+function makeTileTexture(neutral = false) {
   const c = document.createElement('canvas'); c.width = c.height = 256;
   const ctx = c.getContext('2d');
-  ctx.fillStyle = '#d6d5ce'; ctx.fillRect(0,0,256,256);
+  ctx.fillStyle = neutral ? '#ffffff' : '#d6d5ce'; ctx.fillRect(0,0,256,256);
   // Fine photographic-substrate texture, fixed seeded sequence for stable renders.
   let seed = 6041;
-  for(let i=0;i<5500;i++) {seed=(Math.imul(seed,1664525)+1013904223)>>>0; const x=(seed>>>8)%256; seed=(Math.imul(seed,1664525)+1013904223)>>>0; const y=(seed>>>8)%256; ctx.fillStyle=i%3?'#e5e3dc':'#b9bab2';ctx.globalAlpha=.25;ctx.fillRect(x,y,1,1);}
+  for(let i=0;i<5500;i++) {seed=(Math.imul(seed,1664525)+1013904223)>>>0; const x=(seed>>>8)%256; seed=(Math.imul(seed,1664525)+1013904223)>>>0; const y=(seed>>>8)%256; ctx.fillStyle=neutral ? '#888888' : i%3?'#e5e3dc':'#b9bab2';ctx.globalAlpha=neutral ? .045 : .25;ctx.fillRect(x,y,1,1);}
   ctx.globalAlpha=1;
   const texture = new THREE.CanvasTexture(c); texture.colorSpace=THREE.SRGBColorSpace;
   texture.wrapS=texture.wrapT=THREE.RepeatWrapping; texture.repeat.set(1/data.tile.size,1/data.tile.size);
@@ -71,6 +71,7 @@ function build() {
   const metal = new THREE.MeshStandardMaterial({color:trialLayout.environment?.metalFinish?.color||0x707870,metalness:.32,roughness:.58});stripMaterial=metal;
   const green = new THREE.MeshStandardMaterial({color:0x466148,roughness:.67});
   const grout = new THREE.MeshBasicMaterial({color:0x9c9f96});
+  architectureMaterials={wall:white,floor:floorMat,grout,originalTileMap:floorMat.map,studyTileMap:makeTileTexture(true)};
   groups={shell:new THREE.Group(),tiles:new THREE.Group(),strips:new THREE.Group(),bars:new THREE.Group(),lighting:new THREE.Group(),dimensions:new THREE.Group(),endB:new THREE.Group()};
   Object.entries(groups).forEach(([name,group])=>{group.name=name;group.scale.z=-1;scene.add(group);});
   const lp=leftPoints(),startX=lp[0][0];
@@ -178,11 +179,32 @@ function updateCutaway(){
 
 function setTrialVisible(value){
   trialVisible=value;exhibition?.setVisible(value);
-  if(stripMaterial)stripMaterial.color.set(value?$('#metal-color').value:0x707870);
+  applyFinish();
   $('#trial-on').setAttribute('aria-pressed',String(value));$('#trial-off').setAttribute('aria-pressed',String(!value));
   $('#focus-group').disabled=!value;
   $('#trial-description').hidden=!value;
+  $('#finish-study').disabled=!value;
   updateCutaway();
+}
+function applyFinish(id=selectedFinishId){
+  if(!architectureMaterials)return;
+  const palette=trialLayout.environment?.finishStudies?.find(p=>p.id===id);
+  if(palette)selectedFinishId=palette.id;
+  const active=trialVisible&&palette;
+  architectureMaterials.wall.color.set(active?palette.wall:0xf9faf7);
+  architectureMaterials.floor.color.set(active?palette.floor:0xffffff);
+  architectureMaterials.floor.map=active?architectureMaterials.studyTileMap:architectureMaterials.originalTileMap;
+  architectureMaterials.floor.needsUpdate=true;
+  architectureMaterials.grout.color.set(active?palette.grout:0x9c9f96);
+  stripMaterial?.color.set(active?palette.metal:0x707870);
+  if(active)exhibition?.setFinish?.(palette);
+  const select=$('#finish-study');if(select&&palette)select.value=palette.id;
+  $('#finish-note').textContent=active?`${palette.label} · 环境试色，作品原图与白卡保持原色`:'空场 · 原有地砖与金属示意色';
+  const swatches=$('#finish-swatches');swatches.replaceChildren();
+  if(active)for(const [key,label]of [['wall','摄影墙'],['glassWall','玻璃区'],['floor','地面'],['metal','金属线']]){
+    const item=document.createElement('span');const chip=document.createElement('i');chip.style.backgroundColor=palette[key];item.append(chip,document.createTextNode(label));swatches.append(item);
+  }
+  scene.userData.activeFinish=active?palette.id:'empty-baseline';
 }
 function focusOnWork(id){
   const focus=exhibition?.focusTarget(id);if(!focus)return;
@@ -194,7 +216,7 @@ function focusOnWork(id){
   const target=new THREE.Vector3(focus.target[0],focus.target[1],-focus.target[2]);camera.lookAt(target);
   createControls();controls.target.copy(target);controls.maxPolarAngle=Math.PI*.65;controls.update();
   $('#hint').textContent='拖动环看 · 滚轮缩放 · 选择另一组继续看';
-  $('#status').textContent=`试排06 · ${library.items.find(w=>w.id===id)?.title||'前言位置'}`;
+  $('#status').textContent=`试排07 · ${library.items.find(w=>w.id===id)?.title||'前言位置'}`;
   $('#catalog-panel').hidden=true;$('#catalog-button').setAttribute('aria-expanded','false');
   updateCutaway();updateLabels();
 }
@@ -221,8 +243,10 @@ function focusOnGroup(id){
       }
       camera.fov=Math.max(58,Math.min(105,2*Math.atan(tangent*1.18)*180/Math.PI));camera.updateProjectionMatrix();
     }
-    createControls();controls.target.copy(target);controls.update();
-    $('#status').textContent='试排06 · '+group.label;$('#hint').textContent='拖动环看 · 滚轮缩放 · 字幕与玻璃均为当前试排';
+    createControls();
+    if(group.id==='spatial-ceiling-language')controls.maxPolarAngle=Math.PI-.04;
+    controls.target.copy(target);controls.update();
+    $('#status').textContent='试排07 · '+group.label;$('#hint').textContent=group.id==='spatial-ceiling-language'?'顶部试字 · 暂用3.6 m附着标高，实际顶高待测':'拖动环看 · 滚轮缩放 · 字幕与玻璃均为当前试排';
     $('#catalog-panel').hidden=true;$('#catalog-button').setAttribute('aria-expanded','false');updateCutaway();updateLabels();return;
   }
   let members=group.workIds.map(w=>exhibition.works.get(w)?.userData).filter(Boolean);
@@ -246,9 +270,10 @@ function focusOnGroup(id){
   camera.position.copy(target).add(new THREE.Vector3(normal[0]*distance,0,-normal[1]*distance));camera.lookAt(target);
   createControls();controls.target.copy(target);controls.maxPolarAngle=Math.PI*.65;controls.update();
   $('#hint').textContent='组合正视 · 滚轮缩放 · 拖动环看';
-  $('#status').textContent=`试排06 · ${group.label}`;updateCutaway();updateLabels();
+  $('#status').textContent=`试排07 · ${group.label}`;updateCutaway();updateLabels();
 }
-function hitsDisplay(x,z){return trialVisible&&exhibition?.collisionRects.some(r=>x>r.minX-.2&&x<r.maxX+.2&&z>r.minZ-.2&&z<r.maxZ+.2);}
+const walkBodyRadius=.30; // Preview body envelope; no crowd or construction claim.
+function hitsDisplay(x,z){return trialVisible&&exhibition?.collisionRects.some(r=>x>r.minX-walkBodyRadius&&x<r.maxX+walkBodyRadius&&z>r.minZ-walkBodyRadius&&z<r.maxZ+walkBodyRadius);}
 function updateLabels(){
   if(!camera||!data)return;
   const enabled=$('#dimensions').checked,W=data.room.width,L=data.room.length;
@@ -263,19 +288,21 @@ function updateLabels(){
   }
 }
 function resize(){if(!renderer)return;const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h);if(view==='overview')fitOverview();else if(view==='plan')setView('plan');else{if(camera.isOrthographicCamera&&inspectionFrame){const aspect=w/h,halfH=Math.max(inspectionFrame.height/2,inspectionFrame.width/2/aspect);camera.left=-halfH*1.12*aspect;camera.right=halfH*1.12*aspect;camera.top=halfH*1.28;camera.bottom=-halfH*.96;}else camera.aspect=w/h;camera.updateProjectionMatrix();updateLabels();}}
-function animate(now){raf=requestAnimationFrame(animate);const dt=Math.min((now-previousTime)/1000,.05);previousTime=now;if(view==='entry'||view==='reverse'){let forward=0,side=0;if(pressed.has('w')||pressed.has('arrowup'))forward++;if(pressed.has('s')||pressed.has('arrowdown'))forward--;if(pressed.has('d')||pressed.has('arrowright'))side++;if(pressed.has('a')||pressed.has('arrowleft'))side--;if(forward||side){const speed=(pressed.has('shift')?3:1.6)*dt/Math.max(1,Math.hypot(forward,side));const oldX=walkPosition.x,oldZ=walkPosition.z;const nextX=THREE.MathUtils.clamp(oldX+(Math.sin(yaw)*forward-Math.cos(yaw)*side)*speed,Math.max(.25,leftBoundaryX(-oldZ)+.25),data.room.width-.25);if(!hitsDisplay(nextX,-oldZ))walkPosition.x=nextX;const nextZ=THREE.MathUtils.clamp(oldZ+(Math.cos(yaw)*forward+Math.sin(yaw)*side)*speed,-data.room.length+.3,-floorStartZ(walkPosition.x)-.3);if(!hitsDisplay(walkPosition.x,-nextZ))walkPosition.z=nextZ;updateWalk();}}else controls.update();renderer.render(scene,camera);}
+function animate(now){raf=requestAnimationFrame(animate);const dt=Math.min((now-previousTime)/1000,.05);previousTime=now;if(view==='entry'||view==='reverse'){let forward=0,side=0;if(pressed.has('w')||pressed.has('arrowup'))forward++;if(pressed.has('s')||pressed.has('arrowdown'))forward--;if(pressed.has('d')||pressed.has('arrowright'))side++;if(pressed.has('a')||pressed.has('arrowleft'))side--;if(forward||side){const speed=(pressed.has('shift')?3:1.6)*dt/Math.max(1,Math.hypot(forward,side));const oldX=walkPosition.x,oldZ=walkPosition.z;const nextX=THREE.MathUtils.clamp(oldX+(Math.sin(yaw)*forward-Math.cos(yaw)*side)*speed,Math.max(walkBodyRadius,leftBoundaryX(-oldZ)+walkBodyRadius),data.room.width-walkBodyRadius);if(!hitsDisplay(nextX,-oldZ))walkPosition.x=nextX;const nextZ=THREE.MathUtils.clamp(oldZ+(Math.cos(yaw)*forward+Math.sin(yaw)*side)*speed,-data.room.length+.3,-floorStartZ(walkPosition.x)-.3);if(!hitsDisplay(walkPosition.x,-nextZ))walkPosition.z=nextZ;updateWalk();}}else controls.update();renderer.render(scene,camera);}
 
 async function init(){try{
-  const responses=await Promise.all(['space.json','layout.json','catalog.json'].map(path=>fetch(path+'?v=20261104-trial06',{cache:'no-store'})));
+  const responses=await Promise.all(['space.json','layout.json','catalog.json'].map(path=>fetch(path+'?v=20261104-trial07',{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   const inputTexts=await Promise.all(responses.map(r=>r.text()));
   [data,trialLayout,library]=inputTexts.map(text=>JSON.parse(text));
   renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(host.clientWidth,host.clientHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;host.appendChild(renderer.domElement);
   scene=new THREE.Scene();scene.background=new THREE.Color(0xeeede9);build();
   await Promise.all([document.fonts.load('400 96px "ONCE Text"','我横'),document.fonts.load('700 96px "ONCE Text"','我横'),document.fonts.load('400 96px "ONCE Grotesk"','我横'),document.fonts.load('500 96px "ONCE Grotesk"','我横'),document.fonts.load('700 96px "ONCE Grotesk"','我横')]);
-  $('#metal-color').value=trialLayout.environment?.metalFinish?.color||'#68645e';
-  $('#metal-color').addEventListener('change',e=>{if(trialVisible)stripMaterial.color.set(e.target.value);});
+  for(const palette of trialLayout.environment?.finishStudies||[]){const option=document.createElement('option');option.value=palette.id;option.textContent=palette.label;$('#finish-study').append(option);}
+  selectedFinishId=trialLayout.environment?.activeFinish;
+  $('#finish-study').addEventListener('change',event=>applyFinish(event.target.value));
   exhibition=await buildExhibition({scene,renderer,layout:trialLayout,catalog:library,layoutSourceText:inputTexts[1]});
+  applyFinish();
   for(const group of trialLayout.focusGroups){const option=document.createElement('option');option.value=group.id;option.textContent=group.label;$('#focus-group').append(option);}
   trialLayout.blankWallIntervals?.forEach((blank,i)=>{const option=document.createElement('option');option.value=`blank-${i}`;option.textContent=`主墙停顿${i+1} · 约${blank.length.toFixed(1)}米`;$('#focus-group').append(option);});
   $('#focus-group').addEventListener('change',event=>focusOnGroup(event.target.value));
