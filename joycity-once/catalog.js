@@ -20,7 +20,7 @@ function render(){
   if(value==='poetry')return;
   for(const work of library.items.filter(x=>value==='all'||x.group===value)){
     const li=node('li','catalog-item');const button=node('button','catalog-work');button.type='button';button.setAttribute('aria-label','查看 '+work.title);
-    const img=node('img','');img.src=work.image;img.alt='';img.loading='lazy';button.append(img,node('strong','',work.title),node('span','',work.dimensions),node('small','',placementFor(work.id)?'试排03':'待布置'));button.addEventListener('click',()=>showDetail(work));li.append(button);list.append(li);
+    const img=node('img','');img.src=work.image;img.alt='';img.loading='lazy';button.append(img,node('strong','',work.title),node('span','',work.dimensions),node('small','',placementFor(work.id)?'试排04':'待布置'));button.addEventListener('click',()=>showDetail(work));li.append(button);list.append(li);
   }
 }
 export function installCatalog({layout=null,onInspect=null}={}){
@@ -31,7 +31,7 @@ export function installCatalog({layout=null,onInspect=null}={}){
   window.addEventListener('keydown',event=>{if(event.key==='Escape'&&!panel.hidden){setOpen(false);open.focus();}});
   get('details-button').addEventListener('click',()=>{panel.hidden=true;open.setAttribute('aria-expanded','false');});
   get('catalog-filter').addEventListener('change',render);
-  fetch('catalog.json?v=20261104-trial03',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('作品库读取失败');return r.json();}).then(data=>{
+  fetch('catalog.json?v=20261104-trial04',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('作品库读取失败');return r.json();}).then(data=>{
     library=data;get('catalog-summary').textContent='31幅摄影全部装裱 · 6块玻璃 · 4幅大图 · VESSEL。已放入当前空间试排，尚未定稿。';
     for(const [value,label]of Object.entries(groups)){const option=node('option','',label+(data.counts[value]?' · '+data.counts[value]:''));option.value=value;get('catalog-filter').append(option);}
     const poetry=get('catalog-poetry');poetry.append(node('h3','',data.poetry.title),node('p','','两首诗及新写的溪流句进入本轮试排，分布于透明屏、墙面与地面；诗稿仍在写作中。'),node('p','','载体：墙面、地面及其他建筑位置。'));

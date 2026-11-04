@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "revision": "20261104-trial03",
-  "title": "第三次试排 · 透明文字与疏松展墙",
-  "status": "third_trial_not_installation_plan",
+  "revision": "20261104-trial04",
+  "title": "第四次试排 · 文字构建的世界",
+  "status": "fourth_trial_not_installation_plan",
   "date": "2026-11-04",
   "sourceLayout": "ONCE v117 的作品组合与相邻关系；不修改旧展",
-  "principle": "两片疏松白墙承载摄影，两片沿墙的透明屏承载诗；读字仍能看见其后的空墙、作品与行人。",
+  "principle": "文字遍布墙面、地面和垂直透明屏，与摄影、玻璃和植物材料发生联系；以新的无衬线字形构建同一个世界。",
   "partitions": [
     {
       "id": "early",
@@ -901,7 +901,8 @@
       "width": 0.6,
       "height": 0.8,
       "bottom": 0.18,
-      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。"
+      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。",
+      "supportType": "tile-display-clamp"
     },
     {
       "id": "ga-02",
@@ -913,7 +914,8 @@
       "width": 0.7,
       "height": 1.2,
       "bottom": 0.18,
-      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。"
+      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。",
+      "supportType": "tile-display-clamp"
     },
     {
       "id": "ga-03",
@@ -925,7 +927,8 @@
       "width": 0.6,
       "height": 1.4,
       "bottom": 0.18,
-      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。"
+      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。",
+      "supportType": "tile-display-clamp"
     },
     {
       "id": "ga-04",
@@ -937,7 +940,8 @@
       "width": 0.7,
       "height": 1.6,
       "bottom": 0.18,
-      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。"
+      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。",
+      "supportType": "tile-display-clamp"
     },
     {
       "id": "ga-05",
@@ -949,7 +953,8 @@
       "width": 0.6,
       "height": 1.65,
       "bottom": 0.18,
-      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。"
+      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。",
+      "supportType": "tile-display-clamp"
     },
     {
       "id": "ga-06",
@@ -961,7 +966,8 @@
       "width": 0.6,
       "height": 1.8,
       "bottom": 0.18,
-      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。"
+      "note": "六块按打印画布等比试排，支撑为位置示意，非玻璃制作结构。",
+      "supportType": "tile-display-clamp"
     }
   ],
   "poems": [
@@ -973,52 +979,58 @@
         0.009,
         2.45
       ],
-      "fontSize": 0.1,
-      "width": 1.7,
+      "fontSize": 0.16,
+      "width": 2.0,
       "surface": "floor",
       "rotationY": -30.5,
       "weight": 500,
-      "color": "#30332f",
-      "fontFamily": "sans",
-      "lineHeight": 1.2,
-      "align": "left"
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.3,
+      "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.00192
     },
     {
       "id": "future",
       "text": "我在以后\n看见他们，",
       "position": [
-        0.466,
-        1.97,
-        14.614583333333332
+        0.8267500000000001,
+        1.94,
+        4.934
       ],
-      "fontSize": 0.28,
-      "width": 1.55,
+      "fontSize": 0.24,
+      "width": 1.08,
       "surface": "wall",
-      "rotationY": 90,
-      "weight": 700,
-      "color": "#30332f",
-      "fontFamily": "sans",
-      "lineHeight": 1.12,
+      "rotationY": 180,
+      "weight": 500,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.08,
       "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.0028799999999999997,
       "textScreenId": "poetry-screen-1"
     },
     {
       "id": "tomorrow",
-      "text": "迎着风谈论明天。",
+      "text": "迎着风\n谈论明天。",
       "position": [
-        0.466,
-        1.12,
-        14.365989583333333
+        0.6511666666666667,
+        1.24,
+        4.934
       ],
-      "fontSize": 0.115,
-      "width": 1.65,
+      "fontSize": 0.16,
+      "width": 1.08,
       "surface": "wall",
-      "rotationY": 90,
+      "rotationY": 180,
       "weight": 500,
-      "color": "#30332f",
-      "fontFamily": "sans",
-      "lineHeight": 1.2,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.12,
       "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.00192,
       "textScreenId": "poetry-screen-1"
     },
     {
@@ -1029,89 +1041,99 @@
         0.009,
         9.85
       ],
-      "fontSize": 0.105,
-      "width": 1.5,
+      "fontSize": 0.18,
+      "width": 1.7,
       "surface": "floor",
       "rotationY": 0,
-      "weight": 600,
-      "color": "#30332f",
-      "fontFamily": "sans",
-      "lineHeight": 1.2,
-      "align": "left"
+      "weight": 700,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.78,
+      "lineHeight": 1.16,
+      "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": -0.0014399999999999999
     },
     {
       "id": "river",
       "text": "河流带有未命名的方向，\n从每个人流过。",
       "position": [
-        2.15,
+        1.98,
         0.009,
-        11.3
+        10.98
       ],
-      "fontSize": 0.085,
-      "width": 2.0,
+      "fontSize": 0.16,
+      "width": 2.25,
       "surface": "floor",
       "rotationY": -61.699,
-      "weight": 500,
-      "color": "#30332f",
-      "fontFamily": "mono",
-      "lineHeight": 1.4,
-      "align": "left"
+      "weight": 400,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.35,
+      "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.00192
     },
     {
       "id": "world",
-      "text": "已经发生的世界",
+      "text": "已经发生的\n世界",
       "position": [
-        0.466,
-        1.95,
-        22.618333333333332
+        0.6511666666666667,
+        1.98,
+        14.684
       ],
       "fontSize": 0.16,
-      "width": 1.65,
+      "width": 1.08,
       "surface": "wall",
-      "rotationY": 90,
-      "weight": 600,
-      "color": "#30332f",
-      "fontFamily": "sans",
-      "lineHeight": 1.2,
+      "rotationY": 180,
+      "weight": 500,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.1,
       "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.00192,
       "textScreenId": "poetry-screen-2"
     },
     {
       "id": "across",
       "text": "横亘",
       "position": [
-        0.466,
-        1.24,
-        22.51291666666667
+        0.62825,
+        1.25,
+        14.684
       ],
-      "fontSize": 0.44,
-      "width": 1.25,
+      "fontSize": 0.4,
+      "width": 1.05,
       "surface": "wall",
-      "rotationY": 90,
+      "rotationY": 180,
       "weight": 700,
-      "color": "#30332f",
-      "fontFamily": "sans",
+      "fontFamily": "plex",
+      "fontWidthScale": 0.78,
       "lineHeight": 1.08,
       "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": -0.0032,
       "textScreenId": "poetry-screen-2"
     },
     {
       "id": "between",
-      "text": "在我与他们之间，",
+      "text": "在我与他们\n之间，",
       "position": [
-        0.466,
-        0.73,
-        22.617291666666667
+        0.6072708333333334,
+        0.62,
+        14.684
       ],
       "fontSize": 0.14,
-      "width": 1.65,
+      "width": 1.08,
       "surface": "wall",
-      "rotationY": 90,
+      "rotationY": 180,
       "weight": 500,
-      "color": "#30332f",
-      "fontFamily": "sans",
-      "lineHeight": 1.2,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.12,
       "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.0016800000000000003,
       "textScreenId": "poetry-screen-2"
     },
     {
@@ -1122,15 +1144,17 @@
         2.43,
         29.6
       ],
-      "fontSize": 0.14,
-      "width": 1.6,
+      "fontSize": 0.22,
+      "width": 2.2,
       "surface": "wall",
       "rotationY": -90,
       "weight": 500,
-      "color": "#30332f",
-      "fontFamily": "sans",
-      "lineHeight": 1.2,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.16,
       "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.00264,
       "runs": [
         {
           "text": "他们",
@@ -1147,90 +1171,182 @@
       "text": "月亮升起。",
       "position": [
         4.367,
-        2.51,
-        21.6
+        2.47,
+        17.0
       ],
-      "fontSize": 0.28,
-      "width": 1.7,
+      "fontSize": 0.36,
+      "width": 2.1,
       "surface": "wall",
       "rotationY": -90,
       "weight": 700,
-      "color": "#30332f",
-      "fontFamily": "sans",
-      "lineHeight": 1.2,
-      "align": "left"
+      "fontFamily": "plex",
+      "fontWidthScale": 0.78,
+      "lineHeight": 1.16,
+      "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": -0.0028799999999999997
     },
     {
       "id": "tide",
-      "text": "潮水对此一无所知。\n海水越过海水，\n让夜晚走向岸边。",
+      "text": "潮水对此一无所知。",
       "position": [
-        4.367,
-        1.78,
-        17.7
+        2.65,
+        0.009,
+        18.5
       ],
-      "fontSize": 0.095,
-      "width": 1.2,
+      "fontSize": 0.17,
+      "width": 2.2,
+      "surface": "floor",
+      "rotationY": 0,
+      "weight": 400,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.16,
+      "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.00204
+    },
+    {
+      "id": "sea",
+      "text": "海水\n越过海水，",
+      "position": [
+        0.8048020833333334,
+        1.95,
+        22.834
+      ],
+      "fontSize": 0.23,
+      "width": 1.08,
       "surface": "wall",
-      "rotationY": -90,
+      "rotationY": 180,
       "weight": 500,
-      "color": "#30332f",
-      "fontFamily": "sans",
-      "lineHeight": 1.42,
-      "align": "left"
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.1,
+      "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.0027600000000000003,
+      "textScreenId": "poetry-screen-3"
+    },
+    {
+      "id": "shore",
+      "text": "让夜晚\n走向岸边。",
+      "position": [
+        0.6950625,
+        1.2,
+        22.834
+      ],
+      "fontSize": 0.18,
+      "width": 1.08,
+      "surface": "wall",
+      "rotationY": 180,
+      "weight": 500,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.1,
+      "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.00216,
+      "textScreenId": "poetry-screen-3"
+    },
+    {
+      "id": "reef",
+      "text": "礁石沉默，",
+      "position": [
+        0.018,
+        2.45,
+        12.2
+      ],
+      "fontSize": 0.23,
+      "width": 1.5,
+      "surface": "wall",
+      "rotationY": 90,
+      "weight": 500,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.16,
+      "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.0027600000000000003
     },
     {
       "id": "islands",
-      "text": "礁石沉默，\n群岛浮出黑暗。\n更远的浪正在赶来。",
+      "text": "群岛浮出黑暗。",
+      "position": [
+        0.018,
+        1.23,
+        26.8
+      ],
+      "fontSize": 0.17,
+      "width": 1.5,
+      "surface": "wall",
+      "rotationY": 90,
+      "weight": 400,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.16,
+      "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.00204
+    },
+    {
+      "id": "far-waves",
+      "text": "更远的浪正在赶来。",
       "position": [
         4.367,
-        2.02,
-        19.9
+        2.37,
+        25.5
       ],
-      "fontSize": 0.085,
-      "width": 1.25,
+      "fontSize": 0.17,
+      "width": 2.0,
       "surface": "wall",
       "rotationY": -90,
-      "weight": 500,
-      "color": "#30332f",
-      "fontFamily": "sans",
-      "lineHeight": 1.42,
-      "align": "left"
+      "weight": 400,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.16,
+      "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.00204
     },
     {
       "id": "waves",
       "text": "它聚拢，它抬升，\n它倾覆，它盘旋。",
       "position": [
         4.367,
-        2.3,
-        23.45
+        2.18,
+        20.4
       ],
-      "fontSize": 0.11,
-      "width": 1.3,
+      "fontSize": 0.17,
+      "width": 1.8,
       "surface": "wall",
       "rotationY": -90,
-      "weight": 600,
-      "color": "#30332f",
-      "fontFamily": "sans",
-      "lineHeight": 1.3,
-      "align": "left"
+      "weight": 500,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.25,
+      "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.00204
     },
     {
       "id": "stars",
       "text": "夜空向海面缓缓倾斜，\n群星随波浪起伏。",
       "position": [
         4.367,
-        2.34,
-        26.0
+        2.44,
+        27.6
       ],
-      "fontSize": 0.09,
-      "width": 1.4,
+      "fontSize": 0.18,
+      "width": 2.1,
       "surface": "wall",
       "rotationY": -90,
-      "weight": 500,
-      "color": "#30332f",
-      "fontFamily": "sans",
-      "lineHeight": 1.4,
-      "align": "left"
+      "weight": 400,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.25,
+      "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.00216
     },
     {
       "id": "moonlight",
@@ -1240,15 +1356,17 @@
         0.009,
         27.2
       ],
-      "fontSize": 0.09,
-      "width": 1.7,
+      "fontSize": 0.16,
+      "width": 2.4,
       "surface": "floor",
       "rotationY": -25,
-      "weight": 500,
-      "color": "#30332f",
-      "fontFamily": "sans",
-      "lineHeight": 1.2,
-      "align": "left"
+      "weight": 400,
+      "fontFamily": "plex",
+      "fontWidthScale": 0.86,
+      "lineHeight": 1.16,
+      "align": "left",
+      "color": "#2a2d29",
+      "letterSpacing": 0.00192
     }
   ],
   "focusGroups": [
@@ -1377,35 +1495,49 @@
     },
     {
       "id": "spatial-screen-1",
-      "label": "透明文字屏 · 我在以后",
+      "label": "透明屏 · 我在以后",
       "camera": [
-        3.0,
+        2.8,
         1.6,
-        13.1
+        2.5
       ],
       "target": [
-        0.45,
-        1.45,
-        14.7
+        0.8,
+        1.4,
+        4.95
       ]
     },
     {
       "id": "spatial-screen-2",
-      "label": "透明文字屏 · 横亘",
+      "label": "透明屏 · 横亘",
       "camera": [
-        3.0,
+        2.8,
         1.6,
-        21.1
+        12.2
       ],
       "target": [
-        0.45,
-        1.35,
+        0.8,
+        1.4,
+        14.7
+      ]
+    },
+    {
+      "id": "spatial-screen-3",
+      "label": "透明屏 · 海水越过海水",
+      "camera": [
+        2.8,
+        1.6,
+        20.3
+      ],
+      "target": [
+        0.8,
+        1.4,
         22.85
       ]
     },
     {
       "id": "spatial-glass-maize",
-      "label": "玻璃 · 枯秸秆 · 月亮",
+      "label": "玻璃支架 · 枯秸秆",
       "camera": [
         1.0,
         1.6,
@@ -1413,20 +1545,33 @@
       ],
       "target": [
         4.0,
-        1.45,
+        1.35,
         22.6
+      ]
+    },
+    {
+      "id": "spatial-floor-river",
+      "label": "地面文字 · 河流",
+      "camera": [
+        3.2,
+        1.6,
+        8.8
+      ],
+      "target": [
+        1.9,
+        0.05,
+        11.0
       ]
     }
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "撤去中间白墙；两片白墙每面只放两幅，主墙23幅，共31幅摄影原尺寸不变。",
-    "新增两片透明文字屏沿左墙平行人流，基座最外沿约距左墙72.5cm；避免在通道中横插透明障碍。",
-    "两段主墙仍无摄影，透明屏靠在这两段之前；透明屏文字用黑体块面，不仿旧或模仿Fluxus字标。",
-    "两首诗均保留全文，换行和尺度按空间重新组织；入口新句作为可继续修改的写作稿。",
-    "金属条试暖石墨灰，提供原金属灰、暗氧化褐比较；取消旧三角地面色块。",
-    "一组枯玉米秸秆与growing again并列，不将每片玻璃配成花束，不遮图。",
-    "透明屏为体量与动线试排，玻璃、显识与固定构造、秸秆处理仍需场地与制作方核定；不是施工文件。"
+    "两片白色活动墙，每面两幅摄影；23幅主墙及8幅侧墙的摄影尺寸保留。",
+    "三片1.2m窄透明屏与墙面90度垂直，最外侧底座边约距左墙1.45m；约4.4m暂估空间下计入对侧支撑后仍需现场复核净空及驻足。",
+    "中文候选为真实IBM Plex Sans SC，按.86中等字宽与.78重点紧字块重排；这是一种中文转译，不冒称历史IBM News Gothic本身。",
+    "地面字身提高到16–18cm；墙面、屏面分别引入与画面有联系的诗句，保留两首全文与溪流新句。",
+    "growing again支架依据新实物照片改为黑方管夹持三角架，具体尺寸仍需确认；植物为一组枯玉米秸秆。",
+    "所有玻璃与固定结构为视觉和动线方案；非施工设计、锚固安全或本地规范结论。"
   ],
   "environment": {
     "wallFields": [
@@ -1480,20 +1625,20 @@
   "textScreens": [
     {
       "id": "poetry-screen-1",
-      "x": 0.45,
-      "z": 14.7,
-      "width": 2.1,
+      "x": 0.8,
+      "z": 4.95,
+      "width": 1.2,
       "height": 2.2,
       "bottom": 0.18,
-      "yaw": 90,
+      "yaw": 0,
       "normal": [
-        1,
-        0
+        0,
+        -1
       ],
       "frameColor": "#81877e",
       "frameFace": 0.012,
       "baseColor": "#b6b8af",
-      "baseWidth": 2.2,
+      "baseWidth": 1.3,
       "baseDepth": 0.55,
       "baseHeight": 0.18,
       "manifestation": [
@@ -1506,24 +1651,24 @@
           "bandHeight": 0.035
         }
       ],
-      "note": "沿通道平行布置的透明文字屏；全边框＋连续底座作可见边界，夹层安全玻璃及固定构造待核定。"
+      "note": "与左墙成90度，沿人流边缘伸入；可见边框、显识和连续底座仅为设计占位，安全材料与固定待核定。"
     },
     {
       "id": "poetry-screen-2",
-      "x": 0.45,
-      "z": 22.85,
-      "width": 2.1,
+      "x": 0.8,
+      "z": 14.7,
+      "width": 1.2,
       "height": 2.2,
       "bottom": 0.18,
-      "yaw": 90,
+      "yaw": 0,
       "normal": [
-        1,
-        0
+        0,
+        -1
       ],
       "frameColor": "#81877e",
       "frameFace": 0.012,
       "baseColor": "#b6b8af",
-      "baseWidth": 2.2,
+      "baseWidth": 1.3,
       "baseDepth": 0.55,
       "baseHeight": 0.18,
       "manifestation": [
@@ -1536,7 +1681,37 @@
           "bandHeight": 0.035
         }
       ],
-      "note": "沿通道平行布置的透明文字屏；全边框＋连续底座作可见边界，夹层安全玻璃及固定构造待核定。"
+      "note": "与左墙成90度，沿人流边缘伸入；可见边框、显识和连续底座仅为设计占位，安全材料与固定待核定。"
+    },
+    {
+      "id": "poetry-screen-3",
+      "x": 0.8,
+      "z": 22.85,
+      "width": 1.2,
+      "height": 2.2,
+      "bottom": 0.18,
+      "yaw": 0,
+      "normal": [
+        0,
+        -1
+      ],
+      "frameColor": "#81877e",
+      "frameFace": 0.012,
+      "baseColor": "#b6b8af",
+      "baseWidth": 1.3,
+      "baseDepth": 0.55,
+      "baseHeight": 0.18,
+      "manifestation": [
+        {
+          "height": 0.95,
+          "bandHeight": 0.035
+        },
+        {
+          "height": 1.58,
+          "bandHeight": 0.035
+        }
+      ],
+      "note": "与左墙成90度，沿人流边缘伸入；可见边框、显识和连续底座仅为设计占位，安全材料与固定待核定。"
     }
   ],
   "botanicalGroups": [

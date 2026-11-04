@@ -50,7 +50,7 @@ function textRuns(record) {
 function textCanvas(text, {fontPixels = 72, color = '#575951', padding = 12, lineHeight = 1.4, runs, fontFamily = 'serif', weight = 300, align = 'left', trackingPixels = 0} = {}) {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
-  const familyFor = family => family === 'mono' ? '"Menlo", "Courier New", "ONCE Text", "Noto Sans CJK SC", sans-serif' : family === 'sans' ? '"ONCE Text", "Noto Sans CJK SC", "PingFang SC", sans-serif' : '"Songti SC", "Noto Serif CJK SC", "STSong", serif';
+  const familyFor = family => family === 'plex' ? '"ONCE Grotesk", "IBM Plex Sans SC", "PingFang SC", sans-serif' : family === 'mono' ? '"Menlo", "Courier New", "ONCE Grotesk", "ONCE Text", "Noto Sans CJK SC", sans-serif' : family === 'serif' ? '"Songti SC", "Noto Serif CJK SC", "STSong", serif' : '"ONCE Text", "Noto Sans CJK SC", "PingFang SC", sans-serif';
   const fontFor = run => `${run.weight || weight} ${fontPixels * positive(run.fontScale, 1)}px ${familyFor(run.fontFamily || fontFamily)}`;
   const lines = [[]];
   for (const run of runs?.length ? runs : [{text: String(text)}]) {
@@ -294,6 +294,68 @@ function segmentRect(id, type, a, b, thickness) {
   };
 }
 
+// A pair of independent clamp racks, based on the user's photographs. Long
+// bottom rails run across the pane normal; the pair is spaced along its width.
+// Every size is illustrative. The raised internal bearing follows the retained
+// glass-bottom datum and touches the underside rather than floating below it.
+function tileClampGeometry(record, paneWidth, paneHeight, bottom) {
+  const tube = positive(record.supportTube, .03), depth = positive(record.supportDepth, .52);
+  const height = Math.max(positive(record.supportHeight, .42), bottom + .22);
+  const spacing = positive(record.supportSpacing, paneWidth * .62), cy = bottom + paneHeight / 2;
+  const postZ = tube * 1.5, paneHalf = .005, padDepth = .008, padRadius = .025;
+  const lower = bottom + .055, upper = Math.max(lower + .1, height - .065);
+  const parts = Object.fromEntries(['metal', 'screw', 'rubber'].map(kind => [kind, {kind, vertices: [], indices: []}]));
+  const add = (kind, vertices, indices) => {
+    const part = parts[kind], offset = part.vertices.length / 3;
+    vertices.forEach(vertex => part.vertices.push(vertex[0], vertex[1] - cy, vertex[2]));
+    part.indices.push(...indices.map(index => offset + index));
+  };
+  const cube = (kind, w, h, d, center, rx = 0, rz = 0) => {
+    const vertices = [], c = Math.cos(rx), s = Math.sin(rx), cz = Math.cos(rz), sz = Math.sin(rz);
+    for (const z of [-d / 2, d / 2]) for (const y of [-h / 2, h / 2]) for (const x of [-w / 2, w / 2]) {
+      const yy = c * y - s * z, zz = s * y + c * z;
+      vertices.push([center[0] + cz * x - sz * yy, center[1] + sz * x + cz * yy, center[2] + zz]);
+    }
+    const quads = [[0, 2, 3, 1], [4, 5, 7, 6], [0, 1, 5, 4], [2, 6, 7, 3], [0, 4, 6, 2], [1, 3, 7, 5]];
+    add(kind, vertices, quads.flatMap(([a, b, c, d]) => [a, b, c, a, c, d]));
+  };
+  const cylinder = (kind, radius, length, center, sides = 12, ridges = false) => {
+    const vertices = [], indices = [], rings = ridges ? 13 : 2;
+    for (let ring = 0; ring < rings; ring++) for (let j = 0; j < sides; j++) {
+      const angle = j * Math.PI * 2 / sides, r = radius + (ridges && ring % 2 ? .0008 : 0);
+      vertices.push([center[0] + Math.cos(angle) * r, center[1] + Math.sin(angle) * r, center[2] - length / 2 + length * ring / (rings - 1)]);
+    }
+    for (let ring = 0; ring < rings - 1; ring++) for (let j = 0; j < sides; j++) {
+      const n = (j + 1) % sides, p = ring * sides, q = (ring + 1) * sides;
+      indices.push(p + j, p + n, q + n, p + j, q + n, q + j);
+    }
+    const a = vertices.length; vertices.push([center[0], center[1], center[2] - length / 2]);
+    const b = vertices.length; vertices.push([center[0], center[1], center[2] + length / 2]);
+    for (let j = 0; j < sides; j++) {const n = (j + 1) % sides, q = (rings - 1) * sides; indices.push(a, n, j, b, q + j, q + n);}
+    add(kind, vertices, indices);
+  };
+  for (const station of [-1, 1]) {
+    const x = station * spacing / 2;
+    cube('metal', .045, tube, depth, [x, tube / 2, 0]);
+    for (const side of [-1, 1]) {
+      cube('metal', tube, height - tube, tube, [x, (height + tube) / 2, side * postZ]);
+      const a = [x, tube / 2, side * (depth / 2 - tube / 2)], b = [x, height * .6, side * postZ];
+      const dy = b[1] - a[1], dz = b[2] - a[2];
+      cube('metal', tube, Math.hypot(dy, dz), tube, [x, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2], Math.atan2(dz, dy));
+      for (const y of [lower, upper]) {
+        const inner = paneHalf + padDepth, outer = postZ + tube / 2 + .027;
+        cylinder('screw', .0045, outer - inner, [x, y, side * (outer + inner) / 2], 8, true);
+        cylinder('rubber', padRadius, padDepth, [x, y, side * (paneHalf + padDepth / 2)]);
+        cylinder('metal', .0105, .009, [x, y, side * (postZ + tube / 2 + .006)], 6);
+        for (const wing of [-1, 1]) cube('metal', .023, .007, .009, [x + wing * .010, y + .002, side * outer], 0, wing * .45);
+      }
+    }
+    cube('metal', .075, tube, postZ * 2 + tube, [x, bottom - .01 - tube / 2, 0]);
+    cube('rubber', .075, .01, .065, [x, bottom - .005, 0]);
+  }
+  return {parts: Object.values(parts), count: 2, postCount: 4, braceCount: 4, clampPadCount: 8, bearingPadCount: 2, depth, height, tube, spacing, bearingElevation: bottom, clampLevels: [lower, upper], dimensionsStatus: 'illustrative, not measured'};
+}
+
 /**
  * Builds geometry immediately. Await the returned ready promise only when all
  * image previews must have finished loading; navigation can start beforehand.
@@ -319,7 +381,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   const stats = {
     works: 0, workCount: 0, photos: 0, large: 0, videos: 0, glass: 0, texts: 0,
     partitions: 0, surfaces: 0, poems: 0, labels: 0, wallFields: 0, floorFields: 0,
-    botanicalGroups: 0, stalks: 0, leaves: 0, ears: 0, textScreens: 0, textScales: [],
+    botanicalGroups: 0, stalks: 0, leaves: 0, ears: 0, textScreens: 0, tileClampRacks: 0, clampPads: 0, textScales: [],
     textures: 0, loaded: 0, errors: 0, pending: 0, texturePixels: 0, textureResamples: 0,
     failures: [], warnings: [], aspectAdjustments: [], ready: false,
   };
@@ -330,6 +392,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   let errorTexture;
   const white = new THREE.MeshStandardMaterial({color: '#f2f1ec', roughness: .86, side: THREE.DoubleSide});
   const backing = new THREE.MeshStandardMaterial({color: '#e5e3dc', roughness: .9, side: THREE.DoubleSide});
+  const textFamily = (record, fallback = 'serif') => String(layout.revision || '').includes('trial04') && (!record.fontFamily || record.fontFamily === 'sans') ? 'plex' : record.fontFamily || fallback;
 
   function register(record, object, item, position, normal, dimensions) {
     works.set(record.id, object);
@@ -498,16 +561,19 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       const paper = new THREE.MeshBasicMaterial({color: record.matColor || '#f8f7f2', side: THREE.DoubleSide, toneMapped: false});
       box(work, '前言版面_排版待核', width, height, .008, 0, 0, .004, paper);
       const fontSize = positive(record.fontSize, .045);
-      const raster = textCanvas(record.text || '', {fontPixels: 96, padding: 5, color: record.color || '#42473e', runs: textRuns(record), lineHeight: finite(record.lineHeight, 1.6), fontFamily: record.fontFamily, weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96});
-      const textWidth = Math.min(Math.max(.001, width - .12), raster.rawWidth / raster.fontPixels * fontSize,
-        record.align === 'center' ? Math.max(.001, height - .04) * raster.rawWidth / raster.rawHeight : Infinity);
-      const textHeight = textWidth * raster.rawHeight / raster.rawWidth;
+      const raster = textCanvas(record.text || '', {fontPixels: 96, padding: 5, color: record.color || '#42473e', runs: textRuns(record), lineHeight: finite(record.fontLineHeight, finite(record.lineHeight, 1.6)), fontFamily: textFamily(record), weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96});
+      const widthScale = THREE.MathUtils.clamp(finite(record.fontWidthScale, 1), .001, 1);
+      const naturalWidth = raster.rawWidth / raster.fontPixels * fontSize * widthScale, naturalHeight = raster.rawHeight / raster.fontPixels * fontSize;
+      const contain = Math.min(1, Math.max(.001, width - .12) / naturalWidth, record.align === 'center' ? Math.max(.001, height - .04) / naturalHeight : Infinity);
+      const textWidth = naturalWidth * contain, textHeight = naturalHeight * contain;
       const material = new THREE.MeshBasicMaterial({map: canvasTexture(raster.canvas), transparent: true, side: THREE.DoubleSide, toneMapped: false, depthWrite: false});
       const text = plane(work, '前言原文_不增写内容', textWidth, textHeight, material, .009);
       text.position.x = record.align === 'center' ? 0 : record.align === 'right' ? width / 2 - .06 - textWidth / 2 : -width / 2 + .06 + textWidth / 2;
       text.position.y = record.align === 'center' ? 0 : height / 2 - .09 - textHeight / 2;
       text.userData.requestedFontSize = fontSize;
-      text.userData.effectiveFontSize = fontSize * textWidth / (raster.rawWidth / raster.fontPixels * fontSize);
+      Object.assign(text.userData, {effectiveFontSize: fontSize * contain, fontWidthScale: widthScale, uniformContainScale: contain, effectiveEmWidth: fontSize * widthScale * contain, physicalWidth: textWidth, physicalHeight: textHeight});
+      Object.assign(text.userData, {width: textWidth, height: textHeight});
+      work.userData.textDimensions = {...text.userData};
       if (text.userData.effectiveFontSize < fontSize * .99) stats.textScales.push({id: record.id, requested: fontSize, effective: text.userData.effectiveFontSize});
       stats.texts++;
     } else if (record.type === 'video') {
@@ -567,9 +633,27 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     edges.name = '玻璃边缘';
     work.add(edges);
     imageOn(work, item, workRecord, width, height, .006, {opacity: .85});
-    for (const side of [-1, 1]) {
-      const x = side * width * .31;
-      const baseWidth = Math.min(.13, width * .23);
+    let supportDepth = .28;
+    if (record.supportType === 'tile-display-clamp') {
+      const descriptor = tileClampGeometry(record, width, height, bottom);
+      const materials = {
+        metal: new THREE.MeshStandardMaterial({color: '#181a19', roughness: .68, metalness: .2, flatShading: true, side: THREE.DoubleSide}),
+        screw: new THREE.MeshStandardMaterial({color: '#464944', roughness: .52, metalness: .5, side: THREE.DoubleSide}),
+        rubber: new THREE.MeshStandardMaterial({color: '#121310', roughness: .98, side: THREE.DoubleSide}),
+      };
+      for (const part of descriptor.parts) {
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(part.vertices, 3));
+        geometry.setIndex(part.indices); geometry.computeVertexNormals();
+        const mesh = new THREE.Mesh(geometry, materials[part.kind]);
+        mesh.name = `瓷砖夹架_${part.kind}_尺寸示意`; mesh.userData.supportType = record.supportType;
+        work.add(mesh);
+      }
+      const {parts: _parts, ...summary} = descriptor;
+      work.userData.supportSummary = summary; supportDepth = descriptor.depth;
+      stats.tileClampRacks += descriptor.count; stats.clampPads += descriptor.clampPadCount;
+    } else for (const side of [-1, 1]) {
+      const x = side * width * .31, baseWidth = Math.min(.13, width * .23);
       box(work, '试排底脚_非施工构造', baseWidth, .035, .28, x, .0175 - center[1], 0, supportMaterial);
       if (bottom > .03) box(work, '试排短支撑_尺寸待核', .026, bottom + .04, .035, x, (bottom + .04) / 2 - center[1], 0, supportMaterial);
     }
@@ -577,7 +661,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     const a = [center[0] - direction[0] * width / 2, center[2] - direction[1] * width / 2];
     const b = [center[0] + direction[0] * width / 2, center[2] + direction[1] * width / 2];
     // Include the illustrative feet in the walking collision envelope.
-    collisionRects.push(segmentRect(record.id, 'glass', a, b, .28));
+    collisionRects.push(segmentRect(record.id, 'glass', a, b, supportDepth));
     register(workRecord, work, item, center, normal, [width, height]);
     stats.glass++;
   }
@@ -646,10 +730,11 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     const runs = textRuns(record), actualText = runs.map(run => run.text || '').join('');
     if (!actualText.trim()) continue;
     const fontSize = positive(record.fontSize, .06);
-    const raster = textCanvas(actualText, {fontPixels: 96, color: record.color || '#666b58', padding: 5, lineHeight: finite(record.lineHeight, 1.45), runs, fontFamily: record.fontFamily || 'serif', weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96});
-    const naturalWidth = raster.rawWidth / raster.fontPixels * fontSize;
+    const raster = textCanvas(actualText, {fontPixels: 96, color: record.color || '#666b58', padding: 5, lineHeight: finite(record.fontLineHeight, finite(record.lineHeight, 1.45)), runs, fontFamily: textFamily(record), weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96});
+    const widthScale = THREE.MathUtils.clamp(finite(record.fontWidthScale, 1), .001, 1);
+    const naturalWidth = raster.rawWidth / raster.fontPixels * fontSize * widthScale;
     const width = Math.min(naturalWidth, positive(record.width, naturalWidth));
-    const height = width * raster.rawHeight / raster.rawWidth;
+    const contain = width / naturalWidth, height = raster.rawHeight / raster.fontPixels * fontSize * contain;
     const material = new THREE.MeshBasicMaterial({
       map: canvasTexture(raster.canvas), transparent: true, side: THREE.DoubleSide,
       toneMapped: false, depthWrite: false, polygonOffset: true,
@@ -678,7 +763,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       kind: record.surface === 'wall' ? 'wallPoem' : 'floorPoem', canonicalPosition: position,
       textScreenId: record.textScreenId || null,
       canonicalNormal: record.surface === 'wall' ? [Math.sin(angle), Math.cos(angle)] : null,
-      requestedFontSize: fontSize, effectiveFontSize: fontSize * width / naturalWidth};
+      requestedFontSize: fontSize, effectiveFontSize: fontSize * contain, fontWidthScale: widthScale, uniformContainScale: contain, effectiveEmWidth: fontSize * widthScale * contain, physicalWidth: width, physicalHeight: height, width, height};
     if (width < naturalWidth * .99) stats.textScales.push({id: record.id, requested: fontSize, effective: textGroup.userData.effectiveFontSize});
     plane(textGroup, '诗句_保留原文换行', width, height, material, record.surface === 'floor' ? 0 : .003);
     poemGroups.set(record.id, textGroup);
