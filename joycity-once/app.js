@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261104-trial07';
-import { buildExhibition } from './exhibition.js?v=20261104-trial07';
+import { installCatalog } from './catalog.js?v=20261104-trial08';
+import { buildExhibition } from './exhibition.js?v=20261104-trial08';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
@@ -216,7 +216,7 @@ function focusOnWork(id){
   const target=new THREE.Vector3(focus.target[0],focus.target[1],-focus.target[2]);camera.lookAt(target);
   createControls();controls.target.copy(target);controls.maxPolarAngle=Math.PI*.65;controls.update();
   $('#hint').textContent='拖动环看 · 滚轮缩放 · 选择另一组继续看';
-  $('#status').textContent=`试排07 · ${library.items.find(w=>w.id===id)?.title||'前言位置'}`;
+  $('#status').textContent=`试排08 · ${library.items.find(w=>w.id===id)?.title||'前言位置'}`;
   $('#catalog-panel').hidden=true;$('#catalog-button').setAttribute('aria-expanded','false');
   updateCutaway();updateLabels();
 }
@@ -229,7 +229,8 @@ function focusOnGroup(id){
     document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed','false'));
     $('#walk-controls').hidden=true;$('#cutaway').disabled=true;
     const aspect=host.clientWidth/host.clientHeight;
-    if(host.clientWidth<600){inspectionFrame={width:3.2,height:3.1};const h=Math.max(inspectionFrame.height/2,inspectionFrame.width/2/aspect);camera=new THREE.OrthographicCamera(-h*1.12*aspect,h*1.12*aspect,h*1.28,-h*.96,.025,120);}else camera=new THREE.PerspectiveCamera(58,aspect,.025,120);camera.up.copy(worldUp);
+    const mobileFloorInvitation=host.clientWidth<600&&group.id==='spatial-normal-threshold';
+    if(!mobileFloorInvitation&&(host.clientWidth<600||group.framing?.projection==='orthographic')){inspectionFrame={width:group.framing?.width||3.2,height:group.framing?.height||3.1};const h=Math.max(inspectionFrame.height/2,inspectionFrame.width/2/aspect);camera=new THREE.OrthographicCamera(-h*1.12*aspect,h*1.12*aspect,h*1.28,-h*.96,.025,120);}else camera=new THREE.PerspectiveCamera(mobileFloorInvitation?90:58,aspect,.025,120);camera.up.copy(worldUp);
     camera.position.set(group.camera[0],group.camera[1],-group.camera[2]);
     const target=new THREE.Vector3(group.target[0],group.target[1],-group.target[2]);camera.lookAt(target);
     const textScreen=trialLayout.textScreens?.find(screen=>id==='spatial-'+screen.id.replace('poetry-',''));
@@ -246,7 +247,7 @@ function focusOnGroup(id){
     createControls();
     if(group.id==='spatial-ceiling-language')controls.maxPolarAngle=Math.PI-.04;
     controls.target.copy(target);controls.update();
-    $('#status').textContent='试排07 · '+group.label;$('#hint').textContent=group.id==='spatial-ceiling-language'?'顶部试字 · 暂用3.6 m附着标高，实际顶高待测':'拖动环看 · 滚轮缩放 · 字幕与玻璃均为当前试排';
+    $('#status').textContent='试排08 · '+group.label;$('#hint').textContent=group.id==='spatial-ceiling-language'?'顶部试字 · 暂用3.6 m附着标高，实际顶高待测':'拖动环看 · 滚轮缩放 · 字幕与玻璃均为当前试排';
     $('#catalog-panel').hidden=true;$('#catalog-button').setAttribute('aria-expanded','false');updateCutaway();updateLabels();return;
   }
   let members=group.workIds.map(w=>exhibition.works.get(w)?.userData).filter(Boolean);
@@ -270,7 +271,7 @@ function focusOnGroup(id){
   camera.position.copy(target).add(new THREE.Vector3(normal[0]*distance,0,-normal[1]*distance));camera.lookAt(target);
   createControls();controls.target.copy(target);controls.maxPolarAngle=Math.PI*.65;controls.update();
   $('#hint').textContent='组合正视 · 滚轮缩放 · 拖动环看';
-  $('#status').textContent=`试排07 · ${group.label}`;updateCutaway();updateLabels();
+  $('#status').textContent=`试排08 · ${group.label}`;updateCutaway();updateLabels();
 }
 const walkBodyRadius=.30; // Preview body envelope; no crowd or construction claim.
 function hitsDisplay(x,z){return trialVisible&&exhibition?.collisionRects.some(r=>x>r.minX-walkBodyRadius&&x<r.maxX+walkBodyRadius&&z>r.minZ-walkBodyRadius&&z<r.maxZ+walkBodyRadius);}
@@ -291,7 +292,7 @@ function resize(){if(!renderer)return;const w=host.clientWidth,h=host.clientHeig
 function animate(now){raf=requestAnimationFrame(animate);const dt=Math.min((now-previousTime)/1000,.05);previousTime=now;if(view==='entry'||view==='reverse'){let forward=0,side=0;if(pressed.has('w')||pressed.has('arrowup'))forward++;if(pressed.has('s')||pressed.has('arrowdown'))forward--;if(pressed.has('d')||pressed.has('arrowright'))side++;if(pressed.has('a')||pressed.has('arrowleft'))side--;if(forward||side){const speed=(pressed.has('shift')?3:1.6)*dt/Math.max(1,Math.hypot(forward,side));const oldX=walkPosition.x,oldZ=walkPosition.z;const nextX=THREE.MathUtils.clamp(oldX+(Math.sin(yaw)*forward-Math.cos(yaw)*side)*speed,Math.max(walkBodyRadius,leftBoundaryX(-oldZ)+walkBodyRadius),data.room.width-walkBodyRadius);if(!hitsDisplay(nextX,-oldZ))walkPosition.x=nextX;const nextZ=THREE.MathUtils.clamp(oldZ+(Math.cos(yaw)*forward+Math.sin(yaw)*side)*speed,-data.room.length+.3,-floorStartZ(walkPosition.x)-.3);if(!hitsDisplay(walkPosition.x,-nextZ))walkPosition.z=nextZ;updateWalk();}}else controls.update();renderer.render(scene,camera);}
 
 async function init(){try{
-  const responses=await Promise.all(['space.json','layout.json','catalog.json'].map(path=>fetch(path+'?v=20261104-trial07',{cache:'no-store'})));
+  const responses=await Promise.all(['space.json','layout.json','catalog.json'].map(path=>fetch(path+'?v=20261104-trial08',{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   const inputTexts=await Promise.all(responses.map(r=>r.text()));
   [data,trialLayout,library]=inputTexts.map(text=>JSON.parse(text));

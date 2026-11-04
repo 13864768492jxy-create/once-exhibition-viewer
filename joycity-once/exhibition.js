@@ -51,6 +51,38 @@ function alphaInkMaterial(material, inkColor) {
   material.customProgramCacheKey = () => 'once-poem-alpha-ink-v1';
 }
 
+function printedGlassParameters(base = {}, override = {}) {
+  const p = {...base, ...override};
+  return {mode: p.mode || 'density-reflection', lightOpacity: THREE.MathUtils.clamp(finite(p.lightOpacity, .12), 0, 1), darkOpacity: THREE.MathUtils.clamp(finite(p.darkOpacity, .90), 0, 1), densityGamma: positive(p.densityGamma, 1.35), reflectionStrength: THREE.MathUtils.clamp(finite(p.reflectionStrength, .65), 0, 1), fresnelF0: THREE.MathUtils.clamp(finite(p.fresnelF0, .04), 0, 1), roughness: THREE.MathUtils.clamp(finite(p.roughness, .14), 0, 1), probeResolution: THREE.MathUtils.clamp(Math.round(finite(p.probeResolution, 128)), 32, 256), textureMaxSide: THREE.MathUtils.clamp(Math.round(finite(p.textureMaxSide, 1024)), 256, 2048), probePosition: p.probePosition || null, status: p.status || 'visual_trial_not_measured'};
+}
+
+function printedGlassMaterial(texture, p) {
+  const mat = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, side: THREE.DoubleSide, forceSinglePass: true, toneMapped: false,
+    uniforms: {printMap: {value: texture}, envProbe: {value: null}, imageReady: {value: 0}, probeReady: {value: 0}, lightOpacity: {value: p.lightOpacity}, darkOpacity: {value: p.darkOpacity}, densityGamma: {value: p.densityGamma}, reflectionStrength: {value: p.reflectionStrength}, fresnelF0: {value: p.fresnelF0}, reflectionMip: {value: p.roughness * Math.log2(p.probeResolution)}},
+    vertexShader: `varying vec2 printUv; varying vec3 worldPoint; varying vec3 worldNormal;
+      void main(){printUv=uv; vec4 p=modelMatrix*vec4(position,1.0); worldPoint=p.xyz; worldNormal=normalize(mat3(modelMatrix)*normal); gl_Position=projectionMatrix*viewMatrix*p;}`,
+    fragmentShader: `uniform sampler2D printMap; uniform samplerCube envProbe;
+      uniform float imageReady,probeReady,lightOpacity,darkOpacity,densityGamma,reflectionStrength,fresnelF0,reflectionMip;
+      varying vec2 printUv; varying vec3 worldPoint; varying vec3 worldNormal;
+      void main(){
+        vec4 ink=texture2D(printMap,printUv);
+        float y=clamp(dot(ink.rgb,vec3(.2126,.7152,.0722)),0.0,1.0);
+        float a=ink.a*mix(lightOpacity,darkOpacity,pow(1.0-y,densityGamma));
+        vec3 n=normalize(worldNormal); vec3 v=normalize(cameraPosition-worldPoint);
+        float f=fresnelF0+(1.0-fresnelF0)*pow(1.0-abs(dot(n,v)),5.0);
+        float r=probeReady*reflectionStrength*f;
+        vec3 reflected=textureCube(envProbe,reflect(-v,n),reflectionMip).rgb;
+        float alpha=(a*(1.0-r)+r)*imageReady;
+        vec3 rgb=(ink.rgb*a*(1.0-r)+reflected*r)/max(a*(1.0-r)+r,.00001);
+        gl_FragColor=vec4(rgb,alpha);
+        #include <colorspace_fragment>
+      }`,
+  });
+  mat.userData = {printedGlassStudy: p, sourceRGBUnchanged: true, alphaModel: 'linear-sRGB luminance density', reflectionModel: 'shared scene cube / Schlick-Fresnel visual study'};
+  return mat;
+}
+
 function textRuns(record) {
   if (Array.isArray(record.lines)) {
     const runs = [];
@@ -477,6 +509,9 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   const pending = [];
   const wallFieldMaterials = new Set(), screenBaseMaterials = new Set(), floorPoemMaterials = new Set();
   let activePalette = finishPaletteFor(layout), ceilingStudy = null;
+  const printedStudy = layout.environment?.printedGlassStudy;
+  const printedMeshes = new Set(), probeExcluded = new Set(), printedGpuSeen = new Set(); let glassProbe = null, probeQueued = false;
+  let activePrintedStudy = {...printedStudy};
   const stats = {
     works: 0, workCount: 0, photos: 0, large: 0, videos: 0, glass: 0, texts: 0,
     partitions: 0, surfaces: 0, poems: 0, labels: 0, wallFields: 0, floorFields: 0,
@@ -493,7 +528,17 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   let errorTexture;
   const white = new THREE.MeshStandardMaterial({color: activePalette.wall || '#f2f1ec', roughness: .86, side: THREE.DoubleSide});
   const backing = new THREE.MeshStandardMaterial({color: '#e5e3dc', roughness: .9, side: THREE.DoubleSide});
-  const textFamily = (record, fallback = 'serif') => /trial0[4567]/.test(String(layout.revision || '')) && (!record.fontFamily || record.fontFamily === 'sans') ? 'plex' : record.fontFamily || fallback;
+  const textFamily = (record, fallback = 'serif') => /trial0[45678]/.test(String(layout.revision || '')) && (!record.fontFamily || record.fontFamily === 'sans') ? 'plex' : record.fontFamily || fallback;
+
+  function publishGlassDebug() {
+    const canvas=renderer?.domElement;
+    if (!canvas?.setAttribute) return;
+    const panes=printedMeshes.size,loaded=stats.printedGlassLoaded||0;
+    const gpuStatus=(stats.printedGlassErrors||stats.reflectionError) ? 'error' : loaded===panes && panes>0 && printedGpuSeen.size>0 && stats.reflectionCaptures>0 ? 'ready' : loaded===panes && panes>0 ? 'textures-loaded-awaiting-draw-or-probe' : 'loading';
+    const values={'glass-gpu-status':gpuStatus,'glass-panes':panes,'glass-loaded':loaded,'glass-gpu-drawn':printedGpuSeen.size,'glass-captures':stats.reflectionCaptures||0,'glass-capture-ms':(stats.lastReflectionCaptureMs||0).toFixed(2),'glass-probe-mib':(stats.reflectionProbeMiB||0).toFixed(3),'glass-probe-resolution':stats.reflectionProbeResolution||0,'glass-probe-id':glassProbe?.renderTarget?.texture?.uuid||'','glass-errors':stats.printedGlassErrors||0,'glass-scene-textures':renderer?.info?.memory?.textures||0};
+    for (const [key,value] of Object.entries(values)) canvas.setAttribute('data-'+key,String(value));
+    canvas.setAttribute('data-glass-study-stats',JSON.stringify({...values,reflectionError:stats.reflectionError||null,parameters:stats.printedGlassStudy||null}));
+  }
 
   function register(record, object, item, position, normal, dimensions) {
     works.set(record.id, object);
@@ -505,14 +550,16 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     stats.workCount = stats.works;
   }
 
-  function imageOn(object, item, record, width, height, z, {opacity = 1, alpha = false, preserveDimensions = false, maxTextureSide: textureLimit, inkColor = null} = {}) {
-    const material = new THREE.MeshBasicMaterial({
+  function imageOn(object, item, record, width, height, z, {opacity = 1, alpha = false, preserveDimensions = false, maxTextureSide: textureLimit, inkColor = null, printed = null} = {}) {
+    const material = printed ? printedGlassMaterial(loadingTexture, printed) : new THREE.MeshBasicMaterial({
       color: '#ffffff', map: loadingTexture, side: THREE.DoubleSide,
       toneMapped: false, transparent: alpha || opacity < 1, opacity,
       depthWrite: !alpha && opacity === 1,
     });
     if (inkColor) { alphaInkMaterial(material, inkColor); floorPoemMaterials.add(material); material.opacity = 0; }
     const image = plane(object, '原始图像_完整比例', width, height, material, z);
+    if (printed) { printedMeshes.add(image); probeExcluded.add(image); image.userData.printedGlassStudy = printed; image.userData.printedGlassRecord = record; }
+    if (printed) image.onAfterRender=()=>{if (!printedGpuSeen.has(image) && material.uniforms.imageReady.value>0) {printedGpuSeen.add(image);publishGlassDebug();}};
     const src = record.imageUrl || record.image || (record.type === 'photo' ? item?.detailImage : null) || item?.image || item?.preview || item?.previewImage;
     image.userData.source = src || null;
     image.userData.slotDimensions = [width, height];
@@ -522,6 +569,8 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       const fail = error => {
         errorTexture ||= messageTexture('图像未能载入');
         material.map = errorTexture;
+        if (printed) { material.uniforms.printMap.value = errorTexture; material.uniforms.imageReady.value = 1; }
+        if (printed) { stats.printedGlassErrors=(stats.printedGlassErrors||0)+1; publishGlassDebug(); }
         if (inkColor) { material.userData.alphaInk.enabled.value = 0; material.opacity = opacity; }
         material.needsUpdate = true;
         image.name = '图像读取失败_灰色占位';
@@ -546,7 +595,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
         // Read the complete higher-quality source, then bound GPU memory for
         // desktop and mobile. Resampling affects texture resolution only.
         let textureWidth = nativeWidth, textureHeight = nativeHeight;
-        const maxTextureSide = Math.min(textureLimit || (record.type === 'photo' ? 1024 : 2048), renderer?.capabilities?.maxTextureSize || 4096);
+        const maxTextureSide = Math.min(textureLimit || printed?.textureMaxSide || (record.type === 'photo' ? 1024 : 2048), renderer?.capabilities?.maxTextureSize || 4096);
         if (Math.max(nativeWidth, nativeHeight) > maxTextureSide) {
           const factor = maxTextureSide / Math.max(nativeWidth, nativeHeight);
           const canvas = document.createElement('canvas');
@@ -573,6 +622,8 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
           stats.aspectAdjustments.push({id: record.id, declared: [width, height], rendered: [renderedWidth, renderedHeight], nativePixels: [nativeWidth, nativeHeight]});
         }
         material.map = texture;
+        if (printed) { material.uniforms.printMap.value = texture; material.uniforms.imageReady.value = 1; }
+        if (printed) { stats.printedGlassLoaded=(stats.printedGlassLoaded||0)+1; publishGlassDebug(); }
         if (inkColor) material.opacity = opacity;
         material.needsUpdate = true;
         stats.loaded++;
@@ -747,11 +798,14 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     const center = [finite(record.x, 0), bottom + height / 2, finite(record.z, 0)];
     const workRecord = {...record, type: 'glass'};
     const work = faceGroup(group, `玻璃板_${record.id}_支撑仅为试排示意`, center, normal);
-    box(work, '玻璃基板_厚度待核', width, height, .01, 0, 0, 0, glassMaterial);
+    const materialStudy = printedStudy?.mode === 'density-reflection' ? printedGlassParameters(printedStudy, record.materialStudy) : null;
+    const substrate = box(work, '玻璃基板_厚度待核', width, height, .01, 0, 0, 0, glassMaterial);
+    if (materialStudy) { substrate.visible = false; substrate.userData.dimensionalReferenceOnly = true; }
     const edges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(width, height, .01)), new THREE.LineBasicMaterial({color: '#819087', transparent: true, opacity: .78}));
     edges.name = '玻璃边缘';
+    if (materialStudy) probeExcluded.add(edges);
     work.add(edges);
-    imageOn(work, item, workRecord, width, height, .006, {opacity: .85});
+    imageOn(work, item, workRecord, width, height, .006, materialStudy ? {alpha: true, printed: materialStudy} : {opacity: .85});
     let supportDepth = .28, supportWidth = width;
     if (record.supportType === 'tile-display-clamp') {
       const placement = record.supportPlacement || (/trial0[1-4]/.test(String(layout.revision || '')) ? 'inset' : 'edge');
@@ -925,25 +979,75 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     stats.poems++;
   }
 
+  function refreshGlassReflections() {
+    if (!printedMeshes.size || !renderer?.render || !scene) return false;
+    const p = printedGlassParameters(activePrintedStudy);
+    if (!glassProbe) {
+      const resolution = Math.min(p.probeResolution, globalThis.matchMedia?.('(pointer: coarse)')?.matches ? 128 : 256);
+      const target = new THREE.WebGLCubeRenderTarget(resolution, {type: THREE.UnsignedByteType, generateMipmaps: true, minFilter: THREE.LinearMipmapLinearFilter, magFilter: THREE.LinearFilter});
+      target.texture.colorSpace = THREE.LinearSRGBColorSpace;
+      glassProbe = new THREE.CubeCamera(.08, 80, target);
+      const records = layout.freestandingGlass || [];
+      const pos = p.probePosition || [2.2, 1.55, records.reduce((sum,r)=>sum+finite(r.z,0),0)/Math.max(1,records.length)];
+      glassProbe.position.set(pos[0],pos[1],-pos[2]);
+      stats.reflectionProbeResolution = resolution; stats.reflectionProbeMiB = resolution*resolution*6*4*4/3/1048576;
+    }
+    const visible = [...probeExcluded].map(mesh => mesh.visible);
+    probeExcluded.forEach(mesh => {mesh.visible = false;});
+    const started = globalThis.performance?.now?.() || 0;
+    try { glassProbe.update(renderer, scene); }
+    finally { [...probeExcluded].forEach((mesh,i)=>{mesh.visible=visible[i];}); }
+    printedMeshes.forEach(mesh => {mesh.material.uniforms.envProbe.value=glassProbe.renderTarget.texture;mesh.material.uniforms.probeReady.value=1;});
+    stats.reflectionCaptures=(stats.reflectionCaptures||0)+1;
+    stats.lastReflectionCaptureMs=(globalThis.performance?.now?.()||started)-started;
+    publishGlassDebug();
+    return true;
+  }
+  function queueGlassReflectionRefresh() {
+    if (!stats.ready || probeQueued || !printedMeshes.size) return;
+    probeQueued=true;
+    const schedule=globalThis.requestAnimationFrame || (callback=>setTimeout(callback,0));
+    schedule(()=>{probeQueued=false;refreshGlassReflections();});
+  }
+
+  function setPrintedGlassStudy(overrides = {}) {
+    activePrintedStudy = {...activePrintedStudy, ...overrides};
+    printedMeshes.forEach(mesh => {
+      const p = printedGlassParameters(activePrintedStudy, mesh.userData.printedGlassRecord?.materialStudy);
+      for (const key of ['lightOpacity','darkOpacity','densityGamma','reflectionStrength','fresnelF0']) mesh.material.uniforms[key].value=p[key];
+      mesh.material.uniforms.reflectionMip.value=p.roughness*Math.log2(stats.reflectionProbeResolution||p.probeResolution);
+      mesh.userData.printedGlassStudy=p;mesh.material.userData.printedGlassStudy=p;
+    });
+    stats.printedGlassStudy=printedGlassParameters(activePrintedStudy);
+    publishGlassDebug();
+    return {...stats.printedGlassStudy};
+  }
+
   function setFinish(palette = {}) {
+    const keys=['wall','glassWall','floor','grout','metal','floorPoem','screenBase'];
+    const before=JSON.stringify(keys.map(key=>activePalette[key]||null));
     activePalette = {...activePalette, ...palette};
+    const changed=before!==JSON.stringify(keys.map(key=>activePalette[key]||null));
     if (palette.wall) white.color.set(palette.wall);
     if (palette.glassWall) wallFieldMaterials.forEach(material => material.color.set(palette.glassWall));
     if (palette.screenBase) screenBaseMaterials.forEach(material => material.color.set(palette.screenBase));
     if (palette.floorPoem) floorPoemMaterials.forEach(material => material.userData.alphaInk.color.set(palette.floorPoem));
     group.userData.finishPalette = {...activePalette};
+    if (changed) queueGlassReflectionRefresh();
     return {...activePalette};
   }
   setFinish(activePalette);
+  if (printedMeshes.size) setPrintedGlassStudy();
 
   const ready = Promise.allSettled(pending).then(() => {
     stats.ready = true;
+    refreshGlassReflections();
     loadingTexture.dispose();
     return stats;
   });
   group.updateMatrixWorld(true);
   return {
-    group, surfaces, works, environmentFields, poemGroups, botanicalGroups, textScreens, ceilingStudy, collisionRects, ready, stats, setFinish,
+    group, surfaces, works, environmentFields, poemGroups, botanicalGroups, textScreens, ceilingStudy, collisionRects, ready, stats, setFinish, setPrintedGlassStudy, refreshGlassReflections,
     setVisible(visible) { group.visible = Boolean(visible); },
     focusTarget(id) {
       const record = focus.get(id) || [...focus.entries()].find(([key]) => works.get(key)?.userData.catalogId === id)?.[1];

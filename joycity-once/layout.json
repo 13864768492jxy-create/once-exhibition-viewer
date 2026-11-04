@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "revision": "20261104-trial07",
-  "title": "第七次试排 · 材质、通行与抬头",
-  "status": "seventh_trial_not_installation_plan",
+  "revision": "20261104-trial08",
+  "title": "第八次试排 · 床面、脚下与上方",
+  "status": "eighth_trial_not_installation_plan",
   "date": "2026-11-04",
-  "sourceLayout": "source/layout-baselines/trial06.json",
-  "principle": "两片白墙退让通道，整套颜色衬托原作；左墙补原诗的回声，顶部文字让抬头成为观看的一部分。",
+  "sourceLayout": "source/layout-baselines/trial07.json",
+  "principle": "让脱鞋与经过、看床与抬头成为同一个观看区域的身体动作；诗句由墙、地与顶之间的距离完成，透明影像与背后的空间同时存在。",
   "partitions": [
     {
       "id": "early",
@@ -979,23 +979,45 @@
   "poems": [
     {
       "id": "invitation",
-      "text": "脱下你的鞋子吧，\n我们要穿过溪流了。",
+      "text": "脱下你的鞋子吧，",
       "position": [
-        2.15,
+        3.2,
         0.009,
-        2.45
+        5.8
       ],
-      "fontSize": 0.16,
-      "width": 2.0,
+      "fontSize": 0.22,
+      "width": 2.05,
       "surface": "floor",
-      "rotationY": -30.5,
-      "weight": 400,
-      "fontFamily": "huiwen",
+      "rotationY": 90,
+      "weight": 500,
+      "fontFamily": "plex",
       "fontWidthScale": 1.0,
-      "lineHeight": 1.3,
+      "lineHeight": 1.15,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.00192
+      "letterSpacing": 0.0005,
+      "note": "原句第一部分；面向四幅卧室摄影阅读，先遇到脱鞋的邀请。避开现有金属线，不作为实际脱鞋要求。"
+    },
+    {
+      "id": "invitation-crossing",
+      "text": "我们要穿过溪流了。",
+      "position": [
+        3.2,
+        0.009,
+        9.0
+      ],
+      "fontSize": 0.2,
+      "width": 2.15,
+      "surface": "floor",
+      "rotationY": 90,
+      "weight": 500,
+      "fontFamily": "plex",
+      "fontWidthScale": 1.0,
+      "lineHeight": 1.15,
+      "align": "left",
+      "color": "#42473e",
+      "letterSpacing": 0.0005,
+      "note": "同一句原诗的后半；沿观看带前行后再读到，两个字面之间的距离由身体完成。"
     },
     {
       "id": "future",
@@ -1039,23 +1061,36 @@
     },
     {
       "id": "mountains",
-      "text": "群山还未合拢，",
+      "text": "群山\n还未合拢，",
       "position": [
-        2.05,
-        0.009,
-        9.85
+        4.367,
+        1.45,
+        11.7
       ],
-      "fontSize": 0.18,
-      "width": 1.7,
-      "surface": "floor",
-      "rotationY": 0,
-      "weight": 400,
-      "fontFamily": "huiwen",
+      "fontSize": 0.28,
+      "width": 1.12,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 700,
+      "fontFamily": "plex",
       "fontWidthScale": 1.0,
-      "lineHeight": 1.16,
+      "lineHeight": 0.94,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.00216
+      "letterSpacing": 0,
+      "lines": [
+        {
+          "text": "群山",
+          "weight": 700,
+          "fontScale": 1.0
+        },
+        {
+          "text": "还未合拢，",
+          "weight": 400,
+          "fontScale": 0.5
+        }
+      ],
+      "note": "从地面迁入03/04之间空墙；大词与小句形成停顿，与床褥起伏保持开放的视觉联系，不给单幅照片配标题。"
     },
     {
       "id": "river",
@@ -1416,24 +1451,36 @@
     },
     {
       "id": "ceiling-night",
-      "text": "夜空向海面缓缓倾斜，",
+      "text": "夜空向海面\n缓缓倾斜，",
       "position": [
-        2.2,
+        3.0,
         3.595,
         9.6
       ],
-      "fontSize": 0.25,
-      "width": 3.6,
+      "fontSize": 0.21,
+      "width": 1.6,
       "surface": "ceiling",
-      "rotationY": 0,
-      "weight": 400,
-      "fontFamily": "huiwen",
+      "rotationY": 90,
+      "weight": 500,
+      "fontFamily": "plex",
       "fontWidthScale": 1.0,
-      "lineHeight": 1.16,
+      "lineHeight": 1.12,
       "align": "left",
       "color": "#42473e",
-      "letterSpacing": 0.003,
-      "note": "从原诗选出的空间回声；不是新增诗文。"
+      "letterSpacing": 0,
+      "note": "由看床面转为向右上方仰视；两行真实Plex字重与大小构成倾斜的语义，实际顶高仍未知，不改横杆也不增加吊板。",
+      "lines": [
+        {
+          "text": "夜空向海面",
+          "weight": 400,
+          "fontScale": 1.0
+        },
+        {
+          "text": "缓缓倾斜，",
+          "weight": 500,
+          "fontScale": 1.2857142857142858
+        }
+      ]
     }
   ],
   "focusGroups": [
@@ -1530,7 +1577,7 @@
     },
     {
       "id": "YQZC",
-      "label": "一切正常 · 四幅大图",
+      "label": "一切正常 · 四幅原图正视",
       "workIds": [
         "yqzc-01",
         "yqzc-02",
@@ -1660,14 +1707,14 @@
     },
     {
       "id": "spatial-ceiling-language",
-      "label": "抬头 · 顶面诗句",
+      "label": "抬头 · 卧室上方的诗",
       "camera": [
-        2.2,
         1.6,
-        8.8
+        1.6,
+        9.6
       ],
       "target": [
-        2.2,
+        3.0,
         3.595,
         9.6
       ]
@@ -1699,17 +1746,78 @@
         1.55,
         20.0
       ]
+    },
+    {
+      "id": "spatial-normal-dialogue",
+      "label": "一切正常 · 三面关系总览",
+      "camera": [
+        0.4,
+        2.3,
+        8.7
+      ],
+      "target": [
+        4.4,
+        1.5,
+        8.7
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 14.4,
+        "height": 4.6
+      }
+    },
+    {
+      "id": "spatial-normal-threshold",
+      "label": "一切正常 · 地面邀请",
+      "camera": [
+        1.65,
+        1.6,
+        5.8
+      ],
+      "target": [
+        3.2,
+        0.25,
+        5.8
+      ]
+    },
+    {
+      "id": "spatial-normal-mountains",
+      "label": "一切正常 · 群山与床褥",
+      "camera": [
+        1.5,
+        1.6,
+        11.7
+      ],
+      "target": [
+        4.36,
+        1.45,
+        11.7
+      ]
+    },
+    {
+      "id": "spatial-glass-transmission",
+      "label": "Growing Again · 透光与反射",
+      "camera": [
+        2.1,
+        1.6,
+        22.4
+      ],
+      "target": [
+        4.0,
+        0.88,
+        22.4
+      ]
     }
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "两片白墙伸出2.0/1.8米改为1.6/1.5米；仅8幅沿墙位置收拢，全部原作画面、框尺寸及中心高度保持06。",
-    "两片文字玻璃、Growing again及夹架、植物、VESSEL、左主墙其他摄影不动。",
-    "左墙增加原诗两处回声，避开画框；顶部试一句原诗，实际顶高未知，局部基面为3.6米暂定示意。",
-    "三套整套配色只更改环境面、线、地诗颜色与诗屏底座，艺术图像、白卡和白边保持。",
-    "A暖石雾绿为默认、B冷灰银盐与C暗潮可在网页比较；C地诗转浅色，砖缝和金属走势保留。",
-    "按约4.4米估计，墙端空厅余2.8/2.9米；驻足和对侧观看会进一步压缩，必须核对实际支脚和观众停留。",
-    "顶部不作为新吊挂方案；墙体锚固、防倾覆、材料耐燃/防滑、通行疏散与照明均需场地及施工方现场核定。"
+    "全部42项原作、31幅摄影、四幅一切正常、六玻璃及其支架、白展墙和文字屏位置尺寸均保持07；不增加任何落地障碍。",
+    "仅将原脱鞋句拆作地面先后两处，原群山从地面迁入03/04之间，原顶诗转为面向右墙的两行。其他诗句保持07。",
+    "本区域试用IBM Plex Sans SC真实400/500/700与原生字宽；其他区域汇文字形保留，不假称UCCA原中文字体。",
+    "参考UCCA 2024韦纳的横梁分句、地面路径、墙面句法和留白；不复制其原作语句，不把细绿斜杆加厚为可写的大梁。",
+    "Growing Again按用户实物改为密度相关半透明打印和表面反射；参数为视觉试验，源RGB和所有打印原件不变。",
+    "3.6米仍为未实测顶面试字附着标高，不是新吊板、承载构件或安装图。",
+    "三套07配色、地砖与金属走势、现有通行包络保留；实际净宽、支脚、锚固与驻足通行仍须现场核定。"
   ],
   "environment": {
     "wallFields": [
@@ -1795,6 +1903,20 @@
       "color": "#F4F4F0",
       "status": "illustrative_attachment_plane_not_surveyed_ceiling",
       "note": "实际吊顶高度仍未知；3.6m只用于试排贴顶诗句，位于示意灯轨上方，不是新增低垂板或吊挂承载说明。"
+    },
+    "printedGlassStudy": {
+      "mode": "density-reflection",
+      "lightOpacity": 0.12,
+      "darkOpacity": 0.9,
+      "densityGamma": 1.35,
+      "reflectionStrength": 0.65,
+      "fresnelF0": 0.04,
+      "roughness": 0.14,
+      "probeResolution": 128,
+      "textureMaxSide": 1024,
+      "status": "visual_trial_not_measured",
+      "reference": "references/GrowingAgain_半透明实物_用户参考.jpg",
+      "note": "依据用户提供的半透明实物照片试排；仅显示材质的密度透视和表面反射，不更改原作品图像，不是透光率实测。"
     }
   },
   "blankWallIntervals": [
@@ -1917,7 +2039,7 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/trial07/manifest.json",
+  "poetryRasterManifest": "poetry/trial08/manifest.json",
   "occupancyStudy": {
     "status": "illustrative_not_observed_people",
     "diameters": [
