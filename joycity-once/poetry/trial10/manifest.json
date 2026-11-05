@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "revision": "20261105-trial10",
-  "sourceLayoutSHA256": "00a65dde486eb0c1e1e61a7a987880ab9d1a240db6765cd4e9b29bf69398cc2a",
-  "imagePathBase": "relative to this manifest",
+  "sourceLayoutSHA256": "5c5d92fa49ac72f54173f5297a11decc53c3ba7686448aade6d6168340292d6e",
+  "imagePathBase": "poetry/trial10",
   "units": "metres",
   "colorSpace": "sRGB",
   "items": [
@@ -391,11 +391,13 @@
       "effectiveFontSize": 0.2,
       "fontWidthScale": 1,
       "uniformContainScale": 1,
-      "fontFamily": "qi-narrow",
+      "fontFamily": "authored-latin",
       "fontWeight": 700,
       "glyphMode": "fill",
-      "sha256": "6012962257cb13fb71cb2dbef310d6c55bb0978b58508299e830d09069faa4d0",
-      "text": "growing\nagain"
+      "sha256": "f75b52250d1ce88ca4d82178f5d3035e63766b2c9adfd29197eb358df3029db7",
+      "text": "Growing\nAgain",
+      "rasterOrigin": "authored-override",
+      "alphaPreservedByteForByte": true
     },
     {
       "id": "glass-sea-echo",
@@ -412,7 +414,9 @@
       "fontWeight": 700,
       "glyphMode": "fill",
       "sha256": "ce55b2f00427437f7a1c3d303f6105b6f9a196982b4281b22c93ffd1f13a403b",
-      "text": "海水\n越过\n海水，"
+      "text": "海水\n越过\n海水，",
+      "rasterOrigin": "authored-override",
+      "alphaPreservedByteForByte": true
     }
   ]
 }

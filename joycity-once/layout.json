@@ -5,7 +5,7 @@
   "status": "tenth_trial_not_installation_plan",
   "date": "2026-11-05",
   "sourceLayout": "source/layout-baselines/trial09.json",
-  "principle": "长墙小画、短墙大画，以整段留白形成聚散；诗句能沿观看接续，透明与消退属于文字的物质试验，保留已认可的句形。",
+  "principle": "以作品之间的关系决定疏密：20、21回到长墙原位，18在两组间单独停留；小画、聚组与大面积留白交替。诗句可接续阅读，保留已认可的玻璃句形。",
   "partitions": [
     {
       "id": "early",
@@ -222,8 +222,8 @@
       "group": "sea",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 6.9,
-      "centerY": 1.9,
+      "along": 6.95,
+      "centerY": 1.65,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.324,
@@ -314,11 +314,11 @@
       "imageUrl": "library/spatial_once_12.jpg",
       "id": "once_12",
       "catalogId": "once_12",
-      "group": "sea",
+      "group": "early-B-single",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 7.4,
-      "centerY": 0.95,
+      "surfaceId": "early-B",
+      "along": 0.8,
+      "centerY": 1.4,
       "imageWidth": 0.42,
       "imageHeight": 0.341918,
       "outerWidth": 0.516,
@@ -336,8 +336,8 @@
       "group": "sea",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 10.2,
-      "centerY": 1.15,
+      "along": 7.5,
+      "centerY": 0.9,
       "imageWidth": 0.8,
       "imageHeight": 0.64691444444,
       "outerWidth": 0.896,
@@ -409,11 +409,11 @@
       "imageUrl": "library/spatial_once_18.jpg",
       "id": "once_18",
       "catalogId": "once_18",
-      "group": "snow",
+      "group": "quiet-18",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 25.3,
-      "centerY": 0.6,
+      "along": 22.35,
+      "centerY": 1.42,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.396,
@@ -447,10 +447,10 @@
       "imageUrl": "library/spatial_once_20.jpg",
       "id": "once_20",
       "catalogId": "once_20",
-      "group": "early-A-large",
+      "group": "sea",
       "type": "photo",
-      "surfaceId": "early-A",
-      "along": 0.8,
+      "surfaceId": "once-main",
+      "along": 12.2,
       "centerY": 1.45,
       "imageWidth": 1.47,
       "imageHeight": 1.16,
@@ -466,11 +466,11 @@
       "imageUrl": "library/spatial_once_21.jpg",
       "id": "once_21",
       "catalogId": "once_21",
-      "group": "early-B-large",
+      "group": "sea",
       "type": "photo",
-      "surfaceId": "early-B",
-      "along": 0.8,
-      "centerY": 1.45,
+      "surfaceId": "once-main",
+      "along": 9.2,
+      "centerY": 1.55,
       "imageWidth": 1.35,
       "imageHeight": 1.063805,
       "outerWidth": 1.3659999999999999,
@@ -526,8 +526,8 @@
       "group": "sea",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 8.5,
-      "centerY": 1.35,
+      "along": 10.9,
+      "centerY": 1.1,
       "imageWidth": 0.425,
       "imageHeight": 0.35700000000000004,
       "outerWidth": 0.561,
@@ -580,11 +580,11 @@
       "imageUrl": "library/spatial_once_27.jpg",
       "id": "once_27",
       "catalogId": "once_27",
-      "group": "sea",
+      "group": "early-A-single",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 9.4,
-      "centerY": 2,
+      "surfaceId": "early-A",
+      "along": 0.8,
+      "centerY": 1.5,
       "imageWidth": 0.37799999999999995,
       "imageHeight": 0.32146696529,
       "outerWidth": 0.514,
@@ -679,7 +679,7 @@
       "type": "photo",
       "surfaceId": "once-main",
       "along": 24.22,
-      "centerY": 2.2,
+      "centerY": 1.95,
       "imageWidth": 0.45299999999999996,
       "imageHeight": 0.36633229167000003,
       "outerWidth": 0.5489999999999999,
@@ -735,8 +735,8 @@
       "group": "sea",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 11.7,
-      "centerY": 1.65,
+      "along": 10.9,
+      "centerY": 2.18,
       "imageWidth": 0.8,
       "imageHeight": 0.6356429473699999,
       "outerWidth": 0.896,
@@ -1380,8 +1380,8 @@
       "text": "更远的浪正在赶来。",
       "position": [
         4.367,
-        0.65,
-        18.25
+        1.25,
+        27.2
       ],
       "fontSize": 0.13,
       "width": 1.65,
@@ -1547,7 +1547,7 @@
     },
     {
       "id": "glass-growing",
-      "text": "growing\nagain",
+      "text": "Growing\nAgain",
       "surface": "wall",
       "position": [
         3.984,
@@ -1555,7 +1555,7 @@
         21.7
       ],
       "rotationY": -90,
-      "fontFamily": "qi-narrow",
+      "fontFamily": "authored-latin",
       "weight": 700,
       "fontWidthScale": 1,
       "fontSize": 0.2,
@@ -1570,10 +1570,10 @@
         "physicalHeight": 1.54,
         "localCenterX": 0,
         "localCenterY": 0,
-        "sha256": "6012962257cb13fb71cb2dbef310d6c55bb0978b58508299e830d09069faa4d0",
+        "sha256": "f75b52250d1ce88ca4d82178f5d3035e63766b2c9adfd29197eb358df3029db7",
         "sourceSVG": "assets/typography/trial10/glass-growing.svg"
       },
-      "note": "两行小写；逐字轻转、下部曲线位移和退淡，字句仍能完整辨认。参考字作为事件的机制，不重复参考图的列式叠印。"
+      "note": "Growing Again采用Raleway真实轻体、黑体、斜体逐字组构：粗细、斜正和宽窄形成差异。Again六层重叠，向下逐渐左右漂移、舒展、退淡；首层完整可读。原创字母编排，不复制参考图。"
     },
     {
       "id": "glass-sea-echo",
@@ -1865,16 +1865,16 @@
       "camera": [
         2.2,
         1.55,
-        22.75
+        23.0
       ],
       "target": [
         4,
         1.55,
-        22.75
+        23.0
       ],
       "framing": {
         "projection": "orthographic",
-        "width": 10.0,
+        "width": 10.8,
         "height": 3.8
       }
     },
@@ -1893,16 +1893,34 @@
     },
     {
       "id": "sea",
-      "label": "长墙 · 海岸",
+      "label": "长墙 · 20、21与海岸",
       "workIds": [
         "once_05",
-        "once_12",
         "once_24",
-        "once_27",
         "once_13",
-        "once_36"
+        "once_36",
+        "once_20",
+        "once_21"
       ],
       "surfaceId": "once-main",
+      "side": "left"
+    },
+    {
+      "id": "early-B-single",
+      "label": "前短墙B面 · 12",
+      "workIds": [
+        "once_12"
+      ],
+      "surfaceId": "early-B",
+      "side": "left"
+    },
+    {
+      "id": "early-A-single",
+      "label": "前短墙A面 · 27",
+      "workIds": [
+        "once_27"
+      ],
+      "surfaceId": "early-A",
       "side": "left"
     },
     {
@@ -1927,7 +1945,15 @@
         "once_33",
         "once_34",
         "once_28",
-        "once_16",
+        "once_16"
+      ],
+      "surfaceId": "once-main",
+      "side": "left"
+    },
+    {
+      "id": "quiet-18",
+      "label": "长墙 · 18与留白",
+      "workIds": [
         "once_18"
       ],
       "surfaceId": "once-main",
@@ -1946,26 +1972,8 @@
       "side": "left"
     },
     {
-      "id": "early-A-large",
-      "label": "短墙A面 · 20",
-      "workIds": [
-        "once_20"
-      ],
-      "surfaceId": "early-A",
-      "side": "left"
-    },
-    {
-      "id": "early-B-large",
-      "label": "短墙B面 · 21",
-      "workIds": [
-        "once_21"
-      ],
-      "surfaceId": "early-B",
-      "side": "left"
-    },
-    {
       "id": "late-A-large",
-      "label": "短墙A面 · 35",
+      "label": "后短墙A面 · 35",
       "workIds": [
         "once_35"
       ],
@@ -1974,7 +1982,7 @@
     },
     {
       "id": "late-B-large",
-      "label": "短墙B面 · 01",
+      "label": "后短墙B面 · 01",
       "workIds": [
         "once_01"
       ],
@@ -1983,7 +1991,7 @@
     },
     {
       "id": "glass-growing-type",
-      "label": "透明诗板 · growing again",
+      "label": "透明诗板 · Growing Again",
       "camera": [
         1.2,
         1.0,
@@ -2018,18 +2026,37 @@
         "width": 1.25,
         "height": 2.25
       }
+    },
+    {
+      "id": "quiet-18-context",
+      "label": "18 · 两组之间的留白",
+      "camera": [
+        3.1,
+        1.475,
+        22.35
+      ],
+      "target": [
+        0,
+        1.475,
+        22.35
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 6.4,
+        "height": 3.1
+      }
     }
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "31原作尺寸、图像、裁切及装裱外尺寸未改；27上长墙，20/21/35/01各占一短墙面。",
-    "长墙两段摄影留白5.081米与3.1175米；不是把全部空白都补字。",
-    "20号在1.6米面上每侧仅5.7厘米，作为强占面候选，未扩展突出墙。",
+    "31原作尺寸、图像、裁切及装裱外尺寸未改；20、21恢复09长墙原位。",
+    "18独占两组之间约3.12米墙段，画框两侧分别约1.32米与1.40米留白，中心高1.42米。",
+    "前短墙两面分别只挂27、12；后短墙35、01保留，不为挂画扩大白墙。",
     "六件GA与两块70×180透明诗板边对边，整排5.6米；九站共享夹持仅为构型示意。",
     "两端动词字形完全保留；后端随排尾向B平移1.4米。",
     "撤去一片横向小诗屏；海水/岸边转右墙前段，不再提前泄露或遗漏主诗。",
     "首诗终句在横亘之后回望可读；月亮诗依次由右墙、地面、玻璃回声接到天花与波光。",
-    "插板无新增原诗，growing again为原作品标题；另一片只回响已读的海水句。",
+    "插板用原作品标题Growing Again，Again六层重叠退淡；另一片回响已读的海水句。",
     "变形与渐淡为可编辑轮廓字的静态视觉研究，材料工艺仍待试样。",
     "约4.4米净宽、3.6米顶字标高、玻璃夹架结构和实际驻足通行尚未现场核定。"
   ],
@@ -2144,21 +2171,11 @@
     },
     {
       "surfaceId": "once-main",
-      "from": 12.148,
+      "from": 12.943,
       "to": 17.229,
-      "length": 5.081,
+      "length": 4.286,
       "textScreensInFront": [
         "poetry-screen-2"
-      ],
-      "partitionRootsInside": []
-    },
-    {
-      "surfaceId": "once-main",
-      "from": 20.828,
-      "to": 23.9455,
-      "length": 3.1175,
-      "textScreensInFront": [
-        "poetry-screen-3"
       ],
       "partitionRootsInside": []
     },
@@ -2345,7 +2362,12 @@
     },
     {
       "id": "moon-poem",
-      "direction": "A-to-B on right, ground and ceiling",
+      "direction": "A-to-B; at the restored far-waves sentence look back across the glass verbs",
+      "intentionalReturn": {
+        "fromId": "far-waves",
+        "toId": "waves",
+        "reason": "User restores approved Trial09 right-tail low sentence on 2026-11-05; glass verbs are read across the row."
+      },
       "ids": [
         "moon",
         "tide",

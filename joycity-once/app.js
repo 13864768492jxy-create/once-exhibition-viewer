@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261105-trial10';
-import { buildExhibition } from './exhibition.js?v=20261105-trial10';
+import { installCatalog } from './catalog.js?v=20261105-trial10b';
+import { buildExhibition } from './exhibition.js?v=20261105-trial10b';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
@@ -294,13 +294,13 @@ function animate(now){raf=requestAnimationFrame(animate);const dt=Math.min((now-
 async function init(){try{
   const approvedBaseline=new URLSearchParams(location.search).get('trial')==='09';
   const layoutURL=approvedBaseline?'layouts/trial09.json':'layout.json';
-  const responses=await Promise.all(['space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261105-trial10',{cache:'no-store'})));
+  const responses=await Promise.all(['space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261105-trial10b',{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   const inputTexts=await Promise.all(responses.map(r=>r.text()));
   [data,trialLayout,library]=inputTexts.map(text=>JSON.parse(text));
   $('#trial-on').textContent=approvedBaseline?'已认可09':'试排10';
   $('#baseline-compare').textContent=approvedBaseline?'看试排10':'对照已认可09';
-  $('#baseline-compare').href=approvedBaseline?'?v=20261105-trial10&focus=sentence-waves':'?trial=09&v=20261105-trial10&focus=sentence-waves';
+  $('#baseline-compare').href=approvedBaseline?'?v=20261105-trial10b&focus=sentence-waves':'?trial=09&v=20261105-trial10b&focus=sentence-waves';
   if(approvedBaseline){$('.header h1 span').textContent='已认可09';$('.header p').textContent='六块并板 · 原位置与句形';document.title='大悦城 ONCE · 已认可09';}
   if(approvedBaseline)$('#trial-description').innerHTML='<h3>已认可的09基准</h3><p>六片70×180厘米玻璃并成4.2米；两端动词的字形和错落保持。此处是用户认可的基准，可与插入两块透明诗板的试排10比较。</p>';
   const initialFocus=new URLSearchParams(location.search).get('focus');
