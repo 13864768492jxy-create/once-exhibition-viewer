@@ -6,7 +6,9 @@
     "once": 31,
     "glass": 6,
     "large": 4,
-    "performance": 1
+    "performance": 1,
+    "traveler": 1,
+    "all": 43
   },
   "items": [
     {
@@ -542,6 +544,20 @@
       "dimensionNote": "时长按原展签；设备及影像呈现位置待定。",
       "medium": "行为影像；单通道4K，彩色，有声",
       "presentation": "用户已确认本次展出；是否沿用电视等方式待定。",
+      "placement": null
+    },
+    {
+      "id": "traveler-1",
+      "title": "旅人-1 / Traveler-1",
+      "group": "traveler",
+      "series": "旅人",
+      "image": "library/traveler-1-projection.jpg",
+      "detailImage": "library/traveler-1-projection.jpg",
+      "video": "media/traveler-1-projection.mp4",
+      "dimensions": "三个枕头竖挂 · 总宽暂以178cm试排",
+      "dimensionNote": "单枕50×75cm、间隔14cm只是模型占位，实物尺寸待核。",
+      "medium": "枕头、投影影像装置",
+      "presentation": "待加入本展；白色枕头竖挂在B口端部的白墙上。网页预览为用户指定的三联影像：53秒、4K12原文件保留；模型尺寸与控光为试排。",
       "placement": null
     }
   ],

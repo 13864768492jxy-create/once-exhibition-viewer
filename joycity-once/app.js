@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261105-trial10b';
-import { buildExhibition } from './exhibition.js?v=20261105-trial10b';
+import { installCatalog } from './catalog.js?v=20261106-trial12';
+import { buildExhibition } from './exhibition.js?v=20261106-trial12';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
@@ -10,6 +10,24 @@ let data, renderer, scene, camera, controls, groups, walls, view = 'overview';
 let exhibition, trialLayout, library, trialVisible=true, inspectionFrame=null;
 let yaw = 0, pitch = 0, walkPosition, pointerStart, pressed = new Set();
 let previousTime = performance.now(), raf = 0;
+const lightStudyUniform={value:0};
+function lightStudyMaterial(material){
+  const study=trialLayout?.lightingStudy;
+  if(study?.controlledZone?.side!=='both')return material;
+  material.onBeforeCompile=shader=>{
+    shader.uniforms.galleryDimming=lightStudyUniform;
+    shader.vertexShader='varying float galleryDepth;\n'+shader.vertexShader;
+    shader.vertexShader=shader.vertexShader.replace('#include <worldpos_vertex>','#include <worldpos_vertex>\n galleryDepth=-(modelMatrix*vec4(transformed,1.0)).z;');
+    shader.fragmentShader='varying float galleryDepth;\nuniform float galleryDimming;\n'+shader.fragmentShader;
+    shader.fragmentShader=shader.fragmentShader.replace('#include <opaque_fragment>',`outgoingLight *= mix(1.0,${study.minimumDiffuse.toFixed(3)},smoothstep(${study.transitionStartZ.toFixed(3)},${study.controlledZone.fromZ.toFixed(3)},galleryDepth)*galleryDimming);\n#include <opaque_fragment>`);
+  };
+  return material;
+}
+function updateLightStudy(){
+  lightStudyUniform.value=trialVisible&&$('#projection-light-study')?.checked?1:0;
+  groups?.lighting?.traverse(object=>{if(object.userData.controlledLens)object.material.color.set(lightStudyUniform.value?'#7e817c':'#fff8df');});
+}
+const trialName = () => '试排' + (trialLayout?.revision.match(/trial(\d+)/)?.[1] || '');
 const eyeHeight = 1.6;
 const worldUp = new THREE.Vector3(0, 1, 0);
 const state = { loaded: false, error: null };
@@ -33,7 +51,8 @@ function buildLighting(){
       box('长方适配器',.11,.045,.075,x,d.railHeight-.045,z,white,groups.lighting);
       box('短转轴与支架',.023,.065,.025,x,d.railHeight-.093,z,white,groups.lighting);
       const head=new THREE.Group();head.name='可倾斜白圆筒射灯_照片示意';head.position.set(x,d.railHeight-.15,z);head.rotation.z=(x<data.room.width/2?-1:1)*(.38+(row+i)%3*.07);groups.lighting.add(head);
-      head.add(new THREE.Mesh(cylinder,white));const disk=new THREE.Mesh(lens,face);disk.position.y=-d.headBodyLength/2-.001;disk.rotation.x=Math.PI/2;head.add(disk);
+      head.add(new THREE.Mesh(cylinder,white));const controlled=trialLayout.lightingStudy?.controlledZone?.side==='both'&&z>=trialLayout.lightingStudy.controlledZone.fromZ;
+      const disk=new THREE.Mesh(lens,controlled?face.clone():face);disk.userData.controlledLens=controlled;disk.position.y=-d.headBodyLength/2-.001;disk.rotation.x=Math.PI/2;head.add(disk);
     });
   });
 }
@@ -71,6 +90,7 @@ function build() {
   const metal = new THREE.MeshStandardMaterial({color:trialLayout.environment?.metalFinish?.color||0x707870,metalness:.32,roughness:.58});stripMaterial=metal;
   const green = new THREE.MeshStandardMaterial({color:0x466148,roughness:.67});
   const grout = new THREE.MeshBasicMaterial({color:0x9c9f96});
+  [white,floorMat,metal,green,grout].forEach(lightStudyMaterial);
   architectureMaterials={wall:white,floor:floorMat,grout,originalTileMap:floorMat.map,studyTileMap:makeTileTexture(true)};
   groups={shell:new THREE.Group(),tiles:new THREE.Group(),strips:new THREE.Group(),bars:new THREE.Group(),lighting:new THREE.Group(),dimensions:new THREE.Group(),endB:new THREE.Group()};
   Object.entries(groups).forEach(([name,group])=>{group.name=name;group.scale.z=-1;scene.add(group);});
@@ -205,6 +225,7 @@ function applyFinish(id=selectedFinishId){
     const item=document.createElement('span');const chip=document.createElement('i');chip.style.backgroundColor=palette[key];item.append(chip,document.createTextNode(label));swatches.append(item);
   }
   scene.userData.activeFinish=active?palette.id:'empty-baseline';
+  updateLightStudy();
 }
 function focusOnWork(id){
   const focus=exhibition?.focusTarget(id);if(!focus)return;
@@ -216,7 +237,7 @@ function focusOnWork(id){
   const target=new THREE.Vector3(focus.target[0],focus.target[1],-focus.target[2]);camera.lookAt(target);
   createControls();controls.target.copy(target);controls.maxPolarAngle=Math.PI*.65;controls.update();
   $('#hint').textContent='拖动环看 · 滚轮缩放 · 选择另一组继续看';
-  $('#status').textContent=`${trialLayout.revision.includes("trial09")?"已认可09":"试排10"} · ${library.items.find(w=>w.id===id)?.title||'前言位置'}`;
+  $('#status').textContent=`${trialName()} · ${library.items.find(w=>w.id===id)?.title||'前言位置'}`;
   $('#catalog-panel').hidden=true;$('#catalog-button').setAttribute('aria-expanded','false');
   updateCutaway();updateLabels();
 }
@@ -247,7 +268,7 @@ function focusOnGroup(id){
     createControls();
     if(group.id==='spatial-ceiling-language')controls.maxPolarAngle=Math.PI-.04;
     controls.target.copy(target);controls.update();
-    $('#status').textContent=(trialLayout.revision.includes('trial09')?'已认可09 · ':'试排10 · ')+group.label;$('#hint').textContent=group.id==='spatial-ceiling-language'?'顶部试字 · 暂用3.6 m附着标高，实际顶高待测':'拖动环看 · 滚轮缩放 · 字幕与玻璃均为当前试排';
+    $('#status').textContent=(trialName()+' · ')+group.label;$('#hint').textContent=group.id==='spatial-ceiling-language'?'顶部试字 · 暂用3.6 m附着标高，实际顶高待测':'拖动环看 · 滚轮缩放 · 字幕与玻璃均为当前试排';
     $('#catalog-panel').hidden=true;$('#catalog-button').setAttribute('aria-expanded','false');updateCutaway();updateLabels();return;
   }
   let members=group.workIds.map(w=>exhibition.works.get(w)?.userData).filter(Boolean);
@@ -267,11 +288,11 @@ function focusOnGroup(id){
   inspectionFrame={width:hMax-hMin+.65,height:yMax-yMin+.65};
   const aspect=host.clientWidth/host.clientHeight,halfH=Math.max(inspectionFrame.height/2,inspectionFrame.width/2/aspect);
   camera=new THREE.OrthographicCamera(-halfH*1.12*aspect,halfH*1.12*aspect,halfH*1.28,-halfH*.96,.025,120);camera.up.copy(worldUp);
-  const distance=surface?.kind==='partition'?2.1:3.8;
+  const distance=group.viewingDistance||(surface?.kind==='partition'?2.1:3.8);
   camera.position.copy(target).add(new THREE.Vector3(normal[0]*distance,0,-normal[1]*distance));camera.lookAt(target);
   createControls();controls.target.copy(target);controls.maxPolarAngle=Math.PI*.65;controls.update();
   $('#hint').textContent='组合正视 · 滚轮缩放 · 拖动环看';
-  $('#status').textContent=`${trialLayout.revision.includes("trial09")?"已认可09":"试排10"} · ${group.label}`;updateCutaway();updateLabels();
+  $('#status').textContent=`${trialName()} · ${group.label}`;updateCutaway();updateLabels();
 }
 const walkBodyRadius=.30; // Preview body envelope; no crowd or construction claim.
 function hitsDisplay(x,z){return trialVisible&&exhibition?.collisionRects.some(r=>x>r.minX-walkBodyRadius&&x<r.maxX+walkBodyRadius&&z>r.minZ-walkBodyRadius&&z<r.maxZ+walkBodyRadius);}
@@ -292,17 +313,21 @@ function resize(){if(!renderer)return;const w=host.clientWidth,h=host.clientHeig
 function animate(now){raf=requestAnimationFrame(animate);const dt=Math.min((now-previousTime)/1000,.05);previousTime=now;if(view==='entry'||view==='reverse'){let forward=0,side=0;if(pressed.has('w')||pressed.has('arrowup'))forward++;if(pressed.has('s')||pressed.has('arrowdown'))forward--;if(pressed.has('d')||pressed.has('arrowright'))side++;if(pressed.has('a')||pressed.has('arrowleft'))side--;if(forward||side){const speed=(pressed.has('shift')?3:1.6)*dt/Math.max(1,Math.hypot(forward,side));const oldX=walkPosition.x,oldZ=walkPosition.z;const nextX=THREE.MathUtils.clamp(oldX+(Math.sin(yaw)*forward-Math.cos(yaw)*side)*speed,Math.max(walkBodyRadius,leftBoundaryX(-oldZ)+walkBodyRadius),data.room.width-walkBodyRadius);if(!hitsDisplay(nextX,-oldZ))walkPosition.x=nextX;const nextZ=THREE.MathUtils.clamp(oldZ+(Math.cos(yaw)*forward+Math.sin(yaw)*side)*speed,-data.room.length+.3,-floorStartZ(walkPosition.x)-.3);if(!hitsDisplay(walkPosition.x,-nextZ))walkPosition.z=nextZ;updateWalk();}}else controls.update();renderer.render(scene,camera);}
 
 async function init(){try{
-  const approvedBaseline=new URLSearchParams(location.search).get('trial')==='09';
-  const layoutURL=approvedBaseline?'layouts/trial09.json':'layout.json';
-  const responses=await Promise.all(['space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261105-trial10b',{cache:'no-store'})));
+  const requestedTrial=new URLSearchParams(location.search).get('trial');
+  const baseline=['09','10','11'].includes(requestedTrial)?requestedTrial:null;
+  const layoutURL=baseline?'layouts/trial'+baseline+'.json':'layout.json';
+  const responses=await Promise.all([baseline&&baseline!=='11'?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261106-trial12',{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   const inputTexts=await Promise.all(responses.map(r=>r.text()));
   [data,trialLayout,library]=inputTexts.map(text=>JSON.parse(text));
-  $('#trial-on').textContent=approvedBaseline?'已认可09':'试排10';
-  $('#baseline-compare').textContent=approvedBaseline?'看试排10':'对照已认可09';
-  $('#baseline-compare').href=approvedBaseline?'?v=20261105-trial10b&focus=sentence-waves':'?trial=09&v=20261105-trial10b&focus=sentence-waves';
-  if(approvedBaseline){$('.header h1 span').textContent='已认可09';$('.header p').textContent='六块并板 · 原位置与句形';document.title='大悦城 ONCE · 已认可09';}
-  if(approvedBaseline)$('#trial-description').innerHTML='<h3>已认可的09基准</h3><p>六片70×180厘米玻璃并成4.2米；两端动词的字形和错落保持。此处是用户认可的基准，可与插入两块透明诗板的试排10比较。</p>';
+  $('#projection-light-row').hidden=trialLayout.lightingStudy?.controlledZone?.side!=='both';
+  $('#projection-light-study').addEventListener('change',updateLightStudy);
+  $('#trial-on').textContent=trialName();
+  $('#baseline-compare').textContent=baseline?'回到试排12':'对照上一版';
+  $('#baseline-compare').href=baseline?'?v=20261106-trial12':'?trial=11&v=20261106-trial12';
+  if(baseline){$('.header h1 span').textContent='保留基准 · '+trialName();$('.header p').textContent=baseline==='10'?'上一版的摄影位置与透明诗板':'六块并板 · 原位置与句形';document.title='大悦城 ONCE · '+trialName();
+    $('#trial-description').innerHTML='<h3>保留基准 · '+trialName()+'</h3><p>这一版的位置、作品尺寸与诗句字形保留，可返回试排12比较左、右、左的摄影动线。</p>';
+  }
   const initialFocus=new URLSearchParams(location.search).get('focus');
   renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(host.clientWidth,host.clientHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;host.appendChild(renderer.domElement);
   scene=new THREE.Scene();scene.background=new THREE.Color(0xeeede9);build();
@@ -312,6 +337,8 @@ async function init(){try{
   $('#finish-study').addEventListener('change',event=>applyFinish(event.target.value));
   exhibition=await buildExhibition({scene,renderer,layout:trialLayout,catalog:library,layoutSourceText:inputTexts[1]});
   applyFinish();
+  $('#pillow-preview').hidden=!trialLayout.works.some(w=>w.projectionVideo);
+  $('#pillow-preview').addEventListener('click',async()=>{const button=$('#pillow-preview');button.disabled=true;try{focusOnGroup('traveler-context');$('#focus-group').value='traveler-context';const playing=await exhibition.togglePillowProjection();$('#projection-light-study').checked=playing;updateLightStudy();button.textContent=playing?'暂停枕头投影':'播放枕头投影';}catch(error){$('#status').textContent='投影预览暂未载入，请重试';}finally{button.disabled=false;}});
   for(const group of trialLayout.focusGroups){const option=document.createElement('option');option.value=group.id;option.textContent=group.label;$('#focus-group').append(option);}
   trialLayout.blankWallIntervals?.forEach((blank,i)=>{const option=document.createElement('option');option.value=`blank-${i}`;option.textContent=`主墙停顿${i+1} · 约${blank.length.toFixed(1)}米`;$('#focus-group').append(option);});
   $('#focus-group').addEventListener('change',event=>focusOnGroup(event.target.value));
@@ -333,7 +360,7 @@ async function init(){try{
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();$('#error').hidden=false;$('#error').textContent='三维画面连接中断，请刷新页面重新载入。';cancelAnimationFrame(raf);});
   installCatalog({layout:trialLayout,onInspect:focusOnWork});
   state.loaded=true;requestAnimationFrame(animate);
-  exhibition.ready.then(stats=>{const total=stats.loaded+stats.errors;canvas.setAttribute('data-image-load-stats',JSON.stringify({loaded:stats.loaded,errors:stats.errors,pending:stats.pending,failures:stats.failures}));if(stats.errors){$('#status').textContent=`${stats.errors}项预览暂未载入，请刷新重试`;}$('#image-status').textContent=stats.errors?`${stats.loaded}/${total} 项预览已载入`:'42件作品 · 当前空间试排';});
+  exhibition.ready.then(stats=>{const total=stats.loaded+stats.errors;canvas.setAttribute('data-image-load-stats',JSON.stringify({loaded:stats.loaded,errors:stats.errors,pending:stats.pending,failures:stats.failures}));if(stats.errors){$('#status').textContent=`${stats.errors}项预览暂未载入，请刷新重试`;}$('#image-status').textContent=stats.errors?`${stats.loaded}/${total} 项预览已载入`:(trialLayout.works.some(w=>w.id==='traveler-1')?'42件原作 + 旅人候选':'42件原作')+' · '+trialName();});
   window.spaceModel={exhibition,layout:trialLayout,getState:()=>({trialVisible,exhibitionStats:exhibition.stats,loaded:state.loaded,error:state.error,view,room:data.room,tile:data.tile,camera:{position:camera.position.toArray(),target:controls.target.toArray()},visible:{strips:groups.strips.visible,bars:groups.bars.visible,lighting:groups.lighting.visible,leftWall:walls.left.visible,rightWall:walls.right.visible},counts:{strips:groups.strips.children.length,bars:groups.bars.children.length,lightingRows:data.lighting?.rowPositions.length||0},endBStatus:data.ends.B.openingStatus,renderCalls:renderer.info.render.calls}),setView,focusOnWork,focusOnGroup,setTrialVisible,scene,data};
 }catch(error){state.error=error.message;$('#error').hidden=false;$('#error').textContent=`空间未能载入：${error.message}。请通过“打开空间模型.command”启动后访问本机地址，勿直接双击HTML文件。`;$('#status').hidden=true;console.error(error);}}
 init();

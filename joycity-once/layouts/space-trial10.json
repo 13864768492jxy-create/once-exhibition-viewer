@@ -1,0 +1,446 @@
+{
+  "schemaVersion": 1,
+  "revision": "20261103-r08",
+  "title": "大悦城 ONCE 个展项目 · 空间底模",
+  "units": "meters",
+  "axes": {
+    "x": "从商场开口端向内看：左展墙0，右展墙约4.4",
+    "y": "地面向上",
+    "z": "A口右侧短墙起点0，B口31.2；A口左端伸向负z，左墙更长"
+  },
+  "room": {
+    "width": 4.4,
+    "length": 31.2,
+    "crossbarHeight": 2.95,
+    "modelWallHeight": 2.95,
+    "wallThickness": 0.1,
+    "ceilingHeight": null,
+    "lightingAboveHeight": 2.95,
+    "widthStatus": "user_estimate_existing_walls",
+    "widthAfterRemoval": null,
+    "widthNote": "现有两侧展墙之间约7块60cm砖多一些，用户暂估约4.4m；拆除展墙后的建筑净宽未定，不沿用早期5m。",
+    "lengthReference": "right_wall_usable_confirmed",
+    "rightWallUsableLength": 31.2,
+    "lengthNote": "31.2m是从A口看向B口时右侧较短墙的可用长度，不是中心线长度；左墙比右墙长，增量待测。"
+  },
+  "tile": {
+    "size": 0.6,
+    "grout": 0.002,
+    "originX": 0,
+    "originZ": 0,
+    "originStatus": "pending",
+    "originNote": "砖缝暂从入口左角起排；边砖和原点待校准"
+  },
+  "ends": {
+    "A": {
+      "label": "A口",
+      "z": 0,
+      "mainOpening": {
+        "x": 2.8,
+        "width": 1.7,
+        "height": 2.95,
+        "status": "mixed",
+        "xReference": "center",
+        "widthStatus": "confirmed",
+        "positionStatus": "photo_estimate"
+      },
+      "sideDoor": {
+        "x": 1.25,
+        "width": 0.9,
+        "height": 2.2,
+        "status": "photo_estimate",
+        "xReference": "center"
+      },
+      "note": "外向内主入口在右、小门在左；1.7m主开口宽已确认，其余门位和门套进深待测。",
+      "slope": {
+        "direction": "right_deeper",
+        "directionStatus": "confirmed",
+        "angleDegrees": 15,
+        "angleStatus": "illustrative_pending_measurement",
+        "leftZ": -1.17897644669694,
+        "rightZ": 0,
+        "reference": "right_short_wall_zero",
+        "note": "用户确认：从A口向B口，右侧较短墙可用长31.2m，左侧更长。15度仅为斜向示意，退进差未实测。",
+        "centerZ": -0.58948822334847
+      }
+    },
+    "B": {
+      "label": "B口 · 421 SPACE",
+      "z": 31.2,
+      "openingStatus": "unknown",
+      "panelDivisions": [
+        0.6,
+        2.2,
+        3.8
+      ],
+      "status": "photo_estimate"
+    }
+  },
+  "metalStrips": {
+    "status": "photo_supported_partial_topology_estimated_stations",
+    "width": 0.055,
+    "height": 0.001,
+    "note": "新照片/短视频支持A端V/跨线、至少两组偏心X及B白板端浅斜接续，已移除四组规则X。按用户明确授权，将可见线的走势延伸至墙脚，补全遮挡段；延长不是实测，纵向站位仍为可调示意。",
+    "segments": [
+      {
+        "from": [
+          0.008636,
+          1.205103
+        ],
+        "to": [
+          4.4,
+          3.8
+        ],
+        "group": "A_end_V",
+        "stationStatus": "illustrative_not_surveyed",
+        "endpointStatus": "user_authorized_directional_extension_to_wall_boundary",
+        "visibleFrom": [
+          0,
+          1.2
+        ],
+        "visibleTo": [
+          4.4,
+          3.8
+        ]
+      },
+      {
+        "from": [
+          4.4,
+          3.8
+        ],
+        "to": [
+          0.0,
+          6.4
+        ],
+        "group": "A_end_V",
+        "stationStatus": "illustrative_not_surveyed",
+        "endpointStatus": "user_authorized_directional_extension_to_wall_boundary",
+        "visibleFrom": [
+          4.4,
+          3.8
+        ],
+        "visibleTo": [
+          0,
+          6.4
+        ]
+      },
+      {
+        "from": [
+          0.0,
+          8.0
+        ],
+        "to": [
+          4.4,
+          16.171429
+        ],
+        "group": "middle_offcenter_X",
+        "stationStatus": "illustrative_not_surveyed",
+        "endpointStatus": "user_authorized_directional_extension_to_wall_boundary",
+        "visibleFrom": [
+          0,
+          8
+        ],
+        "visibleTo": [
+          3.5,
+          14.5
+        ]
+      },
+      {
+        "from": [
+          0.0,
+          15.754054
+        ],
+        "to": [
+          4.4,
+          8.5
+        ],
+        "group": "middle_offcenter_X",
+        "stationStatus": "illustrative_not_surveyed",
+        "endpointStatus": "user_authorized_directional_extension_to_wall_boundary",
+        "visibleFrom": [
+          0.7,
+          14.6
+        ],
+        "visibleTo": [
+          4.4,
+          8.5
+        ]
+      },
+      {
+        "from": [
+          0.0,
+          25.2
+        ],
+        "to": [
+          3.214286,
+          31.2
+        ],
+        "group": "B_whiteboard_X",
+        "stationStatus": "illustrative_not_surveyed",
+        "endpointStatus": "user_authorized_directional_extension_to_wall_boundary",
+        "visibleFrom": [
+          0,
+          25.2
+        ],
+        "visibleTo": [
+          3,
+          30.8
+        ]
+      },
+      {
+        "from": [
+          0.859519,
+          31.2
+        ],
+        "to": [
+          4.4,
+          24.740175
+        ],
+        "group": "B_whiteboard_X",
+        "stationStatus": "illustrative_not_surveyed",
+        "endpointStatus": "user_authorized_directional_extension_to_wall_boundary",
+        "visibleFrom": [
+          1.15,
+          30.67
+        ],
+        "visibleTo": [
+          2.86,
+          27.55
+        ]
+      },
+      {
+        "from": [
+          0.0,
+          25.2
+        ],
+        "to": [
+          4.4,
+          22.643243
+        ],
+        "group": "B_shallow_connection",
+        "stationStatus": "illustrative_not_surveyed",
+        "endpointStatus": "user_authorized_directional_extension_to_wall_boundary",
+        "visibleFrom": [
+          0,
+          25.2
+        ],
+        "visibleTo": [
+          2.22,
+          23.91
+        ]
+      }
+    ],
+    "stationStatus": "illustrative_not_surveyed",
+    "coverage": "observed_directions_extended_to_wall_boundaries"
+  },
+  "crossbars": {
+    "status": "photo_estimate",
+    "width": 0.045,
+    "depth": 0.04,
+    "height": 2.95,
+    "note": "横杆层按用户最新空间高度2.95m更新；实际顶面和上方射灯标高未测。各杆端点与重复间距仍待校准。模型杆件仅表达位置关系，不表示吊挂承载。",
+    "segments": [
+      {
+        "from": [
+          0.0,
+          1.365
+        ],
+        "to": [
+          4.4,
+          8.385
+        ]
+      },
+      {
+        "from": [
+          4.4,
+          1.365
+        ],
+        "to": [
+          0.0,
+          8.385
+        ]
+      },
+      {
+        "from": [
+          0.0,
+          8.385
+        ],
+        "to": [
+          4.4,
+          15.405
+        ]
+      },
+      {
+        "from": [
+          4.4,
+          8.385
+        ],
+        "to": [
+          0.0,
+          15.405
+        ]
+      },
+      {
+        "from": [
+          0.0,
+          15.405
+        ],
+        "to": [
+          4.4,
+          22.425
+        ]
+      },
+      {
+        "from": [
+          4.4,
+          15.405
+        ],
+        "to": [
+          0.0,
+          22.425
+        ]
+      },
+      {
+        "from": [
+          0.0,
+          22.425
+        ],
+        "to": [
+          4.4,
+          29.445
+        ]
+      },
+      {
+        "from": [
+          4.4,
+          22.425
+        ],
+        "to": [
+          0.0,
+          29.445
+        ]
+      }
+    ]
+  },
+  "evidence": {
+    "confirmed": [
+      "用户最新确认：从A口看B口，右侧较短墙可用长31.2m；左侧更长；现状净宽暂估约4.4m",
+      "用户最新确认：可用墙高2.95m；射灯高于2.95m，不是吊顶实测高度",
+      "用户确认：方砖边长60cm",
+      "用户确认：桌椅及墙面旧展示物将清空",
+      "用户暂不确定421 SPACE端是否可以打开",
+      "用户最初将空间高度量至横杆层；最新高度由3m更正为2.95m",
+      "用户确认：421 SPACE相对另一端的开放主入口净宽1.7m",
+      "用户命名：421 SPACE端为B口，另一端为A口",
+      "用户确认A口端墙不平行B口端墙；外向内看右端更深入展厅",
+      "31.2m量距基准已明确：右侧较短墙可用长度，非中心线",
+      "用户命名项目：大悦城 ONCE 个展项目",
+      "用户指出：A口附近左墙有轻微折转，照片支持向通道内收",
+      "用户授权地面金属线按可见走势大胆延伸至墙脚/边界，不必在可见范围处截断"
+    ],
+    "visible": [
+      "两条连续长墙；照片中有两方向视角",
+      "地面金属条斜穿并交叉",
+      "顶部存在绿色斜杆，灯轨与空调在其上方",
+      "商场端有大开口，旁边另有单门",
+      "另一端有421 SPACE字样和门扇状分格",
+      "用户据60cm地砖确认：现有两侧展墙之间是7块砖多一些",
+      "补图04/06：多根横跨通道的短灯轨，典型完整一轨6个可倾斜圆筒射灯",
+      "补图11/12：A口附近左墙短折段，与主长墙不共线",
+      "补充照片及5.57秒视频：至少两组不同交叉X、A端V/跨线和B白板端浅斜接续；非四组等节距X"
+    ],
+    "pending": [
+      "主入口偏移量及净高、侧门净尺寸、421端开合方式",
+      "金属条与横杆的端点、重复间距、宽度",
+      "第一条砖缝距墙尺寸",
+      "实际吊顶高度及固定设备点位",
+      "旧展板拆除后的墙面构造与净尺寸",
+      "撤除两侧展墙后建筑实际净宽；现状约4.4m仍需实测",
+      "A口斜墙准确角度/两端退进差（决定左墙实际长度）",
+      "左墙折段内收量、折点位置与是否可拆",
+      "上方灯轨标高/行距/总数及逐灯位置",
+      "地面金属线全场纵向站位、遮挡下连接和精确总数；当前仅局部关系示意"
+    ],
+    "minutes": "负责人智能纪要2026-11-03：两端通行，计划可移动展墙；不据此将改造意向建成现状",
+    "sources": [
+      "IMG_5326.HEIC",
+      "IMG_5327.HEIC",
+      "IMG_5328.HEIC",
+      "IMG_5329.HEIC",
+      "IMG_5330.HEIC",
+      "IMG_5331.HEIC",
+      "IMG_5332.HEIC",
+      "IMG_5333.HEIC",
+      "IMG_5334.HEIC",
+      "IMG_5335.HEIC",
+      "IMG_5336.HEIC",
+      "补充现场照片12张_20261103",
+      "现场视频_b9afd68e8a01379fbd046c037a54f9e9.mp4"
+    ]
+  },
+  "leftWallTurn": {
+    "direction": "inward_near_A",
+    "directionStatus": "photo_supported_user_confirmed",
+    "status": "illustrative_dimensions_pending_measurement",
+    "inset": 0.25,
+    "transitionDepth": 2.4,
+    "points": [
+      [
+        0.25,
+        -1.1119891485891593
+      ],
+      [
+        0,
+        1.2880108514108406
+      ],
+      [
+        0,
+        31.2
+      ]
+    ],
+    "note": "A口附近左墙向通道内收，沿B方向展开接主墙。0.25m内收与2.4m纵深仅保守示意，非实测。"
+  },
+  "lighting": {
+    "status": "photo_supported_form_estimated_layout",
+    "railHeight": 3.3,
+    "heightStatus": "illustrative_pending_measurement",
+    "railWidth": 4.0,
+    "railDepth": 0.045,
+    "railThickness": 0.035,
+    "typicalHeadsPerRail": 6,
+    "headsPerRailStatus": "observed_typical_row_not_total_inventory",
+    "headXs": [
+      0.4,
+      1.12,
+      1.84,
+      2.56,
+      3.28,
+      4.0
+    ],
+    "rowPositions": [
+      0.8,
+      2.4,
+      4.0,
+      5.6,
+      7.2,
+      8.8,
+      10.4,
+      12.0,
+      13.6,
+      15.2,
+      16.8,
+      18.4,
+      20.0,
+      21.6,
+      23.2,
+      24.8,
+      26.4,
+      28.0,
+      29.6
+    ],
+    "rowPositionsStatus": "illustrative_not_surveyed",
+    "headBodyRadius": 0.055,
+    "headBodyLength": 0.16,
+    "note": "补图04/06可见横轨和典型每轨6个白色圆筒射灯，含长方适配器和短支架，位于绿杆上方。轨层3.30m、行距1.6m及总行数只是显示初稿；实际标高/点位/总数待测。"
+  }
+}

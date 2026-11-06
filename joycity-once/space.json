@@ -1,24 +1,24 @@
 {
   "schemaVersion": 1,
-  "revision": "20261103-r08",
+  "revision": "20261106-r09-near5m",
   "title": "大悦城 ONCE 个展项目 · 空间底模",
   "units": "meters",
   "axes": {
-    "x": "从商场开口端向内看：左展墙0，右展墙约4.4",
+    "x": "从A口看向B口：左展墙0，右展墙暂按5米估值",
     "y": "地面向上",
     "z": "A口右侧短墙起点0，B口31.2；A口左端伸向负z，左墙更长"
   },
   "room": {
-    "width": 4.4,
+    "width": 5.0,
     "length": 31.2,
     "crossbarHeight": 2.95,
     "modelWallHeight": 2.95,
     "wallThickness": 0.1,
     "ceilingHeight": null,
     "lightingAboveHeight": 2.95,
-    "widthStatus": "user_estimate_existing_walls",
+    "widthStatus": "user_revised_estimate_near_5m",
     "widthAfterRemoval": null,
-    "widthNote": "现有两侧展墙之间约7块60cm砖多一些，用户暂估约4.4m；拆除展墙后的建筑净宽未定，不沿用早期5m。",
+    "widthNote": "2026-11-06用户说明实际空间接近5米，本轮暂按5.0米试排，待精确实测。4.4米旧底模另存。",
     "lengthReference": "right_wall_usable_confirmed",
     "rightWallUsableLength": 31.2,
     "lengthNote": "31.2m是从A口看向B口时右侧较短墙的可用长度，不是中心线长度；左墙比右墙长，增量待测。"
@@ -36,7 +36,7 @@
       "label": "A口",
       "z": 0,
       "mainOpening": {
-        "x": 2.8,
+        "x": 3.3999999999999995,
         "width": 1.7,
         "height": 2.95,
         "status": "mixed",
@@ -57,11 +57,11 @@
         "directionStatus": "confirmed",
         "angleDegrees": 15,
         "angleStatus": "illustrative_pending_measurement",
-        "leftZ": -1.17897644669694,
+        "leftZ": -1.3397459621556136,
         "rightZ": 0,
         "reference": "right_short_wall_zero",
         "note": "用户确认：从A口向B口，右侧较短墙可用长31.2m，左侧更长。15度仅为斜向示意，退进差未实测。",
-        "centerZ": -0.58948822334847
+        "centerZ": -0.6698729810778068
       }
     },
     "B": {
@@ -69,9 +69,9 @@
       "z": 31.2,
       "openingStatus": "unknown",
       "panelDivisions": [
-        0.6,
-        2.2,
-        3.8
+        0.6818181818181818,
+        2.5,
+        4.3181818181818175
       ],
       "status": "photo_estimate"
     }
@@ -80,16 +80,16 @@
     "status": "photo_supported_partial_topology_estimated_stations",
     "width": 0.055,
     "height": 0.001,
-    "note": "新照片/短视频支持A端V/跨线、至少两组偏心X及B白板端浅斜接续，已移除四组规则X。按用户明确授权，将可见线的走势延伸至墙脚，补全遮挡段；延长不是实测，纵向站位仍为可调示意。",
+    "note": "新照片/短视频支持A端V/跨线、至少两组偏心X及B白板端浅斜接续，已移除四组规则X。按用户明确授权，将可见线的走势延伸至墙脚，补全遮挡段；延长不是实测，纵向站位仍为可调示意。 本次沿原有方向延至5米估值墙界，不把新交点作为实测。",
     "segments": [
       {
         "from": [
-          0.008636,
-          1.205103
+          0.0,
+          1.2
         ],
         "to": [
-          4.4,
-          3.8
+          5.0,
+          4.154545
         ],
         "group": "A_end_V",
         "stationStatus": "illustrative_not_surveyed",
@@ -105,8 +105,8 @@
       },
       {
         "from": [
-          4.4,
-          3.8
+          5.0,
+          3.445455
         ],
         "to": [
           0.0,
@@ -130,8 +130,8 @@
           8.0
         ],
         "to": [
-          4.4,
-          16.171429
+          5.0,
+          17.285715
         ],
         "group": "middle_offcenter_X",
         "stationStatus": "illustrative_not_surveyed",
@@ -151,8 +151,8 @@
           15.754054
         ],
         "to": [
-          4.4,
-          8.5
+          5.0,
+          7.510811
         ],
         "group": "middle_offcenter_X",
         "stationStatus": "illustrative_not_surveyed",
@@ -193,8 +193,8 @@
           31.2
         ],
         "to": [
-          4.4,
-          24.740175
+          5.0,
+          23.645438
         ],
         "group": "B_whiteboard_X",
         "stationStatus": "illustrative_not_surveyed",
@@ -214,8 +214,8 @@
           25.2
         ],
         "to": [
-          4.4,
-          22.643243
+          5.0,
+          22.294594
         ],
         "group": "B_shallow_connection",
         "stationStatus": "illustrative_not_surveyed",
@@ -246,13 +246,13 @@
           1.365
         ],
         "to": [
-          4.4,
+          5.0,
           8.385
         ]
       },
       {
         "from": [
-          4.4,
+          5.0,
           1.365
         ],
         "to": [
@@ -266,13 +266,13 @@
           8.385
         ],
         "to": [
-          4.4,
+          5.0,
           15.405
         ]
       },
       {
         "from": [
-          4.4,
+          5.0,
           8.385
         ],
         "to": [
@@ -286,13 +286,13 @@
           15.405
         ],
         "to": [
-          4.4,
+          5.0,
           22.425
         ]
       },
       {
         "from": [
-          4.4,
+          5.0,
           15.405
         ],
         "to": [
@@ -306,13 +306,13 @@
           22.425
         ],
         "to": [
-          4.4,
+          5.0,
           29.445
         ]
       },
       {
         "from": [
-          4.4,
+          5.0,
           22.425
         ],
         "to": [
@@ -324,7 +324,7 @@
   },
   "evidence": {
     "confirmed": [
-      "用户最新确认：从A口看B口，右侧较短墙可用长31.2m；左侧更长；现状净宽暂估约4.4m",
+      "用户确认右侧较短墙可用31.2米；2026-11-06将净宽判断改为接近5米，当前按5.0米估值试排。",
       "用户最新确认：可用墙高2.95m；射灯高于2.95m，不是吊顶实测高度",
       "用户确认：方砖边长60cm",
       "用户确认：桌椅及墙面旧展示物将清空",
@@ -355,7 +355,7 @@
       "第一条砖缝距墙尺寸",
       "实际吊顶高度及固定设备点位",
       "旧展板拆除后的墙面构造与净尺寸",
-      "撤除两侧展墙后建筑实际净宽；现状约4.4m仍需实测",
+      "撤除两侧展墙后建筑实际净宽；当前近5m判断仍需实测",
       "A口斜墙准确角度/两端退进差（决定左墙实际长度）",
       "左墙折段内收量、折点位置与是否可拆",
       "上方灯轨标高/行距/总数及逐灯位置",
@@ -387,11 +387,11 @@
     "points": [
       [
         0.25,
-        -1.1119891485891593
+        -1.272758664047833
       ],
       [
         0,
-        1.2880108514108406
+        1.127241335952167
       ],
       [
         0,
@@ -404,18 +404,18 @@
     "status": "photo_supported_form_estimated_layout",
     "railHeight": 3.3,
     "heightStatus": "illustrative_pending_measurement",
-    "railWidth": 4.0,
+    "railWidth": 4.6,
     "railDepth": 0.045,
     "railThickness": 0.035,
     "typicalHeadsPerRail": 6,
     "headsPerRailStatus": "observed_typical_row_not_total_inventory",
     "headXs": [
       0.4,
-      1.12,
-      1.84,
-      2.56,
-      3.28,
-      4.0
+      1.2400000000000002,
+      2.08,
+      2.9200000000000004,
+      3.7600000000000002,
+      4.6000000000000005
     ],
     "rowPositions": [
       0.8,

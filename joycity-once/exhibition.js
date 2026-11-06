@@ -565,6 +565,9 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   const anisotropy = Math.min(renderer?.capabilities?.getMaxAnisotropy?.() || 1, 8);
   const poetryTextureCap = globalThis.matchMedia?.('(pointer: coarse), (max-width: 760px)')?.matches ? 2048 : 4096;
   stats.poetryTextureCap = poetryTextureCap;
+  const pillowAssetPath=layout.revision.endsWith('trial11')?'models/white-pillow-trial11.json':(layout.works||[]).find(w=>w.pillowMesh)?.pillowMesh;
+  const pillowAsset=pillowAssetPath ? await fetch(pillowAssetPath).then(r=>{if(!r.ok)throw new Error('白枕头模型未能读取');return r.json();}):null;
+  const projectionMaterials=[];let projectionVideo=null,projectionTexture=null;
   const loadingTexture = messageTexture('图像载入中');
   let errorTexture;
   const white = new THREE.MeshStandardMaterial({color: activePalette.wall || '#f2f1ec', roughness: .86, side: THREE.DoubleSide});
@@ -595,12 +598,23 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     stats.workCount = stats.works;
   }
 
-  function imageOn(object, item, record, width, height, z, {opacity = 1, alpha = false, preserveDimensions = false, maxTextureSide: textureLimit, inkColor = null, printed = null} = {}) {
-    const material = printed ? printedGlassMaterial(loadingTexture, printed) : new THREE.MeshBasicMaterial({
+  function imageOn(object, item, record, width, height, z, {opacity = 1, alpha = false, preserveDimensions = false, maxTextureSide: textureLimit, inkColor = null, printed = null, clothProjection = false} = {}) {
+    const material = clothProjection ? new THREE.MeshStandardMaterial({color:'#ffffff',roughness:1,emissive:'#ffffff',emissiveIntensity:0,emissiveMap:loadingTexture,side:THREE.DoubleSide}) : printed ? printedGlassMaterial(loadingTexture, printed) : new THREE.MeshBasicMaterial({
       color: '#ffffff', map: loadingTexture, side: THREE.DoubleSide,
       toneMapped: false, transparent: alpha || opacity < 1, opacity,
       depthWrite: !alpha && opacity === 1,
     });
+    if (clothProjection) {
+      // White cloth is shown unprojected at rest. Playing is a controllable,
+      // illustrative dimmed-light preview, never a change to the wall colour.
+      material.userData.clothLight={value:.85};
+      material.onBeforeCompile=shader=>{
+        shader.uniforms.clothLight=material.userData.clothLight;
+        shader.fragmentShader='uniform float clothLight;\n'+shader.fragmentShader;
+        shader.fragmentShader=shader.fragmentShader.replace('#include <lights_fragment_end>','#include <lights_fragment_end>\n reflectedLight.directDiffuse *= clothLight; reflectedLight.indirectDiffuse *= clothLight;');
+      };
+      projectionMaterials.push(material);
+    }
     if (inkColor) { alphaInkMaterial(material, inkColor); floorPoemMaterials.add(material); material.opacity = 0; }
     const image = plane(object, '原始图像_完整比例', width, height, material, z);
     if (printed) { printedMeshes.add(image); reflectiveMeshes.add(image); probeExcluded.add(image); image.userData.printedGlassStudy = printed; image.userData.printedGlassRecord = record; }
@@ -693,7 +707,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
         if (!preserveDimensions && Math.abs(width / height / ratio - 1) > .012) {
           stats.aspectAdjustments.push({id: record.id, declared: [width, height], rendered: [renderedWidth, renderedHeight], nativePixels: [nativeWidth, nativeHeight]});
         }
-        material.map = texture;
+        if(clothProjection){material.map=null;material.emissiveMap=texture;material.userData.still=texture;}else material.map = texture;
         if (printed) { material.uniforms.printMap.value = texture; material.uniforms.imageReady.value = 1; }
         if (printed) { stats.printedGlassLoaded=(stats.printedGlassLoaded||0)+1; publishGlassDebug(); }
         if (inkColor) material.opacity = opacity;
@@ -749,8 +763,8 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       a[1] + direction[1] * middle + normal[1] * .004];
     const fieldGroup = faceGroup(group, `墙面试色_${field.id}`, center, normal);
     fieldGroup.userData = {environmentId: field.id, kind: 'wallField', layout: field, canonicalPosition: center, canonicalNormal: [...normal], surface};
-    const fieldMaterial = new THREE.MeshBasicMaterial({color: activePalette.glassWall || field.color || '#dfe4dc', side: THREE.DoubleSide, toneMapped: false});
-    wallFieldMaterials.add(fieldMaterial);
+    const fieldMaterial = new THREE.MeshBasicMaterial({color: field.fixedColor ? field.color : activePalette.glassWall || field.color || '#dfe4dc', side: THREE.DoubleSide, toneMapped: false});
+    if (!field.fixedColor) wallFieldMaterials.add(fieldMaterial);
     plane(fieldGroup, '墙面试色_画作之后', end - start, height, fieldMaterial);
     environmentFields.set(field.id, fieldGroup);
     stats.wallFields++;
@@ -823,6 +837,25 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       work.userData.textDimensions = {...text.userData};
       if (text.userData.effectiveFontSize < fontSize * .99) stats.textScales.push({id: record.id, requested: fontSize, effective: text.userData.effectiveFontSize});
       stats.texts++;
+    } else if (record.type === 'video' && record.displayMode === 'pillow-projection') {
+      const pw=record.pillowWidth,ph=record.pillowHeight;
+      for(let i=0;i<record.pillowCount;i++){
+        const cx=(i-(record.pillowCount-1)/2)*(pw+record.pillowGap),crop=record.pillowCrops[i],positions=[],uvs=[];
+        for(let j=0;j<pillowAsset.positions.length;j+=3){
+          const x=pillowAsset.positions[j],y=pillowAsset.positions[j+1],z=pillowAsset.positions[j+2];
+          positions.push(cx+x*pw,y*ph,z*depth);
+          const u=THREE.MathUtils.clamp(x/record.projectionCoverage[0]+.5,0,1),v=THREE.MathUtils.clamp(y/record.projectionCoverage[1]+.5,0,1);
+          uvs.push(crop[0]+u*(crop[2]-crop[0]),1-crop[3]+v*(crop[3]-crop[1]));
+        }
+        const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
+        geometry.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));geometry.setIndex(pillowAsset.indices);geometry.computeVertexNormals();
+        const pillow=imageOn(work,item,record,pw,ph,0,{preserveDimensions:true,clothProjection:true});
+        pillow.geometry.dispose();pillow.geometry=geometry;pillow.name=`白色竖挂枕头_${i+1}_三联投影`;
+        Object.assign(pillow.userData,{projectionCrop:crop,illustrativeDimensions:true,geometrySource:pillowAsset.source,license:pillowAsset.license});
+      }
+      work.userData.displayMode='pillow-projection';stats.pillowSurfaces=(stats.pillowSurfaces||0)+record.pillowCount;stats.videos++;
+      stats.pillowModelSource=pillowAsset.source;
+      renderer?.domElement?.setAttribute?.('data-pillow-model',JSON.stringify({count:record.pillowCount,source:pillowAsset.source,vertices:pillowAsset.positions.length/3,whiteMaterial:true}));
     } else if (record.type === 'video') {
       const caseMaterial = new THREE.MeshStandardMaterial({color: record.frameColor || '#20231f', roughness: .47, side: THREE.DoubleSide});
       box(work, '影像显示器_外形示意', width, height, depth, 0, 0, depth / 2, caseMaterial);
@@ -1183,6 +1216,16 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   setFinish(activePalette);
   if (reflectiveMeshes.size) setPrintedGlassStudy();
 
+  async function togglePillowProjection(){
+    const record=(layout.works||[]).find(w=>w.projectionVideo);
+    if(!record)return false;
+    if(!projectionVideo){projectionVideo=document.createElement('video');projectionVideo.src=record.projectionVideo;projectionVideo.muted=true;projectionVideo.loop=true;projectionVideo.playsInline=true;projectionVideo.preload='none';projectionVideo.hidden=true;projectionVideo.id='pillow-projection-video';document.body.append(projectionVideo);
+      projectionTexture=new THREE.VideoTexture(projectionVideo);projectionTexture.colorSpace=THREE.SRGBColorSpace;
+    }
+    if(projectionVideo.paused){await projectionVideo.play();projectionMaterials.forEach(m=>{m.emissiveMap=projectionTexture;m.emissiveIntensity=.9;m.userData.clothLight.value=.32;m.needsUpdate=true;});return true;}
+    projectionVideo.pause();projectionMaterials.forEach(m=>{m.emissiveMap=m.userData.still;m.emissiveIntensity=0;m.userData.clothLight.value=.85;m.needsUpdate=true;});return false;
+  }
+
   const ready = Promise.allSettled(pending).then(() => {
     stats.ready = true;
     refreshGlassReflections();
@@ -1191,7 +1234,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   });
   group.updateMatrixWorld(true);
   return {
-    group, surfaces, works, environmentFields, poemGroups, botanicalGroups, textScreens, poetryGlassPanels, joinedGlassGroups, ceilingStudy, collisionRects, ready, stats, setFinish, setPrintedGlassStudy, refreshGlassReflections,
+    togglePillowProjection, group, surfaces, works, environmentFields, poemGroups, botanicalGroups, textScreens, poetryGlassPanels, joinedGlassGroups, ceilingStudy, collisionRects, ready, stats, setFinish, setPrintedGlassStudy, refreshGlassReflections,
     setVisible(visible) { group.visible = Boolean(visible); },
     focusTarget(id) {
       const record = focus.get(id) || [...focus.entries()].find(([key]) => works.get(key)?.userData.catalogId === id)?.[1];
