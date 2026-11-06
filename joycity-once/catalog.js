@@ -34,7 +34,7 @@ export function installCatalog({layout=null,onInspect=null}={}){
   window.addEventListener('keydown',event=>{if(event.key==='Escape'&&!panel.hidden){setOpen(false);open.focus();}});
   get('details-button').addEventListener('click',()=>{panel.hidden=true;open.setAttribute('aria-expanded','false');});
   get('catalog-filter').addEventListener('change',render);
-  fetch('catalog.json?v=20261106-trial12',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('作品库读取失败');return r.json();}).then(data=>{
+  fetch('catalog.json?v=20261107-trial13',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('作品库读取失败');return r.json();}).then(data=>{
     if(!currentLayout?.works.some(w=>w.id==='traveler-1')){data.items=data.items.filter(w=>w.group!=='traveler');delete data.counts.traveler;data.counts.all=data.items.length;}
     library=data;get('catalog-summary').textContent='31幅摄影全部装裱 · 6块玻璃 · 4幅大图 · VESSEL。'+(data.counts.traveler?'另试放《旅人-1》，尚未确认加入。':'当前空间试排，尚未定稿。');
     for(const [value,label]of Object.entries(groups)){if(value==='traveler'&&!data.counts.traveler)continue;const option=node('option','',label+(data.counts[value]?' · '+data.counts[value]:''));option.value=value;get('catalog-filter').append(option);}
