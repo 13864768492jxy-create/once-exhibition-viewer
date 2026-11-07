@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261107-trial13';
-import { buildExhibition } from './exhibition.js?v=20261107-trial13';
+import { installCatalog } from './catalog.js?v=20261107-trial13b';
+import { buildExhibition } from './exhibition.js?v=20261107-trial13b';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
@@ -316,7 +316,7 @@ async function init(){try{
   const requestedTrial=new URLSearchParams(location.search).get('trial');
   const baseline=['09','10','11','12'].includes(requestedTrial)?requestedTrial:null;
   const layoutURL=baseline?'layouts/trial'+baseline+'.json':'layout.json';
-  const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261107-trial13',{cache:'no-store'})));
+  const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261107-trial13b',{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   const inputTexts=await Promise.all(responses.map(r=>r.text()));
   [data,trialLayout,library]=inputTexts.map(text=>JSON.parse(text));
@@ -324,7 +324,7 @@ async function init(){try{
   $('#projection-light-study').addEventListener('change',updateLightStudy);
   $('#trial-on').textContent=trialName();
   $('#baseline-compare').textContent=baseline?'回到试排13':'对照上一版';
-  $('#baseline-compare').href=baseline?'?v=20261107-trial13':'?trial=12&v=20261107-trial13';
+  $('#baseline-compare').href=baseline?'?v=20261107-trial13b':'?trial=12&v=20261107-trial13b';
   if(baseline){$('.header h1 span').textContent='保留基准 · '+trialName();$('.header p').textContent=baseline==='10'?'上一版的摄影位置与透明诗板':'六块并板 · 原位置与句形';document.title='大悦城 ONCE · '+trialName();
     $('#trial-description').innerHTML='<h3>保留基准 · '+trialName()+'</h3><p>这一版的位置、作品尺寸与诗句字形保留，可返回试排13比较左、右、左的摄影动线。</p>';
   }

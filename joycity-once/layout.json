@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "20261107-trial13",
+  "revision": "20261107-trial13b",
   "title": "第十三次试排 · 沿红线换边",
   "status": "thirteenth_trial_not_installation_plan",
   "date": "2026-11-06",
@@ -1250,7 +1250,7 @@
       "position": [
         0.775,
         2.03,
-        14.784
+        4.734
       ],
       "fontSize": 0.17,
       "width": 1.26,
@@ -1266,7 +1266,7 @@
       "textScreenId": "poetry-screen-2",
       "glyphMode": "fill",
       "rotationInPlane": 0,
-      "note": "保留同一玻璃板上的原字形、字号、描边与三段层次；在河流之后读到这一句。"
+      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。"
     },
     {
       "id": "across",
@@ -1274,7 +1274,7 @@
       "position": [
         0.775,
         1.46,
-        14.784
+        4.734
       ],
       "fontSize": 0.5,
       "width": 1.26,
@@ -1291,7 +1291,7 @@
       "glyphMode": "outline",
       "rotationInPlane": 0,
       "strokeWidth": 0.006,
-      "note": "保留同一玻璃板上的原字形、字号、描边与三段层次；在河流之后读到这一句。"
+      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。"
     },
     {
       "id": "between",
@@ -1299,7 +1299,7 @@
       "position": [
         0.775,
         1.08,
-        14.784
+        4.734
       ],
       "fontSize": 0.17,
       "width": 1.26,
@@ -1315,7 +1315,7 @@
       "textScreenId": "poetry-screen-2",
       "glyphMode": "fill",
       "rotationInPlane": 0,
-      "note": "保留同一玻璃板上的原字形、字号、描边与三段层次；在河流之后读到这一句。"
+      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。"
     },
     {
       "id": "ending",
@@ -1864,16 +1864,16 @@
     },
     {
       "id": "spatial-screen-2",
-      "label": "透明诗屏 · 横亘",
+      "label": "透明诗屏 · 前段横亘",
       "camera": [
-        3.4,
+        3.7,
         1.6,
-        12.9
+        2.25
       ],
       "target": [
-        0.775,
-        1.5,
-        14.8
+        1.0,
+        1.45,
+        4.75
       ]
     },
     {
@@ -2344,7 +2344,7 @@
   "notes": [
     "31幅摄影完整保留；比较当前错落、旧展邻接、同高横排三种节奏后，选择旧展邻接并再次拉开组间停顿。",
     "20、21留在长墙。05/12/21/24/20一组恢复邻接，13置于前活动墙背面，36衔接墙尾；不改变作品或框尺寸。",
-    "前白墙在13m；横亘透明板位于14.8m，接在地面河流之后，保留原三段字形与字号。此处是优先阅读衔接的试排，不再强行交换两者的精确坐标。",
+    "按2026-11-07用户截图，将横亘整句诗屏前移至左墙4.75m处，位于30、32与05、12之间；其余摄影、地诗及活动墙的位置不变。",
     "18在左墙16.05m独立停留；右中段恢复04/26/23及11/08/14/25的旧展邻接，组间留空。",
     "新增右侧18.65m交界墙；原B端23.25m活动墙保留，共三片。02、17沿原B端墙之后继续回到左长墙。",
     "一切正常的画面与外框不改，净间距70/70/95cm；群山还未合拢继续撑开最后一个间距。",
@@ -2459,7 +2459,7 @@
     {
       "id": "poetry-screen-2",
       "x": 0.775,
-      "z": 14.8,
+      "z": 4.75,
       "width": 1.35,
       "height": 2.3,
       "bottom": 0.045,
@@ -2490,7 +2490,7 @@
           "placement": "edges"
         }
       ],
-      "note": "横亘整句保留在同一块90度透明板上；位于地面河流之后，前一片白墙后的第二次相遇。可见边缘及底座保留，安装构造待现场核定。"
+      "note": "按用户2026-11-07截图移到前段30、32号与05、12号之间；整块诗屏垂直于左墙，原字形和底座保留。"
     }
   ],
   "botanicalGroups": [
@@ -2547,7 +2547,7 @@
       {
         "id": "poetry-screen",
         "x": 0.775,
-        "z": 13.8
+        "z": 3.75
       },
       {
         "id": "right-photo",
@@ -2629,7 +2629,7 @@
   "readingSequences": [
     {
       "id": "future-poem",
-      "direction": "A-to-B across both sides; the ending returns to the left wall near B",
+      "direction": "The complete 横亘 stanza is encountered earlier on the front glass screen, as specifically requested by the user; original poem order is retained in ids, not claimed as a strict walk order.",
       "ids": [
         "future",
         "tomorrow",
@@ -2776,14 +2776,14 @@
       "label": "摄影开篇",
       "fromZ": 0,
       "toZ": 13,
-      "role": "左长墙摄影，对侧一切正常与诗句；不在入口堆文字"
+      "role": "左长墙摄影与前段横亘诗屏，对侧一切正常与诗句"
     },
     {
       "id": "crossing",
       "label": "换边、交错观看",
       "fromZ": 13,
       "toZ": 20.2,
-      "role": "两侧摄影交替；河流之后遇见横亘诗屏，再到18的单幅留白"
+      "role": "两侧摄影交替，18单幅留白"
     },
     {
       "id": "return",
@@ -2816,5 +2816,18 @@
     "wallFieldAfter": 7.7,
     "physicalResizing": false
   },
-  "studyVariant": "B refined / 旧展邻接、留白与诗句的回返"
+  "studyVariant": "B refined / 用户指定前段诗屏位置",
+  "screenPlacementRevision": {
+    "date": "2026-11-07",
+    "reason": "user screenshot places entire poem screen in the gap between once_30/32 and once_05/12",
+    "fromZ": 14.8,
+    "toZ": 4.75,
+    "referenceIds": [
+      "once_30",
+      "once_32",
+      "once_05",
+      "once_12"
+    ],
+    "other_artworks_moved": false
+  }
 }
