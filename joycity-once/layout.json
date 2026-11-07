@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "revision": "20261107-trial13b",
+  "revision": "20261107-trial14",
   "title": "第十三次试排 · 沿红线换边",
   "status": "thirteenth_trial_not_installation_plan",
   "date": "2026-11-06",
   "sourceLayout": "source/layout-baselines/trial12.json",
-  "principle": "延续G606的邻接关系，沿红线在左长墙、右中段和左后段之间换边；文字改变间距与观看方向，留白承担转换。",
+  "principle": "保留已经成立的疏密，让相邻作品接上，让诗句的先后、伏笔与回望有据可循。",
   "partitions": [
     {
       "id": "early",
@@ -212,9 +212,9 @@
       "catalogId": "once_01",
       "group": "late-B-large",
       "type": "photo",
-      "surfaceId": "glass-boundary-B",
-      "along": 0.75,
-      "centerY": 1.45,
+      "surfaceId": "once-main",
+      "along": 24.55,
+      "centerY": 1.4,
       "imageWidth": 1.1,
       "imageHeight": 0.903685,
       "outerWidth": 1.1960000000000002,
@@ -232,8 +232,8 @@
       "group": "B-figure",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 24.55,
-      "centerY": 1.32,
+      "along": 25.85,
+      "centerY": 1.57,
       "imageWidth": 0.54,
       "imageHeight": 0.480113,
       "outerWidth": 0.636,
@@ -307,9 +307,9 @@
       "catalogId": "once_09",
       "group": "B-figure",
       "type": "photo",
-      "surfaceId": "late-B",
-      "along": 0.75,
-      "centerY": 1.45,
+      "surfaceId": "once-main",
+      "along": 22.05,
+      "centerY": 1.36,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.396,
@@ -383,9 +383,9 @@
       "catalogId": "once_13",
       "group": "sea",
       "type": "photo",
-      "surfaceId": "early-B",
+      "surfaceId": "early-A",
       "along": 0.8,
-      "centerY": 1.4,
+      "centerY": 1.45,
       "imageWidth": 0.8,
       "imageHeight": 0.64691444444,
       "outerWidth": 0.896,
@@ -422,7 +422,7 @@
       "group": "snow",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 19.15,
+      "along": 19.55,
       "centerY": 1.34,
       "imageWidth": 0.85,
       "imageHeight": 0.7,
@@ -441,8 +441,8 @@
       "group": "B-figure",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 25.75,
-      "centerY": 0.94,
+      "along": 26.4,
+      "centerY": 0.92,
       "imageWidth": 0.3,
       "imageHeight": 0.25,
       "outerWidth": 0.324,
@@ -478,9 +478,9 @@
       "catalogId": "once_19",
       "group": "B-figure",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 21.85,
-      "centerY": 1.95,
+      "surfaceId": "late-A",
+      "along": 0.75,
+      "centerY": 1.45,
       "imageWidth": 0.42,
       "imageHeight": 0.32220999999999994,
       "outerWidth": 0.516,
@@ -630,9 +630,9 @@
       "catalogId": "once_27",
       "group": "early-A-single",
       "type": "photo",
-      "surfaceId": "early-A",
-      "along": 0.8,
-      "centerY": 1.5,
+      "surfaceId": "once-main",
+      "along": 12.05,
+      "centerY": 1.66,
       "imageWidth": 0.37799999999999995,
       "imageHeight": 0.32146696529,
       "outerWidth": 0.514,
@@ -649,9 +649,9 @@
       "catalogId": "once_28",
       "group": "snow",
       "type": "photo",
-      "surfaceId": "late-A",
-      "along": 0.75,
-      "centerY": 1.45,
+      "surfaceId": "once-main",
+      "along": 17.55,
+      "centerY": 1.9,
       "imageWidth": 0.47600000000000003,
       "imageHeight": 0.35505095,
       "outerWidth": 0.612,
@@ -726,7 +726,7 @@
       "group": "snow",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 18.2,
+      "along": 18.55,
       "centerY": 2.02,
       "imageWidth": 0.45299999999999996,
       "imageHeight": 0.36633229167000003,
@@ -745,7 +745,7 @@
       "group": "snow",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 20.5,
+      "along": 20.85,
       "centerY": 0.95,
       "imageWidth": 0.255,
       "imageHeight": 0.20580321429,
@@ -782,9 +782,9 @@
       "catalogId": "once_36",
       "group": "sea",
       "type": "photo",
-      "surfaceId": "once-main",
-      "along": 12.1,
-      "centerY": 1.98,
+      "surfaceId": "early-B",
+      "along": 0.8,
+      "centerY": 1.45,
       "imageWidth": 0.8,
       "imageHeight": 0.6356429473699999,
       "outerWidth": 0.896,
@@ -944,7 +944,7 @@
       "type": "video",
       "displayMode": "pillow-projection",
       "surfaceId": "once-main",
-      "along": 30.05,
+      "along": 29.4,
       "centerY": 1.5,
       "imageWidth": 1.78,
       "imageHeight": 0.75,
@@ -1103,9 +1103,9 @@
       "id": "invitation",
       "text": "脱下你的鞋子吧，",
       "position": [
-        3.8,
+        4.0,
         0.009,
-        5.8
+        5.1
       ],
       "fontSize": 0.3,
       "width": 2.5,
@@ -1128,7 +1128,7 @@
       "position": [
         3.8,
         0.009,
-        10.7
+        7.05
       ],
       "fontSize": 0.27,
       "width": 2.5,
@@ -1170,14 +1170,14 @@
       "id": "tomorrow",
       "text": "迎着风谈论明天。",
       "position": [
-        2.5999999999999996,
+        2.35,
         0.009,
-        4.25
+        4.05
       ],
       "fontSize": 0.16,
       "width": 1.9,
       "surface": "floor",
-      "rotationY": 30.5,
+      "rotationY": 0,
       "weight": 400,
       "fontFamily": "huiwen",
       "fontWidthScale": 1.0,
@@ -1228,14 +1228,14 @@
       "id": "river",
       "text": "河流带有未命名的方向，\n从每个人流过。",
       "position": [
-        3.1,
+        3.35,
         0.009,
-        12.7
+        12.1
       ],
       "fontSize": 0.16,
       "width": 2.25,
       "surface": "floor",
-      "rotationY": -61.699,
+      "rotationY": 0,
       "weight": 400,
       "fontFamily": "huiwen",
       "fontWidthScale": 1.0,
@@ -1323,7 +1323,7 @@
       "position": [
         0.033,
         2.4,
-        24.4
+        25.55
       ],
       "fontSize": 0.31,
       "width": 2.6,
@@ -1350,7 +1350,8 @@
         }
       ],
       "glyphMode": "fill",
-      "rotationInPlane": 0
+      "rotationInPlane": 0,
+      "note": "整句移入B侧板墙之后的完整墙段；与走入暗处的人物、墙面光影构成最后一组。"
     },
     {
       "id": "moon",
@@ -1440,7 +1441,7 @@
       "position": [
         0.033,
         2.6,
-        17.55
+        16.7
       ],
       "fontSize": 0.27,
       "width": 1.5,
@@ -1462,7 +1463,7 @@
       "position": [
         4.967,
         2.48,
-        17.4
+        17.6
       ],
       "fontSize": 0.17,
       "width": 1.5,
@@ -1536,7 +1537,7 @@
       "position": [
         4.967,
         2.75,
-        27.05
+        26.55
       ],
       "fontSize": 0.15,
       "width": 1.75,
@@ -1554,14 +1555,14 @@
       "id": "moonlight",
       "text": "波光，是月亮在海里的迁徙。",
       "position": [
-        2.3,
+        2.1,
         0.009,
-        26.4
+        26.65
       ],
       "fontSize": 0.16,
       "width": 2.4,
       "surface": "floor",
-      "rotationY": -61.82,
+      "rotationY": 0,
       "weight": 400,
       "fontFamily": "huiwen",
       "fontWidthScale": 1.0,
@@ -1576,7 +1577,7 @@
       "position": [
         3.5999999999999996,
         3.595,
-        26.75
+        26.2
       ],
       "fontSize": 0.27,
       "width": 1.8,
@@ -1709,6 +1710,68 @@
   ],
   "focusGroups": [
     {
+      "id": "reading-floor",
+      "label": "地诗读序 · 入口至河流",
+      "camera": [
+        2.5,
+        12,
+        6.6
+      ],
+      "target": [
+        2.5,
+        0,
+        6.6
+      ],
+      "cameraUp": [
+        -1,
+        0,
+        0
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 14.5,
+        "height": 5.6
+      }
+    },
+    {
+      "id": "ending-clear",
+      "label": "终句与01 · 完整墙面",
+      "camera": [
+        3.9,
+        1.65,
+        25.2
+      ],
+      "target": [
+        0,
+        1.75,
+        25.2
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 4.6,
+        "height": 3.2
+      }
+    },
+    {
+      "id": "pillow-margin",
+      "label": "白枕头 · 与B口留出边距",
+      "camera": [
+        3.7,
+        1.6,
+        29.3
+      ],
+      "target": [
+        0,
+        1.5,
+        29.4
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 4.1,
+        "height": 3.3
+      }
+    },
+    {
       "id": "whole-front",
       "label": "整体前段 · 摄影与一切正常",
       "camera": [
@@ -1742,12 +1805,12 @@
       "camera": [
         2.5,
         1.85,
-        26.7
+        26.05
       ],
       "target": [
         2.5,
         1.5,
-        30.8
+        30.150000000000002
       ]
     },
     {
@@ -1920,7 +1983,7 @@
     },
     {
       "id": "spatial-short-wing",
-      "label": "短展墙 · 行走与停留",
+      "label": "第一片活动墙 · 13与36",
       "camera": [
         3.35,
         1.6,
@@ -2065,7 +2128,7 @@
     },
     {
       "id": "early-B-single",
-      "label": "前活动墙B面 · 13",
+      "label": "前活动墙A面 · 13",
       "workIds": [
         "once_13"
       ],
@@ -2074,7 +2137,7 @@
     },
     {
       "id": "early-A-single",
-      "label": "前短墙A面 · 27",
+      "label": "27 · 主墙末端",
       "workIds": [
         "once_27"
       ],
@@ -2099,8 +2162,9 @@
     },
     {
       "id": "snow",
-      "label": "长墙 · 雪地",
+      "label": "18之后 · 新生、旷地与雪",
       "workIds": [
+        "once_28",
         "once_33",
         "once_16",
         "once_34"
@@ -2119,9 +2183,11 @@
     },
     {
       "id": "B-figure",
-      "label": "回到左墙 · 人物、墙面与影像前的停顿",
+      "label": "09—19—01—02—17 · 背影与终句",
       "workIds": [
+        "once_09",
         "once_19",
+        "once_01",
         "once_02",
         "once_17"
       ],
@@ -2139,7 +2205,7 @@
     },
     {
       "id": "late-B-large",
-      "label": "右侧交界墙B面 · 01",
+      "label": "01 · 回到长墙",
       "workIds": [
         "once_01"
       ],
@@ -2219,16 +2285,16 @@
     },
     {
       "id": "route-return",
-      "label": "换边2 · 沿原B端活动墙回到左墙",
+      "label": "换边2 · 18的停顿与左墙回返",
       "camera": [
-        3.35,
+        3.45,
         1.6,
-        23.1
+        18.8
       ],
       "target": [
         0,
-        1.5,
-        24.5
+        1.45,
+        17.6
       ]
     },
     {
@@ -2246,12 +2312,12 @@
       "camera": [
         3.5,
         1.65,
-        30.05
+        29.400000000000002
       ],
       "target": [
         0,
         1.5,
-        30.05
+        29.400000000000002
       ],
       "framing": {
         "projection": "orthographic",
@@ -2308,16 +2374,16 @@
     },
     {
       "id": "spatial-left-language",
-      "label": "左墙终句 · 他们再也看不见我",
+      "label": "终句 · 避开板墙",
       "camera": [
-        3.5,
-        1.6,
-        24.6
+        3.45,
+        1.65,
+        24.3
       ],
       "target": [
         0.033,
-        1.65,
-        24.6
+        1.85,
+        25.55
       ],
       "framing": {
         "projection": "orthographic",
@@ -2327,32 +2393,34 @@
     },
     {
       "id": "existing-B-wing-front",
-      "label": "原B端活动墙A面 · 28",
+      "label": "B端活动墙A面 · 19",
       "workIds": [
-        "once_28"
+        "once_19"
       ]
     },
     {
       "id": "existing-B-wing-back",
-      "label": "原B端活动墙B面 · 09",
+      "label": "最后一组 · 01与终句",
       "workIds": [
-        "once_09"
+        "once_01",
+        "once_02",
+        "once_17"
       ]
     }
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "31幅摄影完整保留；比较当前错落、旧展邻接、同高横排三种节奏后，选择旧展邻接并再次拉开组间停顿。",
-    "20、21留在长墙。05/12/21/24/20一组恢复邻接，13置于前活动墙背面，36衔接墙尾；不改变作品或框尺寸。",
-    "按2026-11-07用户截图，将横亘整句诗屏前移至左墙4.75m处，位于30、32与05、12之间；其余摄影、地诗及活动墙的位置不变。",
-    "18在左墙16.05m独立停留；右中段恢复04/26/23及11/08/14/25的旧展邻接，组间留空。",
-    "新增右侧18.65m交界墙；原B端23.25m活动墙保留，共三片。02、17沿原B端墙之后继续回到左长墙。",
-    "一切正常的画面与外框不改，净间距70/70/95cm；群山还未合拢继续撑开最后一个间距。",
-    "Growing Again仍是六图两诗板、每片70×180cm、无缝并列5.6m。墙面色域由9.55m收为7.7m，保留低位更远的浪。",
-    "最后摄影框边与白枕近边相隔约3.25m；28m之后只放影像，墙面仍白。",
-    "诗句采用跨墙、地面和玻璃的阅读；Growing Again的低位远浪保留用户认可的回望关系。",
-    "地诗保持原字形与大小；调整潮水、穿过溪流、河流、波光的位置，避开相互字迹和金属线。线条仍是方向提示，具体位置随现场实测微调。",
-    "本次为策展讨论稿，未更新施工安装或印刷文件。"
+    "保留13b的整体疏密、原作尺寸与字形；修正01所在墙、终句遮挡、枕头靠边和观看顺序。",
+    "01从右侧交界板墙移到左后长墙，与09、19、02、17重新接成原G606一组。",
+    "18仍在16.05m独立停顿，28接在它后方；不把18的空墙填满。",
+    "27回到左长墙末端，前活动墙两面为13、36，接续20之后的旧展关系。",
+    "右侧交界墙背面和B端活动墙背面主动留白，不为填满而补画。",
+    "横亘玻璃保持4.75m指定位置；用户明确采用先出现作伏笔、稍后回望补读。不能称为严格单向顺读。",
+    "迎着风、潮水、河流、波光统一面向A口来向；邀请的两句保持面向右墙，靠拢为相邻一对。",
+    "更远的浪保留已认可的低位原字形与排尾位置，属于玻璃组里的回望。",
+    "他们整句移到板墙之后；三个白枕向A端移65cm，远端留91cm，照片仍在独立控光区以外。",
+    "一切正常70/70/95cm间距与群山关系、Growing Again八片并列均保持。",
+    "讨论稿；不更新印刷和施工点位。"
   ],
   "environment": {
     "wallFields": [
@@ -2525,7 +2593,7 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/trial13/manifest.json",
+  "poetryRasterManifest": "poetry/trial14/manifest.json",
   "occupancyStudy": {
     "status": "illustrative_not_observed_people",
     "diameters": [
@@ -2560,19 +2628,9 @@
         "z": 17.59
       },
       {
-        "id": "boundary-B",
-        "x": 4.25,
-        "z": 19.71
-      },
-      {
         "id": "late-A",
         "x": 0.75,
         "z": 22.19
-      },
-      {
-        "id": "late-B",
-        "x": 0.75,
-        "z": 24.31
       },
       {
         "id": "ga05",
@@ -2629,7 +2687,7 @@
   "readingSequences": [
     {
       "id": "future-poem",
-      "direction": "The complete 横亘 stanza is encountered earlier on the front glass screen, as specifically requested by the user; original poem order is retained in ids, not claimed as a strict walk order.",
+      "direction": "A-to-B through future, tomorrow, mountains and river. The early glass is an intentional anticipation, retained at the user-selected position; the visitor can return to its readable A-facing side. The terminal line closes the photography near B.",
       "ids": [
         "future",
         "tomorrow",
@@ -2639,11 +2697,21 @@
         "across",
         "between",
         "ending"
-      ]
+      ],
+      "intentionalReturn": {
+        "fromId": "river",
+        "toIds": [
+          "world",
+          "across",
+          "between"
+        ],
+        "reason": "User confirmed on 2026-11-07: keep the front glass as a foreshadowing and complete the poem by returning to it.",
+        "note": "This is not a strictly linear reading route. The back of physical glass carries mirrored lettering; readable re-reading requires returning to the A-facing side."
+      }
     },
     {
       "id": "moon-poem",
-      "direction": "left middle passage, then right glass row; retain the approved far-waves return",
+      "direction": "Moon, tide, sea, shore, reef and islands progress towards B. The approved low far-waves phrase remains a deliberate return at the end of the glass row. Ceiling night, stars and floor moonlight close in forward order.",
       "intentionalReturn": {
         "fromId": "far-waves",
         "toId": "waves",
@@ -2663,6 +2731,14 @@
         "stars",
         "moonlight"
       ]
+    },
+    {
+      "id": "invitation-pair",
+      "ids": [
+        "invitation",
+        "invitation-crossing"
+      ],
+      "direction": "Two adjacent phrases facing the right-wall photographs, encountered A-to-B."
     }
   ],
   "approvedBaseline": {
@@ -2685,7 +2761,7 @@
   "photoRoute": [
     {
       "id": "left-opening",
-      "label": "左侧开篇与第一片活动墙",
+      "label": "左侧开篇：原G606入口与主墙两组",
       "workIds": [
         "once_31",
         "once_10",
@@ -2693,13 +2769,13 @@
         "once_30",
         "once_32",
         "once_05",
-        "once_13",
+        "once_12",
         "once_21",
         "once_24",
-        "once_36",
         "once_20",
         "once_27",
-        "once_12"
+        "once_13",
+        "once_36"
       ],
       "zRange": [
         0.979,
@@ -2708,40 +2784,40 @@
     },
     {
       "id": "right-middle",
-      "label": "转到右墙与玻璃交界",
+      "label": "右侧：柱廊、喷泉、生命与墓地",
       "workIds": [
-        "once_26",
         "once_04",
+        "once_26",
         "once_23",
-        "once_08",
         "once_11",
-        "once_14",
+        "once_08",
         "once_25",
-        "once_35",
-        "once_01"
+        "once_14",
+        "once_35"
       ],
       "zRange": [
         12.529,
-        18.71
+        18.65
       ]
     },
     {
       "id": "left-return",
-      "label": "回到左长墙及原B端活动墙",
+      "label": "左侧回返：18停顿，接续新生与背影",
       "workIds": [
         "once_18",
-        "once_33",
-        "once_34",
         "once_28",
+        "once_33",
         "once_16",
-        "once_02",
-        "once_17",
+        "once_34",
+        "once_09",
         "once_19",
-        "once_09"
+        "once_01",
+        "once_02",
+        "once_17"
       ],
       "zRange": [
         15.852,
-        25.912
+        26.562
       ]
     }
   ],
@@ -2756,7 +2832,7 @@
     "minimumDiffuse": 0.28,
     "notes": [
       "28米之后两侧不挂摄影，关闭朝向枕头和屏幕的射灯，通行照明独立保留。",
-      "最后摄影框边25.912m，枕头近边29.16m，间隔3.248m；28m后不挂摄影。串光与照度需现场试投。",
+      "最后摄影框边26.562m，枕头近边28.510m，间隔1.948m；28m后仍不挂摄影。枕头远边距B端0.91m。",
       "白墙材质不变，网页变暗是可关闭的照明示意，不是深色涂料。",
       "VESSEL与旅人错开纵向位置，电视亮度及声场仍需现场调试；不得遮挡B口。"
     ]
@@ -2765,10 +2841,10 @@
   "nativeBaselineQA": "qa/native_r09_model_qa.json",
   "spaceRevision": "20261106-r09-near5m",
   "previousTrial": {
-    "path": "layouts/trial12.json",
-    "revision": "20261106-trial12",
-    "status": "user_rejected",
-    "sha256": "901efbf99939d34bf6900424a808b029ba690ee98f5b0818fee9a6413151cc27"
+    "path": "layouts/trial13.json",
+    "revision": "20261107-trial13b",
+    "status": "visually_liked_with_specific_corrections",
+    "sha256": "68eb8317b2188793525af307c9263ac3aa827dd6e984ac8f21296e7710fa1f6f"
   },
   "spatialZones": [
     {
@@ -2790,7 +2866,7 @@
       "label": "玻璃与左墙回返",
       "fromZ": 20.2,
       "toZ": 27.7,
-      "role": "Growing Again压缩墙域，沿原B端活动墙回到左墙最后两幅"
+      "role": "Growing Again对侧为左墙摄影回返，晚段板墙之后接01、02、17"
     },
     {
       "id": "transition",
@@ -2816,7 +2892,7 @@
     "wallFieldAfter": 7.7,
     "physicalResizing": false
   },
-  "studyVariant": "B refined / 用户指定前段诗屏位置",
+  "studyVariant": "13b refinement / G606 neighbourhoods and readable encounters",
   "screenPlacementRevision": {
     "date": "2026-11-07",
     "reason": "user screenshot places entire poem screen in the gap between once_30/32 and once_05/12",
@@ -2829,5 +2905,80 @@
       "once_12"
     ],
     "other_artworks_moved": false
+  },
+  "poetryReadabilityStudy": {
+    "confirmed_choice": "front glass stays as foreshadowing; return reading accepted",
+    "floor_forward_ids": [
+      "tomorrow",
+      "tide",
+      "river",
+      "moonlight"
+    ],
+    "floor_forward_rotation": 0,
+    "separate_invitation_ids": [
+      "invitation",
+      "invitation-crossing"
+    ],
+    "intentional_returns": [
+      "world/across/between glass",
+      "far-waves to glass verbs"
+    ],
+    "no_claim": "Not all poetry is encountered in original order on a one-way walk."
+  },
+  "photoSequenceStudy": {
+    "source": "G606 final revision117 actual wall positions, read only",
+    "source_path": "../once-viewer/site/data.json",
+    "source_sha256": "e5c4c611ec52ce25f139640e4c1e815006ad3d0241185883a5351f35a74a1024",
+    "preserved_groups": [
+      [
+        31,
+        10,
+        22,
+        30,
+        32
+      ],
+      [
+        5,
+        12,
+        21,
+        24,
+        20,
+        27,
+        13,
+        36
+      ],
+      [
+        4,
+        26,
+        23
+      ],
+      [
+        11,
+        8,
+        25,
+        14
+      ],
+      [
+        35,
+        18,
+        28,
+        33,
+        16,
+        34
+      ],
+      [
+        9,
+        19,
+        1,
+        2,
+        17
+      ]
+    ],
+    "adaptation": "Keep the current left/right/left spatial sequence, not the entire old room circuit. 35 and 18 are viewed across the aisle, with a short diagonal look back; this is documented rather than called a strictly monotone route.",
+    "empty_faces": [
+      "glass-boundary-B",
+      "late-B"
+    ],
+    "empty_face_reason": "Leave the return faces open for a pause and for the projection transition; do not refill them."
   }
 }

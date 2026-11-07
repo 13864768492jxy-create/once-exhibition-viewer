@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261107-trial13b';
-import { buildExhibition } from './exhibition.js?v=20261107-trial13b';
+import { installCatalog } from './catalog.js?v=20261107-trial14';
+import { buildExhibition } from './exhibition.js?v=20261107-trial14';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
@@ -252,6 +252,7 @@ function focusOnGroup(id){
     const aspect=host.clientWidth/host.clientHeight;
     const mobileFloorInvitation=host.clientWidth<600&&group.id==='spatial-normal-threshold';
     if(!mobileFloorInvitation&&(host.clientWidth<600||group.framing?.projection==='orthographic')){inspectionFrame={width:group.framing?.width||3.2,height:group.framing?.height||3.1};const h=Math.max(inspectionFrame.height/2,inspectionFrame.width/2/aspect);camera=new THREE.OrthographicCamera(-h*1.12*aspect,h*1.12*aspect,h*1.28,-h*.96,.025,120);}else camera=new THREE.PerspectiveCamera(mobileFloorInvitation?90:58,aspect,.025,120);camera.up.copy(worldUp);
+    if(group.cameraUp)camera.up.set(group.cameraUp[0],group.cameraUp[1],-group.cameraUp[2]);
     camera.position.set(group.camera[0],group.camera[1],-group.camera[2]);
     const target=new THREE.Vector3(group.target[0],group.target[1],-group.target[2]);camera.lookAt(target);
     const textScreen=trialLayout.textScreens?.find(screen=>id==='spatial-'+screen.id.replace('poetry-',''));
@@ -314,19 +315,19 @@ function animate(now){raf=requestAnimationFrame(animate);const dt=Math.min((now-
 
 async function init(){try{
   const requestedTrial=new URLSearchParams(location.search).get('trial');
-  const baseline=['09','10','11','12'].includes(requestedTrial)?requestedTrial:null;
+  const baseline=['09','10','11','12','13'].includes(requestedTrial)?requestedTrial:null;
   const layoutURL=baseline?'layouts/trial'+baseline+'.json':'layout.json';
-  const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261107-trial13b',{cache:'no-store'})));
+  const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261107-trial14',{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   const inputTexts=await Promise.all(responses.map(r=>r.text()));
   [data,trialLayout,library]=inputTexts.map(text=>JSON.parse(text));
   $('#projection-light-row').hidden=trialLayout.lightingStudy?.controlledZone?.side!=='both';
   $('#projection-light-study').addEventListener('change',updateLightStudy);
   $('#trial-on').textContent=trialName();
-  $('#baseline-compare').textContent=baseline?'回到试排13':'对照上一版';
-  $('#baseline-compare').href=baseline?'?v=20261107-trial13b':'?trial=12&v=20261107-trial13b';
+  $('#baseline-compare').textContent=baseline?'回到试排14':'对照上一版';
+  $('#baseline-compare').href=baseline?'?v=20261107-trial14':'?trial=13&v=20261107-trial14';
   if(baseline){$('.header h1 span').textContent='保留基准 · '+trialName();$('.header p').textContent=baseline==='10'?'上一版的摄影位置与透明诗板':'六块并板 · 原位置与句形';document.title='大悦城 ONCE · '+trialName();
-    $('#trial-description').innerHTML='<h3>保留基准 · '+trialName()+'</h3><p>这一版的位置、作品尺寸与诗句字形保留，可返回试排13比较左、右、左的摄影动线。</p>';
+    $('#trial-description').innerHTML='<h3>保留基准 · '+trialName()+'</h3><p>这一版的位置、作品尺寸与诗句字形保留，可返回试排14比较左、右、左的摄影动线。</p>';
   }
   const initialFocus=new URLSearchParams(location.search).get('focus');
   renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(host.clientWidth,host.clientHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;host.appendChild(renderer.domElement);
