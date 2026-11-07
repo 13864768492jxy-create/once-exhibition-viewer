@@ -27,7 +27,7 @@ function updateLightStudy(){
   lightStudyUniform.value=trialVisible&&$('#projection-light-study')?.checked?1:0;
   groups?.lighting?.traverse(object=>{if(object.userData.controlledLens)object.material.color.set(lightStudyUniform.value?'#7e817c':'#fff8df');});
 }
-const trialName = () => '试排' + (trialLayout?.revision.match(/trial(\d+)/)?.[1] || '');
+const trialName = () => trialLayout?.typographyStudy ? '字体试读' : '试排' + (trialLayout?.revision.match(/trial(\d+)/)?.[1] || '');
 const eyeHeight = 1.6;
 const worldUp = new THREE.Vector3(0, 1, 0);
 const state = { loaded: false, error: null };
@@ -315,8 +315,10 @@ function animate(now){raf=requestAnimationFrame(animate);const dt=Math.min((now-
 
 async function init(){try{
   const requestedTrial=new URLSearchParams(location.search).get('trial');
+  const typographyStudy=new URLSearchParams(location.search).get('type')==='study';
+  const typographyCompare=typographyStudy||new URLSearchParams(location.search).get('type')==='base';
   const baseline=['09','10','11','12','13'].includes(requestedTrial)?requestedTrial:null;
-  const layoutURL=baseline?'layouts/trial'+baseline+'.json':'layout.json';
+  const layoutURL=typographyStudy?'layouts/typography-study.json':baseline?'layouts/trial'+baseline+'.json':'layout.json';
   const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261107-trial14',{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   const inputTexts=await Promise.all(responses.map(r=>r.text()));
@@ -328,6 +330,15 @@ async function init(){try{
   $('#baseline-compare').href=baseline?'?v=20261107-trial14':'?trial=13&v=20261107-trial14';
   if(baseline){$('.header h1 span').textContent='保留基准 · '+trialName();$('.header p').textContent=baseline==='10'?'上一版的摄影位置与透明诗板':'六块并板 · 原位置与句形';document.title='大悦城 ONCE · '+trialName();
     $('#trial-description').innerHTML='<h3>保留基准 · '+trialName()+'</h3><p>这一版的位置、作品尺寸与诗句字形保留，可返回试排14比较左、右、左的摄影动线。</p>';
+  }
+  if(typographyCompare){
+    $('.header h1 span').textContent=typographyStudy?'字体试读':'字体对照 · 现版';$('.header p').textContent='五处字样对照 · 保留当前摄影与空间位置';document.title='大悦城 ONCE · 字体对照';
+    $('#baseline-compare').textContent=typographyStudy?'对照现版字体':'切换试读字体';
+    const currentFocus=new URLSearchParams(location.search).get('focus');
+    const compareHref=focus=>'?type='+(typographyStudy?'base':'study')+'&v=type-study-20261107'+(focus?'&focus='+encodeURIComponent(focus):'');
+    $('#baseline-compare').href=compareHref(currentFocus);
+    $('#focus-group').addEventListener('change',event=>{$('#baseline-compare').href=compareHref(event.target.value);});
+    $('#trial-description').innerHTML='<h3>字体试读 · 讨论稿</h3><p>只试入口、迎着风、河流、月亮与顶面五处。原作、位置、朝向和诗文不变；横亘玻璃、Growing Again及低位远浪保持原字形。</p><p>这是可对照的字体研究，不是新的定稿或施工文件。</p><a href="typography/">查看字体推敲图册</a>';
   }
   const initialFocus=new URLSearchParams(location.search).get('focus');
   renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(host.clientWidth,host.clientHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;host.appendChild(renderer.domElement);
