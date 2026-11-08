@@ -317,10 +317,10 @@ async function init(){try{
   const requestedTrial=new URLSearchParams(location.search).get('trial');
   const typeMode=new URLSearchParams(location.search).get('type');
   const typographyStudy=typeMode==='study';
-  const previousTypography=typeMode==='study1';
+  const previousTypography=typeMode==='study1'||typeMode==='study2';
   const typographyCompare=typographyStudy||previousTypography||typeMode==='base';
   const baseline=['09','10','11','12','13'].includes(requestedTrial)?requestedTrial:null;
-  const layoutURL=typographyStudy?'layouts/typography-study.json':previousTypography?'layouts/typography-study-20261107.json':baseline?'layouts/trial'+baseline+'.json':'layout.json';
+  const layoutURL=typographyStudy?'layouts/typography-study.json':typeMode==='study2'?'layouts/typography-study-20261108-mixed.json':previousTypography?'layouts/typography-study-20261107.json':baseline?'layouts/trial'+baseline+'.json':'layout.json';
   const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261107-trial14',{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   const inputTexts=await Promise.all(responses.map(r=>r.text()));
@@ -334,14 +334,17 @@ async function init(){try{
     $('#trial-description').innerHTML='<h3>保留基准 · '+trialName()+'</h3><p>这一版的位置、作品尺寸与诗句字形保留，可返回试排14比较左、右、左的摄影动线。</p>';
   }
   if(typographyCompare){
-    $('.header h1 span').textContent=typographyStudy?'两句地诗 · 新版':previousTypography?'两句地诗 · 上一轮':'字体对照 · 现版';$('.header p').textContent='迎着风 / 河流 · 字形重排，摄影与空间位置保持';document.title='大悦城 ONCE · 字体对照';
+    $('.header h1 span').textContent=typographyStudy?'文字与空间 · 试读':previousTypography?'两句地诗 · 上一轮':'字体对照 · 现版';$('.header p').textContent=typographyStudy?'文字、摄影与材料 · 在走动与回望中阅读':'迎着风 / 河流 · 同视角比较';document.title='大悦城 ONCE · 文字与空间';
     $('#baseline-compare').textContent=typographyStudy?'对照上一轮':'切换新版地诗';
     const currentFocus=new URLSearchParams(location.search).get('focus');
-    const compareHref=focus=>'?type='+(typographyStudy?'study1':'study')+'&v=type-study-20261108'+(focus?'&focus='+encodeURIComponent(focus):'');
+    const compareHref=focus=>'?type='+(typographyStudy?'study2':'study')+'&v=type-syntax-20261108'+(focus?'&focus='+encodeURIComponent(focus):'');
     $('#baseline-compare').href=compareHref(currentFocus);
     $('#focus-group').addEventListener('change',event=>{$('#baseline-compare').href=compareHref(event.target.value);});
     if(!trialLayout.focusGroups.some(g=>g.id==='spatial-floor-tomorrow'))trialLayout.focusGroups.unshift({id:'spatial-floor-tomorrow',label:'地面文字 · 迎着风谈论明天',camera:[2.35,1.6,2.75],target:[2.35,.03,4.05]});
-    $('#trial-description').innerHTML='<h3>两句地诗 · 字体重排</h3><p>迎着风谈论明天，以及河流两行，改用不同原生字面、实体与轮廓相接。与上一轮可以同视角切换。</p><p>原作、位置、朝向和诗文不变；横亘玻璃、Growing Again及低位远浪保持。字体讨论稿，尚非制作定稿。</p><a href="typography/">查看两句字体对照</a>';
+    for(const view of [{id:'language-river-images',label:'诗与照片 · 河流的阅读',camera:[4.5,1.65,8.5],target:[1.6,.9,11.4]},{id:'language-body-images',label:'文字与身体 · 一切正常',camera:[1.2,1.65,3.3],target:[4.65,.85,7.1]}]){
+      if(!trialLayout.focusGroups.some(g=>g.id===view.id))trialLayout.focusGroups.unshift(view);
+    }
+    $('#trial-description').innerHTML='<h3>文字、图像与观看</h3><p>两句地诗统一字形，以完整语义段安排大小与空白。新增诗与摄影同看的视角；走近、抬头与回望参与阅读。</p><p>横亘玻璃、Growing Again及低位远浪保留各自的表达。可同视角比较上一轮；主方案暂保留。这是策展试读，尚非制作定稿。</p><a href="typography/">查看六处关系与字体对照</a>';
   }
   const initialFocus=new URLSearchParams(location.search).get('focus');
   renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(host.clientWidth,host.clientHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;host.appendChild(renderer.domElement);

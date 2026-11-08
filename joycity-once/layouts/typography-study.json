@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "20261108-trial14-typography-study2",
+  "revision": "20261108-trial14-typography-study3",
   "title": "字体试读 · 保留试排14空间",
   "status": "typography_discussion_candidate_not_approved",
   "date": "2026-11-08",
@@ -1193,20 +1193,20 @@
       "surface": "floor",
       "rotationY": 0,
       "weight": 400,
-      "fontFamily": "authored-floor-language",
+      "fontFamily": "authored-floor-syntax",
       "fontWidthScale": 1.0,
       "lineHeight": 1.15,
       "align": "left",
       "color": "#42473e",
       "letterSpacing": 0.003,
       "rasterOverride": {
-        "path": "assets/typography/floor-language-20261108/selected/tomorrow.png",
+        "path": "assets/typography/floor-syntax-20261108/selected/tomorrow.png",
         "physicalWidth": 1.86,
         "physicalHeight": 0.4,
-        "sha256": "4719de5824986655d84cc0bfa7199ebac4079b6b2696af6f295277261e12ac7f",
-        "sourceSVG": "assets/typography/floor-language-20261108/selected/tomorrow.svg"
+        "sha256": "3648b72fa3bcdc31472a315b490c3c15505d00149423e08b9f4d3ef1e15fcd0b",
+        "sourceSVG": "assets/typography/floor-syntax-20261108/selected/tomorrow.svg"
       },
-      "note": "使用用户字体库内真实字面作词组组构：字身比例、原诗与位置保持，不依赖系统字体回退。"
+      "note": "统一使用用户字库的旗黑X4 Medium真实字形；仅完整语义段的大小、空白和位置变化，无逐字旋转、勾边或字体混排。"
     },
     {
       "id": "mountains",
@@ -1259,7 +1259,7 @@
       "surface": "floor",
       "rotationY": 0,
       "weight": 400,
-      "fontFamily": "authored-floor-language",
+      "fontFamily": "authored-floor-syntax",
       "fontWidthScale": 1.0,
       "lineHeight": 1.28,
       "align": "left",
@@ -1275,13 +1275,13 @@
         }
       ],
       "rasterOverride": {
-        "path": "assets/typography/floor-language-20261108/selected/river.png",
+        "path": "assets/typography/floor-syntax-20261108/selected/river.png",
         "physicalWidth": 2.22,
-        "physicalHeight": 0.66,
-        "sha256": "81dc196eb4dac4702110b2a481f3412b68475340ad4a5a39552c4f6c425a114e",
-        "sourceSVG": "assets/typography/floor-language-20261108/selected/river.svg"
+        "physicalHeight": 0.72,
+        "sha256": "3a4105f6b128fd04310632a4685d6fd0e19464f2084cd6aedfbe55c2f5ec11b4",
+        "sourceSVG": "assets/typography/floor-syntax-20261108/selected/river.svg"
       },
-      "note": "使用用户字体库内真实字面作词组组构：字身比例、原诗与位置保持，不依赖系统字体回退。"
+      "note": "统一使用用户字库的旗黑X4 Medium真实字形；仅完整语义段的大小、空白和位置变化，无逐字旋转、勾边或字体混排。"
     },
     {
       "id": "world",
@@ -1767,6 +1767,34 @@
     }
   ],
   "focusGroups": [
+    {
+      "id": "language-river-images",
+      "label": "诗与照片 · 河流的阅读",
+      "camera": [
+        4.5,
+        1.65,
+        8.5
+      ],
+      "target": [
+        1.6,
+        0.9,
+        11.4
+      ]
+    },
+    {
+      "id": "language-body-images",
+      "label": "文字与身体 · 一切正常",
+      "camera": [
+        1.2,
+        1.65,
+        3.3
+      ],
+      "target": [
+        4.65,
+        0.85,
+        7.1
+      ]
+    },
     {
       "id": "spatial-floor-tomorrow",
       "label": "地面文字 · 迎着风谈论明天",
@@ -2665,7 +2693,7 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/typography-study-v2/manifest.json",
+  "poetryRasterManifest": "poetry/typography-study-v3/manifest.json",
   "occupancyStudy": {
     "status": "illustrative_not_observed_people",
     "diameters": [
@@ -3066,11 +3094,124 @@
     "geometryChanged": false,
     "originalTextChanged": false,
     "productionFilesUpdated": false,
-    "purpose": "两句地诗从均一排字改为词组之间的实体、轮廓、宽窄与旧印刷字对话。",
-    "previousRevision": "20261107-trial14-typography-study",
+    "purpose": "统一字形，按句法分组；把变化从逐词特效转移到整段语言的比例、间距与观看关系。",
+    "previousRevision": "20261108-trial14-typography-study2",
     "revisedIds": [
       "tomorrow",
       "river"
-    ]
+    ],
+    "referenceBoundary": "借鉴韦纳的语言与空间关系，不复制原字体，也不声称与其观念相同。",
+    "languageRelations": {
+      "title": "文字、图像与观看的关系",
+      "status": "curatorial_study_not_final_installation",
+      "attribution": "透明性、不透明性、空间性、物质性采用用户提出的分析框架；不宣称是韦纳本人的四分法。",
+      "principle": "每一种形式变化都应对应一句话与身体、图像或材料之间的关系。意义透明与材料透光是不同维度。",
+      "attention": {
+        "transparent": "字形退后，使语义、想象与图像关系进入注意力中心。字体仍须经过设计。",
+        "opaque": "字形、密度、轮廓与节奏成为可见对象；意义暂时延迟，不必被永久取消。"
+      },
+      "conditions": {
+        "spatial": "方向、远近、高低、遮挡、驻足与回望参与阅读。",
+        "material": "文字与墙、地面、玻璃、反射、印刷覆盖和时间变化发生具体关系。"
+      },
+      "encounters": [
+        {
+          "id": "opening",
+          "poemIds": [
+            "future",
+            "tomorrow"
+          ],
+          "focus": "spatial-opening-language",
+          "imageIds": [
+            "once_10",
+            "once_22",
+            "once_30",
+            "once_31",
+            "once_32"
+          ],
+          "intent": "先让观众进入以后回看过去的时间关系，再把目光交给摄影。语义优先；完整语义段保持可读。",
+          "implemented": "迎着风与谈论明天收为同一字形、同一基线，仅完整语义段有尺度差异。"
+        },
+        {
+          "id": "across",
+          "poemIds": [
+            "world",
+            "across",
+            "between"
+          ],
+          "focus": "spatial-screen-2",
+          "imageIds": [
+            "once_30",
+            "once_32",
+            "once_05",
+            "once_12"
+          ],
+          "intent": "先感到字形占据的横亘，再透过玻璃看到前后景，回望时重读我与他们之间。形体与意义轮换成为重点。",
+          "implemented": "保留用户指定的前段位置及已认可的空心字。阅读完整句子需要回到A侧正面；背面的镜字不作为新的全文。"
+        },
+        {
+          "id": "body-and-river",
+          "poemIds": [
+            "invitation",
+            "invitation-crossing",
+            "mountains",
+            "river"
+          ],
+          "focus": "language-body-images",
+          "secondaryFocus": "language-river-images",
+          "imageIds": [
+            "yqzc-01",
+            "yqzc-02",
+            "yqzc-03",
+            "yqzc-04",
+            "once_20",
+            "once_21",
+            "once_27"
+          ],
+          "intent": "身体在地面与图像之间转向。保留群山带来的不等间距；河流以三段句法让意义逐步展开，不给某幅照片规定唯一解释。",
+          "implemented": "河流统一字形，按河流带有／未命名的方向／从每个人流过接续；摄影位置和70、70、95厘米间距保持。"
+        },
+        {
+          "id": "growing",
+          "poemIds": [
+            "waves",
+            "waves-after",
+            "glass-growing",
+            "glass-sea-echo",
+            "far-waves"
+          ],
+          "focus": "spatial-glass-transmission",
+          "imageGroup": "Growing Again",
+          "intent": "文字与半透明影像共享玻璃；重复、消退及前后叠合与生长和变化相连。远浪继续低声出现。",
+          "implemented": "保留六图两诗板、连续玻璃与现有字形。水溶掉色仍是待打样的材料实验，不把图像中的退淡宣称为已验证工艺。"
+        },
+        {
+          "id": "ending",
+          "poemIds": [
+            "ending"
+          ],
+          "focus": "ending-clear",
+          "imageIds": [
+            "once_01",
+            "once_02",
+            "once_17",
+            "once_19"
+          ],
+          "intent": "先读到他们，再将我带入此刻的观看位置。图像中的人属于过去，观众带着后来的目光；叙事在两者之间发生。",
+          "implemented": "保留已避开板墙的终句与01的关系，不追加解释性文字。"
+        },
+        {
+          "id": "up-and-down",
+          "poemIds": [
+            "ceiling-night",
+            "stars",
+            "moonlight"
+          ],
+          "focus": "spatial-ceiling-language",
+          "intent": "从抬头到低头，观看动作与夜空、海面、波光的转换相连。",
+          "implemented": "保留这条概念关系；梁和灯轨对顶部字样仍有遮挡，顶面位置待单独调整和现场核定，不能当作已解决的安装方案。"
+        }
+      ]
+    }
   }
 }
