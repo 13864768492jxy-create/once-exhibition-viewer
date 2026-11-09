@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "revision": "20261107-trial14",
-  "title": "第十三次试排 · 沿红线换边",
-  "status": "thirteenth_trial_not_installation_plan",
-  "date": "2026-11-06",
+  "revision": "20261110-trial15",
+  "title": "大悦城 ONCE · 文字重设计",
+  "status": "空间与文字讨论稿，非制作或施工定稿",
+  "date": "2026-11-10",
   "sourceLayout": "source/layout-baselines/trial12.json",
-  "principle": "保留已经成立的疏密，让相邻作品接上，让诗句的先后、伏笔与回望有据可循。",
+  "principle": "以阅读、间距和留白承载文字的分量；少数词成为空间停顿。",
   "partitions": [
     {
       "id": "early",
@@ -902,7 +902,25 @@
       "depth": 0.004,
       "matColor": "#ffffff",
       "text": "前言\n\nONCE 后知后觉\n\n首版仅示意前言位置\n内容与形式另行调整",
-      "note": "前言占位，不是定稿文件。"
+      "note": "前言占位，不是定稿文件。",
+      "fontFamily": "authored-quiet",
+      "fontSize": 0.085,
+      "fontWidthScale": 1,
+      "weight": 400,
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "width": 0.85,
+      "typographyNote": "只显示已有占位内容，作为正文版式的边界；本轮没有新的正式前言。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/preface-location.png",
+        "sourceSVG": "assets/typography/quiet-20261109/preface-location.svg",
+        "sha256": "62f27ccfa7ccf49bb38701fc2c53268f0eac6fd399c58f4a94512f878fd1a580",
+        "physicalWidth": 0.85,
+        "physicalHeight": 1.3,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "entry-title",
@@ -919,23 +937,28 @@
       "frameFace": 0,
       "depth": 0.008,
       "matColor": "#f1f2ec",
-      "color": "#334239",
-      "fontSize": 0.145,
+      "color": "#42483F",
+      "fontSize": 0.16,
       "lineHeight": 1.05,
-      "fontFamily": "sans",
+      "fontFamily": "authored-quiet",
       "align": "center",
       "text": "ONCE 后知后觉",
-      "runs": [
-        {
-          "text": "ONCE ",
-          "weight": 600
-        },
-        {
-          "text": "后知后觉",
-          "weight": 600
-        }
-      ],
-      "note": "A口新增轻质门头位置与字样试验，非制作定稿。"
+      "note": "A口新增轻质门头位置与字样试验，非制作定稿。",
+      "fontWidthScale": 1,
+      "weight": 400,
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "width": 1.6,
+      "typographyNote": "一行展名，控制在门头占位内，和作品诗句分工。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/entry-title.png",
+        "sourceSVG": "assets/typography/quiet-20261109/entry-title.svg",
+        "sha256": "df55a768bd20f7092391e963a372da18fa418cebd78279720255022b93fb6a73",
+        "physicalWidth": 1.6,
+        "physicalHeight": 0.32,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "traveler-1",
@@ -1107,20 +1130,29 @@
         0.009,
         5.1
       ],
-      "fontSize": 0.3,
-      "width": 2.5,
+      "fontSize": 0.14,
+      "width": 1.0535,
       "surface": "floor",
       "rotationY": 90,
-      "weight": 500,
-      "fontFamily": "qi-narrow",
+      "weight": 400,
+      "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
-      "color": "#42473e",
+      "color": "#42483F",
       "letterSpacing": 0,
       "note": "原句第一部分；面向四幅卧室摄影阅读，先遇到脱鞋的邀请。避开现有金属线，不作为实际脱鞋要求。",
-      "glyphMode": "fill",
-      "rotationInPlane": 0
+      "rotationInPlane": 0,
+      "typographyNote": "沿观看《一切正常》的身体方向出现，面向照片读；以脚步和金属线建立联系。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/invitation.png",
+        "sourceSVG": "assets/typography/quiet-20261109/invitation.svg",
+        "sha256": "41d052fc3dc05180c5522cfa2c68760ec5b10ddf63aa2b3cf189fcb0681a1884",
+        "physicalWidth": 1.0535,
+        "physicalHeight": 0.21084000000000003,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "invitation-crossing",
@@ -1130,21 +1162,29 @@
         0.009,
         7.05
       ],
-      "fontSize": 0.27,
-      "width": 2.5,
+      "fontSize": 0.14,
+      "width": 1.2115000000000005,
       "surface": "floor",
       "rotationY": 90,
-      "weight": 700,
-      "fontFamily": "qi-narrow",
+      "weight": 400,
+      "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
-      "color": "#42473e",
+      "color": "#42483F",
       "letterSpacing": 0,
       "note": "同一句原诗的后半；沿观看带前行后再读到，两个字面之间的距离由身体完成。",
-      "glyphMode": "outline",
       "rotationInPlane": 0,
-      "strokeWidth": 0.0035
+      "typographyNote": "在沿线的下一个位置继续读到；与前句同向，让身体完成两句间的距离。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/invitation-crossing.png",
+        "sourceSVG": "assets/typography/quiet-20261109/invitation-crossing.svg",
+        "sha256": "88f8faf52632bade26a1b857121572cb25cda72dbf972602a1665ee9427f60e0",
+        "physicalWidth": 1.2115000000000005,
+        "physicalHeight": 0.20160000000000003,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "future",
@@ -1154,17 +1194,28 @@
         2.35,
         2.9
       ],
-      "fontSize": 0.16,
-      "width": 1.9,
+      "fontSize": 0.105,
+      "width": 0.9937399999999998,
       "surface": "wall",
       "rotationY": 90,
       "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.00192
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "完整一行，轻疏字距；在入口摄影上方给观众一段可记住的开头。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/future.png",
+        "sourceSVG": "assets/typography/quiet-20261109/future.svg",
+        "sha256": "ce64296d2e987c68f2e8196faa2e9b98b24e737611e65175ccf4da8bcc0b9e48",
+        "physicalWidth": 0.9937399999999998,
+        "physicalHeight": 0.17878,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "tomorrow",
@@ -1174,17 +1225,28 @@
         0.009,
         4.05
       ],
-      "fontSize": 0.16,
-      "width": 1.9,
+      "fontSize": 0.14,
+      "width": 1.11986,
       "surface": "floor",
       "rotationY": 0,
       "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.00192
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "“迎着风谈论明天”共用字号和基线；读者可以边走边把句子读完。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/tomorrow.png",
+        "sourceSVG": "assets/typography/quiet-20261109/tomorrow.svg",
+        "sha256": "da04034fa4d56f46666c9879d75a65edf2ce77f14cfcd5fef69b9e5a1f2587d2",
+        "physicalWidth": 1.11986,
+        "physicalHeight": 0.20034000000000002,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "mountains",
@@ -1194,35 +1256,29 @@
         2.28,
         9.715
       ],
-      "fontSize": 0.34,
-      "width": 1.22,
+      "fontSize": 0.19,
+      "width": 0.542055,
       "surface": "wall",
       "rotationY": -90,
-      "weight": 700,
-      "fontFamily": "qi-flat",
+      "weight": 400,
+      "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
       "lineHeight": 0.86,
       "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.012,
-      "lines": [
-        {
-          "text": "群山",
-          "fontFamily": "qi-flat",
-          "weight": 700,
-          "fontScale": 1
-        },
-        {
-          "text": "还未合拢，",
-          "fontFamily": "qi-narrow",
-          "weight": 400,
-          "fontScale": 0.36,
-          "offsetX": 0.25
-        }
-      ],
+      "color": "#42483F",
+      "letterSpacing": 0,
       "note": "保留与一切正常床褥起伏的联系；横亘整句留在透明诗屏上。",
-      "glyphMode": "fill",
-      "rotationInPlane": 0
+      "rotationInPlane": 0,
+      "typographyNote": "两行之间保留空隙；它位于《一切正常》最后两图之间，保留70、70、95厘米的不等间距。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/mountains.png",
+        "sourceSVG": "assets/typography/quiet-20261109/mountains.svg",
+        "sha256": "9a4267809d81fd0c414a10df9ed4263afd0fa1209722643bd62eaf454c821b3e",
+        "physicalWidth": 0.542055,
+        "physicalHeight": 0.43410000000000004,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "river",
@@ -1232,148 +1288,221 @@
         0.009,
         12.1
       ],
-      "fontSize": 0.16,
-      "width": 2.25,
+      "fontSize": 0.135,
+      "width": 1.4864600000000001,
       "surface": "floor",
       "rotationY": 0,
       "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
       "lineHeight": 1.35,
       "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.00192
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "下句右移三个字身，沿同一方向接续；两行间距只容纳一次短停顿。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/river.png",
+        "sourceSVG": "assets/typography/quiet-20261109/river.svg",
+        "sha256": "58f6f5fb80c52372eb49fbf91f951ff433eaf256af3c451d078457d166c6103b",
+        "physicalWidth": 1.4864600000000001,
+        "physicalHeight": 0.426225,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "world",
       "text": "已经发生的世界",
       "position": [
-        0.775,
-        2.03,
-        4.734
+        0.033,
+        2.12,
+        4.72
       ],
-      "fontSize": 0.17,
-      "width": 1.26,
+      "fontSize": 0.1,
+      "width": 0.7816000000000001,
       "surface": "wall",
-      "rotationY": 180,
-      "weight": 500,
-      "fontFamily": "qi-narrow",
+      "rotationY": 90,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
-      "color": "#42473e",
+      "color": "#42483F",
       "letterSpacing": 0,
-      "textScreenId": "poetry-screen-2",
-      "glyphMode": "fill",
       "rotationInPlane": 0,
-      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。"
+      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。",
+      "typographyNote": "落在相邻白墙留白的上部；两块透明面因此各自只承载一个字。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/world.png",
+        "sourceSVG": "assets/typography/quiet-20261109/world.svg",
+        "sha256": "838cd7973115d3299d0e39ebd2639bf2ec25ca34868b5771cc3316b4f64ff6c6",
+        "physicalWidth": 0.7816000000000001,
+        "physicalHeight": 0.16290000000000002,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "across",
-      "text": "横亘",
+      "text": "横",
       "position": [
-        0.775,
-        1.46,
-        4.734
+        0.405,
+        1.49,
+        4.674
       ],
-      "fontSize": 0.5,
-      "width": 1.26,
+      "fontSize": 0.14,
+      "width": 0.19292,
       "surface": "wall",
       "rotationY": 180,
-      "weight": 700,
-      "fontFamily": "qi-flat",
+      "weight": 400,
+      "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
-      "color": "#42473e",
+      "color": "#42483F",
       "letterSpacing": 0,
       "textScreenId": "poetry-screen-2",
-      "glyphMode": "outline",
       "rotationInPlane": 0,
-      "strokeWidth": 0.006,
-      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。"
+      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。",
+      "typographyNote": "“横”单独置于第一片窄玻璃，字身14厘米；两片留13厘米空隙并前后错开12厘米。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/across.png",
+        "sourceSVG": "assets/typography/quiet-20261109/across.svg",
+        "sha256": "2b5320cdced8f13bd24c3ee4fb87a0c92332408a698854c3496f723a4b28df88",
+        "physicalWidth": 0.19292,
+        "physicalHeight": 0.19656,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
+    },
+    {
+      "id": "across-gen",
+      "text": "亘",
+      "position": [
+        1.145,
+        1.49,
+        4.794
+      ],
+      "fontSize": 0.14,
+      "width": 0.18536000000000002,
+      "surface": "wall",
+      "rotationY": 180,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1.15,
+      "align": "left",
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "textScreenId": "poetry-screen-3",
+      "rotationInPlane": 0,
+      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。",
+      "typographyNote": "“亘”独占第二片玻璃，同一阅读高度、略有纵深差；观众移动时自行连接两字。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/across-gen.png",
+        "sourceSVG": "assets/typography/quiet-20261109/across-gen.svg",
+        "sha256": "54aea95652fd663497455aec7770ac183d0e6a99962edfc437d1a7174725a854",
+        "physicalWidth": 0.18536000000000002,
+        "physicalHeight": 0.18018,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "between",
       "text": "在我与他们之间，",
       "position": [
-        0.775,
-        1.08,
-        4.734
+        0.033,
+        0.88,
+        4.72
       ],
-      "fontSize": 0.17,
-      "width": 1.26,
+      "fontSize": 0.1,
+      "width": 0.8174000000000001,
       "surface": "wall",
-      "rotationY": 180,
+      "rotationY": 90,
       "weight": 400,
-      "fontFamily": "qi-narrow",
+      "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
-      "color": "#42473e",
+      "color": "#42483F",
       "letterSpacing": 0,
-      "textScreenId": "poetry-screen-2",
-      "glyphMode": "fill",
       "rotationInPlane": 0,
-      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。"
+      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。",
+      "typographyNote": "回到相邻白墙较低处；从上句、两片字、下句完成一次跨平面的阅读。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/between.png",
+        "sourceSVG": "assets/typography/quiet-20261109/between.svg",
+        "sha256": "82807a259d0368796f2fbdff3c1272e86235c48dbbf4fb28efd23097c8cc599d",
+        "physicalWidth": 0.8174000000000001,
+        "physicalHeight": 0.1741,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "ending",
       "text": "他们再也看不见我。",
       "position": [
         0.033,
-        2.4,
+        2.36,
         25.55
       ],
-      "fontSize": 0.31,
-      "width": 2.6,
+      "fontSize": 0.13,
+      "width": 1.1951800000000001,
       "surface": "wall",
       "rotationY": 90,
       "weight": 400,
-      "fontFamily": "qi-narrow",
+      "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
       "lineHeight": 1.16,
       "align": "left",
-      "color": "#42473e",
+      "color": "#42483F",
       "letterSpacing": 0,
-      "runs": [
-        {
-          "text": "他们",
-          "fontFamily": "qi-flat",
-          "weight": 700,
-          "fontScale": 1.15
-        },
-        {
-          "text": "再也看不见我。",
-          "fontFamily": "qi-narrow",
-          "weight": 400
-        }
-      ],
-      "glyphMode": "fill",
       "rotationInPlane": 0,
-      "note": "整句移入B侧板墙之后的完整墙段；与走入暗处的人物、墙面光影构成最后一组。"
+      "note": "整句移入B侧板墙之后的完整墙段；与走入暗处的人物、墙面光影构成最后一组。",
+      "typographyNote": "保持原来避开板墙的位置，缩为完整的一行；留白使它可以迟一些被发现。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/ending.png",
+        "sourceSVG": "assets/typography/quiet-20261109/ending.svg",
+        "sha256": "f45e87b7eebfd2eb0b66123080f4d85b04a3b120e933a084969235c5248837e4",
+        "physicalWidth": 1.1951800000000001,
+        "physicalHeight": 0.18960000000000002,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "moon",
       "text": "月亮升起。",
       "position": [
         4.967,
-        2.55,
+        2.4,
         5.4
       ],
-      "fontSize": 0.52,
-      "width": 2.25,
+      "fontSize": 0.21,
+      "width": 1.01575,
       "surface": "wall",
       "rotationY": -90,
-      "weight": 700,
-      "fontFamily": "qi-narrow",
+      "weight": 400,
+      "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
       "lineHeight": 1.16,
       "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.006,
-      "glyphMode": "fill",
-      "rotationInPlane": 8
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "在右墙高处完整出现，和入口的第一首诗区分方向；周围空白留给图像。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/moon.png",
+        "sourceSVG": "assets/typography/quiet-20261109/moon.svg",
+        "sha256": "26eb99ea712046ad88ce680bfe5f59e692cffbedb40c3ab3ad920d31c35ac4f4",
+        "physicalWidth": 1.01575,
+        "physicalHeight": 0.26404,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "tide",
@@ -1383,17 +1512,28 @@
         0.009,
         7.1
       ],
-      "fontSize": 0.17,
-      "width": 2.2,
+      "fontSize": 0.14,
+      "width": 1.2707400000000002,
       "surface": "floor",
       "rotationY": 0,
       "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
       "lineHeight": 1.16,
       "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.00204
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "地面承接墙上“月亮”；观看者低头后读到不知情的潮水。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/tide.png",
+        "sourceSVG": "assets/typography/quiet-20261109/tide.svg",
+        "sha256": "8ca4a8415bb924e12321b8b3dc5f34ad14e6d60108b3f55934dcd83873decf62",
+        "physicalWidth": 1.2707400000000002,
+        "physicalHeight": 0.19992000000000001,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "sea",
@@ -1403,17 +1543,28 @@
         2.45,
         8.4
       ],
-      "fontSize": 0.12,
-      "width": 0.88,
+      "fontSize": 0.105,
+      "width": 0.7620549999999999,
       "surface": "wall",
       "rotationY": 90,
       "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.0014399999999999999
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "一行置于长墙，与船和水景相邻，保持摄影独立可看。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/sea.png",
+        "sourceSVG": "assets/typography/quiet-20261109/sea.svg",
+        "sha256": "0936e6be6836322f7d1e59b839a6fbfd0a3673fc62b4f85e5f984cc6d3d37983",
+        "physicalWidth": 0.7620549999999999,
+        "physicalHeight": 0.17857,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "shore",
@@ -1424,16 +1575,27 @@
         10.25
       ],
       "fontSize": 0.105,
-      "width": 0.88,
+      "width": 0.882665,
       "surface": "wall",
       "rotationY": 90,
       "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
       "lineHeight": 1.15,
       "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.00126
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "低位接续“海水越过海水”，让抬头与低头成为阅读的间隔。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/shore.png",
+        "sourceSVG": "assets/typography/quiet-20261109/shore.svg",
+        "sha256": "910a8add2181c8d877f3364a90e961921e29d5bd8d43d4a3755fec197bab189b",
+        "physicalWidth": 0.882665,
+        "physicalHeight": 0.167755,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "reef",
@@ -1443,19 +1605,28 @@
         2.6,
         16.7
       ],
-      "fontSize": 0.27,
-      "width": 1.5,
+      "fontSize": 0.14,
+      "width": 0.6748400000000001,
       "surface": "wall",
       "rotationY": 90,
-      "weight": 700,
-      "fontFamily": "qi-narrow",
+      "weight": 400,
+      "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
       "lineHeight": 1.16,
       "align": "left",
-      "color": "#42473e",
+      "color": "#42483F",
       "letterSpacing": 0,
-      "glyphMode": "fill",
-      "rotationInPlane": 0
+      "rotationInPlane": 0,
+      "typographyNote": "保留高位短句与下方独立摄影18的空白，不填满墙段。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/reef.png",
+        "sourceSVG": "assets/typography/quiet-20261109/reef.svg",
+        "sha256": "9b84d63c5ed702f772d45c2376fee75d7f288a9cc6de4e27194e7a5c9590e2db",
+        "physicalWidth": 0.6748400000000001,
+        "physicalHeight": 0.21672000000000002,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "islands",
@@ -1465,17 +1636,28 @@
         2.48,
         17.6
       ],
-      "fontSize": 0.17,
-      "width": 1.5,
+      "fontSize": 0.115,
+      "width": 0.8352350000000002,
       "surface": "wall",
       "rotationY": -90,
       "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
       "lineHeight": 1.16,
       "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.00204
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "上方一行接近右侧摄影末组，保留图像下方的观看空间。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/islands.png",
+        "sourceSVG": "assets/typography/quiet-20261109/islands.svg",
+        "sha256": "f7f0027a699f8b0b87a5c0bd08dfa0805f7ebcb079029ecdf70de4f52aef54c0",
+        "physicalWidth": 0.8352350000000002,
+        "physicalHeight": 0.17695000000000002,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "far-waves",
@@ -1485,17 +1667,28 @@
         1.25,
         26.9
       ],
-      "fontSize": 0.13,
-      "width": 1.65,
+      "fontSize": 0.12,
+      "width": 1.1116,
       "surface": "wall",
       "rotationY": -90,
       "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
       "lineHeight": 1.16,
       "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.0015600000000000002
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "保持玻璃排尾1.25米的低位、独处和回望关系。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/far-waves.png",
+        "sourceSVG": "assets/typography/quiet-20261109/far-waves.svg",
+        "sha256": "d8dd80e91572743b1e4c98d7fb49af2696c597ff09f9a4d4470ebaaad3f80e81",
+        "physicalWidth": 1.1116,
+        "physicalHeight": 0.18112,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "waves",
@@ -1505,51 +1698,59 @@
         2.2,
         20.4
       ],
-      "fontSize": 0.24,
-      "width": 1.55,
+      "fontSize": 0.17,
+      "width": 0.756855,
       "surface": "wall",
       "rotationY": -90,
-      "weight": 500,
-      "fontFamily": "qi-narrow",
+      "weight": 400,
+      "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
       "lineHeight": 0.86,
       "align": "left",
-      "color": "#42473e",
+      "color": "#42483F",
       "letterSpacing": 0,
-      "glyphMode": "fill",
       "rotationInPlane": 0,
-      "lines": [
-        {
-          "text": "它聚拢，",
-          "fontScale": 0.85
-        },
-        {
-          "text": "它抬升，",
-          "fontScale": 1.15,
-          "offsetX": 0.25,
-          "offsetY": 0.035
-        }
-      ]
+      "typographyNote": "聚拢与抬升相邻成组，第二行轻微侧移；作用于玻璃群的开端。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/waves.png",
+        "sourceSVG": "assets/typography/quiet-20261109/waves.svg",
+        "sha256": "0de9c0449fab19ad76ef0a21e3e31c1d8094dfa837d3fd6ee1a796940888eb0b",
+        "physicalWidth": 0.756855,
+        "physicalHeight": 0.441545,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "stars",
       "text": "群星随波浪起伏。",
       "position": [
         4.967,
-        2.75,
+        2.7,
         26.55
       ],
-      "fontSize": 0.15,
-      "width": 1.75,
+      "fontSize": 0.105,
+      "width": 0.912345,
       "surface": "wall",
       "rotationY": -90,
       "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
       "lineHeight": 1.25,
       "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.0018
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "从顶面“夜空”回到墙面上方，和下方动作组分开；不再重叠。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/stars.png",
+        "sourceSVG": "assets/typography/quiet-20261109/stars.svg",
+        "sha256": "2a5594d69cf779bb8a80db400585d6bdadea4368b380b13a07c48f574706a32c",
+        "physicalWidth": 0.912345,
+        "physicalHeight": 0.167125,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "moonlight",
@@ -1559,17 +1760,28 @@
         0.009,
         26.65
       ],
-      "fontSize": 0.16,
-      "width": 2.4,
+      "fontSize": 0.135,
+      "width": 1.7890150000000005,
       "surface": "floor",
       "rotationY": 0,
       "weight": 400,
-      "fontFamily": "huiwen",
-      "fontWidthScale": 1.0,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
       "lineHeight": 1.16,
       "align": "left",
-      "color": "#42473e",
-      "letterSpacing": 0.00192
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "一行横向舒展，保持原地面结束位置；与上方群星形成抬头、低头的关系。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/moonlight.png",
+        "sourceSVG": "assets/typography/quiet-20261109/moonlight.svg",
+        "sha256": "81f8b51f24fb418de2ae2570e1348a4ac6e17936bd5bfdcfdf1db7d1fe292c56",
+        "physicalWidth": 1.7890150000000005,
+        "physicalHeight": 0.21148,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "ceiling-night",
@@ -1579,73 +1791,60 @@
         3.595,
         26.2
       ],
-      "fontSize": 0.27,
-      "width": 1.8,
+      "fontSize": 0.16,
+      "width": 0.9765600000000001,
       "surface": "ceiling",
       "rotationY": 90,
-      "weight": 500,
-      "fontFamily": "qi-narrow",
+      "weight": 400,
+      "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
       "lineHeight": 1.05,
       "align": "left",
-      "color": "#42473e",
+      "color": "#42483F",
       "letterSpacing": 0,
       "note": "由看床面转为向右上方仰视；两行真实Plex字重与大小构成倾斜的语义，实际顶高仍未知，不改横杆也不增加吊板。",
-      "lines": [
-        {
-          "text": "夜空向海面",
-          "fontFamily": "qi-narrow",
-          "weight": 400,
-          "fontScale": 0.9
-        },
-        {
-          "text": "缓缓倾斜，",
-          "fontFamily": "qi-narrow",
-          "weight": 500,
-          "fontScale": 1.2,
-          "offsetX": 0.13,
-          "offsetY": 0.02
-        }
-      ],
-      "glyphMode": "fill",
-      "rotationInPlane": -6
+      "rotationInPlane": 0,
+      "typographyNote": "两行错位而有同一方向；依附后段现有顶面示意，3.6米标高仍待实测。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/ceiling-night.png",
+        "sourceSVG": "assets/typography/quiet-20261109/ceiling-night.svg",
+        "sha256": "a584c43a754859d3b26151d89318b762afcddbbe4b3c310526545047afa6449f",
+        "physicalWidth": 0.9765600000000001,
+        "physicalHeight": 0.46864,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "waves-after",
       "text": "它倾覆，\n它盘旋。",
       "position": [
         4.967,
-        2.43,
+        2.22,
         26.45
       ],
-      "fontSize": 0.24,
-      "width": 1.55,
+      "fontSize": 0.17,
+      "width": 0.669325,
       "surface": "wall",
       "rotationY": -90,
-      "weight": 500,
-      "fontFamily": "qi-narrow",
+      "weight": 400,
+      "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
       "lineHeight": 0.86,
       "align": "left",
-      "color": "#42473e",
+      "color": "#42483F",
       "letterSpacing": 0,
-      "glyphMode": "fill",
       "rotationInPlane": 0,
-      "lines": [
-        {
-          "text": "它倾覆，",
-          "fontScale": 1
-        },
-        {
-          "text": "它盘旋。",
-          "fontScale": 0.85,
-          "offsetX": 0.16,
-          "offsetY": -0.025,
-          "glyphMode": "outline",
-          "weight": 700,
-          "strokeWidth": 0.0035
-        }
-      ]
+      "typographyNote": "倾覆与盘旋落在玻璃排尾上方；与“群星”拉开纵向间隔，避免拥挤。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/waves-after.png",
+        "sourceSVG": "assets/typography/quiet-20261109/waves-after.svg",
+        "sha256": "f01d17046307051ef3049b4429231d81180db0910255184614a0835166311e44",
+        "physicalWidth": 0.669325,
+        "physicalHeight": 0.45414000000000004,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
     },
     {
       "id": "glass-growing",
@@ -1657,25 +1856,28 @@
         22.349999999999998
       ],
       "rotationY": -90,
-      "fontFamily": "authored-latin",
-      "weight": 700,
+      "fontFamily": "authored-quiet",
+      "weight": 400,
       "fontWidthScale": 1,
-      "fontSize": 0.2,
+      "fontSize": 0.19,
       "width": 0.6,
       "lineHeight": 1.1,
       "align": "left",
-      "color": "#424a40",
+      "color": "#42483F",
       "glassPanelId": "ga-poetry-title",
+      "note": "Growing Again采用Raleway真实轻体、黑体、斜体逐字组构：粗细、斜正和宽窄形成差异。Again六层重叠，向下逐渐左右漂移、舒展、退淡；首层完整可读。原创字母编排，不复制参考图。",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "Growing清楚在上，Again下方两次轻微左右偏移并退淡；第一次完整的Again始终可读。",
       "rasterOverride": {
-        "path": "assets/typography/trial10/glass-growing.png",
+        "path": "assets/typography/quiet-20261109/glass-growing.png",
+        "sourceSVG": "assets/typography/quiet-20261109/glass-growing.svg",
+        "sha256": "beaff722bbb899d8e710f377ebb70ecb8a349d31338c94328a13cda26674aafb",
         "physicalWidth": 0.6,
         "physicalHeight": 1.54,
         "localCenterX": 0,
-        "localCenterY": 0,
-        "sha256": "f75b52250d1ce88ca4d82178f5d3035e63766b2c9adfd29197eb358df3029db7",
-        "sourceSVG": "assets/typography/trial10/glass-growing.svg"
-      },
-      "note": "Growing Again采用Raleway真实轻体、黑体、斜体逐字组构：粗细、斜正和宽窄形成差异。Again六层重叠，向下逐渐左右漂移、舒展、退淡；首层完整可读。原创字母编排，不复制参考图。"
+        "localCenterY": 0
+      }
     },
     {
       "id": "glass-sea-echo",
@@ -1687,25 +1889,28 @@
         24.45
       ],
       "rotationY": -90,
-      "fontFamily": "qi-narrow",
-      "weight": 700,
+      "fontFamily": "authored-quiet",
+      "weight": 400,
       "fontWidthScale": 1,
-      "fontSize": 0.2,
+      "fontSize": 0.13,
       "width": 0.6,
       "lineHeight": 1.1,
       "align": "left",
-      "color": "#424a40",
+      "color": "#42483F",
       "glassPanelId": "ga-poetry-sea",
+      "note": "上方海水凝聚，越过保持细小清晰，下方海水沿向下的字形退淡；只回响已读原诗，不插入新的缺章。",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "保留三个语组和透视空白，与相邻半透明植物影像并置。",
       "rasterOverride": {
-        "path": "assets/typography/trial10/glass-sea-echo.png",
+        "path": "assets/typography/quiet-20261109/glass-sea-echo.png",
+        "sourceSVG": "assets/typography/quiet-20261109/glass-sea-echo.svg",
+        "sha256": "c05736acfc9f2838f90a183fa2d0392206e93ae1ee89dc0bf9f9f59a28b4cdef",
         "physicalWidth": 0.6,
         "physicalHeight": 1.54,
         "localCenterX": 0,
-        "localCenterY": 0,
-        "sha256": "ce55b2f00427437f7a1c3d303f6105b6f9a196982b4281b22c93ffd1f13a403b",
-        "sourceSVG": "assets/typography/trial10/glass-sea-echo.svg"
-      },
-      "note": "上方海水凝聚，越过保持细小清晰，下方海水沿向下的字形退淡；只回响已读原诗，不插入新的缺章。"
+        "localCenterY": 0
+      }
     }
   ],
   "focusGroups": [
@@ -2406,21 +2611,92 @@
         "once_02",
         "once_17"
       ]
+    },
+    {
+      "id": "language-split-word",
+      "label": "横／亘 · 两片玻璃与留白",
+      "camera": [
+        2.2,
+        1.6,
+        2.8
+      ],
+      "target": [
+        0.68,
+        1.42,
+        4.75
+      ],
+      "orthographicWidth": 3.7,
+      "orthographicHeight": 2.85
+    },
+    {
+      "id": "language-ending",
+      "label": "终句 · 摄影之后",
+      "camera": [
+        3.9,
+        1.6,
+        25.4
+      ],
+      "target": [
+        0,
+        1.6,
+        25.4
+      ],
+      "orthographicWidth": 4.1,
+      "orthographicHeight": 2.95
+    },
+    {
+      "id": "spatial-floor-tomorrow",
+      "label": "地面文字 · 迎着风谈论明天",
+      "camera": [
+        2.35,
+        1.6,
+        2.75
+      ],
+      "target": [
+        2.35,
+        0.03,
+        4.05
+      ]
+    },
+    {
+      "id": "language-river-images",
+      "label": "诗与照片 · 河流的阅读",
+      "camera": [
+        4.5,
+        1.65,
+        8.5
+      ],
+      "target": [
+        1.6,
+        0.9,
+        11.4
+      ]
+    },
+    {
+      "id": "language-body-images",
+      "label": "文字与身体 · 一切正常",
+      "camera": [
+        1.2,
+        1.65,
+        3.3
+      ],
+      "target": [
+        4.65,
+        0.85,
+        7.1
+      ]
     }
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "保留13b的整体疏密、原作尺寸与字形；修正01所在墙、终句遮挡、枕头靠边和观看顺序。",
-    "01从右侧交界板墙移到左后长墙，与09、19、02、17重新接成原G606一组。",
-    "18仍在16.05m独立停顿，28接在它后方；不把18的空墙填满。",
-    "27回到左长墙末端，前活动墙两面为13、36，接续20之后的旧展关系。",
-    "右侧交界墙背面和B端活动墙背面主动留白，不为填满而补画。",
-    "横亘玻璃保持4.75m指定位置；用户明确采用先出现作伏笔、稍后回望补读。不能称为严格单向顺读。",
-    "迎着风、潮水、河流、波光统一面向A口来向；邀请的两句保持面向右墙，靠拢为相邻一对。",
-    "更远的浪保留已认可的低位原字形与排尾位置，属于玻璃组里的回望。",
-    "他们整句移到板墙之后；三个白枕向A端移65cm，远端留91cm，照片仍在独立控光区以外。",
-    "一切正常70/70/95cm间距与群山关系、Growing Again八片并列均保持。",
-    "讨论稿；不更新印刷和施工点位。"
+    "整套旧文字与网站已独立备份。本轮重新设计25处诗句及门头、前言占位。",
+    "连续诗句用原生宋体，空间关键词与邀请用原生旗黑X1；不再用旧打印纹理、压缩字面与大面积空心字。",
+    "31幅后知后觉、4幅一切正常、6幅Growing Again的画面、尺寸、位置与装裱不变。",
+    "横和亘分别独占一片窄玻璃，仍在前段约4.75m的位置作伏笔；上下文回到邻近白墙，通过回望补读。",
+    "一切正常70/70/95cm的间距不变，群山依然出现在最后的扩大间隔中。",
+    "Growing Again八片玻璃及控光区保持；Again仅保留两次轻微重影。前段两片窄诗屏不扩大横向占地，但其构造仍为示意。",
+    "顶面附着示意移至现有顶诗所在的后段；3.6m仍为试排标高，非吊顶实测。",
+    "前言保留占位原文，没有编造正文；未更新安装或印刷文件。"
   ],
   "environment": {
     "wallFields": [
@@ -2500,7 +2776,7 @@
     "ceilingStudy": {
       "height": 3.6,
       "x": 2.5,
-      "z": 10.6,
+      "z": 26.2,
       "width": 5.0,
       "depth": 4.8,
       "color": "#F4F4F0",
@@ -2526,9 +2802,9 @@
   "textScreens": [
     {
       "id": "poetry-screen-2",
-      "x": 0.775,
-      "z": 4.75,
-      "width": 1.35,
+      "x": 0.405,
+      "z": 4.69,
+      "width": 0.61,
       "height": 2.3,
       "bottom": 0.045,
       "yaw": 0,
@@ -2541,7 +2817,7 @@
       "depth": 0.018,
       "opacity": 0.025,
       "baseColor": "#bfc1b8",
-      "baseWidth": 1.45,
+      "baseWidth": 0.67,
       "baseDepth": 0.55,
       "baseHeight": 0.045,
       "manifestation": [
@@ -2558,7 +2834,43 @@
           "placement": "edges"
         }
       ],
-      "note": "按用户2026-11-07截图移到前段30、32号与05、12号之间；整块诗屏垂直于左墙，原字形和底座保留。"
+      "note": "两片窄玻璃各留一个字；片间13厘米、前后错位12厘米。基座和显识为讨论占位，非施工定稿。"
+    },
+    {
+      "id": "poetry-screen-3",
+      "x": 1.145,
+      "z": 4.81,
+      "width": 0.61,
+      "height": 2.3,
+      "bottom": 0.045,
+      "yaw": 0,
+      "normal": [
+        0,
+        -1
+      ],
+      "frameColor": "#a5ada5",
+      "frameFace": 0.01,
+      "depth": 0.018,
+      "opacity": 0.025,
+      "baseColor": "#bfc1b8",
+      "baseWidth": 0.67,
+      "baseDepth": 0.55,
+      "baseHeight": 0.045,
+      "manifestation": [
+        {
+          "height": 0.95,
+          "bandHeight": 0.04,
+          "width": 0.13,
+          "placement": "edges"
+        },
+        {
+          "height": 1.58,
+          "bandHeight": 0.04,
+          "width": 0.13,
+          "placement": "edges"
+        }
+      ],
+      "note": "两片窄玻璃各留一个字；片间13厘米、前后错位12厘米。基座和显识为讨论占位，非施工定稿。"
     }
   ],
   "botanicalGroups": [
@@ -2593,7 +2905,7 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/trial14/manifest.json",
+  "poetryRasterManifest": "poetry/trial15/manifest.json",
   "occupancyStudy": {
     "status": "illustrative_not_observed_people",
     "diameters": [
@@ -2695,6 +3007,7 @@
         "river",
         "world",
         "across",
+        "across-gen",
         "between",
         "ending"
       ],
@@ -2703,10 +3016,11 @@
         "toIds": [
           "world",
           "across",
+          "across-gen",
           "between"
         ],
         "reason": "User confirmed on 2026-11-07: keep the front glass as a foreshadowing and complete the poem by returning to it.",
-        "note": "This is not a strictly linear reading route. The back of physical glass carries mirrored lettering; readable re-reading requires returning to the A-facing side."
+        "note": "前后句在相邻白墙，横与亘在两片玻璃；须回到朝A口的一面读正字，背面为镜字。"
       }
     },
     {
@@ -2840,12 +3154,7 @@
   "nativeBaseline": "models/长廊展厅_空间底模_近5m试算.blend",
   "nativeBaselineQA": "qa/native_r09_model_qa.json",
   "spaceRevision": "20261106-r09-near5m",
-  "previousTrial": {
-    "path": "layouts/trial13.json",
-    "revision": "20261107-trial13b",
-    "status": "visually_liked_with_specific_corrections",
-    "sha256": "68eb8317b2188793525af307c9263ac3aa827dd6e984ac8f21296e7710fa1f6f"
-  },
+  "previousTrial": "layouts/trial14.json",
   "spatialZones": [
     {
       "id": "opening",
@@ -2892,7 +3201,7 @@
     "wallFieldAfter": 7.7,
     "physicalResizing": false
   },
-  "studyVariant": "13b refinement / G606 neighbourhoods and readable encounters",
+  "studyVariant": "quiet-language-reset",
   "screenPlacementRevision": {
     "date": "2026-11-07",
     "reason": "user screenshot places entire poem screen in the gap between once_30/32 and once_05/12",
@@ -2920,7 +3229,7 @@
       "invitation-crossing"
     ],
     "intentional_returns": [
-      "world/across/between glass",
+      "world / across / across-gen / between across wall and two glass planes",
       "far-waves to glass verbs"
     ],
     "no_claim": "Not all poetry is encountered in original order on a one-way walk."
@@ -2980,5 +3289,34 @@
       "late-B"
     ],
     "empty_face_reason": "Leave the return faces open for a pause and for the projection transition; do not refill them."
+  },
+  "typographyReset": {
+    "source": "source/typography-reset-20261109.json",
+    "referenceFolder": "桌面/字体设计参考；桌面/排版参考",
+    "oldRevision": "20261107-trial14",
+    "decision": "安静但可辨；形式差异服务于语义、停顿和载体",
+    "protectedRelations": [
+      "early-glass-return",
+      "large-series-uneven-gap",
+      "joined-semitransparent-glass",
+      "separate-projection-light-zone"
+    ],
+    "fontPolicy": "real-outlines; no fallback; no faux weight or glyph compression"
+  },
+  "splitWordStudy": {
+    "word": "横亘",
+    "glyphs": [
+      "across",
+      "across-gen"
+    ],
+    "carrierIds": [
+      "poetry-screen-2",
+      "poetry-screen-3"
+    ],
+    "nominalEmMetres": 0.14,
+    "clearGapMetres": 0.13,
+    "depthOffsetMetres": 0.12,
+    "baseOuterX": 1.48,
+    "note": "单个载体只出现一个字。两片窄玻璃固定、边缘显识、防倾覆及驻足空间仍需现场核定。"
   }
 }

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261107-trial14';
-import { buildExhibition } from './exhibition.js?v=20261107-trial14';
+import { installCatalog } from './catalog.js?v=20261110-trial15';
+import { buildExhibition } from './exhibition.js?v=20261110-trial15';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
@@ -319,19 +319,19 @@ async function init(){try{
   const typographyStudy=typeMode==='study';
   const previousTypography=typeMode==='study1'||typeMode==='study2';
   const typographyCompare=typographyStudy||previousTypography||typeMode==='base';
-  const baseline=['09','10','11','12','13'].includes(requestedTrial)?requestedTrial:null;
+  const baseline=['09','10','11','12','13','14'].includes(requestedTrial)?requestedTrial:null;
   const layoutURL=typographyStudy?'layouts/typography-study.json':typeMode==='study2'?'layouts/typography-study-20261108-mixed.json':previousTypography?'layouts/typography-study-20261107.json':baseline?'layouts/trial'+baseline+'.json':'layout.json';
-  const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261107-trial14',{cache:'no-store'})));
+  const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261110-trial15',{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   const inputTexts=await Promise.all(responses.map(r=>r.text()));
   [data,trialLayout,library]=inputTexts.map(text=>JSON.parse(text));
   $('#projection-light-row').hidden=trialLayout.lightingStudy?.controlledZone?.side!=='both';
   $('#projection-light-study').addEventListener('change',updateLightStudy);
   $('#trial-on').textContent=trialName();
-  $('#baseline-compare').textContent=baseline?'回到试排14':'对照上一版';
-  $('#baseline-compare').href=baseline?'?v=20261107-trial14':'?trial=13&v=20261107-trial14';
+  $('#baseline-compare').textContent=baseline?'回到试排15':'对照上一版';
+  $('#baseline-compare').href=baseline?'?v=20261110-trial15':'?trial=14&v=20261110-trial15';
   if(baseline){$('.header h1 span').textContent='保留基准 · '+trialName();$('.header p').textContent=baseline==='10'?'上一版的摄影位置与透明诗板':'六块并板 · 原位置与句形';document.title='大悦城 ONCE · '+trialName();
-    $('#trial-description').innerHTML='<h3>保留基准 · '+trialName()+'</h3><p>这一版的位置、作品尺寸与诗句字形保留，可返回试排14比较左、右、左的摄影动线。</p>';
+    $('#trial-description').innerHTML='<h3>保留基准 · '+trialName()+'</h3><p>这一版的位置、作品尺寸与诗句字形保留，可返回试排15比较左、右、左的摄影动线。</p>';
   }
   if(typographyCompare){
     $('.header h1 span').textContent=typographyStudy?'文字与空间 · 试读':previousTypography?'两句地诗 · 上一轮':'字体对照 · 现版';$('.header p').textContent=typographyStudy?'文字、摄影与材料 · 在走动与回望中阅读':'迎着风 / 河流 · 同视角比较';document.title='大悦城 ONCE · 文字与空间';

@@ -526,7 +526,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       if (!imageURL || !(item.physicalWidth > 0 || item.width > 0) || !(item.physicalHeight > 0 || item.height > 0)) throw new Error(`诗句清单尺寸或图像无效: ${item.id}`);
       poetryRasters.set(item.id, {...item, imageUrl: new URL(imageURL, manifestURL).href});
     }
-    for (const poem of layout.poems || []) {
+    for (const poem of [...(layout.poems || []), ...(layout.works || []).filter(work => work.type === 'text' && work.rasterOverride)]) {
       const item = poetryRasters.get(poem.id);
       if (!item) throw new Error(`诗句清单缺少: ${poem.id}`);
       if (item.text != null && item.text !== textRuns(poem).map(run => run.text || '').join('')) throw new Error(`诗句清单原文不一致: ${poem.id}`);
@@ -820,6 +820,15 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     if (record.type === 'text') {
       const paper = new THREE.MeshBasicMaterial({color: record.matColor || '#f8f7f2', side: THREE.DoubleSide, toneMapped: false});
       box(work, '前言版面_排版待核', width, height, .008, 0, 0, .004, paper);
+      const supplied = poetryRasters.get(record.id);
+      if (supplied) {
+        const text = imageOn(work, null, {...record, imageUrl: supplied.imageUrl, type: 'poetry-raster'}, supplied.physicalWidth, supplied.physicalHeight, .009, {alpha: true, preserveDimensions: true});
+        text.position.x = supplied.localCenterX || 0;
+        text.position.y = supplied.localCenterY || 0;
+        text.name = '独立排定字样_与原生模型一致';
+        Object.assign(text.userData, {effectiveFontSize: supplied.effectiveFontSize, fontWidthScale: 1, uniformContainScale: 1, physicalWidth: supplied.physicalWidth, physicalHeight: supplied.physicalHeight, rasterSHA256: supplied.sha256});
+        work.userData.textDimensions = {...text.userData};
+      } else {
       const fontSize = positive(record.fontSize, .045);
       const widthScale = THREE.MathUtils.clamp(finite(record.fontWidthScale, 1), .001, 1);
       const raster = textCanvas(record.text || '', {fontPixels: 96, padding: 5, color: record.color || '#42473e', runs: textRuns(record), lineHeight: finite(record.fontLineHeight, finite(record.lineHeight, 1.6)), fontFamily: textFamily(record), weight: record.weight || 300, align: record.align || 'left', trackingPixels: finite(record.letterSpacing, 0) / fontSize * 96, glyphMode: record.glyphMode || 'fill', strokeWidth: finite(record.strokeWidth, .002), strokeColor: record.strokeColor, fontSizeMetres: fontSize, widthScale});
@@ -836,6 +845,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       Object.assign(text.userData, {width: textWidth, height: textHeight});
       work.userData.textDimensions = {...text.userData};
       if (text.userData.effectiveFontSize < fontSize * .99) stats.textScales.push({id: record.id, requested: fontSize, effective: text.userData.effectiveFontSize});
+      }
       stats.texts++;
     } else if (record.type === 'video' && record.displayMode === 'pillow-projection') {
       const pw=record.pillowWidth,ph=record.pillowHeight;
