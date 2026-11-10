@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261110-trial15';
-import { buildExhibition } from './exhibition.js?v=20261110-trial15';
+import { installCatalog } from './catalog.js?v=20261110-trial16';
+import { buildExhibition } from './exhibition.js?v=20261110-trial16';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
@@ -251,11 +251,12 @@ function focusOnGroup(id){
     $('#walk-controls').hidden=true;$('#cutaway').disabled=true;
     const aspect=host.clientWidth/host.clientHeight;
     const mobileFloorInvitation=host.clientWidth<600&&group.id==='spatial-normal-threshold';
-    if(!mobileFloorInvitation&&(host.clientWidth<600||group.framing?.projection==='orthographic')){inspectionFrame={width:group.framing?.width||3.2,height:group.framing?.height||3.1};const h=Math.max(inspectionFrame.height/2,inspectionFrame.width/2/aspect);camera=new THREE.OrthographicCamera(-h*1.12*aspect,h*1.12*aspect,h*1.28,-h*.96,.025,120);}else camera=new THREE.PerspectiveCamera(mobileFloorInvitation?90:58,aspect,.025,120);camera.up.copy(worldUp);
+    const perspectiveStudy=group.framing?.projection==='perspective';
+    if(!mobileFloorInvitation&&!perspectiveStudy&&(host.clientWidth<600||group.framing?.projection==='orthographic')){inspectionFrame={width:group.framing?.width||3.2,height:group.framing?.height||3.1};const h=Math.max(inspectionFrame.height/2,inspectionFrame.width/2/aspect);camera=new THREE.OrthographicCamera(-h*1.12*aspect,h*1.12*aspect,h*1.28,-h*.96,.025,120);}else camera=new THREE.PerspectiveCamera(mobileFloorInvitation?90:58,aspect,.025,120);camera.up.copy(worldUp);
     if(group.cameraUp)camera.up.set(group.cameraUp[0],group.cameraUp[1],-group.cameraUp[2]);
     camera.position.set(group.camera[0],group.camera[1],-group.camera[2]);
     const target=new THREE.Vector3(group.target[0],group.target[1],-group.target[2]);camera.lookAt(target);
-    const textScreen=trialLayout.textScreens?.find(screen=>id==='spatial-'+screen.id.replace('poetry-',''));
+    const textScreen=trialLayout.textScreens?.find(screen=>screen.id===group.framing?.screenId||id==='spatial-'+screen.id.replace('poetry-',''));
     if(textScreen&&camera.isPerspectiveCamera){
       // Fit the complete pane and base while retaining the planned viewing ray.
       camera.updateMatrixWorld(true);let tangent=0;
@@ -267,9 +268,11 @@ function focusOnGroup(id){
       camera.fov=Math.max(58,Math.min(105,2*Math.atan(tangent*1.18)*180/Math.PI));camera.updateProjectionMatrix();
     }
     createControls();
+    // Preserve the authored eye position when the perspective target is below eye level.
+    if(perspectiveStudy)controls.maxPolarAngle=Math.PI*.65;
     if(group.id==='spatial-ceiling-language')controls.maxPolarAngle=Math.PI-.04;
     controls.target.copy(target);controls.update();
-    $('#status').textContent=(trialName()+' · ')+group.label;$('#hint').textContent=group.id==='spatial-ceiling-language'?'顶部试字 · 暂用3.6 m附着标高，实际顶高待测':'拖动环看 · 滚轮缩放 · 字幕与玻璃均为当前试排';
+    $('#status').textContent=(trialName()+' · ')+group.label;$('#hint').textContent=group.id==='spatial-ceiling-language'?'顶部试字 · 暂用3.6 m附着标高，实际顶高待测':perspectiveStudy&&textScreen?'横在玻璃，亘在远处白墙 · 拖动侧看，感受前后距离':'拖动环看 · 滚轮缩放 · 字幕与玻璃均为当前试排';
     $('#catalog-panel').hidden=true;$('#catalog-button').setAttribute('aria-expanded','false');updateCutaway();updateLabels();return;
   }
   let members=group.workIds.map(w=>exhibition.works.get(w)?.userData).filter(Boolean);
@@ -306,7 +309,7 @@ function updateLabels(){
     const el=$(selector),v=new THREE.Vector3(...p).project(camera);let x=(v.x*.5+.5)*host.clientWidth,y=(-v.y*.5+.5)*host.clientHeight;
     const wallLabel=selector==='#label-short'||selector==='#label-long';
     if(view==='plan'&&!wallLabel){x=THREE.MathUtils.clamp(x,90,host.clientWidth-100);y=host.clientHeight/2+host.clientWidth/L*4.6;}
-    el.hidden=!enabled||(wallLabel&&view!=='plan')||v.z< -1||v.z>1||x<65||x>host.clientWidth-65||y<118||y>host.clientHeight-38;
+    el.hidden=!enabled||view==='inspection'||(wallLabel&&view!=='plan')||v.z< -1||v.z>1||x<65||x>host.clientWidth-65||y<118||y>host.clientHeight-38;
     el.style.left=`${x}px`;el.style.top=`${y}px`;
   }
 }
@@ -319,19 +322,19 @@ async function init(){try{
   const typographyStudy=typeMode==='study';
   const previousTypography=typeMode==='study1'||typeMode==='study2';
   const typographyCompare=typographyStudy||previousTypography||typeMode==='base';
-  const baseline=['09','10','11','12','13','14'].includes(requestedTrial)?requestedTrial:null;
+  const baseline=['09','10','11','12','13','14','15'].includes(requestedTrial)?requestedTrial:null;
   const layoutURL=typographyStudy?'layouts/typography-study.json':typeMode==='study2'?'layouts/typography-study-20261108-mixed.json':previousTypography?'layouts/typography-study-20261107.json':baseline?'layouts/trial'+baseline+'.json':'layout.json';
-  const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261110-trial15',{cache:'no-store'})));
+  const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261110-trial16',{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   const inputTexts=await Promise.all(responses.map(r=>r.text()));
   [data,trialLayout,library]=inputTexts.map(text=>JSON.parse(text));
   $('#projection-light-row').hidden=trialLayout.lightingStudy?.controlledZone?.side!=='both';
   $('#projection-light-study').addEventListener('change',updateLightStudy);
   $('#trial-on').textContent=trialName();
-  $('#baseline-compare').textContent=baseline?'回到试排15':'对照上一版';
-  $('#baseline-compare').href=baseline?'?v=20261110-trial15':'?trial=14&v=20261110-trial15';
+  $('#baseline-compare').textContent=baseline?'回到试排16':'对照上一版';
+  $('#baseline-compare').href=baseline?'?v=20261110-trial16':'?trial=15&v=20261110-trial16';
   if(baseline){$('.header h1 span').textContent='保留基准 · '+trialName();$('.header p').textContent=baseline==='10'?'上一版的摄影位置与透明诗板':'六块并板 · 原位置与句形';document.title='大悦城 ONCE · '+trialName();
-    $('#trial-description').innerHTML='<h3>保留基准 · '+trialName()+'</h3><p>这一版的位置、作品尺寸与诗句字形保留，可返回试排15比较左、右、左的摄影动线。</p>';
+    $('#trial-description').innerHTML='<h3>保留基准 · '+trialName()+'</h3><p>这一版的位置、作品尺寸与诗句字形保留，可返回试排16比较左、右、左的摄影动线。</p>';
   }
   if(typographyCompare){
     $('.header h1 span').textContent=typographyStudy?'文字与空间 · 试读':previousTypography?'两句地诗 · 上一轮':'字体对照 · 现版';$('.header p').textContent=typographyStudy?'文字、摄影与材料 · 在走动与回望中阅读':'迎着风 / 河流 · 同视角比较';document.title='大悦城 ONCE · 文字与空间';

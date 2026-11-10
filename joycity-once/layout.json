@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "20261110-trial15",
+  "revision": "20261110-trial16",
   "title": "大悦城 ONCE · 文字重设计",
   "status": "空间与文字讨论稿，非制作或施工定稿",
   "date": "2026-11-10",
@@ -1331,8 +1331,8 @@
       "color": "#42483F",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。",
-      "typographyNote": "落在相邻白墙留白的上部；两块透明面因此各自只承载一个字。",
+      "note": "句首仍在邻近白墙上部；玻璃上只留“横”，远处13号作品所在活动墙承载“亘”。",
+      "typographyNote": "句首仍在邻近白墙上部；玻璃上只留“横”，远处13号作品所在活动墙承载“亘”。",
       "rasterOverride": {
         "path": "assets/typography/quiet-20261109/world.png",
         "sourceSVG": "assets/typography/quiet-20261109/world.svg",
@@ -1347,12 +1347,12 @@
       "id": "across",
       "text": "横",
       "position": [
-        0.405,
-        1.49,
-        4.674
+        0.6,
+        1.3705315673289185,
+        4.734
       ],
-      "fontSize": 0.14,
-      "width": 0.19292,
+      "fontSize": 0.068,
+      "width": 0.129704,
       "surface": "wall",
       "rotationY": 180,
       "weight": 400,
@@ -1364,14 +1364,14 @@
       "letterSpacing": 0,
       "textScreenId": "poetry-screen-2",
       "rotationInPlane": 0,
-      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。",
-      "typographyNote": "“横”单独置于第一片窄玻璃，字身14厘米；两片留13厘米空隙并前后错开12厘米。",
+      "note": "前段单片玻璃上的“横”；从自然停步点与远处活动墙的“亘”连接。",
+      "typographyNote": "“横”独占前段一片玻璃，原生字身6.8厘米。玻璃周围留空，让实际纵深参与阅读。",
       "rasterOverride": {
-        "path": "assets/typography/quiet-20261109/across.png",
-        "sourceSVG": "assets/typography/quiet-20261109/across.svg",
-        "sha256": "2b5320cdced8f13bd24c3ee4fb87a0c92332408a698854c3496f723a4b28df88",
-        "physicalWidth": 0.19292,
-        "physicalHeight": 0.19656,
+        "path": "assets/typography/single-glass-20261110/across.png",
+        "sourceSVG": "assets/typography/single-glass-20261110/across.svg",
+        "sha256": "6662a72e7f2a71bf5575eaf05e4e70326cccfadc2855476ec62afeea8918429c",
+        "physicalWidth": 0.129704,
+        "physicalHeight": 0.131472,
         "localCenterX": 0,
         "localCenterY": 0
       }
@@ -1380,12 +1380,12 @@
       "id": "across-gen",
       "text": "亘",
       "position": [
-        1.145,
-        1.49,
-        4.794
+        0.8,
+        0.77,
+        12.928
       ],
-      "fontSize": 0.14,
-      "width": 0.18536000000000002,
+      "fontSize": 0.28,
+      "width": 0.30072000000000004,
       "surface": "wall",
       "rotationY": 180,
       "weight": 400,
@@ -1395,16 +1395,15 @@
       "align": "left",
       "color": "#42483F",
       "letterSpacing": 0,
-      "textScreenId": "poetry-screen-3",
       "rotationInPlane": 0,
-      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。",
-      "typographyNote": "“亘”独占第二片玻璃，同一阅读高度、略有纵深差；观众移动时自行连接两字。",
+      "note": "用户2026-11-10截图指定的13号照片所在白色活动墙，位于照片下方留白。",
+      "typographyNote": "“亘”位于13号作品下方，原生字身28厘米；从前段停步点透过玻璃观看，字面高度与“横”近似相等。",
       "rasterOverride": {
-        "path": "assets/typography/quiet-20261109/across-gen.png",
-        "sourceSVG": "assets/typography/quiet-20261109/across-gen.svg",
-        "sha256": "54aea95652fd663497455aec7770ac183d0e6a99962edfc437d1a7174725a854",
-        "physicalWidth": 0.18536000000000002,
-        "physicalHeight": 0.18018,
+        "path": "assets/typography/single-glass-20261110/across-gen.png",
+        "sourceSVG": "assets/typography/single-glass-20261110/across-gen.svg",
+        "sha256": "ebcb44610b56245bec96dafe176a8015a53cd7ba65aa5eaa78a5864c275375e3",
+        "physicalWidth": 0.30072000000000004,
+        "physicalHeight": 0.29036000000000006,
         "localCenterX": 0,
         "localCenterY": 0
       }
@@ -1429,8 +1428,8 @@
       "color": "#42483F",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "note": "整块随玻璃诗屏前移；原三段字形、字号、描边、相对位置保持。",
-      "typographyNote": "回到相邻白墙较低处；从上句、两片字、下句完成一次跨平面的阅读。",
+      "note": "后半句仍在邻近白墙较低处；回望时把前句、玻璃、远处活动墙与后句重新连起来。",
+      "typographyNote": "后半句仍在邻近白墙较低处；回望时把前句、玻璃、远处活动墙与后句重新连起来。",
       "rasterOverride": {
         "path": "assets/typography/quiet-20261109/between.png",
         "sourceSVG": "assets/typography/quiet-20261109/between.svg",
@@ -1540,11 +1539,11 @@
       "text": "海水越过海水，",
       "position": [
         0.033,
-        2.45,
-        8.4
+        2.31,
+        8.50204
       ],
-      "fontSize": 0.105,
-      "width": 0.7620549999999999,
+      "fontSize": 0.06,
+      "width": 0.43191999999999997,
       "surface": "wall",
       "rotationY": 90,
       "weight": 400,
@@ -1555,27 +1554,28 @@
       "color": "#42483F",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "一行置于长墙，与船和水景相邻，保持摄影独立可看。",
+      "typographyNote": "小句落在21号推船照片的右上方，与相框右缘对齐；字面与相框之间留出约20厘米，水的语意由图像继续。",
       "rasterOverride": {
-        "path": "assets/typography/quiet-20261109/sea.png",
-        "sourceSVG": "assets/typography/quiet-20261109/sea.svg",
-        "sha256": "0936e6be6836322f7d1e59b839a6fbfd0a3673fc62b4f85e5f984cc6d3d37983",
-        "physicalWidth": 0.7620549999999999,
-        "physicalHeight": 0.17857,
+        "path": "assets/typography/single-glass-20261110/sea.png",
+        "sourceSVG": "assets/typography/single-glass-20261110/sea.svg",
+        "sha256": "5c9ca505d96f0a486d74a91e44e0737a5a77cdc0ce15ad84466dea8d147b7365",
+        "physicalWidth": 0.43191999999999997,
+        "physicalHeight": 0.12994,
         "localCenterX": 0,
         "localCenterY": 0
-      }
+      },
+      "note": "小句落在21号推船照片的右上方，与相框右缘对齐；字面与相框之间留出约20厘米，水的语意由图像继续。"
     },
     {
       "id": "shore",
       "text": "让夜晚走向岸边。",
       "position": [
         0.033,
-        0.55,
-        10.25
+        0.68,
+        10.07198
       ],
-      "fontSize": 0.105,
-      "width": 0.882665,
+      "fontSize": 0.06,
+      "width": 0.49996,
       "surface": "wall",
       "rotationY": 90,
       "weight": 400,
@@ -1586,16 +1586,17 @@
       "color": "#42483F",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "低位接续“海水越过海水”，让抬头与低头成为阅读的间隔。",
+      "typographyNote": "小句落在20号海岸照片的左下方，与相框左缘对齐；两句沿观看方向接续，照片间的大块空白保留。",
       "rasterOverride": {
-        "path": "assets/typography/quiet-20261109/shore.png",
-        "sourceSVG": "assets/typography/quiet-20261109/shore.svg",
-        "sha256": "910a8add2181c8d877f3364a90e961921e29d5bd8d43d4a3755fec197bab189b",
-        "physicalWidth": 0.882665,
-        "physicalHeight": 0.167755,
+        "path": "assets/typography/single-glass-20261110/shore.png",
+        "sourceSVG": "assets/typography/single-glass-20261110/shore.svg",
+        "sha256": "b8757a087ccbf57510391f95f7d1bbe7f87242b2dc23ad513d84dd5ce82956f1",
+        "physicalWidth": 0.49996,
+        "physicalHeight": 0.12616,
         "localCenterX": 0,
         "localCenterY": 0
-      }
+      },
+      "note": "小句落在20号海岸照片的左下方，与相框左缘对齐；两句沿观看方向接续，照片间的大块空白保留。"
     },
     {
       "id": "reef",
@@ -1667,8 +1668,8 @@
         1.25,
         26.9
       ],
-      "fontSize": 0.12,
-      "width": 1.1116,
+      "fontSize": 0.06,
+      "width": 0.5908,
       "surface": "wall",
       "rotationY": -90,
       "weight": 400,
@@ -1679,16 +1680,17 @@
       "color": "#42483F",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "保持玻璃排尾1.25米的低位、独处和回望关系。",
+      "typographyNote": "在玻璃组末端保留一行6厘米字身的小句；以周围空白和独立落点形成重量，留给靠近的观看者。",
       "rasterOverride": {
-        "path": "assets/typography/quiet-20261109/far-waves.png",
-        "sourceSVG": "assets/typography/quiet-20261109/far-waves.svg",
-        "sha256": "d8dd80e91572743b1e4c98d7fb49af2696c597ff09f9a4d4470ebaaad3f80e81",
-        "physicalWidth": 1.1116,
-        "physicalHeight": 0.18112,
+        "path": "assets/typography/single-glass-20261110/far-waves.png",
+        "sourceSVG": "assets/typography/single-glass-20261110/far-waves.svg",
+        "sha256": "05db2cb1a820270c3a1e19e3901f1ecd49ea0c34d1732388bde6f01cf5f914fd",
+        "physicalWidth": 0.5908,
+        "physicalHeight": 0.12556,
         "localCenterX": 0,
         "localCenterY": 0
-      }
+      },
+      "note": "在玻璃组末端保留一行6厘米字身的小句；以周围空白和独立落点形成重量，留给靠近的观看者。"
     },
     {
       "id": "waves",
@@ -2132,17 +2134,21 @@
     },
     {
       "id": "spatial-screen-2",
-      "label": "透明诗屏 · 前段横亘",
+      "label": "横／亘 · 透过一片玻璃",
       "camera": [
-        3.7,
+        0.7,
         1.6,
-        2.25
+        1.6
       ],
       "target": [
-        1.0,
-        1.45,
-        4.75
-      ]
+        0.6,
+        1.55,
+        4.734
+      ],
+      "framing": {
+        "projection": "perspective",
+        "screenId": "poetry-screen-2"
+      }
     },
     {
       "id": "spatial-opening-language",
@@ -2614,19 +2620,21 @@
     },
     {
       "id": "language-split-word",
-      "label": "横／亘 · 两片玻璃与留白",
+      "label": "横／亘 · 透过一片玻璃",
       "camera": [
-        2.2,
+        0.7,
         1.6,
-        2.8
+        1.6
       ],
       "target": [
-        0.68,
-        1.42,
-        4.75
+        0.6,
+        1.55,
+        4.734
       ],
-      "orthographicWidth": 3.7,
-      "orthographicHeight": 2.85
+      "framing": {
+        "projection": "perspective",
+        "screenId": "poetry-screen-2"
+      }
     },
     {
       "id": "language-ending",
@@ -2685,6 +2693,41 @@
         0.85,
         7.1
       ]
+    },
+    {
+      "id": "language-split-side",
+      "label": "横／亘 · 侧移后的距离",
+      "camera": [
+        1.02,
+        1.6,
+        1.6
+      ],
+      "target": [
+        0.65,
+        1.55,
+        4.734
+      ],
+      "framing": {
+        "projection": "perspective",
+        "screenId": "poetry-screen-2"
+      }
+    },
+    {
+      "id": "language-gen-wall",
+      "label": "亘 · 13号作品下方",
+      "camera": [
+        0.8,
+        1.6,
+        9.8
+      ],
+      "target": [
+        0.8,
+        1.4,
+        12.94
+      ],
+      "framing": {
+        "projection": "perspective"
+      }
     }
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
@@ -2692,9 +2735,9 @@
     "整套旧文字与网站已独立备份。本轮重新设计25处诗句及门头、前言占位。",
     "连续诗句用原生宋体，空间关键词与邀请用原生旗黑X1；不再用旧打印纹理、压缩字面与大面积空心字。",
     "31幅后知后觉、4幅一切正常、6幅Growing Again的画面、尺寸、位置与装裱不变。",
-    "横和亘分别独占一片窄玻璃，仍在前段约4.75m的位置作伏笔；上下文回到邻近白墙，通过回望补读。",
+    "横单独留在前段玻璃；亘移到13号照片所在活动墙下方，从停步点透看时两字近等高。",
     "一切正常70/70/95cm的间距不变，群山依然出现在最后的扩大间隔中。",
-    "Growing Again八片玻璃及控光区保持；Again仅保留两次轻微重影。前段两片窄诗屏不扩大横向占地，但其构造仍为示意。",
+    "Growing Again八片玻璃及控光区保持；前段诗屏只留一片，基座外缘距左墙1.25米。",
     "顶面附着示意移至现有顶诗所在的后段；3.6m仍为试排标高，非吊顶实测。",
     "前言保留占位原文，没有编造正文；未更新安装或印刷文件。"
   ],
@@ -2802,9 +2845,9 @@
   "textScreens": [
     {
       "id": "poetry-screen-2",
-      "x": 0.405,
-      "z": 4.69,
-      "width": 0.61,
+      "x": 0.65,
+      "z": 4.75,
+      "width": 1.1,
       "height": 2.3,
       "bottom": 0.045,
       "yaw": 0,
@@ -2817,7 +2860,7 @@
       "depth": 0.018,
       "opacity": 0.025,
       "baseColor": "#bfc1b8",
-      "baseWidth": 0.67,
+      "baseWidth": 1.2,
       "baseDepth": 0.55,
       "baseHeight": 0.045,
       "manifestation": [
@@ -2834,43 +2877,7 @@
           "placement": "edges"
         }
       ],
-      "note": "两片窄玻璃各留一个字；片间13厘米、前后错位12厘米。基座和显识为讨论占位，非施工定稿。"
-    },
-    {
-      "id": "poetry-screen-3",
-      "x": 1.145,
-      "z": 4.81,
-      "width": 0.61,
-      "height": 2.3,
-      "bottom": 0.045,
-      "yaw": 0,
-      "normal": [
-        0,
-        -1
-      ],
-      "frameColor": "#a5ada5",
-      "frameFace": 0.01,
-      "depth": 0.018,
-      "opacity": 0.025,
-      "baseColor": "#bfc1b8",
-      "baseWidth": 0.67,
-      "baseDepth": 0.55,
-      "baseHeight": 0.045,
-      "manifestation": [
-        {
-          "height": 0.95,
-          "bandHeight": 0.04,
-          "width": 0.13,
-          "placement": "edges"
-        },
-        {
-          "height": 1.58,
-          "bandHeight": 0.04,
-          "width": 0.13,
-          "placement": "edges"
-        }
-      ],
-      "note": "两片窄玻璃各留一个字；片间13厘米、前后错位12厘米。基座和显识为讨论占位，非施工定稿。"
+      "note": "只保留一片玻璃，单独承载“横”；“亘”在13号作品下方的现有活动墙。边框、显识和底座为讨论示意。"
     }
   ],
   "botanicalGroups": [
@@ -2905,7 +2912,7 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/trial15/manifest.json",
+  "poetryRasterManifest": "poetry/trial16/manifest.json",
   "occupancyStudy": {
     "status": "illustrative_not_observed_people",
     "diameters": [
@@ -3020,7 +3027,7 @@
           "between"
         ],
         "reason": "User confirmed on 2026-11-07: keep the front glass as a foreshadowing and complete the poem by returning to it.",
-        "note": "前后句在相邻白墙，横与亘在两片玻璃；须回到朝A口的一面读正字，背面为镜字。"
+        "note": "句首和句尾仍在邻近白墙；前段玻璃上的横与13号照片下方活动墙的亘由视线连接，回望补读整句。"
       }
     },
     {
@@ -3154,7 +3161,7 @@
   "nativeBaseline": "models/长廊展厅_空间底模_近5m试算.blend",
   "nativeBaselineQA": "qa/native_r09_model_qa.json",
   "spaceRevision": "20261106-r09-near5m",
-  "previousTrial": "layouts/trial14.json",
+  "previousTrial": "layouts/trial15.json",
   "spatialZones": [
     {
       "id": "opening",
@@ -3201,10 +3208,10 @@
     "wallFieldAfter": 7.7,
     "physicalResizing": false
   },
-  "studyVariant": "quiet-language-reset",
+  "studyVariant": "single-glass-perspective-word",
   "screenPlacementRevision": {
-    "date": "2026-11-07",
-    "reason": "user screenshot places entire poem screen in the gap between once_30/32 and once_05/12",
+    "date": "2026-11-10",
+    "reason": "user selected existing early-A partition with photo13 for rear 亘; front 横 remains at early glass location",
     "fromZ": 14.8,
     "toZ": 4.75,
     "referenceIds": [
@@ -3213,7 +3220,11 @@
       "once_05",
       "once_12"
     ],
-    "other_artworks_moved": false
+    "other_artworks_moved": false,
+    "rearSurfaceId": "early-A",
+    "rearReferenceIds": [
+      "once_13"
+    ]
   },
   "poetryReadabilityStudy": {
     "confirmed_choice": "front glass stays as foreshadowing; return reading accepted",
@@ -3229,7 +3240,7 @@
       "invitation-crossing"
     ],
     "intentional_returns": [
-      "world / across / across-gen / between across wall and two glass planes",
+      "world / across / across-gen / between across neighbouring wall, one glass and existing early-A partition",
       "far-waves to glass verbs"
     ],
     "no_claim": "Not all poetry is encountered in original order on a one-way walk."
@@ -3291,9 +3302,9 @@
     "empty_face_reason": "Leave the return faces open for a pause and for the projection transition; do not refill them."
   },
   "typographyReset": {
-    "source": "source/typography-reset-20261109.json",
+    "source": "source/single-glass-perspective-20261110.json",
     "referenceFolder": "桌面/字体设计参考；桌面/排版参考",
-    "oldRevision": "20261107-trial14",
+    "oldRevision": "20261110-trial15",
     "decision": "安静但可辨；形式差异服务于语义、停顿和载体",
     "protectedRelations": [
       "early-glass-return",
@@ -3311,12 +3322,54 @@
     ],
     "carrierIds": [
       "poetry-screen-2",
-      "poetry-screen-3"
+      "early-A"
     ],
-    "nominalEmMetres": 0.14,
-    "clearGapMetres": 0.13,
-    "depthOffsetMetres": 0.12,
-    "baseOuterX": 1.48,
-    "note": "单个载体只出现一个字。两片窄玻璃固定、边缘显识、防倾覆及驻足空间仍需现场核定。"
+    "viewerEye": [
+      0.7,
+      1.6,
+      1.6
+    ],
+    "frontGlyphPosition": [
+      0.6,
+      1.3705315673289185,
+      4.734
+    ],
+    "rearGlyphPosition": [
+      0.8,
+      0.77,
+      12.928
+    ],
+    "frontEmMetres": 0.068,
+    "rearEmMetres": 0.28,
+    "frontInkHeightMetres": 0.061472,
+    "rearInkHeightMetres": 0.22036000000000003,
+    "planeSeparationMetres": 8.194,
+    "depthRatio": 3.6170552539124885,
+    "rearProjectedOnFront": [
+      0.7276467991169978,
+      1.3705315673289185,
+      4.731
+    ],
+    "apparentHeightRatio": 0.9910607517929518,
+    "clearGapBelowPhoto13Metres": 0.19836277778,
+    "baseOuterX": 1.25,
+    "note": "亘在用户指定的13号照片所在early-A活动墙下方；只保留一片前段玻璃。相近视角字高在指定停步点成立，侧移后自然错开。"
+  },
+  "smallTypeStudy": {
+    "references": [
+      "IMG_5539.PNG",
+      "IMG_5540.PNG"
+    ],
+    "changedPhrases": [
+      "sea",
+      "shore",
+      "far-waves"
+    ],
+    "nominalEmMetres": 0.06,
+    "rule": "小字与画面边缘对齐，完整语组保持，其他远读文字不统一缩小。",
+    "imageAnchors": {
+      "sea": "once_21:right",
+      "shore": "once_20:left"
+    }
   }
 }
