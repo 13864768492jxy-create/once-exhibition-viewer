@@ -1146,7 +1146,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       requestedFontSize: fontSize, effectiveFontSize: fontSize * contain, fontWidthScale: widthScale, uniformContainScale: contain, effectiveEmWidth: fontSize * widthScale * contain, physicalWidth: width, physicalHeight: height, width, height, inkPadding, glyphCenterCompensation: [centerOffsetX, centerOffsetY], raster: suppliedRaster, preRasterized: Boolean(suppliedRaster)};
     if (contain < .99) stats.textScales.push({id: record.id, requested: fontSize, effective: textGroup.userData.effectiveFontSize});
     const horizontal = record.surface === 'floor' || record.surface === 'ceiling';
-    const inkColor = record.surface === 'floor' ? new THREE.Color(activePalette.floorPoem || record.color || '#42473e') : null;
+    const inkColor = record.surface === 'floor' && !record.preserveAuthoredInk ? new THREE.Color(activePalette.floorPoem || record.color || '#42473e') : null;
     const text = suppliedRaster
       ? imageOn(textGroup, null, {...record, imageUrl: suppliedRaster.imageUrl || suppliedRaster.url, type: 'poetry-raster'}, width, height, horizontal ? 0 : .003, {alpha: true, preserveDimensions: true, maxTextureSide: poetryTextureCap, inkColor})
       : plane(textGroup, '诗句_保留原文换行', width, height, material, horizontal ? 0 : .003);
