@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261111-trial17';
+import { installCatalog } from './catalog.js?v=20261111-trial17-photo11';
 import { buildExhibition } from './exhibition.js?v=20261111-trial17';
 
 const $ = (s) => document.querySelector(s);
@@ -381,7 +381,7 @@ async function init(){try{
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();$('#error').hidden=false;$('#error').textContent='三维画面连接中断，请刷新页面重新载入。';cancelAnimationFrame(raf);});
   installCatalog({layout:trialLayout,onInspect:focusOnWork});
   state.loaded=true;requestAnimationFrame(animate);
-  exhibition.ready.then(stats=>{const total=stats.loaded+stats.errors;canvas.setAttribute('data-image-load-stats',JSON.stringify({loaded:stats.loaded,errors:stats.errors,pending:stats.pending,failures:stats.failures}));if(stats.errors){$('#status').textContent=`${stats.errors}项预览暂未载入，请刷新重试`;}$('#image-status').textContent=stats.errors?`${stats.loaded}/${total} 项预览已载入`:(trialLayout.works.some(w=>w.id==='traveler-1')?'42件原作 + 旅人候选':'42件原作')+' · '+trialName();});
+  exhibition.ready.then(stats=>{const total=stats.loaded+stats.errors;canvas.setAttribute('data-image-load-stats',JSON.stringify({loaded:stats.loaded,errors:stats.errors,pending:stats.pending,failures:stats.failures}));if(stats.errors){$('#status').textContent=`${stats.errors}项预览暂未载入，请刷新重试`;}$('#image-status').textContent=stats.errors?`${stats.loaded}/${total} 项预览已载入`:`${stats.photos+stats.large+stats.glass+stats.videos-(trialLayout.works.some(w=>w.id==='traveler-1')?1:0)}件原作`+(trialLayout.works.some(w=>w.id==='traveler-1')?' + 旅人候选':'')+' · '+trialName();});
   window.spaceModel={exhibition,layout:trialLayout,getState:()=>({trialVisible,exhibitionStats:exhibition.stats,loaded:state.loaded,error:state.error,view,room:data.room,tile:data.tile,camera:{position:camera.position.toArray(),target:controls.target.toArray()},visible:{strips:groups.strips.visible,bars:groups.bars.visible,lighting:groups.lighting.visible,leftWall:walls.left.visible,rightWall:walls.right.visible},counts:{strips:groups.strips.children.length,bars:groups.bars.children.length,lightingRows:data.lighting?.rowPositions.length||0},endBStatus:data.ends.B.openingStatus,renderCalls:renderer.info.render.calls}),setView,focusOnWork,focusOnGroup,setTrialVisible,scene,data};
 }catch(error){state.error=error.message;$('#error').hidden=false;$('#error').textContent=`空间未能载入：${error.message}。请通过“打开空间模型.command”启动后访问本机地址，勿直接双击HTML文件。`;$('#status').hidden=true;console.error(error);}}
 init();

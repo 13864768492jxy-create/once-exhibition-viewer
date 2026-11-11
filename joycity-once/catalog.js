@@ -36,7 +36,8 @@ export function installCatalog({layout=null,onInspect=null}={}){
   get('catalog-filter').addEventListener('change',render);
   fetch('catalog.json?v=20261107-trial14',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('作品库读取失败');return r.json();}).then(data=>{
     if(!currentLayout?.works.some(w=>w.id==='traveler-1')){data.items=data.items.filter(w=>w.group!=='traveler');delete data.counts.traveler;data.counts.all=data.items.length;}
-    library=data;get('catalog-summary').textContent='31幅摄影全部装裱 · 6块玻璃 · 4幅大图 · VESSEL。'+(data.counts.traveler?'另试放《旅人-1》，尚未确认加入。':'当前空间试排，尚未定稿。');
+    if(currentLayout?.excludedWorkIds?.length){data.items=data.items.filter(w=>!currentLayout.excludedWorkIds.includes(w.id));data.counts.all=data.items.length;for(const key of ['once','glass','large','performance','traveler'])data.counts[key]=data.items.filter(w=>w.group===key).length;}
+    library=data;get('catalog-summary').textContent=(currentLayout?.selectedPhotographyCount||31)+'幅摄影全部装裱 · 6块玻璃 · 4幅大图 · VESSEL。'+(data.counts.traveler?'另试放《旅人-1》，尚未确认加入。':'当前空间试排，尚未定稿。');
     for(const [value,label]of Object.entries(groups)){if(value==='traveler'&&!data.counts.traveler)continue;const option=node('option','',label+(data.counts[value]?' · '+data.counts[value]:''));option.value=value;get('catalog-filter').append(option);}
     const poetry=get('catalog-poetry');poetry.append(node('h3','',data.poetry.title),node('p','','两首诗及新写的溪流句进入本轮试排，分布于透明屏、墙面与地面；诗稿仍在写作中。'),node('p','','载体：墙面、地面及其他建筑位置。'));
     for(const ref of data.poetry.references){const a=node('a','',ref.title);a.href=ref.url;a.target='_blank';a.rel='noopener noreferrer';poetry.append(a);}
