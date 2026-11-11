@@ -1134,6 +1134,20 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       // Wall rotationY = 0 faces +canonical Z; +90 faces +canonical X.
       textGroup = faceGroup(group, record.id, position, [Math.sin(angle), Math.cos(angle)]);
     }
+    if (record.framedPaper) {
+      const f=record.framedPaper, pw=positive(f.paperWidth,.21), ph=positive(f.paperHeight,.297), edge=positive(f.frameFace,.008), d=positive(f.depth,.03), gap=finite(f.paperGap,.02), iw=pw+gap*2, ih=ph+gap*2;
+      const fm=new THREE.MeshBasicMaterial({color:f.frameColor||'#252725',toneMapped:false});
+      const bm=new THREE.MeshBasicMaterial({color:f.backingColor||'#d7d5ce',toneMapped:false});
+      box(textGroup,'纸上诗_浅灰背板',iw+2*edge,ih+2*edge,.002,0,0,-.010,bm);
+      box(textGroup,'纸上诗_框左',edge,ih+2*edge,d,-(iw+edge)/2,0,0,fm);
+      box(textGroup,'纸上诗_框右',edge,ih+2*edge,d,(iw+edge)/2,0,0,fm);
+      box(textGroup,'纸上诗_框上',iw,edge,d,0,(ih+edge)/2,0,fm);
+      box(textGroup,'纸上诗_框下',iw,edge,d,0,-(ih+edge)/2,0,fm);
+      const shadowMat=new THREE.MeshBasicMaterial({color:'#b4b2aa',toneMapped:false});
+      box(textGroup,'纸张离背板的轻影',pw+.001,ph+.001,.0002,.0015,-.0015,-.0087,shadowMat);
+      box(textGroup,'纸张厚度',pw,ph,.0004,0,0,finite(f.paperDepth,-.002)-.0003,new THREE.MeshBasicMaterial({color:'#ffffff',toneMapped:false}));
+      if(f.glazing){const gm=new THREE.MeshPhysicalMaterial({color:'#ffffff',transparent:true,opacity:.025,roughness:.08,metalness:0,depthWrite:false});const glazing=plane(textGroup,'纸上诗_玻璃',iw,ih,gm,.014);glazing.renderOrder=20;}
+    }
     const inPlaneRotation = finite(record.rotationInPlane, 0);
     if (inPlaneRotation) textGroup.matrix.multiply(new THREE.Matrix4().makeRotationZ(inPlaneRotation * RAD));
     textGroup.name = `诗句_${record.id}`;
@@ -1150,6 +1164,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     const text = suppliedRaster
       ? imageOn(textGroup, null, {...record, imageUrl: suppliedRaster.imageUrl || suppliedRaster.url, type: 'poetry-raster'}, width, height, horizontal ? 0 : .003, {alpha: true, preserveDimensions: true, maxTextureSide: poetryTextureCap, inkColor})
       : plane(textGroup, '诗句_保留原文换行', width, height, material, horizontal ? 0 : .003);
+    if (record.framedPaper) text.position.z=finite(record.framedPaper.paperDepth,-.002);
     if (!suppliedRaster && inkColor) { alphaInkMaterial(text.material, inkColor); floorPoemMaterials.add(text.material); }
     if (record.surface === 'ceiling') text.material.side = THREE.FrontSide;
     text.name = suppliedRaster ? '诗句_共享原生PNG_透明底' : text.name;

@@ -1585,12 +1585,12 @@
       "id": "far-waves",
       "text": "更远的浪正在赶来。",
       "position": [
-        0.033,
+        0.018,
         1.55,
         14.45
       ],
-      "fontSize": 0.051873015873015876,
-      "width": 0.4463809523809524,
+      "fontSize": 0.004755343929415191,
+      "width": 0.21,
       "surface": "wall",
       "rotationY": 90,
       "weight": 400,
@@ -1601,19 +1601,35 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "保留原来的小字级，移到18号左侧、活动墙之后的空白长墙；与两侧图像各隔一段距离，让未到来的浪留在空白里。",
+      "typographyNote": "诗册第19页完整等比放入A4竖版纸，打印后做悬浮装裱：纸外每边留2厘米浅灰背板，配8毫米窄黑框、3厘米框深与玻璃；保留纸张完整边缘和中心小句，挂在原来的墙面位置。",
       "rasterOverride": {
         "path": "assets/typography/book-20261111/far-waves.png",
         "sourceSVG": "assets/typography/book-20261111/far-waves.svg",
-        "sha256": "761ead21a79ad72d39ee74fa34c2d248edd3247a59ef1eccbc2f94f9bd929098",
-        "physicalWidth": 0.4463809523809524,
-        "physicalHeight": 0.06484126984126984,
+        "sha256": "68bf0292e1c41b9e1dc448828e59b1509aec8d5cdd26b46bc409ed1f6f516bf7",
+        "physicalWidth": 0.21,
+        "physicalHeight": 0.297,
         "localCenterX": 0,
         "localCenterY": 0
       },
-      "note": "保留原来的小字级，移到18号左侧、活动墙之后的空白长墙；与两侧图像各隔一段距离，让未到来的浪留在空白里。",
+      "note": "诗册第19页完整等比放入A4竖版纸，打印后做悬浮装裱：纸外每边留2厘米浅灰背板，配8毫米窄黑框、3厘米框深与玻璃；保留纸张完整边缘和中心小句，挂在原来的墙面位置。",
       "preserveAuthoredInk": true,
-      "sourceBookPage": 19
+      "sourceBookPage": 19,
+      "framedPaper": {
+        "paperWidth": 0.21,
+        "paperHeight": 0.297,
+        "frameFace": 0.008,
+        "depth": 0.03,
+        "paperGap": 0.02,
+        "backingColor": "#d7d5ce",
+        "paperDepth": -0.002,
+        "paperFloat": 0.006,
+        "glazing": true,
+        "frameColor": "#252725",
+        "orientation": "portrait",
+        "extraMatWidth": 0,
+        "printPDF": "output/pdf/远浪_A4装裱/更远的浪正在赶来_A4_实际尺寸打印.pdf",
+        "printAtActualSize": true
+      }
     },
     {
       "id": "waves",
@@ -1816,6 +1832,25 @@
         "projection": "orthographic",
         "width": 4.1,
         "height": 3
+      }
+    },
+    {
+      "id": "book-far-waves-print",
+      "label": "远浪 · A4纸上诗与窄框",
+      "camera": [
+        1,
+        1.55,
+        14.45
+      ],
+      "target": [
+        0,
+        1.55,
+        14.45
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 0.55,
+        "height": 0.65
       }
     },
     {
@@ -2180,7 +2215,7 @@
     "本轮以作者诗册06为准；不重配字体，不把每页改造成独立装饰牌。",
     "02号右移15厘米、上移33厘米，为终句让位；25号撤下，11号移到01旁活动板墙的空白B面，画面与装裱尺寸保持。",
     "横与亘的坐标、前后距离、字面高度保持；只有字形改为诗册对应页。",
-    "更远的浪正在赶来移到18号左侧空白长墙，仍然是43厘米宽的小句。",
+    "更远的浪正在赶来改为A4竖版纸上打印并做黑框悬浮装裱；沿用诗册第19页排版，保留原墙面位置。",
     "群山降到一切正常03与04之间，还未合拢右移至03上方偏左；原来的95厘米图间距保持。",
     "月亮、升起与潮水整组移到右侧活动板墙的空白B面；让夜晚走向岸边移到16、34、09所在墙、34号上方。",
     "墙面12处、地面5处，另有玻璃3处；房顶文字与附着用的示意顶板暂撤。",
@@ -3192,14 +3227,14 @@
         "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
         "path": "assets/typography/book-20261111/far-waves.png",
         "sourceSVG": "assets/typography/book-20261111/far-waves.svg",
-        "sha256": "761ead21a79ad72d39ee74fa34c2d248edd3247a59ef1eccbc2f94f9bd929098",
-        "physicalWidth": 0.4463809523809524,
-        "physicalHeight": 0.06484126984126984,
+        "sha256": "68bf0292e1c41b9e1dc448828e59b1509aec8d5cdd26b46bc409ed1f6f516bf7",
+        "physicalWidth": 0.21,
+        "physicalHeight": 0.297,
         "localCenterX": 0,
         "localCenterY": 0,
-        "inkWidth": 0.43,
-        "inkHeight": 0.04846031746031746,
-        "metresPerPDFPoint": 0.0054603174603174605,
+        "inkWidth": 0.04265822319195283,
+        "inkHeight": 0.004739805567418008,
+        "metresPerPDFPoint": 0.0005005625188858096,
         "pdfInkBounds": [
           170.375,
           293.25,
@@ -3212,8 +3247,14 @@
         "removedPaperFill": [],
         "uniformScaleOnly": true,
         "sourceCharacterSubset": null,
+        "printPDF": "output/pdf/远浪_A4装裱/更远的浪正在赶来_A4_实际尺寸打印.pdf",
+        "paperSizeMM": [
+          210,
+          297
+        ],
+        "printFontPoints": 13.435660362243652,
         "text": "更远的浪正在赶来。",
-        "note": "保留原来的小字级，移到18号左侧、活动墙之后的空白长墙；与两侧图像各隔一段距离，让未到来的浪留在空白里。"
+        "note": "诗册第19页完整等比放入A4竖版纸，打印后做悬浮装裱：纸外每边留2厘米浅灰背板，配8毫米窄黑框、3厘米框深与玻璃；保留纸张完整边缘和中心小句，挂在原来的墙面位置。"
       },
       {
         "id": "waves",
