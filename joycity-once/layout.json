@@ -1589,7 +1589,7 @@
         1.55,
         14.45
       ],
-      "fontSize": 0.004755343929415191,
+      "fontSize": 0.005291666666666667,
       "width": 0.21,
       "surface": "wall",
       "rotationY": 90,
@@ -1605,7 +1605,7 @@
       "rasterOverride": {
         "path": "assets/typography/book-20261111/far-waves.png",
         "sourceSVG": "assets/typography/book-20261111/far-waves.svg",
-        "sha256": "68bf0292e1c41b9e1dc448828e59b1509aec8d5cdd26b46bc409ed1f6f516bf7",
+        "sha256": "eb2520c8ea7b82c78af93cfc69b305ed5bdb335bb70afd214b85368d455278bf",
         "physicalWidth": 0.21,
         "physicalHeight": 0.297,
         "localCenterX": 0,
@@ -1628,7 +1628,8 @@
         "orientation": "portrait",
         "extraMatWidth": 0,
         "printPDF": "output/pdf/远浪_A4装裱/更远的浪正在赶来_A4_实际尺寸打印.pdf",
-        "printAtActualSize": true
+        "printAtActualSize": true,
+        "printFontPoints": 15
       }
     },
     {
@@ -3227,14 +3228,14 @@
         "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
         "path": "assets/typography/book-20261111/far-waves.png",
         "sourceSVG": "assets/typography/book-20261111/far-waves.svg",
-        "sha256": "68bf0292e1c41b9e1dc448828e59b1509aec8d5cdd26b46bc409ed1f6f516bf7",
+        "sha256": "eb2520c8ea7b82c78af93cfc69b305ed5bdb335bb70afd214b85368d455278bf",
         "physicalWidth": 0.21,
         "physicalHeight": 0.297,
         "localCenterX": 0,
         "localCenterY": 0,
-        "inkWidth": 0.04265822319195283,
-        "inkHeight": 0.004739805567418008,
-        "metresPerPDFPoint": 0.0005005625188858096,
+        "inkWidth": 0.047625087473130046,
+        "inkHeight": 0.005291677582117083,
+        "metresPerPDFPoint": 0.0005570175438596491,
         "pdfInkBounds": [
           170.375,
           293.25,
@@ -3252,7 +3253,7 @@
           210,
           297
         ],
-        "printFontPoints": 13.435660362243652,
+        "printFontPoints": 15.000025749206543,
         "text": "更远的浪正在赶来。",
         "note": "诗册第19页完整等比放入A4竖版纸，打印后做悬浮装裱：纸外每边留2厘米浅灰背板，配8毫米窄黑框、3厘米框深与玻璃；保留纸张完整边缘和中心小句，挂在原来的墙面位置。"
       },

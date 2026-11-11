@@ -524,7 +524,8 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
       if (poetryRasters.has(item.id)) throw new Error(`诗句清单编号重复: ${item.id}`);
       const imageURL = item.imageUrl || item.url || item.file;
       if (!imageURL || !(item.physicalWidth > 0 || item.width > 0) || !(item.physicalHeight > 0 || item.height > 0)) throw new Error(`诗句清单尺寸或图像无效: ${item.id}`);
-      poetryRasters.set(item.id, {...item, imageUrl: new URL(imageURL, manifestURL).href});
+      const inkURL=new URL(imageURL,manifestURL);if(item.sha256)inkURL.searchParams.set('v',item.sha256.slice(0,12));
+      poetryRasters.set(item.id, {...item, imageUrl: inkURL.href});
     }
     for (const poem of [...(layout.poems || []), ...(layout.works || []).filter(work => work.type === 'text' && work.rasterOverride)]) {
       const item = poetryRasters.get(poem.id);
