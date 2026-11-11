@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "revision": "20261111-trial17",
-  "sourceLayoutSHA256": "0bd46658e0fd29a008d07058918f48a245b1ec13e760176ad1772be5a650c0c5",
+  "sourceLayoutSHA256": "a6a31a0be9abe37385b5845245c0faab2a7200e8d9687d4ce20e42b4db8c27a2",
   "imagePathBase": "poetry/trial17",
   "units": "metres",
   "colorSpace": "sRGB",

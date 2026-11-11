@@ -1467,14 +1467,14 @@
       "id": "moon",
       "text": "月亮升起。\n潮水对此一无所知。",
       "position": [
-        4.967,
+        4.25,
         1.5,
-        19.55
+        18.732
       ],
       "fontSize": 0.06184269937236657,
       "width": 0.7307865168539325,
       "surface": "wall",
-      "rotationY": -90,
+      "rotationY": 0,
       "weight": 400,
       "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
@@ -1483,7 +1483,7 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "月亮与潮水的垂直距离完整保留；这一页独立成为玻璃组前的一段安静墙面。",
+      "typographyNote": "整组移到右侧活动板墙的空白B面；保留月亮、升起和潮水的原有字形、字级与垂直距离，独立占据这一面。",
       "rasterOverride": {
         "path": "assets/typography/book-20261111/moon.png",
         "sourceSVG": "assets/typography/book-20261111/moon.svg",
@@ -1494,7 +1494,7 @@
         "localCenterY": 0
       },
       "preserveAuthoredInk": true,
-      "note": "月亮与潮水的垂直距离完整保留；这一页独立成为玻璃组前的一段安静墙面。",
+      "note": "整组移到右侧活动板墙的空白B面；保留月亮、升起和潮水的原有字形、字级与垂直距离，独立占据这一面。",
       "sourceBookPage": 15
     },
     {
@@ -1535,14 +1535,14 @@
       "id": "shore",
       "text": "让夜晚走向岸边。",
       "position": [
-        2.35,
-        0.009,
-        22.35
+        0.033,
+        1.68,
+        20.85
       ],
       "fontSize": 0.08647721308485752,
       "width": 0.6502680965147453,
-      "surface": "floor",
-      "rotationY": 0,
+      "surface": "wall",
+      "rotationY": 90,
       "weight": 400,
       "fontFamily": "authored-quiet",
       "fontWidthScale": 1,
@@ -1551,7 +1551,7 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "在海水之后收成一行小字，形成松与紧的转换。",
+      "typographyNote": "移到16、34、09号所在左墙，落在34号上方、16与09之间的空白；保留书里小字与一行的收束，隔着通道接续海水。",
       "rasterOverride": {
         "path": "assets/typography/book-20261111/shore.png",
         "sourceSVG": "assets/typography/book-20261111/shore.svg",
@@ -1561,7 +1561,7 @@
         "localCenterX": 0,
         "localCenterY": 0
       },
-      "note": "在海水之后收成一行小字，形成松与紧的转换。",
+      "note": "移到16、34、09号所在左墙，落在34号上方、16与09之间的空白；保留书里小字与一行的收束，隔着通道接续海水。",
       "preserveAuthoredInk": true,
       "sourceBookPage": 17
     },
@@ -1877,20 +1877,20 @@
     },
     {
       "id": "book-moon",
-      "label": "诗册15 · 月亮与潮水",
+      "label": "诗册15 · 月亮与潮水／活动墙空白面",
       "camera": [
-        2,
-        1.6,
-        19.55
+        4.25,
+        1.5,
+        20.3
       ],
       "target": [
-        5,
+        4.25,
         1.5,
-        19.55
+        18.732
       ],
       "framing": {
         "projection": "orthographic",
-        "width": 2.4,
+        "width": 2.3,
         "height": 2.9
       }
     },
@@ -1915,7 +1915,7 @@
     },
     {
       "id": "book-sea-floor",
-      "label": "诗册16–17 · 地面接续",
+      "label": "诗册16 · 海水越过地面",
       "camera": [
         2.6,
         2.1,
@@ -1926,6 +1926,25 @@
         0,
         21.2
       ]
+    },
+    {
+      "id": "book-shore-wall",
+      "label": "诗册17 · 岸边与16、34、09",
+      "camera": [
+        3.6,
+        1.5,
+        20.7
+      ],
+      "target": [
+        0,
+        1.5,
+        20.7
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 4.3,
+        "height": 3
+      }
     },
     {
       "id": "book-glass",
@@ -2163,7 +2182,8 @@
     "横与亘的坐标、前后距离、字面高度保持；只有字形改为诗册对应页。",
     "更远的浪正在赶来移到18号左侧空白长墙，仍然是43厘米宽的小句。",
     "群山降到一切正常03与04之间，还未合拢右移至03上方偏左；原来的95厘米图间距保持。",
-    "墙面11处、地面6处，另有玻璃3处；房顶文字与附着用的示意顶板暂撤。",
+    "月亮、升起与潮水整组移到右侧活动板墙的空白B面；让夜晚走向岸边移到16、34、09所在墙、34号上方。",
+    "墙面12处、地面5处，另有玻璃3处；房顶文字与附着用的示意顶板暂撤。",
     "诗册未包含的脱鞋句与Growing Again标题保留；额外诗屏没有增加。",
     "当前仅试排；未更新安装、玻璃或地贴制作文件。"
   ],
@@ -3062,7 +3082,7 @@
         "uniformScaleOnly": true,
         "sourceCharacterSubset": null,
         "text": "月亮升起。\n潮水对此一无所知。",
-        "note": "月亮与潮水的垂直距离完整保留；这一页独立成为玻璃组前的一段安静墙面。"
+        "note": "整组移到右侧活动板墙的空白B面；保留月亮、升起和潮水的原有字形、字级与垂直距离，独立占据这一面。"
       },
       {
         "id": "sea",
@@ -3121,7 +3141,7 @@
         "uniformScaleOnly": true,
         "sourceCharacterSubset": null,
         "text": "让夜晚走向岸边。",
-        "note": "在海水之后收成一行小字，形成松与紧的转换。"
+        "note": "移到16、34、09号所在左墙，落在34号上方、16与09之间的空白；保留书里小字与一行的收束，隔着通道接续海水。"
       },
       {
         "id": "glass-sea-echo",
@@ -3277,8 +3297,8 @@
     "omissionReason": "房顶文字暂撤；第21页暂不强行挪到其他地方，避免挤占留白。",
     "splitGeometryPreserved": true,
     "carrierCounts": {
-      "wall": 11,
-      "floor": 6,
+      "wall": 12,
+      "floor": 5,
       "glass": 3,
       "ceiling": 0
     },
