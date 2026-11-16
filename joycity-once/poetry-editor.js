@@ -1,19 +1,24 @@
 import * as THREE from 'three';
 import { createPoetryEditorModel } from './poetry-editor-model.js?v=20261116-editor1';
+import { createPoetryInkPicker } from './poetry-editor-picking.js?v=20261117-editor2';
 
 export function installPoetryEditor({exhibition, layout, layoutSourceText, space, host, getCamera, getControls, focusEntry, onActive}) {
   const $ = s => document.querySelector(s);
   const canvas = host.querySelector('canvas');
   const storageKey = `once-poetry-draft:${exhibition.group.userData.poetryRasterManifest.sourceLayoutSHA256}`;
   let active=false, selected='between', gesture=null, comparing=false, savedTimer, restoring=false, ready=false;
-  let savedDraft=null, mode='arrange';
+  let savedDraft=null, mode='arrange', orbitClick=null;
   const pane=document.createElement('aside');
   pane.id='poetry-editor';pane.hidden=true;pane.setAttribute('aria-label','文字试排');
   pane.innerHTML=`
-    <div class="editor-heading"><h2>文字试排</h2><button id="editor-close">完成查看</button></div>
-    <p class="editor-intro">拖动文字组，拉右下角等比缩放。句内字形与疏密沿用原稿。</p>
+    <div class="editor-selection-bar">
+      <div class="editor-heading"><h2>文字试排</h2><button id="editor-close">完成查看</button></div>
+      <div class="editor-selection-caption"><label for="editor-poem">选择文字组</label><div><button id="editor-previous" aria-label="选择上一组文字">上一组</button><button id="editor-next" aria-label="选择下一组文字">下一组</button></div></div>
+      <select id="editor-poem"></select>
+    </div>
+    <div class="editor-body">
+    <p class="editor-intro">点击别的文字即可切换；远处的文字可从上方列表选择。拖动文字组，拉右下角等比缩放。</p>
     <div id="editor-restore" hidden><p>此浏览器中有一份保存的草稿。</p><button id="editor-restore-button">继续上次草稿</button></div>
-    <label for="editor-poem">选择文字组</label><select id="editor-poem"></select>
     <p id="editor-surface" class="editor-meta"></p>
     <div class="editor-row"><button id="editor-front">正对文字</button><button id="editor-orbit" aria-pressed="false">环看空间</button></div>
     <label class="editor-lock"><input id="editor-lock" type="checkbox">锁定这组位置与大小</label>
@@ -33,7 +38,7 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
       <div class="editor-row"><button id="editor-export">导出方案</button><button id="editor-import">载入方案</button></div>
       <input id="editor-file" type="file" accept=".json,application/json" hidden>
       <p id="editor-storage">修改仅存在此浏览器草稿中，公开展厅不会被覆盖。导出文件可留存或交给我继续调整。</p>
-    </div>`;
+    </div></div>`;
   $('#workspace').append(pane);
   const overlay=document.createElement('div');overlay.id='poetry-selection';overlay.hidden=true;
   overlay.innerHTML='<svg aria-hidden="true"><path/></svg><button id="poetry-resize" aria-label="拖动等比缩放选中文字" title="拖动等比缩放"></button><span id="poetry-selection-label"></span>';
@@ -41,6 +46,8 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
   const model=createPoetryEditorModel({THREE,exhibition,layout,layoutSourceText,space,onChange:()=>{if(!ready)return;updatePanel();if(!restoring&&!model.status.inTransaction)scheduleSave();}});
   ready=true;
   const entries=model.entries;
+  const entryIds=[...entries.keys()];
+  const inkHit=createPoetryInkPicker({THREE,getCamera,canvas});
   const title=e=>e.record.text.replace(/\n/g,' / ');
   for(const e of entries.values()) {const o=document.createElement('option');o.value=e.record.id;o.textContent=title(e);$('#editor-poem').append(o);}
   if(!entries.has(selected))selected=entries.keys().next().value;
@@ -57,6 +64,7 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
   function updatePanel(){
     const e=entries.get(selected);if(!e)return;const value=model.get(selected),bounds=model.getBounds(selected);
     $('#editor-poem').value=selected;$('#editor-surface').textContent=e.surfaceLabel+' · 原稿整组字形';
+    $('#editor-previous').disabled=entryIds.indexOf(selected)===0;$('#editor-next').disabled=entryIds.indexOf(selected)===entryIds.length-1;
     $('#editor-size').textContent=`${(e.width*value.scale*100).toFixed(1)} × ${(e.height*value.scale*100).toFixed(1)} cm`;
     for(const id of ['editor-scale','editor-percent']){const input=$('#'+id);input.value=Math.round(value.scale*1000)/10;input.min=Math.ceil(bounds.scale.min*100);input.max=Math.floor(bounds.scale.max*100);input.disabled=e.locked||e.scaleLocked||comparing;}
     $('#editor-u').value=(value.u*100).toFixed(1);$('#editor-v').value=(value.v*100).toFixed(1);
@@ -69,9 +77,10 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
     $('#editor-compare').textContent=comparing?'回到我的草稿':'查看原版';$('#editor-compare').setAttribute('aria-pressed',String(comparing));
     $('#editor-open').textContent=model.status.changedCount?`文字试排 · ${model.status.changedCount}组已改`:'文字试排';
   }
-  function select(id,focus=false){if(!entries.has(id))return;if(focus){mode='arrange';$('#editor-orbit').setAttribute('aria-pressed','false');}if(gesture)endGesture(false);selected=id;updatePanel();if(focus)focusEntry(entries.get(id));feedback(entries.get(id).locked?'此组已锁定。取消锁定后可以调整。':'拖动选区内文字；右下角手柄调整大小。');}
+  function setMode(value){mode=value;orbitClick=null;$('#editor-orbit').setAttribute('aria-pressed',String(value==='orbit'));}
+  function select(id,focus=false){if(!entries.has(id))return;if(focus)setMode('arrange');if(gesture)endGesture(false);selected=id;updatePanel();if(focus)focusEntry(entries.get(id));update();feedback(entries.get(id).locked?'此组已锁定。取消锁定后可以调整。':'已选中「'+title(entries.get(id))+'」。拖动文字组，或点击其他文字切换。');}
   function setComparing(value){
-    if(gesture)endGesture(false);comparing=value;
+    if(gesture)endGesture(false);orbitClick=null;comparing=value;
     for(const e of entries.values()){
       const p=model.get(e.record.id);e.object.matrix.copy(e.baseMatrix);
       if(!value)e.object.matrix.multiply(new THREE.Matrix4().makeTranslation(p.u,p.v,0)).multiply(new THREE.Matrix4().makeScale(p.scale,p.scale,1));
@@ -80,7 +89,7 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
     exhibition.group.updateMatrixWorld(true);updatePanel();feedback(value?'正在查看试排18原版；再次点击返回草稿。':'已回到我的草稿。');
   }
   function setActive(value){
-    if(gesture)endGesture(false);if(comparing)setComparing(false);active=value;pane.hidden=!value;
+    if(gesture)endGesture(false);orbitClick=null;if(comparing)setComparing(false);active=value;pane.hidden=!value;
     document.body.classList.toggle('poetry-editing',value);$('#editor-open').setAttribute('aria-expanded',String(value));onActive(value);
     if(value){$('#catalog-panel').hidden=$('#details-panel').hidden=true;select(selected,true);}
     else {overlay.hidden=true;$('#editor-open').focus();}
@@ -102,20 +111,35 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
   function visible(object){for(let o=object;o;o=o.parent)if(!o.visible)return false;return true;}
   function pick(event){
     const hits=[];for(const e of entries.values())if(visible(e.object)){const hit=rectangle(e,event);if(hit)hits.push(hit);}
-    hits.sort((a,b)=>a.distance-b.distance);return hits[0]?.e;
+    hits.sort((a,b)=>a.distance-b.distance);
+    // Visible lettering wins over another group's transparent whitespace.
+    return hits.find(hit=>inkHit(hit.e,event))?.e||hits[0]?.e;
   }
   function beginGesture(event,kind){
     if(!active||comparing||event.button!==0)return;
+    if(gesture){event.preventDefault();event.stopImmediatePropagation();return;}
+    if(event.isPrimary===false){orbitClick=null;return;}
     let e=entries.get(selected);
-    if(kind==='move'){if(mode!=='arrange')return;const hit=pick(event);if(!hit)return;e=hit;select(e.record.id);}
+    if(kind==='move'){
+      const hit=pick(event);
+      if(mode==='orbit'){
+        orbitClick=hit?{id:event.pointerId,x:event.clientX,y:event.clientY,entry:hit}:null;
+        return; // OrbitControls keeps dragging; a short click still selects.
+      }
+      if(!hit)return;e=hit;select(e.record.id);
+    }
     event.preventDefault();event.stopImmediatePropagation();host.focus({preventScroll:true});
     if(e.locked||(kind==='scale'&&e.scaleLocked)){feedback(e.locked?'此组已锁定；取消锁定后可以调整。':'A4纸与外框保持实际尺寸。');return;}
     const point=onPlane(event,e);if(!point)return;
-    const controls=getControls();gesture={id:event.pointerId,kind,e,point,start:{...model.get(selected)},controls,enabled:controls.enabled};
-    controls.enabled=false;clearTimeout(savedTimer);model.begin();canvas.setPointerCapture(event.pointerId);canvas.style.cursor=kind==='scale'?'nwse-resize':'grabbing';
+    const controls=getControls();gesture={id:event.pointerId,kind,e,point,x:event.clientX,y:event.clientY,moved:false,start:{...model.get(selected)},controls,enabled:controls.enabled};
+    controls.enabled=false;canvas.setPointerCapture(event.pointerId);canvas.style.cursor=kind==='scale'?'nwse-resize':'grabbing';
   }
   function moveGesture(event){
-    if(!gesture||event.pointerId!==gesture.id)return;event.preventDefault();event.stopImmediatePropagation();const g=gesture,p=onPlane(event,g.e);if(!p)return;
+    if(orbitClick&&event.pointerId===orbitClick.id&&Math.hypot(event.clientX-orbitClick.x,event.clientY-orbitClick.y)>4)orbitClick=null;
+    if(!gesture||event.pointerId!==gesture.id)return;event.preventDefault();event.stopImmediatePropagation();const g=gesture;
+    if(!g.moved&&Math.hypot(event.clientX-g.x,event.clientY-g.y)<=4)return;
+    const p=onPlane(event,g.e);if(!p)return;
+    if(!g.moved){g.moved=true;model.begin();clearTimeout(savedTimer);}
     if(g.kind==='move')model.change(g.e.record.id,{u:g.start.u+p.x-g.point.x,v:g.start.v+p.y-g.point.y},{commit:false});
     else {const x=g.e.offsetX+g.e.width/2,y=g.e.offsetY-g.e.height/2;const s=((p.x-g.start.u)*x+(p.y-g.start.v)*y)/(x*x+y*y);model.change(g.e.record.id,{scale:s},{commit:false});}
     feedback('松开鼠标完成这次调整。');
@@ -123,19 +147,25 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
   function endGesture(commit=true){
     if(!gesture)return;const g=gesture;gesture=null;
     if(canvas.hasPointerCapture(g.id))canvas.releasePointerCapture(g.id);g.controls.enabled=g.enabled;canvas.style.cursor='';
-    if(commit)model.commit();else model.cancel();updatePanel();if(commit)scheduleSave();feedback(commit?'已调整，可撤销。':'已取消这次调整。');
+    if(g.moved){if(commit)model.commit();else model.cancel();if(commit)scheduleSave();feedback(commit?'已调整，可撤销。':'已取消这次调整。');}updatePanel();
   }
   canvas.addEventListener('pointerdown',e=>beginGesture(e,'move'),true);
   canvas.addEventListener('pointermove',moveGesture,true);
-  canvas.addEventListener('pointerup',e=>{if(gesture){e.preventDefault();e.stopImmediatePropagation();endGesture(true);}},true);
-  canvas.addEventListener('pointercancel',()=>endGesture(false),true);
-  canvas.addEventListener('lostpointercapture',()=>{if(gesture)endGesture(false);});
+  canvas.addEventListener('pointerup',e=>{
+    if(gesture&&e.pointerId===gesture.id){e.preventDefault();e.stopImmediatePropagation();endGesture(true);}
+    const click=orbitClick;orbitClick=null;
+    if(click&&e.pointerId===click.id&&Math.hypot(e.clientX-click.x,e.clientY-click.y)<=4&&pick(e)===click.entry){setMode('arrange');select(click.entry.record.id);}
+  },true);
+  canvas.addEventListener('pointercancel',e=>{orbitClick=null;if(e.pointerId===gesture?.id)endGesture(false);},true);
+  canvas.addEventListener('lostpointercapture',e=>{orbitClick=null;if(e.pointerId===gesture?.id)endGesture(false);});
   $('#poetry-resize').addEventListener('pointerdown',e=>beginGesture(e,'scale'));
-  window.addEventListener('blur',()=>endGesture(false));
+  window.addEventListener('blur',()=>{orbitClick=null;endGesture(false);});
   $('#editor-open').addEventListener('click',()=>setActive(!active));$('#editor-close').addEventListener('click',()=>setActive(false));
   $('#editor-poem').addEventListener('change',e=>select(e.target.value,true));
-  $('#editor-front').addEventListener('click',()=>{mode='arrange';$('#editor-orbit').setAttribute('aria-pressed','false');focusEntry(entries.get(selected));});
-  $('#editor-orbit').addEventListener('click',()=>{mode=mode==='arrange'?'orbit':'arrange';$('#editor-orbit').setAttribute('aria-pressed',String(mode==='orbit'));feedback(mode==='orbit'?'拖动空白区域环看；再次点“环看空间”返回文字拖动。':'可以直接拖动文字。');});
+  $('#editor-previous').addEventListener('click',()=>select(entryIds[entryIds.indexOf(selected)-1],true));
+  $('#editor-next').addEventListener('click',()=>select(entryIds[entryIds.indexOf(selected)+1],true));
+  $('#editor-front').addEventListener('click',()=>select(selected,true));
+  $('#editor-orbit').addEventListener('click',()=>{setMode(mode==='arrange'?'orbit':'arrange');feedback(mode==='orbit'?'拖动环看空间；点击任意文字即可选中并继续编辑。':'可以直接拖动文字，点击其他文字切换。');});
   $('#editor-lock').addEventListener('change',e=>{model.setLocked(selected,e.target.checked);updatePanel();scheduleSave();});
   for(const [id,key,factor] of [['editor-u','u',.01],['editor-v','v',.01],['editor-percent','scale',.01]])$('#'+id).addEventListener('change',event=>{
     const value=event.target.valueAsNumber;if(!Number.isFinite(value)){updatePanel();feedback('请输入有效数字。',true);return;}

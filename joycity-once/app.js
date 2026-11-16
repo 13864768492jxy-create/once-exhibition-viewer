@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { installPoetryEditor } from './poetry-editor.js?v=20261116-editor1';
+import { installPoetryEditor } from './poetry-editor.js?v=20261117-editor2';
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { installCatalog } from './catalog.js?v=20261116-trial18-photo11';
 import { buildExhibition } from './exhibition.js?v=20261116-trial18-farwaves-a4-15pt';
