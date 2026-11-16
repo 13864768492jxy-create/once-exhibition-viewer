@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { installPoetryEditor } from './poetry-editor.js?v=20261117-editor2';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261116-trial18-photo11';
+import { installCatalog } from './catalog.js?v=20261117-saved1';
 import { buildExhibition } from './exhibition.js?v=20261116-trial18-farwaves-a4-15pt';
 
 const $ = (s) => document.querySelector(s);
@@ -344,7 +344,7 @@ async function init(){try{
   const typographyCompare=typographyStudy||previousTypography||typeMode==='base';
   const baseline=['09','10','11','12','13','14','15','16','17'].includes(requestedTrial)?requestedTrial:null;
   const layoutURL=typographyStudy?'layouts/typography-study.json':typeMode==='study2'?'layouts/typography-study-20261108-mixed.json':previousTypography?'layouts/typography-study-20261107.json':baseline?'layouts/trial'+baseline+'.json':'layout.json';
-  const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261116-trial18',{cache:'no-store'})));
+  const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261117-saved1',{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   const inputTexts=await Promise.all(responses.map(r=>r.text()));
   [data,trialLayout,library]=inputTexts.map(text=>JSON.parse(text));

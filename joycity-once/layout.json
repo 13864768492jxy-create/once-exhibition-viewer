@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "revision": "20261116-trial18",
+  "revision": "20261117-trial18",
   "title": "大悦城 ONCE · 新版文字集进入空间",
   "status": "新版文字集空间试排，非制作定稿",
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "sourceLayout": "source/layout-baselines/trial12.json",
   "principle": "以作者最新34页原稿和翻页中的遮叠、双语阅读为依据；保留字形、留白、句内疏密。",
   "partitions": [
@@ -1329,9 +1329,9 @@
       "id": "world",
       "text": "已经发生的世界，",
       "position": [
-        0.033,
-        2.16,
-        4.72
+        0.033000000000000154,
+        1.958274343792895,
+        2.1782028459063514
       ],
       "fontSize": 0.08166477438668225,
       "width": 0.654355140186916,
@@ -1442,8 +1442,8 @@
       "text": "在我与他们之间。",
       "position": [
         0.033,
-        0.75,
-        4.72
+        1.0728082061068704,
+        4.765523854961832
       ],
       "fontSize": 0.09846150255850536,
       "width": 1.4530316742081446,
@@ -1479,11 +1479,11 @@
       "text": "他们再也看不见我。\nthey can no longer see me",
       "position": [
         0.033,
-        1.16,
-        25.68
+        1.2998212885546936,
+        25.725200720419032
       ],
-      "fontSize": 0.03935171906511885,
-      "width": 0.9269172932330827,
+      "fontSize": 0.039895098925183094,
+      "width": 0.9397164339327471,
       "surface": "wall",
       "rotationY": 90,
       "weight": 400,
@@ -1500,10 +1500,10 @@
         "path": "assets/typography/book-20261116/ending.png",
         "sourceSVG": "assets/typography/book-20261116/ending.svg",
         "sha256": "43aeb74ab5d1c3d316decc835886c73fb11e299141a434defc1244b41c53af1d",
-        "physicalWidth": 0.9269172932330827,
-        "physicalHeight": 1.0635338345864662,
-        "localCenterX": 0,
-        "localCenterY": 0
+        "physicalWidth": 0.9397164339327471,
+        "physicalHeight": 1.0782194157997005,
+        "localCenterX": 0.0,
+        "localCenterY": 0.0
       },
       "preserveAuthoredInk": true,
       "sourceBookPage": 15,
@@ -1515,12 +1515,12 @@
       "id": "moon",
       "text": "月亮升起。\n潮水对此一无所知。",
       "position": [
-        4.35,
-        1.75,
+        4.2693860868525295,
+        1.7150837762688966,
         18.732
       ],
-      "fontSize": 0.047244621571553104,
-      "width": 0.7261802575107296,
+      "fontSize": 0.05460093817049408,
+      "width": 0.8392515808582731,
       "surface": "wall",
       "rotationY": 0,
       "weight": 400,
@@ -1536,10 +1536,10 @@
         "path": "assets/typography/book-20261116/moon.png",
         "sourceSVG": "assets/typography/book-20261116/moon.svg",
         "sha256": "50aa7d4120d238323ee683a8069f8076f346b93b27a51d80031c526f2a187842",
-        "physicalWidth": 0.7261802575107296,
-        "physicalHeight": 0.9970815450643775,
-        "localCenterX": 0,
-        "localCenterY": 0
+        "physicalWidth": 0.8392515808582731,
+        "physicalHeight": 1.1523340854905082,
+        "localCenterX": 0.0,
+        "localCenterY": 0.0
       },
       "preserveAuthoredInk": true,
       "note": "采用菲林19与纸页21覆合后可读的完整关系，留在原活动墙空白面；不为照搬书页新增阻路玻璃。",
@@ -1666,15 +1666,15 @@
       "surface": "wall",
       "position": [
         4.584,
-        0.935,
+        0.9931246148073174,
         24.45
       ],
       "rotationY": -90,
       "fontFamily": "authored-book-20261116",
       "weight": 400,
       "fontWidthScale": 1,
-      "fontSize": 0.07692818923466194,
-      "width": 0.48961602671118526,
+      "fontSize": 0.057463436902717026,
+      "width": 0.36573094904982195,
       "lineHeight": 1,
       "align": "left",
       "color": "#161616",
@@ -1686,10 +1686,10 @@
         "path": "assets/typography/book-20261116/glass-sea-echo.png",
         "sourceSVG": "assets/typography/book-20261116/glass-sea-echo.svg",
         "sha256": "b88c89fefa66366123d72011431220e34f8d4cb98980c4036b15d899b8b23dde",
-        "physicalWidth": 0.48961602671118526,
-        "physicalHeight": 0.6418697829716193,
-        "localCenterX": 0,
-        "localCenterY": 0
+        "physicalWidth": 0.36573094904982195,
+        "physicalHeight": 0.4794607040734982,
+        "localCenterX": 0.0,
+        "localCenterY": 0.0
       },
       "preserveAuthoredInk": true,
       "sourceBookPage": 24,
@@ -1703,11 +1703,11 @@
       "text": "它聚拢，它抬升，它倾覆，它盘旋。\nit overturns,",
       "position": [
         4.967,
-        2.32,
-        24.0
+        1.8151689569756397,
+        23.980410162286816
       ],
-      "fontSize": 0.06274984162889487,
-      "width": 1.1882565597667638,
+      "fontSize": 0.06599784828286699,
+      "width": 1.2497621367142484,
       "surface": "wall",
       "rotationY": -90,
       "weight": 400,
@@ -1723,10 +1723,10 @@
         "path": "assets/typography/book-20261116/waves.png",
         "sourceSVG": "assets/typography/book-20261116/waves.svg",
         "sha256": "59c5ac0cae031a8fe30e53b2efdb1b74e8aa2177ee1e9f7884aeca4e969646b4",
-        "physicalWidth": 1.1882565597667638,
-        "physicalHeight": 0.8745072886297376,
-        "localCenterX": 0,
-        "localCenterY": 0
+        "physicalWidth": 1.2497621367142484,
+        "physicalHeight": 0.919772829046792,
+        "localCenterX": 0.0,
+        "localCenterY": 0.0
       },
       "preserveAuthoredInk": true,
       "note": "恢复原稿四种动作的高低、轻重与旋转；整组缩小，留在玻璃上方的墙面，不压入作品。",
@@ -1740,8 +1740,8 @@
       "text": "夜空向海面缓缓倾斜，\n群星随波浪起伏。",
       "position": [
         4.967,
-        1.72,
-        26.8
+        0.9373688479956207,
+        26.815431875679373
       ],
       "fontSize": 0.0697753025286764,
       "width": 0.7522651933701657,
@@ -1864,72 +1864,6 @@
       "sourceBookPages": [
         25
       ]
-    },
-    {
-      "id": "invitation",
-      "text": "脱下你的鞋子吧，",
-      "position": [
-        4.0,
-        0.009,
-        5.1
-      ],
-      "fontSize": 0.14,
-      "width": 1.0535,
-      "surface": "floor",
-      "rotationY": 90,
-      "weight": 400,
-      "fontFamily": "authored-quiet",
-      "fontWidthScale": 1,
-      "lineHeight": 1.15,
-      "align": "left",
-      "color": "#42483F",
-      "letterSpacing": 0,
-      "note": "原句第一部分；面向四幅卧室摄影阅读，先遇到脱鞋的邀请。避开现有金属线，不作为实际脱鞋要求。",
-      "rotationInPlane": 0,
-      "typographyNote": "沿观看《一切正常》的身体方向出现，面向照片读；以脚步和金属线建立联系。",
-      "rasterOverride": {
-        "path": "assets/typography/quiet-20261109/invitation.png",
-        "sourceSVG": "assets/typography/quiet-20261109/invitation.svg",
-        "sha256": "41d052fc3dc05180c5522cfa2c68760ec5b10ddf63aa2b3cf189fcb0681a1884",
-        "physicalWidth": 1.0535,
-        "physicalHeight": 0.21084000000000003,
-        "localCenterX": 0,
-        "localCenterY": 0
-      },
-      "outsideBook": true
-    },
-    {
-      "id": "invitation-crossing",
-      "text": "我们要穿过溪流了。",
-      "position": [
-        3.8,
-        0.009,
-        7.05
-      ],
-      "fontSize": 0.14,
-      "width": 1.2115000000000005,
-      "surface": "floor",
-      "rotationY": 90,
-      "weight": 400,
-      "fontFamily": "authored-quiet",
-      "fontWidthScale": 1,
-      "lineHeight": 1.15,
-      "align": "left",
-      "color": "#42483F",
-      "letterSpacing": 0,
-      "note": "同一句原诗的后半；沿观看带前行后再读到，两个字面之间的距离由身体完成。",
-      "rotationInPlane": 0,
-      "typographyNote": "在沿线的下一个位置继续读到；与前句同向，让身体完成两句间的距离。",
-      "rasterOverride": {
-        "path": "assets/typography/quiet-20261109/invitation-crossing.png",
-        "sourceSVG": "assets/typography/quiet-20261109/invitation-crossing.svg",
-        "sha256": "88f8faf52632bade26a1b857121572cb25cda72dbf972602a1665ee9427f60e0",
-        "physicalWidth": 1.2115000000000005,
-        "physicalHeight": 0.20160000000000003,
-        "localCenterX": 0,
-        "localCenterY": 0
-      },
-      "outsideBook": true
     },
     {
       "id": "glass-growing",
@@ -2590,7 +2524,7 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/trial18/manifest.json",
+  "poetryRasterManifest": "poetry/saved-20261117/manifest.json",
   "occupancyStudy": {
     "status": "illustrative_not_observed_people",
     "diameters": [
@@ -3629,15 +3563,13 @@
     ],
     "carrierCounts": {
       "wall": 15,
-      "floor": 5,
+      "floor": 3,
       "glass": 3,
       "ceiling": 0
     },
     "splitGeometryPreserved": true,
     "artworkChanges": {},
     "outsideBookRetained": [
-      "invitation",
-      "invitation-crossing",
       "glass-growing"
     ],
     "blankPageTranslation": "不填充原稿留白；硫酸纸隔页与镜像页不额外复制成满墙文字。",
@@ -3669,5 +3601,52 @@
       34
     ],
     "paratextReason": "书名、纸背镜像、at/once、署名与封底属于书的开合；本轮不自动增设空间口号。"
+  },
+  "savedEditorArrangement": {
+    "savedAt": "2026-11-17",
+    "sourceRevision": "20261116-trial18",
+    "sourceLayoutSHA256": "3db804635b036044670a0059605ef3dbe66ec2402139cf81dfe8fdb69be64b80",
+    "uniformTransformsApplied": {
+      "world": {
+        "u": -2.5417971540936484,
+        "v": -0.20172565620710525,
+        "scale": 1
+      },
+      "between": {
+        "u": 0.0455238549618322,
+        "v": 0.32280820610687044,
+        "scale": 1
+      },
+      "ending": {
+        "u": 0.045200720419032336,
+        "v": 0.13982128855469356,
+        "scale": 1.0138082877437975
+      },
+      "moon": {
+        "u": 0.08061391314747013,
+        "v": -0.03491622373110337,
+        "scale": 1.155706964184265
+      },
+      "glass-sea-echo": {
+        "u": 0,
+        "v": 0.05812461480731734,
+        "scale": 0.7469750357366455
+      },
+      "waves": {
+        "u": 0.01958983771318401,
+        "v": -0.5048310430243601,
+        "scale": 1.0517611928517838
+      },
+      "night-sky": {
+        "u": -0.015431875679372098,
+        "v": -0.7826311520043793,
+        "scale": 1
+      }
+    },
+    "removedPoemIds": [
+      "invitation",
+      "invitation-crossing"
+    ],
+    "glyphImagesUnchanged": true
   }
 }
