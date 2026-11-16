@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { installPoetryEditor } from './poetry-editor.js?v=20261116-editor1';
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { installCatalog } from './catalog.js?v=20261116-trial18-photo11';
 import { buildExhibition } from './exhibition.js?v=20261116-trial18-farwaves-a4-15pt';
@@ -7,7 +8,7 @@ const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
 let stripMaterial, architectureMaterials, selectedFinishId;
 let data, renderer, scene, camera, controls, groups, walls, view = 'overview';
-let exhibition, trialLayout, library, trialVisible=true, inspectionFrame=null;
+let exhibition, trialLayout, library, trialVisible=true, inspectionFrame=null, poetryEditor;
 let yaw = 0, pitch = 0, walkPosition, pointerStart, pressed = new Set();
 let previousTime = performance.now(), raf = 0;
 const lightStudyUniform={value:0};
@@ -314,7 +315,26 @@ function updateLabels(){
   }
 }
 function resize(){if(!renderer)return;const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h);if(view==='overview')fitOverview();else if(view==='plan')setView('plan');else{if(camera.isOrthographicCamera&&inspectionFrame){const aspect=w/h,halfH=Math.max(inspectionFrame.height/2,inspectionFrame.width/2/aspect);camera.left=-halfH*1.12*aspect;camera.right=halfH*1.12*aspect;camera.top=halfH*1.28;camera.bottom=-halfH*.96;}else camera.aspect=w/h;camera.updateProjectionMatrix();updateLabels();}}
-function animate(now){raf=requestAnimationFrame(animate);const dt=Math.min((now-previousTime)/1000,.05);previousTime=now;if(view==='entry'||view==='reverse'){let forward=0,side=0;if(pressed.has('w')||pressed.has('arrowup'))forward++;if(pressed.has('s')||pressed.has('arrowdown'))forward--;if(pressed.has('d')||pressed.has('arrowright'))side++;if(pressed.has('a')||pressed.has('arrowleft'))side--;if(forward||side){const speed=(pressed.has('shift')?3:1.6)*dt/Math.max(1,Math.hypot(forward,side));const oldX=walkPosition.x,oldZ=walkPosition.z;const nextX=THREE.MathUtils.clamp(oldX+(Math.sin(yaw)*forward-Math.cos(yaw)*side)*speed,Math.max(walkBodyRadius,leftBoundaryX(-oldZ)+walkBodyRadius),data.room.width-walkBodyRadius);if(!hitsDisplay(nextX,-oldZ))walkPosition.x=nextX;const nextZ=THREE.MathUtils.clamp(oldZ+(Math.cos(yaw)*forward+Math.sin(yaw)*side)*speed,-data.room.length+.3,-floorStartZ(walkPosition.x)-.3);if(!hitsDisplay(walkPosition.x,-nextZ))walkPosition.z=nextZ;updateWalk();}}else controls.update();renderer.render(scene,camera);}
+function animate(now){raf=requestAnimationFrame(animate);const dt=Math.min((now-previousTime)/1000,.05);previousTime=now;if((view==='entry'||view==='reverse')&&!poetryEditor?.active){let forward=0,side=0;if(pressed.has('w')||pressed.has('arrowup'))forward++;if(pressed.has('s')||pressed.has('arrowdown'))forward--;if(pressed.has('d')||pressed.has('arrowright'))side++;if(pressed.has('a')||pressed.has('arrowleft'))side--;if(forward||side){const speed=(pressed.has('shift')?3:1.6)*dt/Math.max(1,Math.hypot(forward,side));const oldX=walkPosition.x,oldZ=walkPosition.z;const nextX=THREE.MathUtils.clamp(oldX+(Math.sin(yaw)*forward-Math.cos(yaw)*side)*speed,Math.max(walkBodyRadius,leftBoundaryX(-oldZ)+walkBodyRadius),data.room.width-walkBodyRadius);if(!hitsDisplay(nextX,-oldZ))walkPosition.x=nextX;const nextZ=THREE.MathUtils.clamp(oldZ+(Math.cos(yaw)*forward+Math.sin(yaw)*side)*speed,-data.room.length+.3,-floorStartZ(walkPosition.x)-.3);if(!hitsDisplay(walkPosition.x,-nextZ))walkPosition.z=nextZ;updateWalk();}}else controls.update();poetryEditor?.update();renderer.render(scene,camera);}
+
+
+function focusPoetryEntry(entry){
+  view='inspection';pressed.clear();pointerStart=null;$('#walk-controls').hidden=true;
+  document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed','false'));
+  entry.object.updateWorldMatrix(true,false);
+  const target=new THREE.Vector3(entry.offsetX,entry.offsetY,0).applyMatrix4(entry.object.matrixWorld);
+  const normal=new THREE.Vector3(0,0,1).transformDirection(entry.object.matrixWorld);
+  const up=new THREE.Vector3(0,1,0).transformDirection(entry.object.matrixWorld);
+  const isFloor=entry.record.surface==='floor';
+  if(!isFloor)target.y=1.45;
+  const scale=poetryEditor?.model.get(entry.record.id).scale||1;
+  inspectionFrame={width:Math.max(3.1,entry.width*scale+1.3),height:Math.max(3.1,entry.height*scale+1.2)};
+  const aspect=host.clientWidth/host.clientHeight,h=Math.max(inspectionFrame.height/2,inspectionFrame.width/2/aspect);
+  camera=new THREE.OrthographicCamera(-h*1.12*aspect,h*1.12*aspect,h*1.28,-h*.96,.025,120);
+  camera.up.copy(up);camera.position.copy(target).addScaledVector(normal,isFloor?2.7:2.8);camera.lookAt(target);
+  createControls();controls.target.copy(target);controls.maxPolarAngle=Math.PI-.02;controls.update();
+  updateCutaway();updateLabels();
+}
 
 async function init(){try{
   const requestedTrial=new URLSearchParams(location.search).get('trial');
@@ -373,15 +393,19 @@ async function init(){try{
   $('#cutaway').addEventListener('change',updateCutaway);
   $('#position').addEventListener('input',e=>{walkPosition.z=-Number(e.target.value);updateWalk();});
   const canvas=renderer.domElement;
-  canvas.addEventListener('pointerdown',e=>{if(view==='entry'||view==='reverse'){pointerStart={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);host.focus({preventScroll:true});}});
+  canvas.addEventListener('pointerdown',e=>{if(poetryEditor?.active)return;if(view==='entry'||view==='reverse'){pointerStart={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);host.focus({preventScroll:true});}});
   canvas.addEventListener('pointermove',e=>{if(pointerStart?.id===e.pointerId){yaw-=(e.clientX-pointerStart.x)*.004;pitch=THREE.MathUtils.clamp(pitch-(e.clientY-pointerStart.y)*.004,-1.1,1.1);pointerStart.x=e.clientX;pointerStart.y=e.clientY;updateWalk();}});
   const stopPointer=()=>pointerStart=null;canvas.addEventListener('pointerup',stopPointer);canvas.addEventListener('pointercancel',stopPointer);
-  window.addEventListener('keydown',e=>{if(e.target.matches('input,button,a,select,textarea'))return;const key=e.key.toLowerCase();if(['w','a','s','d','arrowup','arrowleft','arrowdown','arrowright','shift'].includes(key)&&(view==='entry'||view==='reverse')){pressed.add(key);e.preventDefault();}if(key==='escape')panel(false);});window.addEventListener('keyup',e=>pressed.delete(e.key.toLowerCase()));window.addEventListener('blur',()=>pressed.clear());
+  window.addEventListener('keydown',e=>{if(poetryEditor?.active)return;if(e.target.matches('input,button,a,select,textarea'))return;const key=e.key.toLowerCase();if(['w','a','s','d','arrowup','arrowleft','arrowdown','arrowright','shift'].includes(key)&&(view==='entry'||view==='reverse')){pressed.add(key);e.preventDefault();}if(key==='escape')panel(false);});window.addEventListener('keyup',e=>pressed.delete(e.key.toLowerCase()));window.addEventListener('blur',()=>pressed.clear());
   new ResizeObserver(resize).observe(host);document.addEventListener('visibilitychange',()=>{pressed.clear();previousTime=performance.now();});
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();$('#error').hidden=false;$('#error').textContent='三维画面连接中断，请刷新页面重新载入。';cancelAnimationFrame(raf);});
   installCatalog({layout:trialLayout,onInspect:focusOnWork});
   state.loaded=true;requestAnimationFrame(animate);
   exhibition.ready.then(stats=>{const total=stats.loaded+stats.errors;canvas.setAttribute('data-image-load-stats',JSON.stringify({loaded:stats.loaded,errors:stats.errors,pending:stats.pending,failures:stats.failures}));if(stats.errors){$('#status').textContent=`${stats.errors}项预览暂未载入，请刷新重试`;}$('#image-status').textContent=stats.errors?`${stats.loaded}/${total} 项预览已载入`:`${stats.photos+stats.large+stats.glass+stats.videos-(trialLayout.works.some(w=>w.id==='traveler-1')?1:0)}件原作`+(trialLayout.works.some(w=>w.id==='traveler-1')?' + 旅人候选':'')+' · '+trialName();});
   window.spaceModel={exhibition,layout:trialLayout,getState:()=>({trialVisible,exhibitionStats:exhibition.stats,loaded:state.loaded,error:state.error,view,room:data.room,tile:data.tile,camera:{position:camera.position.toArray(),target:controls.target.toArray()},visible:{strips:groups.strips.visible,bars:groups.bars.visible,lighting:groups.lighting.visible,leftWall:walls.left.visible,rightWall:walls.right.visible},counts:{strips:groups.strips.children.length,bars:groups.bars.children.length,lightingRows:data.lighting?.rowPositions.length||0},endBStatus:data.ends.B.openingStatus,renderCalls:renderer.info.render.calls}),setView,focusOnWork,focusOnGroup,setTrialVisible,scene,data};
+  if(!baseline&&!typographyCompare){
+    poetryEditor=installPoetryEditor({exhibition,layout:trialLayout,layoutSourceText:inputTexts[1],space:data,host,getCamera:()=>camera,getControls:()=>controls,focusEntry:focusPoetryEntry,onActive:active=>{pressed.clear();pointerStart=null;if(active){setTrialVisible(true);$('#walk-controls').hidden=true;}$('#hint').textContent=active?'选中文字后拖动 · 角点等比缩放 · ⌘Z 撤销':'拖动环看 · 滚轮缩放';resize();}});
+    window.spaceModel.poetryEditor=poetryEditor;$('#editor-open').disabled=false;
+  }else{$('#editor-open').hidden=true;}
 }catch(error){state.error=error.message;$('#error').hidden=false;$('#error').textContent=`空间未能载入：${error.message}。请通过“打开空间模型.command”启动后访问本机地址，勿直接双击HTML文件。`;$('#status').hidden=true;console.error(error);}}
 init();
