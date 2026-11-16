@@ -1,0 +1,3374 @@
+{
+  "schemaVersion": 1,
+  "revision": "20261111-trial17",
+  "title": "大悦城 ONCE · 诗册进入空间",
+  "status": "诗册空间试排，非施工及印刷定稿",
+  "date": "2026-11-11",
+  "sourceLayout": "source/layout-baselines/trial12.json",
+  "principle": "以作者诗册为字形与句内关系的依据；整句均匀放大，保留停顿，让空白参与阅读。",
+  "partitions": [
+    {
+      "id": "early",
+      "a": [
+        0,
+        13.0
+      ],
+      "b": [
+        1.6,
+        13.0
+      ],
+      "height": 2.6,
+      "thickness": 0.12,
+      "status": "proposed"
+    },
+    {
+      "id": "late",
+      "a": [
+        0,
+        23.25
+      ],
+      "b": [
+        1.5,
+        23.25
+      ],
+      "height": 2.6,
+      "thickness": 0.12,
+      "status": "proposed"
+    },
+    {
+      "id": "glass-boundary",
+      "a": [
+        5.0,
+        18.65
+      ],
+      "b": [
+        3.5,
+        18.65
+      ],
+      "height": 2.6,
+      "thickness": 0.12,
+      "status": "proposed"
+    }
+  ],
+  "surfaces": [
+    {
+      "id": "once-main",
+      "a": [
+        0.0,
+        0
+      ],
+      "b": [
+        0.0,
+        31.2
+      ],
+      "normal": [
+        1,
+        0
+      ],
+      "height": 2.95,
+      "kind": "existing"
+    },
+    {
+      "id": "other-main",
+      "a": [
+        5.0,
+        1.288011
+      ],
+      "b": [
+        5.0,
+        31.2
+      ],
+      "normal": [
+        -1,
+        0
+      ],
+      "height": 2.95,
+      "kind": "existing"
+    },
+    {
+      "id": "entry-sign",
+      "a": [
+        2.5886223059171822,
+        -0.6461267057759138
+      ],
+      "b": [
+        4.211377694082817,
+        -0.21131071000367896
+      ],
+      "normal": [
+        0.25881904510252074,
+        -0.9659258262890683
+      ],
+      "height": 2.95,
+      "kind": "proposed-sign"
+    },
+    {
+      "id": "early-A",
+      "a": [
+        0,
+        12.94
+      ],
+      "b": [
+        1.6,
+        12.94
+      ],
+      "normal": [
+        0,
+        -1
+      ],
+      "height": 2.6,
+      "kind": "partition"
+    },
+    {
+      "id": "early-B",
+      "a": [
+        0,
+        13.06
+      ],
+      "b": [
+        1.6,
+        13.06
+      ],
+      "normal": [
+        0,
+        1
+      ],
+      "height": 2.6,
+      "kind": "partition"
+    },
+    {
+      "id": "late-A",
+      "a": [
+        0,
+        23.19
+      ],
+      "b": [
+        1.5,
+        23.19
+      ],
+      "normal": [
+        0,
+        -1
+      ],
+      "height": 2.6,
+      "kind": "partition"
+    },
+    {
+      "id": "late-B",
+      "a": [
+        0,
+        23.31
+      ],
+      "b": [
+        1.5,
+        23.31
+      ],
+      "normal": [
+        0,
+        1
+      ],
+      "height": 2.6,
+      "kind": "partition"
+    },
+    {
+      "id": "glass-boundary-A",
+      "a": [
+        5,
+        18.59
+      ],
+      "b": [
+        3.5,
+        18.59
+      ],
+      "normal": [
+        0,
+        -1
+      ],
+      "height": 2.6,
+      "kind": "partition"
+    },
+    {
+      "id": "glass-boundary-B",
+      "a": [
+        5,
+        18.709999999999997
+      ],
+      "b": [
+        3.5,
+        18.709999999999997
+      ],
+      "normal": [
+        0,
+        1
+      ],
+      "height": 2.6,
+      "kind": "partition"
+    }
+  ],
+  "works": [
+    {
+      "imageUrl": "library/spatial_once_01.jpg",
+      "id": "once_01",
+      "catalogId": "once_01",
+      "group": "late-B-large",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 24.55,
+      "centerY": 1.4,
+      "imageWidth": 1.1,
+      "imageHeight": 0.903685,
+      "outerWidth": 1.1960000000000002,
+      "outerHeight": 0.9996849999999999,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_02.jpg",
+      "id": "once_02",
+      "catalogId": "once_02",
+      "group": "B-figure",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 26.0,
+      "centerY": 1.9,
+      "imageWidth": 0.54,
+      "imageHeight": 0.480113,
+      "outerWidth": 0.636,
+      "outerHeight": 0.576113,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_04.jpg",
+      "id": "once_04",
+      "catalogId": "once_04",
+      "group": "place-night",
+      "type": "photo",
+      "surfaceId": "other-main",
+      "along": 11.691989,
+      "centerY": 1.05,
+      "imageWidth": 0.4,
+      "imageHeight": 0.32511,
+      "outerWidth": 0.496,
+      "outerHeight": 0.42111,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_05.jpg",
+      "id": "once_05",
+      "catalogId": "once_05",
+      "group": "sea",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 5.65,
+      "centerY": 1.72,
+      "imageWidth": 0.3,
+      "imageHeight": 0.25,
+      "outerWidth": 0.324,
+      "outerHeight": 0.27399999999999997,
+      "frameColor": "#242625",
+      "frameFace": 0.006999999999999999,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_08.jpg",
+      "id": "once_08",
+      "catalogId": "once_08",
+      "group": "place-night",
+      "type": "photo",
+      "surfaceId": "other-main",
+      "along": 15.361989,
+      "centerY": 1.68,
+      "imageWidth": 0.738,
+      "imageHeight": 0.6,
+      "outerWidth": 0.754,
+      "outerHeight": 0.616,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_09.jpg",
+      "id": "once_09",
+      "catalogId": "once_09",
+      "group": "B-figure",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 22.05,
+      "centerY": 1.36,
+      "imageWidth": 0.3,
+      "imageHeight": 0.25,
+      "outerWidth": 0.396,
+      "outerHeight": 0.346,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_10.jpg",
+      "id": "once_10",
+      "catalogId": "once_10",
+      "group": "A-city",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 1.5,
+      "centerY": 2.25,
+      "imageWidth": 0.3,
+      "imageHeight": 0.23793699577000002,
+      "outerWidth": 0.396,
+      "outerHeight": 0.33393699577,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_11.jpg",
+      "id": "once_11",
+      "catalogId": "once_11",
+      "group": "place-night",
+      "type": "photo",
+      "surfaceId": "late-B",
+      "along": 0.75,
+      "centerY": 1.45,
+      "imageWidth": 0.3,
+      "imageHeight": 0.25,
+      "outerWidth": 0.324,
+      "outerHeight": 0.27399999999999997,
+      "frameColor": "#242625",
+      "frameFace": 0.006999999999999999,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "移到01号旁活动板墙的空白B面；沿用现有画面、外框尺寸和装裱。"
+    },
+    {
+      "imageUrl": "library/spatial_once_12.jpg",
+      "id": "once_12",
+      "catalogId": "once_12",
+      "group": "early-B-single",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 6.1,
+      "centerY": 0.92,
+      "imageWidth": 0.42,
+      "imageHeight": 0.341918,
+      "outerWidth": 0.516,
+      "outerHeight": 0.43791800000000003,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_13.jpg",
+      "id": "once_13",
+      "catalogId": "once_13",
+      "group": "sea",
+      "type": "photo",
+      "surfaceId": "early-A",
+      "along": 0.8,
+      "centerY": 1.45,
+      "imageWidth": 0.8,
+      "imageHeight": 0.64691444444,
+      "outerWidth": 0.896,
+      "outerHeight": 0.74291444444,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_14.jpg",
+      "id": "once_14",
+      "catalogId": "once_14",
+      "group": "place-night",
+      "type": "photo",
+      "surfaceId": "other-main",
+      "along": 16.631989,
+      "centerY": 1.95,
+      "imageWidth": 0.46,
+      "imageHeight": 0.373281,
+      "outerWidth": 0.556,
+      "outerHeight": 0.46928099999999995,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_16.jpg",
+      "id": "once_16",
+      "catalogId": "once_16",
+      "group": "snow",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 19.55,
+      "centerY": 1.34,
+      "imageWidth": 0.85,
+      "imageHeight": 0.7,
+      "outerWidth": 0.9420000000000001,
+      "outerHeight": 0.792,
+      "frameColor": "#242625",
+      "frameFace": 0.006,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_17.jpg",
+      "id": "once_17",
+      "catalogId": "once_17",
+      "group": "B-figure",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 26.4,
+      "centerY": 0.92,
+      "imageWidth": 0.3,
+      "imageHeight": 0.25,
+      "outerWidth": 0.324,
+      "outerHeight": 0.27399999999999997,
+      "frameColor": "#242625",
+      "frameFace": 0.006999999999999999,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_18.jpg",
+      "id": "once_18",
+      "catalogId": "once_18",
+      "group": "quiet-18",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 16.05,
+      "centerY": 1.42,
+      "imageWidth": 0.3,
+      "imageHeight": 0.25,
+      "outerWidth": 0.396,
+      "outerHeight": 0.346,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_19.jpg",
+      "id": "once_19",
+      "catalogId": "once_19",
+      "group": "B-figure",
+      "type": "photo",
+      "surfaceId": "late-A",
+      "along": 0.75,
+      "centerY": 1.45,
+      "imageWidth": 0.42,
+      "imageHeight": 0.32220999999999994,
+      "outerWidth": 0.516,
+      "outerHeight": 0.41820999999999997,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_20.jpg",
+      "id": "once_20",
+      "catalogId": "once_20",
+      "group": "sea",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 10.6,
+      "centerY": 1.45,
+      "imageWidth": 1.47,
+      "imageHeight": 1.16,
+      "outerWidth": 1.486,
+      "outerHeight": 1.176,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_21.jpg",
+      "id": "once_21",
+      "catalogId": "once_21",
+      "group": "sea",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 8.0,
+      "centerY": 1.55,
+      "imageWidth": 1.35,
+      "imageHeight": 1.063805,
+      "outerWidth": 1.3659999999999999,
+      "outerHeight": 1.0798050000000001,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_22.jpg",
+      "id": "once_22",
+      "catalogId": "once_22",
+      "group": "A-city",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 2.65,
+      "centerY": 0.95,
+      "imageWidth": 0.54,
+      "imageHeight": 0.42472299999999996,
+      "outerWidth": 0.636,
+      "outerHeight": 0.5207229999999999,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_23.jpg",
+      "id": "once_23",
+      "catalogId": "once_23",
+      "group": "place-night",
+      "type": "photo",
+      "surfaceId": "other-main",
+      "along": 13.151989,
+      "centerY": 0.77,
+      "imageWidth": 0.42,
+      "imageHeight": 0.33067100000000005,
+      "outerWidth": 0.516,
+      "outerHeight": 0.426671,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_24.jpg",
+      "id": "once_24",
+      "catalogId": "once_24",
+      "group": "sea",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 9.2,
+      "centerY": 0.93,
+      "imageWidth": 0.425,
+      "imageHeight": 0.35700000000000004,
+      "outerWidth": 0.561,
+      "outerHeight": 0.493,
+      "frameColor": "#f4f4ef",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_26.jpg",
+      "id": "once_26",
+      "catalogId": "once_26",
+      "group": "place-night",
+      "type": "photo",
+      "surfaceId": "other-main",
+      "along": 12.831989,
+      "centerY": 1.67,
+      "imageWidth": 0.85,
+      "imageHeight": 0.7,
+      "outerWidth": 0.9420000000000001,
+      "outerHeight": 0.792,
+      "frameColor": "#242625",
+      "frameFace": 0.006,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_27.jpg",
+      "id": "once_27",
+      "catalogId": "once_27",
+      "group": "early-A-single",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 12.05,
+      "centerY": 1.66,
+      "imageWidth": 0.37799999999999995,
+      "imageHeight": 0.32146696529,
+      "outerWidth": 0.514,
+      "outerHeight": 0.45746696528999997,
+      "frameColor": "#f4f4ef",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_28.jpg",
+      "id": "once_28",
+      "catalogId": "once_28",
+      "group": "snow",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 17.55,
+      "centerY": 1.9,
+      "imageWidth": 0.47600000000000003,
+      "imageHeight": 0.35505095,
+      "outerWidth": 0.612,
+      "outerHeight": 0.49105095,
+      "frameColor": "#f4f4ef",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_30.jpg",
+      "id": "once_30",
+      "catalogId": "once_30",
+      "group": "A-city",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 3.6,
+      "centerY": 1.5,
+      "imageWidth": 0.62,
+      "imageHeight": 0.509715,
+      "outerWidth": 0.716,
+      "outerHeight": 0.605715,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_31.jpg",
+      "id": "once_31",
+      "catalogId": "once_31",
+      "group": "A-city",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 1.45,
+      "centerY": 1.35,
+      "imageWidth": 0.85,
+      "imageHeight": 0.7,
+      "outerWidth": 0.9420000000000001,
+      "outerHeight": 0.792,
+      "frameColor": "#242625",
+      "frameFace": 0.006,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_32.jpg",
+      "id": "once_32",
+      "catalogId": "once_32",
+      "group": "A-city",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 3.55,
+      "centerY": 0.65,
+      "imageWidth": 0.255,
+      "imageHeight": 0.2125,
+      "outerWidth": 0.391,
+      "outerHeight": 0.34850000000000003,
+      "frameColor": "#f4f4ef",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_33.jpg",
+      "id": "once_33",
+      "catalogId": "once_33",
+      "group": "snow",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 18.55,
+      "centerY": 2.02,
+      "imageWidth": 0.45299999999999996,
+      "imageHeight": 0.36633229167000003,
+      "outerWidth": 0.5489999999999999,
+      "outerHeight": 0.46233229167,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_34.jpg",
+      "id": "once_34",
+      "catalogId": "once_34",
+      "group": "snow",
+      "type": "photo",
+      "surfaceId": "once-main",
+      "along": 20.85,
+      "centerY": 0.95,
+      "imageWidth": 0.255,
+      "imageHeight": 0.20580321429,
+      "outerWidth": 0.391,
+      "outerHeight": 0.34180321429000005,
+      "frameColor": "#f4f4ef",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "沿用上次已有外框尺寸；本轮仅试排位置。"
+    },
+    {
+      "imageUrl": "library/spatial_once_35.jpg",
+      "id": "once_35",
+      "catalogId": "once_35",
+      "group": "late-A-large",
+      "type": "photo",
+      "surfaceId": "glass-boundary-A",
+      "along": 0.75,
+      "centerY": 1.45,
+      "imageWidth": 1.0,
+      "imageHeight": 0.805132,
+      "outerWidth": 1.096,
+      "outerHeight": 0.9011319999999999,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "imageUrl": "library/spatial_once_36.jpg",
+      "id": "once_36",
+      "catalogId": "once_36",
+      "group": "sea",
+      "type": "photo",
+      "surfaceId": "early-B",
+      "along": 0.8,
+      "centerY": 1.45,
+      "imageWidth": 0.8,
+      "imageHeight": 0.6356429473699999,
+      "outerWidth": 0.896,
+      "outerHeight": 0.7316429473699999,
+      "frameColor": "#242625",
+      "frameFace": 0.008,
+      "depth": 0.035,
+      "matColor": "#ffffff",
+      "note": "新装裱试用：8毫米窄框、每边4厘米白卡；未定稿，不改变画面尺寸。"
+    },
+    {
+      "id": "yqzc-01",
+      "catalogId": "yqzc-01",
+      "group": "YQZC",
+      "type": "large",
+      "surfaceId": "other-main",
+      "along": 2.511989,
+      "centerY": 1.45,
+      "imageWidth": 1.6,
+      "imageHeight": 1.0674285714285714,
+      "outerWidth": 1.616,
+      "outerHeight": 1.0834285714285714,
+      "frameFace": 0.008,
+      "frameColor": "#252725",
+      "depth": 0.03,
+      "matColor": "#ffffff",
+      "note": "现成作品宽1.6米等比例示意；尤其04实物外尺寸待核，不裁切原图。"
+    },
+    {
+      "id": "yqzc-02",
+      "catalogId": "yqzc-02",
+      "group": "YQZC",
+      "type": "large",
+      "surfaceId": "other-main",
+      "along": 4.827989,
+      "centerY": 1.45,
+      "imageWidth": 1.6,
+      "imageHeight": 1.0674285714285714,
+      "outerWidth": 1.616,
+      "outerHeight": 1.0834285714285714,
+      "frameFace": 0.008,
+      "frameColor": "#252725",
+      "depth": 0.03,
+      "matColor": "#ffffff",
+      "note": "现成作品宽1.6米等比例示意；尤其04实物外尺寸待核，不裁切原图。"
+    },
+    {
+      "id": "yqzc-03",
+      "catalogId": "yqzc-03",
+      "group": "YQZC",
+      "type": "large",
+      "surfaceId": "other-main",
+      "along": 7.143989,
+      "centerY": 1.45,
+      "imageWidth": 1.6,
+      "imageHeight": 1.0674285714285714,
+      "outerWidth": 1.616,
+      "outerHeight": 1.0834285714285714,
+      "frameFace": 0.008,
+      "frameColor": "#252725",
+      "depth": 0.03,
+      "matColor": "#ffffff",
+      "note": "现成作品宽1.6米等比例示意；尤其04实物外尺寸待核，不裁切原图。"
+    },
+    {
+      "id": "yqzc-04",
+      "catalogId": "yqzc-04",
+      "group": "YQZC",
+      "type": "large",
+      "surfaceId": "other-main",
+      "along": 9.709989,
+      "centerY": 1.45,
+      "imageWidth": 1.6,
+      "imageHeight": 1.174857142857143,
+      "outerWidth": 1.616,
+      "outerHeight": 1.190857142857143,
+      "frameFace": 0.008,
+      "frameColor": "#252725",
+      "depth": 0.03,
+      "matColor": "#ffffff",
+      "note": "现成作品宽1.6米等比例示意；尤其04实物外尺寸待核，不裁切原图。"
+    },
+    {
+      "id": "performance_vessel",
+      "catalogId": "performance_vessel",
+      "group": "VESSEL",
+      "type": "video",
+      "surfaceId": "other-main",
+      "along": 27.211989,
+      "centerY": 1.55,
+      "imageWidth": 1.22,
+      "imageHeight": 0.68625,
+      "outerWidth": 1.26,
+      "outerHeight": 0.72625,
+      "frameFace": 0.02,
+      "frameColor": "#191b19",
+      "depth": 0.055,
+      "matColor": "#191b19",
+      "note": "放映位置与约55英寸屏幕仅试排，设备尚未定型。"
+    },
+    {
+      "id": "preface-location",
+      "catalogId": null,
+      "group": "PREFACE",
+      "type": "text",
+      "surfaceId": "other-main",
+      "along": 0.6619889999999999,
+      "centerY": 1.62,
+      "imageWidth": 0.85,
+      "imageHeight": 1.3,
+      "outerWidth": 0.85,
+      "outerHeight": 1.3,
+      "frameFace": 0,
+      "frameColor": "#ffffff",
+      "depth": 0.004,
+      "matColor": "#ffffff",
+      "text": "前言\n\nONCE 后知后觉\n\n首版仅示意前言位置\n内容与形式另行调整",
+      "note": "前言占位，不是定稿文件。",
+      "fontFamily": "authored-quiet",
+      "fontSize": 0.085,
+      "fontWidthScale": 1,
+      "weight": 400,
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "width": 0.85,
+      "typographyNote": "只显示已有占位内容，作为正文版式的边界；本轮没有新的正式前言。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/preface-location.png",
+        "sourceSVG": "assets/typography/quiet-20261109/preface-location.svg",
+        "sha256": "62f27ccfa7ccf49bb38701fc2c53268f0eac6fd399c58f4a94512f878fd1a580",
+        "physicalWidth": 0.85,
+        "physicalHeight": 1.3,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
+    },
+    {
+      "id": "entry-title",
+      "catalogId": null,
+      "group": "ENTRY",
+      "type": "text",
+      "surfaceId": "entry-sign",
+      "along": 0.84,
+      "centerY": 2.74,
+      "imageWidth": 1.6,
+      "imageHeight": 0.32,
+      "outerWidth": 1.6,
+      "outerHeight": 0.32,
+      "frameFace": 0,
+      "depth": 0.008,
+      "matColor": "#f1f2ec",
+      "color": "#42483F",
+      "fontSize": 0.16,
+      "lineHeight": 1.05,
+      "fontFamily": "authored-quiet",
+      "align": "center",
+      "text": "ONCE 后知后觉",
+      "note": "A口新增轻质门头位置与字样试验，非制作定稿。",
+      "fontWidthScale": 1,
+      "weight": 400,
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "width": 1.6,
+      "typographyNote": "一行展名，控制在门头占位内，和作品诗句分工。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/entry-title.png",
+        "sourceSVG": "assets/typography/quiet-20261109/entry-title.svg",
+        "sha256": "df55a768bd20f7092391e963a372da18fa418cebd78279720255022b93fb6a73",
+        "physicalWidth": 1.6,
+        "physicalHeight": 0.32,
+        "localCenterX": 0,
+        "localCenterY": 0
+      }
+    },
+    {
+      "id": "traveler-1",
+      "catalogId": "traveler-1",
+      "group": "TRAVELER",
+      "type": "video",
+      "displayMode": "pillow-projection",
+      "surfaceId": "once-main",
+      "along": 29.4,
+      "centerY": 1.5,
+      "imageWidth": 1.78,
+      "imageHeight": 0.75,
+      "outerWidth": 1.78,
+      "outerHeight": 0.75,
+      "depth": 0.1,
+      "imageUrl": "library/traveler-1-projection.jpg",
+      "label": false,
+      "pillowCount": 3,
+      "pillowWidth": 0.5,
+      "pillowHeight": 0.75,
+      "pillowGap": 0.14,
+      "pillowCrops": [
+        [
+          0,
+          0,
+          0.3333333333333333,
+          1
+        ],
+        [
+          0.3333333333333333,
+          0,
+          0.6666666666666666,
+          1
+        ],
+        [
+          0.6666666666666666,
+          0,
+          1,
+          1
+        ]
+      ],
+      "pillowMesh": "models/white-pillow.json",
+      "projectionVideo": "media/traveler-1-projection.mp4",
+      "projectionCoverage": [
+        0.782222,
+        0.88
+      ],
+      "status": "candidate_user_says_likely",
+      "mounting": "wall_hung_user_confirmed",
+      "note": "B端独立影像区；三个白色枕头竖挂，暂按50×75厘米及14厘米间隔。摄影于26.31米前结束，距枕头近端2.85米。网页亮度仅示意，需现场试投。"
+    }
+  ],
+  "freestandingGlass": [
+    {
+      "id": "ga-01",
+      "catalogId": "ga-01",
+      "group": "GLASS",
+      "x": 4.6,
+      "z": 20.95,
+      "yaw": 90,
+      "width": 0.7,
+      "height": 1.8,
+      "bottom": 0.035,
+      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
+      "supportType": "tile-display-clamp",
+      "supportPlacement": "edge",
+      "imageFit": "contain",
+      "sourceImageWidth": 0.6,
+      "sourceImageHeight": 0.8,
+      "joinedGroup": "growing-again-continuous"
+    },
+    {
+      "id": "ga-02",
+      "catalogId": "ga-02",
+      "group": "GLASS",
+      "x": 4.6,
+      "z": 21.65,
+      "yaw": 90,
+      "width": 0.7,
+      "height": 1.8,
+      "bottom": 0.035,
+      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
+      "supportType": "tile-display-clamp",
+      "supportPlacement": "edge",
+      "imageFit": "contain",
+      "sourceImageWidth": 0.7,
+      "sourceImageHeight": 1.2,
+      "joinedGroup": "growing-again-continuous"
+    },
+    {
+      "id": "ga-03",
+      "catalogId": "ga-03",
+      "group": "GLASS",
+      "x": 4.6,
+      "z": 23.049999999999997,
+      "yaw": 90,
+      "width": 0.7,
+      "height": 1.8,
+      "bottom": 0.035,
+      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
+      "supportType": "tile-display-clamp",
+      "supportPlacement": "edge",
+      "imageFit": "contain",
+      "sourceImageWidth": 0.6,
+      "sourceImageHeight": 1.4,
+      "joinedGroup": "growing-again-continuous"
+    },
+    {
+      "id": "ga-04",
+      "catalogId": "ga-04",
+      "group": "GLASS",
+      "x": 4.6,
+      "z": 23.75,
+      "yaw": 90,
+      "width": 0.7,
+      "height": 1.8,
+      "bottom": 0.035,
+      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
+      "supportType": "tile-display-clamp",
+      "supportPlacement": "edge",
+      "imageFit": "contain",
+      "sourceImageWidth": 0.7,
+      "sourceImageHeight": 1.6,
+      "joinedGroup": "growing-again-continuous"
+    },
+    {
+      "id": "ga-05",
+      "catalogId": "ga-05",
+      "group": "GLASS",
+      "x": 4.6,
+      "z": 25.15,
+      "yaw": 90,
+      "width": 0.7,
+      "height": 1.8,
+      "bottom": 0.035,
+      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
+      "supportType": "tile-display-clamp",
+      "supportPlacement": "edge",
+      "imageFit": "contain",
+      "sourceImageWidth": 0.6,
+      "sourceImageHeight": 1.65,
+      "joinedGroup": "growing-again-continuous"
+    },
+    {
+      "id": "ga-06",
+      "catalogId": "ga-06",
+      "group": "GLASS",
+      "x": 4.6,
+      "z": 25.849999999999998,
+      "yaw": 90,
+      "width": 0.7,
+      "height": 1.8,
+      "bottom": 0.035,
+      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
+      "supportType": "tile-display-clamp",
+      "supportPlacement": "edge",
+      "imageFit": "contain",
+      "sourceImageWidth": 0.6,
+      "sourceImageHeight": 1.8,
+      "joinedGroup": "growing-again-continuous"
+    }
+  ],
+  "poems": [
+    {
+      "id": "future",
+      "text": "我在以后看见他们，\n迎着风，\n谈论着明天。",
+      "position": [
+        2.35,
+        0.009,
+        3.75
+      ],
+      "fontSize": 0.11443403198638236,
+      "width": 1.5768204758471522,
+      "surface": "floor",
+      "rotationY": 0,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "保留三行的退让、疏字距和字重；从A口进入后顺着下行的句子读，不另拆出几个互不相连的口号。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/future.png",
+        "sourceSVG": "assets/typography/book-20261111/future.svg",
+        "sha256": "df82c8ac273fc710c8e593b952e729dc76bd599f5f15980857f2d305dec509b2",
+        "physicalWidth": 1.5768204758471522,
+        "physicalHeight": 1.0370583994232156,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "note": "保留三行的退让、疏字距和字重；从A口进入后顺着下行的句子读，不另拆出几个互不相连的口号。",
+      "sourceBookPage": 3
+    },
+    {
+      "id": "mountains",
+      "text": "群山",
+      "position": [
+        4.967,
+        1.55,
+        9.715
+      ],
+      "fontSize": 0.09058036812429418,
+      "width": 0.264487594390507,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "note": "沿用诗册字形、字距和原试排字级；降入《一切正常》03与04之间的95厘米空隙，空隙成为尚未合拢的部分。",
+      "rotationInPlane": 0,
+      "typographyNote": "沿用诗册字形、字距和原试排字级；降入《一切正常》03与04之间的95厘米空隙，空隙成为尚未合拢的部分。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/mountains.png",
+        "sourceSVG": "assets/typography/book-20261111/mountains.svg",
+        "sha256": "c34b1354d97abe173a7966c8e104941566f0d3045ac69965853f22ed5ac424ab",
+        "physicalWidth": 0.264487594390507,
+        "physicalHeight": 0.1070334412081985,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "sourceBookPage": 5
+    },
+    {
+      "id": "mountains-open",
+      "text": "还未合拢，",
+      "position": [
+        4.967,
+        2.23,
+        8.85
+      ],
+      "fontSize": 0.09058036812429418,
+      "width": 0.40248112189859764,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "从群山向右上方接读，落在《一切正常》03上方偏左；与群山同字级，不再挤成照片上方的一条标题。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/mountains-open.png",
+        "sourceSVG": "assets/typography/book-20261111/mountains-open.svg",
+        "sha256": "48dfdb3b598bc728cfcc6e5684864e678158e7ab2482f98e57c8cffe322e39ed",
+        "physicalWidth": 0.40248112189859764,
+        "physicalHeight": 0.11499460625674218,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "note": "从群山向右上方接读，落在《一切正常》03上方偏左；与群山同字级，不再挤成照片上方的一条标题。",
+      "sourceBookPage": 5
+    },
+    {
+      "id": "river",
+      "text": "河流带有未命名的方向，",
+      "position": [
+        4.967,
+        2.31,
+        12.75
+      ],
+      "fontSize": 0.1020303264301176,
+      "width": 1.4039133574007219,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "河流与方向保持书中的斜向落差；从地面移到中段右墙的摄影上方，沿墙接续下一句，减少地面负担。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/river.png",
+        "sourceSVG": "assets/typography/book-20261111/river.svg",
+        "sha256": "9a109b255d0fff22e4ef6f1c6f5e07c157cafdbb5139cd736598f3c242ff7bb5",
+        "physicalWidth": 1.4039133574007219,
+        "physicalHeight": 0.36368231046931404,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "note": "河流与方向保持书中的斜向落差；从地面移到中段右墙的摄影上方，沿墙接续下一句，减少地面负担。",
+      "sourceBookPage": 6
+    },
+    {
+      "id": "river-through",
+      "text": "从每个人流过。",
+      "position": [
+        4.967,
+        2.43,
+        14.55
+      ],
+      "fontSize": 0.10974904687685659,
+      "width": 1.1200760456273764,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "前半在上、流过在下，照书保留；与上一句沿右墙接续，字样下缘与照片之间留出空隙。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/river-through.png",
+        "sourceSVG": "assets/typography/book-20261111/river-through.svg",
+        "sha256": "f7fba1bf308b7b2b073716f28ccc0d1de81b5705b82bd9ec7aebd9efa3781055",
+        "physicalWidth": 1.1200760456273764,
+        "physicalHeight": 0.31870722433460075,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "note": "前半在上、流过在下，照书保留；与上一句沿右墙接续，字样下缘与照片之间留出空隙。",
+      "sourceBookPage": 7
+    },
+    {
+      "id": "world",
+      "text": "已经发生的世界，",
+      "position": [
+        0.033,
+        2.16,
+        4.72
+      ],
+      "fontSize": 0.0818177290593789,
+      "width": 0.6591760299625468,
+      "surface": "wall",
+      "rotationY": 90,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "note": "保留诗集中的细框和框外逗号；它先被框定，再与不同距离的横、亘及下句连接。",
+      "typographyNote": "保留诗集中的细框和框外逗号；它先被框定，再与不同距离的横、亘及下句连接。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/world.png",
+        "sourceSVG": "assets/typography/book-20261111/world.svg",
+        "sha256": "c20e66443653768742ac1abb0a8707f2b71893721774dc64b8749fa042721a48",
+        "physicalWidth": 0.6591760299625468,
+        "physicalHeight": 0.13263420724094882,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "sourceBookPage": 9
+    },
+    {
+      "id": "across",
+      "text": "横",
+      "position": [
+        0.6,
+        1.3705315673289185,
+        4.734
+      ],
+      "fontSize": 0.06635073015873015,
+      "width": 0.08684139682539682,
+      "surface": "wall",
+      "rotationY": 180,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "note": "位置与字面高度锁定，仅替换为诗集原生宋体字形。",
+      "typographyNote": "位置与字面高度锁定，仅替换为诗集原生宋体字形。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/across.png",
+        "sourceSVG": "assets/typography/book-20261111/across.svg",
+        "sha256": "96e066b2ad6065664fdf74da622a575caaa68c15577d6ec93d111e7f4c4e2a5a",
+        "physicalWidth": 0.08684139682539682,
+        "physicalHeight": 0.08488990476190475,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "sourceBookPage": 10,
+      "textScreenId": "poetry-screen-2"
+    },
+    {
+      "id": "across-gen",
+      "text": "亘",
+      "position": [
+        0.8,
+        0.77,
+        12.928
+      ],
+      "fontSize": 0.2583531034482759,
+      "width": 0.33433931034482767,
+      "surface": "wall",
+      "rotationY": 180,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "note": "位置与字面高度锁定；仍在13号照片下方，透视关系保持。",
+      "typographyNote": "位置与字面高度锁定；仍在13号照片下方，透视关系保持。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/across-gen.png",
+        "sourceSVG": "assets/typography/book-20261111/across-gen.svg",
+        "sha256": "6bc797449e5e1cfeb42238e941eaf4726c253e8b5ee3b54582cdbedabf796093",
+        "physicalWidth": 0.33433931034482767,
+        "physicalHeight": 0.3115434482758621,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "sourceBookPage": 11
+    },
+    {
+      "id": "between",
+      "text": "在我与他们之间。",
+      "position": [
+        0.033,
+        0.75,
+        4.72
+      ],
+      "fontSize": 0.09851106639839034,
+      "width": 1.45738430583501,
+      "surface": "wall",
+      "rotationY": 90,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "note": "我与他们分置两端，之间落在间隙内；保留浅灰色的与及书里的不同字级。",
+      "typographyNote": "我与他们分置两端，之间落在间隙内；保留浅灰色的与及书里的不同字级。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/between.png",
+        "sourceSVG": "assets/typography/book-20261111/between.svg",
+        "sha256": "b61002d01878eada91885b6bc81116fae19c629284573ad022b25a6c674ec924",
+        "physicalWidth": 1.45738430583501,
+        "physicalHeight": 0.32740442655935614,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "sourceBookPage": 12
+    },
+    {
+      "id": "ending",
+      "text": "他们再也看不见我。",
+      "position": [
+        0.033,
+        1.28,
+        25.6
+      ],
+      "fontSize": 0.04922362069882187,
+      "width": 0.671536780772032,
+      "surface": "wall",
+      "rotationY": 90,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "note": "保留书内单字的疏密、转角和下降关系；从01与02的间隙往下读，最后的我延伸至02下方。02略向右上方移开，给文字让出连续空白。",
+      "typographyNote": "保留书内单字的疏密、转角和下降关系；从01与02的间隙往下读，最后的我延伸至02下方。02略向右上方移开，给文字让出连续空白。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/ending.png",
+        "sourceSVG": "assets/typography/book-20261111/ending.svg",
+        "sha256": "3f3f3fb6da397bd5b554acc5284436e80249708d6f00f3350e93baac3195e957",
+        "physicalWidth": 0.671536780772032,
+        "physicalHeight": 0.7989220684632192,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "sourceBookPage": 13
+    },
+    {
+      "id": "moon",
+      "text": "月亮升起。\n潮水对此一无所知。",
+      "position": [
+        4.25,
+        1.5,
+        18.732
+      ],
+      "fontSize": 0.06184269937236657,
+      "width": 0.7307865168539325,
+      "surface": "wall",
+      "rotationY": 0,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "整组移到右侧活动板墙的空白B面；保留月亮、升起和潮水的原有字形、字级与垂直距离，独立占据这一面。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/moon.png",
+        "sourceSVG": "assets/typography/book-20261111/moon.svg",
+        "sha256": "3cc89214baeab5ca07f5ce3d4f853cc31102337e1475c27368b654e44156f8ce",
+        "physicalWidth": 0.7307865168539325,
+        "physicalHeight": 1.306067415730337,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "note": "整组移到右侧活动板墙的空白B面；保留月亮、升起和潮水的原有字形、字级与垂直距离，独立占据这一面。",
+      "sourceBookPage": 15
+    },
+    {
+      "id": "sea",
+      "text": "海水越过海水，",
+      "position": [
+        2.75,
+        0.009,
+        20.6
+      ],
+      "fontSize": 0.20695410292072322,
+      "width": 1.220027816411683,
+      "surface": "floor",
+      "rotationY": 0,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "两次海水的大小、字重及越过的间隔照书保留，沿地面走读。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/sea.png",
+        "sourceSVG": "assets/typography/book-20261111/sea.svg",
+        "sha256": "1c67ed106ae5b2926a0710e942e62a2c54961fd20e60a1d2443b68e96de752d7",
+        "physicalWidth": 1.220027816411683,
+        "physicalHeight": 1.376912378303199,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "note": "两次海水的大小、字重及越过的间隔照书保留，沿地面走读。",
+      "preserveAuthoredInk": true,
+      "sourceBookPage": 16
+    },
+    {
+      "id": "shore",
+      "text": "让夜晚走向岸边。",
+      "position": [
+        0.033,
+        1.68,
+        20.85
+      ],
+      "fontSize": 0.08647721308485752,
+      "width": 0.6502680965147453,
+      "surface": "wall",
+      "rotationY": 90,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "移到16、34、09号所在左墙，落在34号上方、16与09之间的空白；保留书里小字与一行的收束，隔着通道接续海水。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/shore.png",
+        "sourceSVG": "assets/typography/book-20261111/shore.svg",
+        "sha256": "448a4d2166b8d13f713da72a68f106e6ca880c884e7d20cc444fed7897de62ce",
+        "physicalWidth": 0.6502680965147453,
+        "physicalHeight": 0.10134048257372653,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "note": "移到16、34、09号所在左墙，落在34号上方、16与09之间的空白；保留书里小字与一行的收束，隔着通道接续海水。",
+      "preserveAuthoredInk": true,
+      "sourceBookPage": 17
+    },
+    {
+      "id": "glass-sea-echo",
+      "text": "礁石沉默，\n群岛浮出黑暗。",
+      "surface": "wall",
+      "position": [
+        4.584,
+        0.935,
+        24.45
+      ],
+      "rotationY": -90,
+      "fontFamily": "authored-quiet",
+      "weight": 400,
+      "fontWidthScale": 1,
+      "fontSize": 0.0763756906077348,
+      "width": 0.49272928176795583,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "note": "整页的上下距离与黑暗的字重进入第二片透明诗板；不用叠印填满玻璃。",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "整页的上下距离与黑暗的字重进入第二片透明诗板；不用叠印填满玻璃。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/glass-sea-echo.png",
+        "sourceSVG": "assets/typography/book-20261111/glass-sea-echo.svg",
+        "sha256": "6af936063637b333eb79cddb9fcb7d6c8a9a0781b7211009ed806d47df98ec76",
+        "physicalWidth": 0.49272928176795583,
+        "physicalHeight": 0.6200220994475139,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "sourceBookPage": 18,
+      "glassPanelId": "ga-poetry-sea"
+    },
+    {
+      "id": "far-waves",
+      "text": "更远的浪正在赶来。",
+      "position": [
+        0.018,
+        1.55,
+        14.45
+      ],
+      "fontSize": 0.005291666666666667,
+      "width": 0.21,
+      "surface": "wall",
+      "rotationY": 90,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "诗册第19页完整等比放入A4竖版纸，打印后做悬浮装裱：纸外每边留2厘米浅灰背板，配8毫米窄黑框、3厘米框深与玻璃；保留纸张完整边缘和中心小句，挂在原来的墙面位置。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/far-waves.png",
+        "sourceSVG": "assets/typography/book-20261111/far-waves.svg",
+        "sha256": "eb2520c8ea7b82c78af93cfc69b305ed5bdb335bb70afd214b85368d455278bf",
+        "physicalWidth": 0.21,
+        "physicalHeight": 0.297,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "note": "诗册第19页完整等比放入A4竖版纸，打印后做悬浮装裱：纸外每边留2厘米浅灰背板，配8毫米窄黑框、3厘米框深与玻璃；保留纸张完整边缘和中心小句，挂在原来的墙面位置。",
+      "preserveAuthoredInk": true,
+      "sourceBookPage": 19,
+      "framedPaper": {
+        "paperWidth": 0.21,
+        "paperHeight": 0.297,
+        "frameFace": 0.008,
+        "depth": 0.03,
+        "paperGap": 0.02,
+        "backingColor": "#d7d5ce",
+        "paperDepth": -0.002,
+        "paperFloat": 0.006,
+        "glazing": true,
+        "frameColor": "#252725",
+        "orientation": "portrait",
+        "extraMatWidth": 0,
+        "printPDF": "output/pdf/远浪_A4装裱/更远的浪正在赶来_A4_实际尺寸打印.pdf",
+        "printAtActualSize": true,
+        "printFontPoints": 15
+      }
+    },
+    {
+      "id": "waves",
+      "text": "它聚拢，它抬升，它倾覆，它盘旋。",
+      "position": [
+        4.967,
+        2.4,
+        24.0
+      ],
+      "fontSize": 0.13760268538315956,
+      "width": 2.424140821458508,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "四个动词归为同一条有起伏的句子；保留书中各词字重、轻微旋转和基线差，不再分成两组大字。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/waves.png",
+        "sourceSVG": "assets/typography/book-20261111/waves.svg",
+        "sha256": "e15c74432ecfcd3ae301d223f96862bc4b63b6dd6fd1f8b548c24a7d803ef189",
+        "physicalWidth": 2.424140821458508,
+        "physicalHeight": 0.33193629505448446,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "note": "四个动词归为同一条有起伏的句子；保留书中各词字重、轻微旋转和基线差，不再分成两组大字。",
+      "sourceBookPage": 20
+    },
+    {
+      "id": "moonlight",
+      "text": "波光，是月亮在海里的迁徙。",
+      "position": [
+        2.3,
+        0.009,
+        26.65
+      ],
+      "fontSize": 0.1827193569993302,
+      "width": 1.5749162759544542,
+      "surface": "floor",
+      "rotationY": 0,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "保留波光与浅灰尾句的字级和颜色；纸色不印上地面，地面本身成为空白。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261111/moonlight.png",
+        "sourceSVG": "assets/typography/book-20261111/moonlight.svg",
+        "sha256": "66d6f6c4b9a4a0f7fdb6b22cd6b027122eb00b95e7337b129592e7e9f1f9c2c4",
+        "physicalWidth": 1.5749162759544542,
+        "physicalHeight": 0.19621567314132618,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "note": "保留波光与浅灰尾句的字级和颜色；纸色不印上地面，地面本身成为空白。",
+      "sourceBookPage": 23
+    },
+    {
+      "id": "invitation",
+      "text": "脱下你的鞋子吧，",
+      "position": [
+        4.0,
+        0.009,
+        5.1
+      ],
+      "fontSize": 0.14,
+      "width": 1.0535,
+      "surface": "floor",
+      "rotationY": 90,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1.15,
+      "align": "left",
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "note": "原句第一部分；面向四幅卧室摄影阅读，先遇到脱鞋的邀请。避开现有金属线，不作为实际脱鞋要求。",
+      "rotationInPlane": 0,
+      "typographyNote": "沿观看《一切正常》的身体方向出现，面向照片读；以脚步和金属线建立联系。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/invitation.png",
+        "sourceSVG": "assets/typography/quiet-20261109/invitation.svg",
+        "sha256": "41d052fc3dc05180c5522cfa2c68760ec5b10ddf63aa2b3cf189fcb0681a1884",
+        "physicalWidth": 1.0535,
+        "physicalHeight": 0.21084000000000003,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "outsideBook": true
+    },
+    {
+      "id": "invitation-crossing",
+      "text": "我们要穿过溪流了。",
+      "position": [
+        3.8,
+        0.009,
+        7.05
+      ],
+      "fontSize": 0.14,
+      "width": 1.2115000000000005,
+      "surface": "floor",
+      "rotationY": 90,
+      "weight": 400,
+      "fontFamily": "authored-quiet",
+      "fontWidthScale": 1,
+      "lineHeight": 1.15,
+      "align": "left",
+      "color": "#42483F",
+      "letterSpacing": 0,
+      "note": "同一句原诗的后半；沿观看带前行后再读到，两个字面之间的距离由身体完成。",
+      "rotationInPlane": 0,
+      "typographyNote": "在沿线的下一个位置继续读到；与前句同向，让身体完成两句间的距离。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/invitation-crossing.png",
+        "sourceSVG": "assets/typography/quiet-20261109/invitation-crossing.svg",
+        "sha256": "88f8faf52632bade26a1b857121572cb25cda72dbf972602a1665ee9427f60e0",
+        "physicalWidth": 1.2115000000000005,
+        "physicalHeight": 0.20160000000000003,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "outsideBook": true
+    },
+    {
+      "id": "glass-growing",
+      "text": "Growing\nAgain",
+      "surface": "wall",
+      "position": [
+        4.584,
+        0.935,
+        22.349999999999998
+      ],
+      "rotationY": -90,
+      "fontFamily": "authored-quiet",
+      "weight": 400,
+      "fontWidthScale": 1,
+      "fontSize": 0.19,
+      "width": 0.6,
+      "lineHeight": 1.1,
+      "align": "left",
+      "color": "#42483F",
+      "glassPanelId": "ga-poetry-title",
+      "note": "Growing Again采用Raleway真实轻体、黑体、斜体逐字组构：粗细、斜正和宽窄形成差异。Again六层重叠，向下逐渐左右漂移、舒展、退淡；首层完整可读。原创字母编排，不复制参考图。",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "Growing清楚在上，Again下方两次轻微左右偏移并退淡；第一次完整的Again始终可读。",
+      "rasterOverride": {
+        "path": "assets/typography/quiet-20261109/glass-growing.png",
+        "sourceSVG": "assets/typography/quiet-20261109/glass-growing.svg",
+        "sha256": "beaff722bbb899d8e710f377ebb70ecb8a349d31338c94328a13cda26674aafb",
+        "physicalWidth": 0.6,
+        "physicalHeight": 1.54,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "outsideBook": true
+    }
+  ],
+  "focusGroups": [
+    {
+      "id": "book-arrival",
+      "label": "诗册03 · 开篇的疏密",
+      "camera": [
+        2.35,
+        3,
+        1.9
+      ],
+      "target": [
+        2.35,
+        0,
+        3.75
+      ]
+    },
+    {
+      "id": "book-far-waves",
+      "label": "诗册19 · 远浪与18号左侧留白",
+      "camera": [
+        3.5,
+        1.5,
+        14.7
+      ],
+      "target": [
+        0,
+        1.5,
+        14.7
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 4.1,
+        "height": 3
+      }
+    },
+    {
+      "id": "book-far-waves-print",
+      "label": "远浪 · A4纸上诗与窄框",
+      "camera": [
+        1,
+        1.55,
+        14.45
+      ],
+      "target": [
+        0,
+        1.55,
+        14.45
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 0.55,
+        "height": 0.65
+      }
+    },
+    {
+      "id": "book-mountains",
+      "label": "诗册05 · 群山落入图间",
+      "camera": [
+        1.6,
+        1.5,
+        9.3
+      ],
+      "target": [
+        5,
+        1.5,
+        9.3
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 4.4,
+        "height": 3
+      }
+    },
+    {
+      "id": "book-between",
+      "label": "诗册12 · 我与他们之间",
+      "camera": [
+        3.6,
+        1.25,
+        4.72
+      ],
+      "target": [
+        0,
+        1.25,
+        4.72
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 2.8,
+        "height": 2.8
+      }
+    },
+    {
+      "id": "book-moon",
+      "label": "诗册15 · 月亮与潮水／活动墙空白面",
+      "camera": [
+        4.25,
+        1.5,
+        20.3
+      ],
+      "target": [
+        4.25,
+        1.5,
+        18.732
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 2.3,
+        "height": 2.9
+      }
+    },
+    {
+      "id": "book-river-wall",
+      "label": "诗册06–07 · 河流上墙",
+      "camera": [
+        1.7,
+        1.65,
+        13.6
+      ],
+      "target": [
+        5,
+        1.65,
+        13.6
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 4.8,
+        "height": 3.1
+      }
+    },
+    {
+      "id": "book-sea-floor",
+      "label": "诗册16 · 海水越过地面",
+      "camera": [
+        2.6,
+        2.1,
+        18.6
+      ],
+      "target": [
+        2.6,
+        0,
+        21.2
+      ]
+    },
+    {
+      "id": "book-shore-wall",
+      "label": "诗册17 · 岸边与16、34、09",
+      "camera": [
+        3.6,
+        1.5,
+        20.7
+      ],
+      "target": [
+        0,
+        1.5,
+        20.7
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 4.3,
+        "height": 3
+      }
+    },
+    {
+      "id": "book-glass",
+      "label": "诗册18、20 · 玻璃与动作句",
+      "camera": [
+        1.5,
+        1.7,
+        24
+      ],
+      "target": [
+        4.65,
+        1.5,
+        24
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 7.3,
+        "height": 3.3
+      }
+    },
+    {
+      "id": "photo11-wing",
+      "label": "11号 · 01旁活动板墙空白面",
+      "camera": [
+        0.75,
+        1.45,
+        26.6
+      ],
+      "target": [
+        0.75,
+        1.45,
+        23.33
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 2.4,
+        "height": 2.9
+      }
+    },
+    {
+      "id": "book-ending",
+      "label": "诗册13 · 终句穿过图间",
+      "camera": [
+        3.6,
+        1.5,
+        25.3
+      ],
+      "target": [
+        0,
+        1.5,
+        25.3
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 3.5,
+        "height": 3
+      }
+    },
+    {
+      "id": "pillow-margin",
+      "label": "白枕头 · 与B口留出边距",
+      "camera": [
+        3.7,
+        1.6,
+        29.3
+      ],
+      "target": [
+        0,
+        1.5,
+        29.4
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 4.1,
+        "height": 3.3
+      }
+    },
+    {
+      "id": "whole-front",
+      "label": "整体前段 · 摄影与一切正常",
+      "camera": [
+        2.5,
+        2.4,
+        6.4
+      ],
+      "target": [
+        2.5,
+        1.5,
+        2.4
+      ]
+    },
+    {
+      "id": "whole-middle",
+      "label": "整体中段 · 两侧摄影交替",
+      "camera": [
+        2.5,
+        1.7,
+        14.9
+      ],
+      "target": [
+        2.5,
+        1.5,
+        22.0
+      ]
+    },
+    {
+      "id": "whole-back",
+      "label": "整体后段 · 留白进入影像",
+      "camera": [
+        2.5,
+        1.85,
+        26.05
+      ],
+      "target": [
+        2.5,
+        1.5,
+        30.150000000000002
+      ]
+    },
+    {
+      "id": "left-first-elevation",
+      "label": "左墙前段 · 摄影连续展开",
+      "camera": [
+        3.8,
+        1.6,
+        6.25
+      ],
+      "target": [
+        0,
+        1.48,
+        6.25
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 12,
+        "height": 4.2
+      }
+    },
+    {
+      "id": "left-return-elevation",
+      "label": "左墙后段 · 摄影与诗句交错",
+      "camera": [
+        3.8,
+        1.6,
+        21.1
+      ],
+      "target": [
+        0,
+        1.48,
+        21.1
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 10.3,
+        "height": 4.0
+      }
+    },
+    {
+      "id": "spatial-normal-dialogue",
+      "label": "一切正常 · 三面关系总览",
+      "camera": [
+        2.5,
+        2.1,
+        7.4
+      ],
+      "target": [
+        5,
+        1.5,
+        7.4
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 11.2,
+        "height": 4.1
+      }
+    },
+    {
+      "id": "spatial-glass-transmission",
+      "label": "Growing Again · 六件作品与两块诗板",
+      "camera": [
+        2.5,
+        1.55,
+        23.8
+      ],
+      "target": [
+        4.6,
+        1.55,
+        23.8
+      ],
+      "framing": {
+        "projection": "orthographic",
+        "width": 8.2,
+        "height": 3.3
+      }
+    },
+    {
+      "id": "language-split-word",
+      "label": "横／亘 · 透过一片玻璃",
+      "camera": [
+        0.7,
+        1.6,
+        1.6
+      ],
+      "target": [
+        0.6,
+        1.55,
+        4.734
+      ],
+      "framing": {
+        "projection": "perspective",
+        "screenId": "poetry-screen-2"
+      }
+    },
+    {
+      "id": "language-split-side",
+      "label": "横／亘 · 侧移后的距离",
+      "camera": [
+        1.02,
+        1.6,
+        1.6
+      ],
+      "target": [
+        0.65,
+        1.55,
+        4.734
+      ],
+      "framing": {
+        "projection": "perspective",
+        "screenId": "poetry-screen-2"
+      }
+    },
+    {
+      "id": "language-gen-wall",
+      "label": "亘 · 13号作品下方",
+      "camera": [
+        0.8,
+        1.6,
+        9.8
+      ],
+      "target": [
+        0.8,
+        1.4,
+        12.94
+      ],
+      "framing": {
+        "projection": "perspective"
+      }
+    }
+  ],
+  "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
+  "notes": [
+    "本轮以作者诗册06为准；不重配字体，不把每页改造成独立装饰牌。",
+    "02号右移15厘米、上移33厘米，为终句让位；25号撤下，11号移到01旁活动板墙的空白B面，画面与装裱尺寸保持。",
+    "横与亘的坐标、前后距离、字面高度保持；只有字形改为诗册对应页。",
+    "更远的浪正在赶来改为A4竖版纸上打印并做黑框悬浮装裱；沿用诗册第19页排版，保留原墙面位置。",
+    "群山降到一切正常03与04之间，还未合拢右移至03上方偏左；原来的95厘米图间距保持。",
+    "月亮、升起与潮水整组移到右侧活动板墙的空白B面；让夜晚走向岸边移到16、34、09所在墙、34号上方。",
+    "墙面12处、地面5处，另有玻璃3处；房顶文字与附着用的示意顶板暂撤。",
+    "诗册未包含的脱鞋句与Growing Again标题保留；额外诗屏没有增加。",
+    "当前仅试排；未更新安装、玻璃或地贴制作文件。"
+  ],
+  "environment": {
+    "wallFields": [
+      {
+        "id": "glass-field",
+        "surfaceId": "other-main",
+        "alongStart": 18.711989,
+        "alongEnd": 26.411989,
+        "bottom": 0,
+        "height": 2.95,
+        "color": "#D6DED7"
+      }
+    ],
+    "floorFields": [],
+    "note": "整体配色比较；连续哑光地面保留砖缝与金属走势，不填三角色块。A为本轮默认，颜色仍需现场样板。",
+    "metalFinish": {
+      "color": "#786D5E",
+      "metalness": 0.32,
+      "roughness": 0.58,
+      "label": "暗褐灰",
+      "alternatives": [
+        {
+          "label": "A 暖石与雾绿",
+          "color": "#786D5E"
+        },
+        {
+          "label": "B 冷灰与银盐",
+          "color": "#697575"
+        },
+        {
+          "label": "C 暗潮地面",
+          "color": "#B3A48B"
+        }
+      ]
+    },
+    "activeFinish": "warm-stone",
+    "finishStudies": [
+      {
+        "id": "warm-stone",
+        "label": "A 暖石与雾绿",
+        "wall": "#F6F5F1",
+        "glassWall": "#D6DED7",
+        "floor": "#C7C3B8",
+        "grout": "#AAA79D",
+        "metal": "#786D5E",
+        "floorPoem": "#42473E",
+        "screenBase": "#ABAFA5"
+      },
+      {
+        "id": "silver-grey",
+        "label": "B 冷灰与银盐",
+        "wall": "#F4F5F2",
+        "glassWall": "#E1E5E3",
+        "floor": "#B9C0C1",
+        "grout": "#9AA4A4",
+        "metal": "#697575",
+        "floorPoem": "#42473E",
+        "screenBase": "#A2AFAC"
+      },
+      {
+        "id": "night-tide",
+        "label": "C 暗潮地面",
+        "wall": "#F5F3ED",
+        "glassWall": "#E3E0D8",
+        "floor": "#788783",
+        "grout": "#657570",
+        "metal": "#B3A48B",
+        "floorPoem": "#F3F0E6",
+        "screenBase": "#C7C3B7"
+      }
+    ],
+    "roomFinish": {
+      "wall": "#F6F5F1",
+      "floor": "#C7C3B8",
+      "grout": "#AAA79D"
+    },
+    "printedGlassStudy": {
+      "mode": "density-reflection",
+      "lightOpacity": 0.12,
+      "darkOpacity": 0.9,
+      "densityGamma": 1.35,
+      "reflectionStrength": 0.65,
+      "fresnelF0": 0.04,
+      "roughness": 0.14,
+      "probeResolution": 128,
+      "textureMaxSide": 1024,
+      "status": "visual_trial_not_measured",
+      "reference": "references/GrowingAgain_半透明实物_用户参考.jpg",
+      "note": "依据用户提供的半透明实物照片试排；仅显示材质的密度透视和表面反射，不更改原作品图像，不是透光率实测。"
+    }
+  },
+  "textScreens": [
+    {
+      "id": "poetry-screen-2",
+      "x": 0.65,
+      "z": 4.75,
+      "width": 1.1,
+      "height": 2.3,
+      "bottom": 0.045,
+      "yaw": 0,
+      "normal": [
+        0,
+        -1
+      ],
+      "frameColor": "#a5ada5",
+      "frameFace": 0.01,
+      "depth": 0.018,
+      "opacity": 0.025,
+      "baseColor": "#bfc1b8",
+      "baseWidth": 1.2,
+      "baseDepth": 0.55,
+      "baseHeight": 0.045,
+      "manifestation": [
+        {
+          "height": 0.95,
+          "bandHeight": 0.04,
+          "width": 0.13,
+          "placement": "edges"
+        },
+        {
+          "height": 1.58,
+          "bandHeight": 0.04,
+          "width": 0.13,
+          "placement": "edges"
+        }
+      ],
+      "note": "只保留一片玻璃，单独承载“横”；“亘”在13号作品下方的现有活动墙。边框、显识和底座为讨论示意。"
+    }
+  ],
+  "botanicalGroups": [
+    {
+      "id": "dried-maize-01",
+      "x": 4.539999999999999,
+      "z": 20.05,
+      "height": 1.48,
+      "width": 0.55,
+      "stalkCount": 3,
+      "seed": 31,
+      "yaw": 15,
+      "bottom": 0,
+      "color": "#9a805b",
+      "leafColor": "#ad956d",
+      "earCount": 1,
+      "note": "移至连续玻璃排首，与板边留空；固定与实物范围另核。"
+    }
+  ],
+  "poetryArchive": [
+    {
+      "id": "poem-future",
+      "text": "我在以后看见他们，\n迎着风谈论明天。\n群山还未合拢，\n河流带有未命名的方向，\n从每个人流过。\n\n已经发生的世界横亘在我与他们之间，\n他们再也看不见我。"
+    },
+    {
+      "id": "poem-moon",
+      "text": "月亮升起。\n潮水对此一无所知。\n海水越过海水，\n让夜晚走向岸边。\n\n礁石沉默，\n群岛浮出黑暗。\n更远的浪正在赶来。\n它聚拢，它抬升，它倾覆，它盘旋。\n\n夜空向海面缓缓倾斜，\n群星随波浪起伏。\n\n波光，是月亮在海里的迁徙。"
+    },
+    {
+      "id": "invitation",
+      "text": "脱下你的鞋子吧，我们要穿过溪流了。",
+      "status": "用户继续写作中"
+    }
+  ],
+  "poetryRasterManifest": "poetry/trial17/manifest.json",
+  "occupancyStudy": {
+    "status": "illustrative_not_observed_people",
+    "diameters": [
+      0.6,
+      0.8
+    ],
+    "note": "位置、人数及等效圆直径均为假设，只用于比较驻足与通过的关系，不是实际人流或安全认证。",
+    "dwellPoints": [
+      {
+        "id": "early-A",
+        "x": 0.8,
+        "z": 11.94
+      },
+      {
+        "id": "early-B",
+        "x": 0.8,
+        "z": 14.06
+      },
+      {
+        "id": "poetry-screen",
+        "x": 0.775,
+        "z": 3.75
+      },
+      {
+        "id": "right-photo",
+        "x": 3.65,
+        "z": 16.65
+      },
+      {
+        "id": "boundary-A",
+        "x": 4.25,
+        "z": 17.59
+      },
+      {
+        "id": "late-A",
+        "x": 0.75,
+        "z": 22.19
+      },
+      {
+        "id": "ga05",
+        "x": 3.65,
+        "z": 25.15
+      }
+    ]
+  },
+  "joinedGlassGroups": [
+    {
+      "id": "growing-again-continuous",
+      "supportType": "shared-seam-clamp",
+      "supportTube": 0.03,
+      "supportDepth": 0.52,
+      "supportHeight": 0.42,
+      "supportEdgeClearance": 0.002,
+      "status": "illustrative_unmeasured"
+    }
+  ],
+  "poetryGlassPanels": [
+    {
+      "id": "ga-poetry-title",
+      "joinedGroup": "growing-again-continuous",
+      "x": 4.6,
+      "z": 22.349999999999998,
+      "yaw": 90,
+      "width": 0.7,
+      "height": 1.8,
+      "bottom": 0.035,
+      "viewingNormal": [
+        -1,
+        0
+      ],
+      "role": "transparent_poetry_panel_not_artwork",
+      "note": "透明空白为诗句的载体；与作品共面，不再向通道挑出。字迹静态退淡试验，非已确定水溶材料。"
+    },
+    {
+      "id": "ga-poetry-sea",
+      "joinedGroup": "growing-again-continuous",
+      "x": 4.6,
+      "z": 24.45,
+      "yaw": 90,
+      "width": 0.7,
+      "height": 1.8,
+      "bottom": 0.035,
+      "viewingNormal": [
+        -1,
+        0
+      ],
+      "role": "transparent_poetry_panel_not_artwork",
+      "note": "透明空白为诗句的载体；与作品共面，不再向通道挑出。字迹静态退淡试验，非已确定水溶材料。"
+    }
+  ],
+  "readingSequences": [
+    {
+      "id": "future-poem",
+      "title": "我在以后看见他们",
+      "sequence": [
+        "future",
+        "mountains",
+        "mountains-open",
+        "river",
+        "river-through",
+        "world",
+        "across",
+        "across-gen",
+        "between",
+        "ending"
+      ],
+      "intentionalReturn": {
+        "ids": [
+          "world",
+          "across",
+          "across-gen",
+          "between"
+        ],
+        "note": "保留用户确认的前段伏笔；走过群山、河流后回望，连起不同平面的句子。"
+      }
+    },
+    {
+      "id": "sea-poem",
+      "title": "月亮升起",
+      "sequence": [
+        "moon",
+        "sea",
+        "shore",
+        "glass-sea-echo",
+        "far-waves",
+        "waves",
+        "moonlight"
+      ],
+      "temporarilyOmittedPages": [
+        21
+      ],
+      "intentionalReturn": {
+        "ids": [
+          "far-waves"
+        ],
+        "note": "远浪先在18号左侧的大片空白中出现，走到后面的海水与玻璃作品时再建立联系。"
+      }
+    }
+  ],
+  "approvedBaseline": {
+    "revision": "20261104-trial09",
+    "path": "layouts/trial09.json",
+    "sha256": "7ba244ad5e37994419e08616c147c814251750f102ba3678ac3aa7546ce19b87",
+    "frozen": "原六图顺序、图像、70×180板幅与两端动词字体句形；10新增透明板，后端动词随新增1.4m同步平移，09完整可对照。"
+  },
+  "largeSeriesRhythm": {
+    "outerFrameGapsMetres": [
+      0.7,
+      0.7,
+      0.95
+    ],
+    "spanMetres": 8.814,
+    "firstCenterZ": 3.8,
+    "originalSpanMetres": 10.616,
+    "reason": "前三幅以70厘米净间距连成系列；末个间隔留95厘米给诗句，保持停顿。"
+  },
+  "photoRoute": [
+    {
+      "id": "left-opening",
+      "label": "左侧开篇：原G606入口与主墙两组",
+      "workIds": [
+        "once_31",
+        "once_10",
+        "once_22",
+        "once_30",
+        "once_32",
+        "once_05",
+        "once_12",
+        "once_21",
+        "once_24",
+        "once_20",
+        "once_27",
+        "once_13",
+        "once_36"
+      ],
+      "zRange": [
+        0.979,
+        13.06
+      ]
+    },
+    {
+      "id": "right-middle",
+      "label": "右侧：柱廊、喷泉、生命与墓地",
+      "workIds": [
+        "once_04",
+        "once_26",
+        "once_23",
+        "once_08",
+        "once_14",
+        "once_35"
+      ],
+      "zRange": [
+        12.529,
+        18.65
+      ]
+    },
+    {
+      "id": "left-return",
+      "label": "左侧回返：18停顿，接续新生与背影",
+      "workIds": [
+        "once_18",
+        "once_28",
+        "once_33",
+        "once_16",
+        "once_34",
+        "once_09",
+        "once_19",
+        "once_11",
+        "once_01",
+        "once_02",
+        "once_17"
+      ],
+      "zRange": [
+        15.852,
+        26.562
+      ]
+    }
+  ],
+  "lightingStudy": {
+    "status": "concept_not_photometric_or_equipment_plan",
+    "controlledZone": {
+      "side": "both",
+      "fromZ": 28,
+      "toZ": 31.2
+    },
+    "transitionStartZ": 27.4,
+    "minimumDiffuse": 0.28,
+    "notes": [
+      "28米之后两侧不挂摄影，关闭朝向枕头和屏幕的射灯，通行照明独立保留。",
+      "最后摄影框边26.562m，枕头近边28.510m，间隔1.948m；28m后仍不挂摄影。枕头远边距B端0.91m。",
+      "白墙材质不变，网页变暗是可关闭的照明示意，不是深色涂料。",
+      "VESSEL与旅人错开纵向位置，电视亮度及声场仍需现场调试；不得遮挡B口。"
+    ]
+  },
+  "nativeBaseline": "models/长廊展厅_空间底模_近5m试算.blend",
+  "nativeBaselineQA": "qa/native_r09_model_qa.json",
+  "spaceRevision": "20261106-r09-near5m",
+  "previousTrial": "layouts/trial16.json",
+  "spatialZones": [
+    {
+      "id": "opening",
+      "label": "摄影开篇",
+      "fromZ": 0,
+      "toZ": 13,
+      "role": "左长墙摄影与前段横亘诗屏，对侧一切正常与诗句"
+    },
+    {
+      "id": "crossing",
+      "label": "换边、交错观看",
+      "fromZ": 13,
+      "toZ": 20.2,
+      "role": "两侧摄影交替，18单幅留白"
+    },
+    {
+      "id": "return",
+      "label": "玻璃与左墙回返",
+      "fromZ": 20.2,
+      "toZ": 27.7,
+      "role": "Growing Again对侧为左墙摄影回返，晚段板墙之后接01、02、17"
+    },
+    {
+      "id": "transition",
+      "label": "转换观看",
+      "fromZ": 27.7,
+      "toZ": 28,
+      "role": "不再补挂摄影"
+    },
+    {
+      "id": "moving-image",
+      "label": "影像端部",
+      "fromZ": 28,
+      "toZ": 31.2,
+      "role": "白墙与白枕头，独立控光"
+    }
+  ],
+  "growingAgainAreaStudy": {
+    "interpretation": "reduce occupied wall field, retain confirmed physical glass dimensions",
+    "paneWidth": 0.7,
+    "paneHeight": 1.8,
+    "joinedLength": 5.6,
+    "wallFieldBefore": 9.55,
+    "wallFieldAfter": 7.7,
+    "physicalResizing": false
+  },
+  "studyVariant": "artist-poetry-book-in-space",
+  "screenPlacementRevision": {
+    "date": "2026-11-10",
+    "reason": "user selected existing early-A partition with photo13 for rear 亘; front 横 remains at early glass location",
+    "fromZ": 14.8,
+    "toZ": 4.75,
+    "referenceIds": [
+      "once_30",
+      "once_32",
+      "once_05",
+      "once_12"
+    ],
+    "other_artworks_moved": false,
+    "rearSurfaceId": "early-A",
+    "rearReferenceIds": [
+      "once_13"
+    ]
+  },
+  "photoSequenceStudy": {
+    "source": "G606 final revision117 actual wall positions, read only",
+    "source_path": "../once-viewer/site/data.json",
+    "source_sha256": "e5c4c611ec52ce25f139640e4c1e815006ad3d0241185883a5351f35a74a1024",
+    "preserved_groups": [
+      [
+        31,
+        10,
+        22,
+        30,
+        32
+      ],
+      [
+        5,
+        12,
+        21,
+        24,
+        20,
+        27,
+        13,
+        36
+      ],
+      [
+        4,
+        26,
+        23
+      ],
+      [
+        11,
+        8,
+        25,
+        14
+      ],
+      [
+        35,
+        18,
+        28,
+        33,
+        16,
+        34
+      ],
+      [
+        9,
+        19,
+        1,
+        2,
+        17
+      ]
+    ],
+    "adaptation": "Keep the current left/right/left spatial sequence, not the entire old room circuit. 35 and 18 are viewed across the aisle, with a short diagonal look back; this is documented rather than called a strictly monotone route.",
+    "empty_faces": [
+      "glass-boundary-B",
+      "late-B"
+    ],
+    "empty_face_reason": "Leave the return faces open for a pause and for the projection transition; do not refill them."
+  },
+  "typographyReset": {
+    "source": "source/build_book_trial17.py",
+    "oldRevision": "20261110-trial16",
+    "method": "PDF embedded glyph outlines; uniform scale only; original tracking, rotation, colors retained"
+  },
+  "splitWordStudy": {
+    "word": "横亘",
+    "glyphs": [
+      "across",
+      "across-gen"
+    ],
+    "carrierIds": [
+      "poetry-screen-2",
+      "early-A"
+    ],
+    "viewerEye": [
+      0.7,
+      1.6,
+      1.6
+    ],
+    "frontGlyphPosition": [
+      0.6,
+      1.3705315673289185,
+      4.734
+    ],
+    "rearGlyphPosition": [
+      0.8,
+      0.77,
+      12.928
+    ],
+    "frontEmMetres": 0.06635073015873015,
+    "rearEmMetres": 0.2583531034482759,
+    "frontInkHeightMetres": 0.061472,
+    "rearInkHeightMetres": 0.22036000000000003,
+    "planeSeparationMetres": 8.194,
+    "depthRatio": 3.6170552539124885,
+    "rearProjectedOnFront": [
+      0.7276467991169978,
+      1.3705315673289185,
+      4.731
+    ],
+    "apparentHeightRatio": 0.9910607517929518,
+    "clearGapBelowPhoto13Metres": 0.19836277778,
+    "baseOuterX": 1.25,
+    "note": "亘在用户指定的13号照片所在early-A活动墙下方；只保留一片前段玻璃。相近视角字高在指定停步点成立，侧移后自然错开。 试排17保留字面高度和全部几何，仅采用诗册字形。",
+    "fontSource": "poetry booklet 06, pp10-11; exact outline extraction"
+  },
+  "selectedPhotographyCount": 30,
+  "excludedWorkIds": [
+    "once_25"
+  ],
+  "selectionChanges": {
+    "removedFromExhibition": [
+      "once_25"
+    ],
+    "movedToSurface": {
+      "once_11": "late-B"
+    },
+    "sourceFilesPreserved": true
+  },
+  "bookSpatialStudy": {
+    "sourcePDF": "姜昕宇_《后知后觉》__06.pdf",
+    "sourceSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+    "sourcePageCount": 28,
+    "sourceOfTruth": "artist authored booklet 06",
+    "items": [
+      {
+        "id": "future",
+        "sourcePage": 3,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/future.png",
+        "sourceSVG": "assets/typography/book-20261111/future.svg",
+        "sha256": "df82c8ac273fc710c8e593b952e729dc76bd599f5f15980857f2d305dec509b2",
+        "physicalWidth": 1.5768204758471522,
+        "physicalHeight": 1.0370583994232156,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 1.55,
+        "inkHeight": 1.0102379235760635,
+        "metresPerPDFPoint": 0.008940158615717377,
+        "pdfInkBounds": [
+          79.875,
+          221.5,
+          253.25,
+          334.5
+        ],
+        "fonts": [
+          "SourceHanSerifSC"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "我在以后看见他们，\n迎着风，\n谈论着明天。",
+        "note": "保留三行的退让、疏字距和字重；从A口进入后顺着下行的句子读，不另拆出几个互不相连的口号。"
+      },
+      {
+        "id": "mountains",
+        "sourcePage": 5,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/mountains.png",
+        "sourceSVG": "assets/typography/book-20261111/mountains.svg",
+        "sha256": "c34b1354d97abe173a7966c8e104941566f0d3045ac69965853f22ed5ac424ab",
+        "physicalWidth": 0.264487594390507,
+        "physicalHeight": 0.1070334412081985,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 0.24325782092772383,
+        "inkHeight": 0.08580366774541531,
+        "metresPerPDFPoint": 0.007076591154261057,
+        "pdfInkBounds": [
+          79.625,
+          170.5,
+          114.0,
+          182.625
+        ],
+        "fonts": [
+          "SourceHanSerifSC-Light"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": "群山",
+        "text": "群山",
+        "note": "沿用诗册字形、字距和原试排字级；降入《一切正常》03与04之间的95厘米空隙，空隙成为尚未合拢的部分。"
+      },
+      {
+        "id": "mountains-open",
+        "sourcePage": 5,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/mountains-open.png",
+        "sourceSVG": "assets/typography/book-20261111/mountains-open.svg",
+        "sha256": "48dfdb3b598bc728cfcc6e5684864e678158e7ab2482f98e57c8cffe322e39ed",
+        "physicalWidth": 0.40248112189859764,
+        "physicalHeight": 0.11499460625674218,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 0.38125134843581443,
+        "inkHeight": 0.093764832793959,
+        "metresPerPDFPoint": 0.007076591154261057,
+        "pdfInkBounds": [
+          141.625,
+          170.625,
+          195.5,
+          183.875
+        ],
+        "fonts": [
+          "SourceHanSerifSC-Light"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": "还未合拢，",
+        "text": "还未合拢，",
+        "note": "从群山向右上方接读，落在《一切正常》03上方偏左；与群山同字级，不再挤成照片上方的一条标题。"
+      },
+      {
+        "id": "river",
+        "sourcePage": 6,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/river.png",
+        "sourceSVG": "assets/typography/book-20261111/river.svg",
+        "sha256": "9a109b255d0fff22e4ef6f1c6f5e07c157cafdbb5139cd736598f3c242ff7bb5",
+        "physicalWidth": 1.4039133574007219,
+        "physicalHeight": 0.36368231046931404,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 1.38,
+        "inkHeight": 0.339768953068592,
+        "metresPerPDFPoint": 0.007971119133574006,
+        "pdfInkBounds": [
+          114.375,
+          281.125,
+          287.5,
+          323.75
+        ],
+        "fonts": [
+          "SourceHanSerifSC",
+          "SourceHanSerifSC-Light"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "河流带有未命名的方向，",
+        "note": "河流与方向保持书中的斜向落差；从地面移到中段右墙的摄影上方，沿墙接续下一句，减少地面负担。"
+      },
+      {
+        "id": "river-through",
+        "sourcePage": 7,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/river-through.png",
+        "sourceSVG": "assets/typography/book-20261111/river-through.svg",
+        "sha256": "f7fba1bf308b7b2b073716f28ccc0d1de81b5705b82bd9ec7aebd9efa3781055",
+        "physicalWidth": 1.1200760456273764,
+        "physicalHeight": 0.31870722433460075,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 1.1,
+        "inkHeight": 0.29863117870722433,
+        "metresPerPDFPoint": 0.0066920152091254756,
+        "pdfInkBounds": [
+          79.75,
+          285.5,
+          244.125,
+          330.125
+        ],
+        "fonts": [
+          "SourceHanSerifSC",
+          "SourceHanSerifSC-Light"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "从每个人流过。",
+        "note": "前半在上、流过在下，照书保留；与上一句沿右墙接续，字样下缘与照片之间留出空隙。"
+      },
+      {
+        "id": "world",
+        "sourcePage": 9,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/world.png",
+        "sourceSVG": "assets/typography/book-20261111/world.svg",
+        "sha256": "c20e66443653768742ac1abb0a8707f2b71893721774dc64b8749fa042721a48",
+        "physicalWidth": 0.6591760299625468,
+        "physicalHeight": 0.13263420724094882,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 0.64,
+        "inkHeight": 0.113458177278402,
+        "metresPerPDFPoint": 0.0063920099875156055,
+        "pdfInkBounds": [
+          78.375,
+          230.0,
+          178.5,
+          247.75
+        ],
+        "fonts": [
+          "SourceHanSerifSC"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "已经发生的世界，",
+        "note": "保留诗集中的细框和框外逗号；它先被框定，再与不同距离的横、亘及下句连接。"
+      },
+      {
+        "id": "across",
+        "sourcePage": 10,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/across.png",
+        "sourceSVG": "assets/typography/book-20261111/across.svg",
+        "sha256": "96e066b2ad6065664fdf74da622a575caaa68c15577d6ec93d111e7f4c4e2a5a",
+        "physicalWidth": 0.08684139682539682,
+        "physicalHeight": 0.08488990476190475,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 0.06342349206349206,
+        "inkHeight": 0.061472,
+        "metresPerPDFPoint": 0.0078059682539682535,
+        "pdfInkBounds": [
+          122.0,
+          299.0,
+          130.125,
+          306.875
+        ],
+        "fonts": [
+          "SourceHanSerifSC"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "横",
+        "note": "位置与字面高度锁定，仅替换为诗集原生宋体字形。"
+      },
+      {
+        "id": "across-gen",
+        "sourcePage": 11,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/across-gen.png",
+        "sourceSVG": "assets/typography/book-20261111/across-gen.svg",
+        "sha256": "6bc797449e5e1cfeb42238e941eaf4726c253e8b5ee3b54582cdbedabf796093",
+        "physicalWidth": 0.33433931034482767,
+        "physicalHeight": 0.3115434482758621,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 0.24315586206896556,
+        "inkHeight": 0.22036000000000003,
+        "metresPerPDFPoint": 0.030394482758620694,
+        "pdfInkBounds": [
+          297.875,
+          299.125,
+          305.875,
+          306.375
+        ],
+        "fonts": [
+          "SourceHanSerifSC"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "亘",
+        "note": "位置与字面高度锁定；仍在13号照片下方，透视关系保持。"
+      },
+      {
+        "id": "between",
+        "sourcePage": 12,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/between.png",
+        "sourceSVG": "assets/typography/book-20261111/between.svg",
+        "sha256": "b61002d01878eada91885b6bc81116fae19c629284573ad022b25a6c674ec924",
+        "physicalWidth": 1.45738430583501,
+        "physicalHeight": 0.32740442655935614,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 1.44,
+        "inkHeight": 0.31002012072434604,
+        "metresPerPDFPoint": 0.00579476861167002,
+        "pdfInkBounds": [
+          85.5,
+          254.625,
+          334.0,
+          308.125
+        ],
+        "fonts": [
+          "STHeitiSC-Medium-1",
+          "SourceHanSerifSC",
+          "SourceHanSerifSC-Light"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "在我与他们之间。",
+        "note": "我与他们分置两端，之间落在间隙内；保留浅灰色的与及书里的不同字级。"
+      },
+      {
+        "id": "ending",
+        "sourcePage": 13,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/ending.png",
+        "sourceSVG": "assets/typography/book-20261111/ending.svg",
+        "sha256": "3f3f3fb6da397bd5b554acc5284436e80249708d6f00f3350e93baac3195e957",
+        "physicalWidth": 0.671536780772032,
+        "physicalHeight": 0.7989220684632192,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 0.66,
+        "inkHeight": 0.7873852876911872,
+        "metresPerPDFPoint": 0.003845593590677349,
+        "pdfInkBounds": [
+          102.625,
+          210.5,
+          274.25,
+          415.25
+        ],
+        "fonts": [
+          "SourceHanSerifSC"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "他们再也看不见我。",
+        "note": "保留书内单字的疏密、转角和下降关系；从01与02的间隙往下读，最后的我延伸至02下方。02略向右上方移开，给文字让出连续空白。"
+      },
+      {
+        "id": "moon",
+        "sourcePage": 15,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/moon.png",
+        "sourceSVG": "assets/typography/book-20261111/moon.svg",
+        "sha256": "3cc89214baeab5ca07f5ce3d4f853cc31102337e1475c27368b654e44156f8ce",
+        "physicalWidth": 0.7307865168539325,
+        "physicalHeight": 1.306067415730337,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 0.72,
+        "inkHeight": 1.2952808988764044,
+        "metresPerPDFPoint": 0.003595505617977528,
+        "pdfInkBounds": [
+          81.625,
+          97.0,
+          281.875,
+          457.25
+        ],
+        "fonts": [
+          "SourceHanSerifSC",
+          "SourceHanSerifSC-Light"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "月亮升起。\n潮水对此一无所知。",
+        "note": "整组移到右侧活动板墙的空白B面；保留月亮、升起和潮水的原有字形、字级与垂直距离，独立占据这一面。"
+      },
+      {
+        "id": "sea",
+        "sourcePage": 16,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/sea.png",
+        "sourceSVG": "assets/typography/book-20261111/sea.svg",
+        "sha256": "1c67ed106ae5b2926a0710e942e62a2c54961fd20e60a1d2443b68e96de752d7",
+        "physicalWidth": 1.220027816411683,
+        "physicalHeight": 1.376912378303199,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 1.2,
+        "inkHeight": 1.356884561891516,
+        "metresPerPDFPoint": 0.006675938803894298,
+        "pdfInkBounds": [
+          104.75,
+          188.0,
+          284.5,
+          391.25
+        ],
+        "fonts": [
+          "STHeitiSC-Medium-1",
+          "SourceHanSerifSC-Light"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "海水越过海水，",
+        "note": "两次海水的大小、字重及越过的间隔照书保留，沿地面走读。"
+      },
+      {
+        "id": "shore",
+        "sourcePage": 17,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/shore.png",
+        "sourceSVG": "assets/typography/book-20261111/shore.svg",
+        "sha256": "448a4d2166b8d13f713da72a68f106e6ca880c884e7d20cc444fed7897de62ce",
+        "physicalWidth": 0.6502680965147453,
+        "physicalHeight": 0.10134048257372653,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 0.63,
+        "inkHeight": 0.08107238605898123,
+        "metresPerPDFPoint": 0.006756032171581769,
+        "pdfInkBounds": [
+          99.75,
+          374.625,
+          193.0,
+          386.625
+        ],
+        "fonts": [
+          "SourceHanSerifSC"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "让夜晚走向岸边。",
+        "note": "移到16、34、09号所在左墙，落在34号上方、16与09之间的空白；保留书里小字与一行的收束，隔着通道接续海水。"
+      },
+      {
+        "id": "glass-sea-echo",
+        "sourcePage": 18,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/glass-sea-echo.png",
+        "sourceSVG": "assets/typography/book-20261111/glass-sea-echo.svg",
+        "sha256": "6af936063637b333eb79cddb9fcb7d6c8a9a0781b7211009ed806d47df98ec76",
+        "physicalWidth": 0.49272928176795583,
+        "physicalHeight": 0.6200220994475139,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 0.48000000000000004,
+        "inkHeight": 0.607292817679558,
+        "metresPerPDFPoint": 0.004243093922651934,
+        "pdfInkBounds": [
+          79.625,
+          173.375,
+          192.75,
+          316.5
+        ],
+        "fonts": [
+          "OnceDarkProof-Heavy",
+          "SourceHanSerifSC",
+          "SourceHanSerifSC-Light"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "礁石沉默，\n群岛浮出黑暗。",
+        "note": "整页的上下距离与黑暗的字重进入第二片透明诗板；不用叠印填满玻璃。"
+      },
+      {
+        "id": "far-waves",
+        "sourcePage": 19,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/far-waves.png",
+        "sourceSVG": "assets/typography/book-20261111/far-waves.svg",
+        "sha256": "eb2520c8ea7b82c78af93cfc69b305ed5bdb335bb70afd214b85368d455278bf",
+        "physicalWidth": 0.21,
+        "physicalHeight": 0.297,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 0.047625087473130046,
+        "inkHeight": 0.005291677582117083,
+        "metresPerPDFPoint": 0.0005570175438596491,
+        "pdfInkBounds": [
+          170.375,
+          293.25,
+          249.125,
+          302.125
+        ],
+        "fonts": [
+          "SourceHanSerifSC"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "printPDF": "output/pdf/远浪_A4装裱/更远的浪正在赶来_A4_实际尺寸打印.pdf",
+        "paperSizeMM": [
+          210,
+          297
+        ],
+        "printFontPoints": 15.000025749206543,
+        "text": "更远的浪正在赶来。",
+        "note": "诗册第19页完整等比放入A4竖版纸，打印后做悬浮装裱：纸外每边留2厘米浅灰背板，配8毫米窄黑框、3厘米框深与玻璃；保留纸张完整边缘和中心小句，挂在原来的墙面位置。"
+      },
+      {
+        "id": "waves",
+        "sourcePage": 20,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/waves.png",
+        "sourceSVG": "assets/typography/book-20261111/waves.svg",
+        "sha256": "e15c74432ecfcd3ae301d223f96862bc4b63b6dd6fd1f8b548c24a7d803ef189",
+        "physicalWidth": 2.424140821458508,
+        "physicalHeight": 0.33193629505448446,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 2.4,
+        "inkHeight": 0.30779547359597653,
+        "metresPerPDFPoint": 0.00804694048616932,
+        "pdfInkBounds": [
+          49.0,
+          240.0,
+          347.25,
+          278.25
+        ],
+        "fonts": [
+          "STHeitiSC-Medium-1",
+          "SourceHanSerifSC",
+          "SourceHanSerifSC-Heavy",
+          "SourceHanSerifSC-Light"
+        ],
+        "removedPaperFill": [],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "它聚拢，它抬升，它倾覆，它盘旋。",
+        "note": "四个动词归为同一条有起伏的句子；保留书中各词字重、轻微旋转和基线差，不再分成两组大字。"
+      },
+      {
+        "id": "moonlight",
+        "sourcePage": 23,
+        "sourcePDFSHA256": "520a9710ad0cb58864d27c5c989f196e5ecc3d89e61de213ee5eb06902c0b6f2",
+        "path": "assets/typography/book-20261111/moonlight.png",
+        "sourceSVG": "assets/typography/book-20261111/moonlight.svg",
+        "sha256": "66d6f6c4b9a4a0f7fdb6b22cd6b027122eb00b95e7337b129592e7e9f1f9c2c4",
+        "physicalWidth": 1.5749162759544542,
+        "physicalHeight": 0.19621567314132618,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 1.55,
+        "inkHeight": 0.17129939718687207,
+        "metresPerPDFPoint": 0.008305425318151373,
+        "pdfInkBounds": [
+          80.375,
+          296.75,
+          267.0,
+          317.375
+        ],
+        "fonts": [
+          "STHeitiSC-Medium-1",
+          "SourceHanSerifSC"
+        ],
+        "removedPaperFill": [
+          "#f5f5ef"
+        ],
+        "uniformScaleOnly": true,
+        "sourceCharacterSubset": null,
+        "text": "波光，是月亮在海里的迁徙。",
+        "note": "保留波光与浅灰尾句的字级和颜色；纸色不印上地面，地面本身成为空白。"
+      }
+    ],
+    "blankPages": [
+      8,
+      14,
+      22,
+      27
+    ],
+    "blankPageTranslation": "不新增文字或载体；保留段落间无字区，而非在每个空白处填字。",
+    "mirrorPageTranslation": "第4、24页的镜像思路用于理解透视与回望；本轮不额外复制地诗。",
+    "outsideBookRetained": [
+      "invitation",
+      "invitation-crossing",
+      "glass-growing"
+    ],
+    "changedArtworks": [
+      "once_02",
+      "once_11",
+      "once_25"
+    ],
+    "artworkChanges": {
+      "once_02": {
+        "alongDeltaMetres": 0.15,
+        "centerYDeltaMetres": 0.33,
+        "dimensionsChanged": false
+      },
+      "once_11": {
+        "surfaceId": "late-B",
+        "along": 0.75,
+        "centerY": 1.45,
+        "dimensionsChanged": false
+      },
+      "once_25": {
+        "removedFromExhibition": true,
+        "sourceFilesPreserved": true
+      }
+    },
+    "temporarilyOmittedBookPages": [
+      21
+    ],
+    "omissionReason": "房顶文字暂撤；第21页暂不强行挪到其他地方，避免挤占留白。",
+    "splitGeometryPreserved": true,
+    "carrierCounts": {
+      "wall": 12,
+      "floor": 5,
+      "glass": 3,
+      "ceiling": 0
+    },
+    "carrierCountingNote": "按空间文字组统计；玻璃和顶面单列，不计入墙面数量。",
+    "physicalDimensions": "spatial study, metres, not manufacturing approval"
+  }
+}
