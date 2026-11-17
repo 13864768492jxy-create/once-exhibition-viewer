@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "revision": "20261117-trial18",
-  "title": "大悦城 ONCE · 新版文字集进入空间",
-  "status": "新版文字集空间试排，非制作定稿",
+  "revision": "20261117-trial19",
+  "title": "大悦城 ONCE · 空间选读",
+  "status": "审美调整试排19，非制作定稿",
   "date": "2026-11-17",
-  "sourceLayout": "source/layout-baselines/trial12.json",
-  "principle": "以作者最新34页原稿和翻页中的遮叠、双语阅读为依据；保留字形、留白、句内疏密。",
+  "sourceLayout": "layouts/trial18.json",
+  "principle": "以作者原字形与句内疏密为基础，选择适合空间相遇的段落；图像成组、文字留出停顿，允许回望，不承诺单向读完整首。",
   "partitions": [
     {
       "id": "early",
@@ -327,8 +327,8 @@
       "group": "A-city",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 1.5,
-      "centerY": 2.25,
+      "along": 1.2,
+      "centerY": 2.12,
       "imageWidth": 0.3,
       "imageHeight": 0.23793699577000002,
       "outerWidth": 0.396,
@@ -536,8 +536,8 @@
       "group": "A-city",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 2.65,
-      "centerY": 0.95,
+      "along": 2.18,
+      "centerY": 1.05,
       "imageWidth": 0.54,
       "imageHeight": 0.42472299999999996,
       "outerWidth": 0.636,
@@ -650,7 +650,7 @@
       "group": "A-city",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 3.6,
+      "along": 3.06,
       "centerY": 1.5,
       "imageWidth": 0.62,
       "imageHeight": 0.509715,
@@ -669,7 +669,7 @@
       "group": "A-city",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 1.45,
+      "along": 1.2,
       "centerY": 1.35,
       "imageWidth": 0.85,
       "imageHeight": 0.7,
@@ -688,8 +688,8 @@
       "group": "A-city",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 3.55,
-      "centerY": 0.65,
+      "along": 3.06,
+      "centerY": 2.15,
       "imageWidth": 0.255,
       "imageHeight": 0.2125,
       "outerWidth": 0.391,
@@ -1142,14 +1142,14 @@
     },
     {
       "id": "mountains",
-      "text": "群山\nthe mountains",
+      "text": "群山",
       "position": [
         4.967,
-        1.55,
-        9.715
+        1.71046,
+        9.94142
       ],
-      "fontSize": 0.06485331497192383,
-      "width": 0.38285,
+      "fontSize": 0.051882651977539065,
+      "width": 0.30628000000000005,
       "surface": "wall",
       "rotationY": -90,
       "weight": 400,
@@ -1159,17 +1159,17 @@
       "align": "left",
       "color": "#161616",
       "letterSpacing": 0,
-      "note": "中文与英文一起落入03、04之间；英文较轻，山的间隙仍是空白。",
+      "note": "只保留作者中文路径；两块统一缩至80%，群山落在03与04之间，和下句共用视觉左起点。",
       "rotationInPlane": 0,
-      "typographyNote": "中文与英文一起落入03、04之间；英文较轻，山的间隙仍是空白。",
+      "typographyNote": "只保留作者中文路径；两块统一缩至80%，群山落在03与04之间，和下句共用视觉左起点。",
       "rasterOverride": {
-        "path": "assets/typography/book-20261116/mountains.png",
-        "sourceSVG": "assets/typography/book-20261116/mountains.svg",
-        "sha256": "b20053f2b0276b92feca90a27f7ff3d6bd084f58ce83473e8bd198f6fd04e3ae",
-        "physicalWidth": 0.38285,
-        "physicalHeight": 0.18525,
-        "localCenterX": 0,
-        "localCenterY": 0
+        "path": "assets/typography/curation-20261117/mountains-zh-only.png",
+        "sourceSVG": "assets/typography/curation-20261117/mountains-zh-only.svg",
+        "sha256": "01c1025bc0e1d2ee1c1b8271d93e4777e96803c4d01f95de87c4567c029368cd",
+        "physicalWidth": 0.30628000000000005,
+        "physicalHeight": 0.1482,
+        "localCenterX": 0.0,
+        "localCenterY": 0.0
       },
       "preserveAuthoredInk": true,
       "sourceBookPage": 5,
@@ -1179,14 +1179,14 @@
     },
     {
       "id": "mountains-open",
-      "text": "还未合拢，\nhave not yet drawn together,",
+      "text": "还未合拢，",
       "position": [
         4.967,
-        2.53,
-        8.85
+        1.31046,
+        9.70962
       ],
-      "fontSize": 0.06485331497192383,
-      "width": 0.96425,
+      "fontSize": 0.051882651977539065,
+      "width": 0.7714000000000001,
       "surface": "wall",
       "rotationY": -90,
       "weight": 400,
@@ -1197,18 +1197,18 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "保留原稿中文逐字下降与英文向下流动；在03上方留出整片空白，保持与群山同一比例。",
+      "typographyNote": "中文逐字下降与灰度保留；随群山等比缩至80%，在图像缝中接读，完整撤去英文路径。",
       "rasterOverride": {
-        "path": "assets/typography/book-20261116/mountains-open.png",
-        "sourceSVG": "assets/typography/book-20261116/mountains-open.svg",
-        "sha256": "c00a6b6c5c1907446daa0cab84dece3732e912d7124ad4c52f104e893c462326",
-        "physicalWidth": 0.96425,
-        "physicalHeight": 0.66025,
-        "localCenterX": 0,
-        "localCenterY": 0
+        "path": "assets/typography/curation-20261117/mountains-open-zh-only.png",
+        "sourceSVG": "assets/typography/curation-20261117/mountains-open-zh-only.svg",
+        "sha256": "84fbfd9d20509ceeea301b3a8ac16cf89d19acfe51213aa4de1d900aafa645a1",
+        "physicalWidth": 0.7714000000000001,
+        "physicalHeight": 0.5282,
+        "localCenterX": 0.0,
+        "localCenterY": 0.0
       },
       "preserveAuthoredInk": true,
-      "note": "保留原稿中文逐字下降与英文向下流动；在03上方留出整片空白，保持与群山同一比例。",
+      "note": "中文逐字下降与灰度保留；随群山等比缩至80%，在图像缝中接读，完整撤去英文路径。",
       "sourceBookPage": 5,
       "sourceBookPages": [
         5
@@ -1216,11 +1216,11 @@
     },
     {
       "id": "river",
-      "text": "河流带有未命名的方向，\nthe river, carrying an unnamed",
+      "text": "河流带有未命名的方向，",
       "position": [
         4.967,
-        2.26,
-        12.65
+        1.9605,
+        12.847125
       ],
       "fontSize": 0.05599998664855957,
       "width": 1.07775,
@@ -1234,18 +1234,18 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "采用原稿第6页完整双语关系，不重排单字；与后两页沿右墙接读。",
+      "typographyNote": "原字号、曲折字序和灰度保留；完整撤去英文分支，与从每个人流过共用视觉左起点，降低至照片上方。",
       "rasterOverride": {
-        "path": "assets/typography/book-20261116/river.png",
-        "sourceSVG": "assets/typography/book-20261116/river.svg",
-        "sha256": "2ba09f929f0a323c14ac86c83ae5baf3402e2211a5ca7557e1baeab427a49acf",
+        "path": "assets/typography/curation-20261117/river-zh-only.png",
+        "sourceSVG": "assets/typography/curation-20261117/river-zh-only.svg",
+        "sha256": "a01b42d5976a9f7eb76872ce47e492105716f122a172e21c9ce3867691368b1e",
         "physicalWidth": 1.07775,
         "physicalHeight": 0.714,
         "localCenterX": 0,
         "localCenterY": 0
       },
       "preserveAuthoredInk": true,
-      "note": "采用原稿第6页完整双语关系，不重排单字；与后两页沿右墙接读。",
+      "note": "原字号、曲折字序和灰度保留；完整撤去英文分支，与从每个人流过共用视觉左起点，降低至照片上方。",
       "sourceBookPage": 6,
       "sourceBookPages": [
         6
@@ -1253,11 +1253,11 @@
     },
     {
       "id": "river-through",
-      "text": "从每个人流过。\ndirection, flows through",
+      "text": "从每个人流过。",
       "position": [
         4.967,
-        2.3,
-        14.65
+        1.819875,
+        12.924
       ],
       "fontSize": 0.057599979400634764,
       "width": 1.1340000000000001,
@@ -1271,58 +1271,21 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "原稿两种语言各自转向：中文从每个人到流过，英文从direction向上接flows through。",
+      "typographyNote": "保留原中文路径、字号和内部疏密；接在河流下方，撤去整条英文支线及单独each person站位。",
       "rasterOverride": {
-        "path": "assets/typography/book-20261116/river-through.png",
-        "sourceSVG": "assets/typography/book-20261116/river-through.svg",
-        "sha256": "0be624537f4ca1cb83ddf5e23b586f35f3d13b3941a0f9e48244884ac93698dc",
+        "path": "assets/typography/curation-20261117/river-through-zh-only.png",
+        "sourceSVG": "assets/typography/curation-20261117/river-through-zh-only.svg",
+        "sha256": "3f90a51f71f059a254a244fb767a8916b67fde42ee8f33171e58a19431c41a05",
         "physicalWidth": 1.1340000000000001,
         "physicalHeight": 0.74325,
         "localCenterX": 0,
         "localCenterY": 0
       },
       "preserveAuthoredInk": true,
-      "note": "原稿两种语言各自转向：中文从每个人到流过，英文从direction向上接flows through。",
+      "note": "保留原中文路径、字号和内部疏密；接在河流下方，撤去整条英文支线及单独each person站位。",
       "sourceBookPage": 7,
       "sourceBookPages": [
         7
-      ]
-    },
-    {
-      "id": "river-each",
-      "text": "each person.",
-      "position": [
-        4.967,
-        2.35,
-        16.2
-      ],
-      "fontSize": 0.04079998970031738,
-      "width": 0.5475,
-      "surface": "wall",
-      "rotationY": -90,
-      "weight": 400,
-      "fontFamily": "authored-book-20261116",
-      "fontWidthScale": 1,
-      "lineHeight": 1,
-      "align": "left",
-      "color": "#161616",
-      "letterSpacing": 0,
-      "rotationInPlane": 0,
-      "typographyNote": "补上原稿翻到下一页才出现的each person，沿墙略停再接；与前两页同一字号比例。",
-      "rasterOverride": {
-        "path": "assets/typography/book-20261116/river-each.png",
-        "sourceSVG": "assets/typography/book-20261116/river-each.svg",
-        "sha256": "c4ab48cb90f178224c40436fb1e3a19b16ccb00a873a53e5fd6db016c9332e63",
-        "physicalWidth": 0.5475,
-        "physicalHeight": 0.1515,
-        "localCenterX": 0,
-        "localCenterY": 0
-      },
-      "preserveAuthoredInk": true,
-      "note": "补上原稿翻到下一页才出现的each person，沿墙略停再接；与前两页同一字号比例。",
-      "sourceBookPage": 8,
-      "sourceBookPages": [
-        8
       ]
     },
     {
@@ -1442,8 +1405,8 @@
       "text": "在我与他们之间。",
       "position": [
         0.033,
-        1.0728082061068704,
-        4.765523854961832
+        1.53,
+        5.95
       ],
       "fontSize": 0.09846150255850536,
       "width": 1.4530316742081446,
@@ -1457,8 +1420,8 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "note": "我与他们分处两端；保持原稿轻小的与、较重的之间。",
-      "typographyNote": "我与他们分处两端；保持原稿轻小的与、较重的之间。",
+      "note": "整块向后段平移并略抬高，保留句内布局与字号；从自然斜视中避开前玻璃竖框，与05/12形成疏密关系。",
+      "typographyNote": "整块向后段平移并略抬高，保留句内布局与字号；从自然斜视中避开前玻璃竖框，与05/12形成疏密关系。",
       "rasterOverride": {
         "path": "assets/typography/book-20261116/between.png",
         "sourceSVG": "assets/typography/book-20261116/between.svg",
@@ -1515,8 +1478,8 @@
       "id": "moon",
       "text": "月亮升起。\n潮水对此一无所知。",
       "position": [
-        4.2693860868525295,
-        1.7150837762688966,
+        4.05,
+        1.86,
         18.732
       ],
       "fontSize": 0.05460093817049408,
@@ -1531,7 +1494,7 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "采用菲林19与纸页21覆合后可读的完整关系，留在原活动墙空白面；不为照搬书页新增阻路玻璃。",
+      "typographyNote": "整块左移并抬高以避开植株尖端；保留月与亮的灰度、字号及全部句内疏密。",
       "rasterOverride": {
         "path": "assets/typography/book-20261116/moon.png",
         "sourceSVG": "assets/typography/book-20261116/moon.svg",
@@ -1542,7 +1505,7 @@
         "localCenterY": 0.0
       },
       "preserveAuthoredInk": true,
-      "note": "采用菲林19与纸页21覆合后可读的完整关系，留在原活动墙空白面；不为照搬书页新增阻路玻璃。",
+      "note": "整块左移并抬高以避开植株尖端；保留月与亮的灰度、字号及全部句内疏密。",
       "sourceBookPage": 19,
       "sourceBookPages": [
         19,
@@ -1660,43 +1623,6 @@
         24
       ],
       "glassPanelId": "ga-poetry-sea"
-    },
-    {
-      "id": "waves",
-      "text": "它聚拢，它抬升，它倾覆，它盘旋。\nit overturns,",
-      "position": [
-        4.967,
-        1.8151689569756397,
-        23.980410162286816
-      ],
-      "fontSize": 0.06599784828286699,
-      "width": 1.2497621367142484,
-      "surface": "wall",
-      "rotationY": -90,
-      "weight": 400,
-      "fontFamily": "authored-book-20261116",
-      "fontWidthScale": 1,
-      "lineHeight": 1,
-      "align": "left",
-      "color": "#161616",
-      "letterSpacing": 0,
-      "rotationInPlane": 0,
-      "typographyNote": "恢复原稿四种动作的高低、轻重与旋转；整组缩小，留在玻璃上方的墙面，不压入作品。",
-      "rasterOverride": {
-        "path": "assets/typography/book-20261116/waves.png",
-        "sourceSVG": "assets/typography/book-20261116/waves.svg",
-        "sha256": "59c5ac0cae031a8fe30e53b2efdb1b74e8aa2177ee1e9f7884aeca4e969646b4",
-        "physicalWidth": 1.2497621367142484,
-        "physicalHeight": 0.919772829046792,
-        "localCenterX": 0.0,
-        "localCenterY": 0.0
-      },
-      "preserveAuthoredInk": true,
-      "note": "恢复原稿四种动作的高低、轻重与旋转；整组缩小，留在玻璃上方的墙面，不压入作品。",
-      "sourceBookPage": 26,
-      "sourceBookPages": [
-        26
-      ]
     },
     {
       "id": "night-sky",
@@ -1847,14 +1773,14 @@
       "align": "left",
       "color": "#42483F",
       "glassPanelId": "ga-poetry-title",
-      "note": "Growing Again采用Raleway真实轻体、黑体、斜体逐字组构：粗细、斜正和宽窄形成差异。Again六层重叠，向下逐渐左右漂移、舒展、退淡；首层完整可读。原创字母编排，不复制参考图。",
+      "note": "Growing与Again各出现一次；保留现有Domaine Sans Display原生路径、字号、字距和两行位置，撤去Again的两层淡影。",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "Growing清楚在上，Again下方两次轻微左右偏移并退淡；第一次完整的Again始终可读。",
+      "typographyNote": "Growing与Again各出现一次；保留现有Domaine Sans Display原生路径、字号、字距和两行位置，撤去Again的两层淡影。",
       "rasterOverride": {
-        "path": "assets/typography/quiet-20261109/glass-growing.png",
-        "sourceSVG": "assets/typography/quiet-20261109/glass-growing.svg",
-        "sha256": "beaff722bbb899d8e710f377ebb70ecb8a349d31338c94328a13cda26674aafb",
+        "path": "assets/typography/curation-20261117/glass-growing-single.png",
+        "sourceSVG": "assets/typography/curation-20261117/glass-growing-single.svg",
+        "sha256": "aca30b2d0d002bb38ef0cfb64d5f59d07f9db71efc0e6e1b4fe07fd25d6133a9",
         "physicalWidth": 0.6,
         "physicalHeight": 1.54,
         "localCenterX": 0,
@@ -1983,13 +1909,13 @@
       "label": "原稿12 · 我与他们之间",
       "camera": [
         3.6,
-        1.25,
-        4.72
+        1.5,
+        5.95
       ],
       "target": [
         0,
-        1.25,
-        4.72
+        1.5,
+        5.95
       ],
       "framing": {
         "projection": "orthographic",
@@ -2018,7 +1944,7 @@
     },
     {
       "id": "book-river-wall",
-      "label": "原稿06–08 · 河流的两条读法",
+      "label": "河流 · 中文两段的接续",
       "camera": [
         1.7,
         2,
@@ -2070,7 +1996,7 @@
     },
     {
       "id": "book-glass",
-      "label": "原稿24、26 · 玻璃与动作",
+      "label": "玻璃 · 海水与Growing Again",
       "camera": [
         1.5,
         1.7,
@@ -2318,14 +2244,14 @@
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "以新版34页原稿矢量字形为准；原稿不改写，字体不替换。",
-    "中英文保持原稿的两条阅读路径，河流补全each person，终句保留垂落英文。",
-    "横与亘的坐标、角度和字面高度锁定。",
-    "月亮与迁徙采用原稿菲林和纸页覆合后的字样，不增加独立玻璃。",
-    "补回夜空与群星，放在墙面；房顶不放文字。",
-    "更远的浪采用240×339.43毫米纸面、约20.57磅原字形悬浮装裱，原墙面位置保留，打印文件另存试版。",
-    "墙面14组、地面3组、玻璃3组；不以单字计数。",
-    "摄影、活动墙、玻璃、投影区域及环境配色保持上一版；本轮不改安装、喷绘文件。"
+    "原稿、原字形和句内疏密保留；群山两块统一缩至80%，其余保留现有字面尺度。",
+    "群山、河流完整撤去英文分支；海水的Sea、终句近读英文保留各自作用。",
+    "撤下独立each person与它聚拢等动作组；Growing Again只保留一次完整标题。",
+    "开篇31/10/22/30/32收拢，32回到30上方；其余摄影、活动墙、玻璃、枕头与投影保持。",
+    "横与亘坐标、大小和透视关系锁定；远浪仍采用240×339.43毫米纸面悬浮装裱，原墙面位置保留。",
+    "墙面12组、地面3组、玻璃3组；共18组空间选读，不以单字计数。",
+    "允许回望与跳读，完整诗歌在数字诗册阅读；房顶不放文字。",
+    "本次更新网页讨论稿，未更新Blender、安装或喷绘文件。"
   ],
   "environment": {
     "wallFields": [
@@ -2487,7 +2413,7 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/refine-20261117/manifest.json",
+  "poetryRasterManifest": "poetry/trial19/manifest.json",
   "occupancyStudy": {
     "status": "illustrative_not_observed_people",
     "diameters": [
@@ -2588,7 +2514,6 @@
         "mountains-open",
         "river",
         "river-through",
-        "river-each",
         "world",
         "across",
         "across-gen",
@@ -2602,8 +2527,10 @@
           "across-gen",
           "between"
         ],
-        "note": "保留前段伏笔；越过群山河流后回望横亘。"
-      }
+        "note": "世界与横亘是前段伏笔，之间接在05/12附近；后段再遇终句。"
+      },
+      "readingMode": "selected_encounters_not_full_linear_poem",
+      "note": "此列表按原诗关系列出在场选段，现场允许回望；完整诗歌及原有双语关系在数字诗册阅读。"
     },
     {
       "id": "sea-poem",
@@ -2614,7 +2541,6 @@
         "shore",
         "glass-sea-echo",
         "far-waves",
-        "waves",
         "night-sky",
         "moonlight"
       ],
@@ -2623,7 +2549,9 @@
           "far-waves"
         ],
         "note": "远浪在前段空白中先出现，走到海水后再回想。"
-      }
+      },
+      "readingMode": "selected_encounters_not_full_linear_poem",
+      "note": "此列表按原诗关系列出在场选段，现场允许回望；完整诗歌及原有双语关系在数字诗册阅读。"
     }
   ],
   "approvedBaseline": {
@@ -2724,7 +2652,7 @@
   "nativeBaseline": "models/长廊展厅_空间底模_近5m试算.blend",
   "nativeBaselineQA": "qa/native_r09_model_qa.json",
   "spaceRevision": "20261106-r09-near5m",
-  "previousTrial": "layouts/trial17.json",
+  "previousTrial": "20261117-trial18",
   "spatialZones": [
     {
       "id": "opening",
@@ -2771,7 +2699,7 @@
     "wallFieldAfter": 7.7,
     "physicalResizing": false
   },
-  "studyVariant": "artist-poetry-book-in-space",
+  "studyVariant": "spatial-selected-reading",
   "screenPlacementRevision": {
     "date": "2026-11-10",
     "reason": "user selected existing early-A partition with photo13 for rear 亘; front 横 remains at early glass location",
@@ -2817,13 +2745,11 @@
         23
       ],
       [
-        11,
         8,
-        25,
-        14
+        14,
+        35
       ],
       [
-        35,
         18,
         28,
         33,
@@ -2833,17 +2759,15 @@
       [
         9,
         19,
+        11,
         1,
         2,
         17
       ]
     ],
-    "adaptation": "Keep the current left/right/left spatial sequence, not the entire old room circuit. 35 and 18 are viewed across the aisle, with a short diagonal look back; this is documented rather than called a strictly monotone route.",
-    "empty_faces": [
-      "glass-boundary-B",
-      "late-B"
-    ],
-    "empty_face_reason": "Leave the return faces open for a pause and for the projection transition; do not refill them."
+    "adaptation": "开篇五幅收拢为同视域，32回到30上方；其余摄影位置不变。35/28保留跨通道对角，19/11和13/36各为板墙两面，需回看。",
+    "empty_faces": [],
+    "empty_face_reason": "三块板墙的两面均有图像或文字；late-B已有11，boundary-B已有月亮。"
   },
   "typographyReset": {
     "source": "source/build_book_trial18.py",
@@ -2950,16 +2874,16 @@
           5
         ],
         "sourcePDFSHA256": "0bb15cbbc38b8da5f60cfa7299b135a35ee14e27d799b9579c806140ef06a272",
-        "path": "assets/typography/book-20261116/mountains.png",
-        "sourceSVG": "assets/typography/book-20261116/mountains.svg",
-        "sha256": "b20053f2b0276b92feca90a27f7ff3d6bd084f58ce83473e8bd198f6fd04e3ae",
-        "physicalWidth": 0.38285,
-        "physicalHeight": 0.18525,
-        "localCenterX": 0,
-        "localCenterY": 0,
-        "inkWidth": 0.37145,
-        "inkHeight": 0.17385,
-        "metresPerPDFPoint": 0.0038,
+        "path": "assets/typography/curation-20261117/mountains-zh-only.png",
+        "sourceSVG": "assets/typography/curation-20261117/mountains-zh-only.svg",
+        "sha256": "01c1025bc0e1d2ee1c1b8271d93e4777e96803c4d01f95de87c4567c029368cd",
+        "physicalWidth": 0.30628000000000005,
+        "physicalHeight": 0.1482,
+        "localCenterX": 0.0,
+        "localCenterY": 0.0,
+        "inkWidth": 0.29716000000000004,
+        "inkHeight": 0.13908,
+        "metresPerPDFPoint": 0.00304,
         "pdfInkBounds": [
           80.25,
           223.5,
@@ -2973,9 +2897,10 @@
         ],
         "uniformScaleOnly": true,
         "extractionRegion": "left",
-        "excludedASCII": false,
-        "text": "群山\nthe mountains",
-        "note": "中文与英文一起落入03、04之间；英文较轻，山的间隙仍是空白。"
+        "excludedASCII": true,
+        "text": "群山",
+        "note": "只保留作者中文路径；两块统一缩至80%，群山落在03与04之间，和下句共用视觉左起点。",
+        "selectiveLanguageEdit": true
       },
       {
         "id": "mountains-open",
@@ -2983,16 +2908,16 @@
           5
         ],
         "sourcePDFSHA256": "0bb15cbbc38b8da5f60cfa7299b135a35ee14e27d799b9579c806140ef06a272",
-        "path": "assets/typography/book-20261116/mountains-open.png",
-        "sourceSVG": "assets/typography/book-20261116/mountains-open.svg",
-        "sha256": "c00a6b6c5c1907446daa0cab84dece3732e912d7124ad4c52f104e893c462326",
-        "physicalWidth": 0.96425,
-        "physicalHeight": 0.66025,
-        "localCenterX": 0,
-        "localCenterY": 0,
-        "inkWidth": 0.95285,
-        "inkHeight": 0.64885,
-        "metresPerPDFPoint": 0.0038,
+        "path": "assets/typography/curation-20261117/mountains-open-zh-only.png",
+        "sourceSVG": "assets/typography/curation-20261117/mountains-open-zh-only.svg",
+        "sha256": "84fbfd9d20509ceeea301b3a8ac16cf89d19acfe51213aa4de1d900aafa645a1",
+        "physicalWidth": 0.7714000000000001,
+        "physicalHeight": 0.5282,
+        "localCenterX": 0.0,
+        "localCenterY": 0.0,
+        "inkWidth": 0.7622800000000001,
+        "inkHeight": 0.5190800000000001,
+        "metresPerPDFPoint": 0.00304,
         "pdfInkBounds": [
           220.25,
           224.0,
@@ -3006,9 +2931,10 @@
         ],
         "uniformScaleOnly": true,
         "extractionRegion": "right",
-        "excludedASCII": false,
-        "text": "还未合拢，\nhave not yet drawn together,",
-        "note": "保留原稿中文逐字下降与英文向下流动；在03上方留出整片空白，保持与群山同一比例。"
+        "excludedASCII": true,
+        "text": "还未合拢，",
+        "note": "中文逐字下降与灰度保留；随群山等比缩至80%，在图像缝中接读，完整撤去英文路径。",
+        "selectiveLanguageEdit": true
       },
       {
         "id": "river",
@@ -3016,9 +2942,9 @@
           6
         ],
         "sourcePDFSHA256": "0bb15cbbc38b8da5f60cfa7299b135a35ee14e27d799b9579c806140ef06a272",
-        "path": "assets/typography/book-20261116/river.png",
-        "sourceSVG": "assets/typography/book-20261116/river.svg",
-        "sha256": "2ba09f929f0a323c14ac86c83ae5baf3402e2211a5ca7557e1baeab427a49acf",
+        "path": "assets/typography/curation-20261117/river-zh-only.png",
+        "sourceSVG": "assets/typography/curation-20261117/river-zh-only.svg",
+        "sha256": "a01b42d5976a9f7eb76872ce47e492105716f122a172e21c9ce3867691368b1e",
         "physicalWidth": 1.07775,
         "physicalHeight": 0.714,
         "localCenterX": 0,
@@ -3038,9 +2964,10 @@
         ],
         "uniformScaleOnly": true,
         "extractionRegion": null,
-        "excludedASCII": false,
-        "text": "河流带有未命名的方向，\nthe river, carrying an unnamed",
-        "note": "采用原稿第6页完整双语关系，不重排单字；与后两页沿右墙接读。"
+        "excludedASCII": true,
+        "text": "河流带有未命名的方向，",
+        "note": "原字号、曲折字序和灰度保留；完整撤去英文分支，与从每个人流过共用视觉左起点，降低至照片上方。",
+        "selectiveLanguageEdit": true
       },
       {
         "id": "river-through",
@@ -3048,9 +2975,9 @@
           7
         ],
         "sourcePDFSHA256": "0bb15cbbc38b8da5f60cfa7299b135a35ee14e27d799b9579c806140ef06a272",
-        "path": "assets/typography/book-20261116/river-through.png",
-        "sourceSVG": "assets/typography/book-20261116/river-through.svg",
-        "sha256": "0be624537f4ca1cb83ddf5e23b586f35f3d13b3941a0f9e48244884ac93698dc",
+        "path": "assets/typography/curation-20261117/river-through-zh-only.png",
+        "sourceSVG": "assets/typography/curation-20261117/river-through-zh-only.svg",
+        "sha256": "3f90a51f71f059a254a244fb767a8916b67fde42ee8f33171e58a19431c41a05",
         "physicalWidth": 1.1340000000000001,
         "physicalHeight": 0.74325,
         "localCenterX": 0,
@@ -3070,40 +2997,10 @@
         ],
         "uniformScaleOnly": true,
         "extractionRegion": null,
-        "excludedASCII": false,
-        "text": "从每个人流过。\ndirection, flows through",
-        "note": "原稿两种语言各自转向：中文从每个人到流过，英文从direction向上接flows through。"
-      },
-      {
-        "id": "river-each",
-        "sourcePages": [
-          8
-        ],
-        "sourcePDFSHA256": "0bb15cbbc38b8da5f60cfa7299b135a35ee14e27d799b9579c806140ef06a272",
-        "path": "assets/typography/book-20261116/river-each.png",
-        "sourceSVG": "assets/typography/book-20261116/river-each.svg",
-        "sha256": "c4ab48cb90f178224c40436fb1e3a19b16ccb00a873a53e5fd6db016c9332e63",
-        "physicalWidth": 0.5475,
-        "physicalHeight": 0.1515,
-        "localCenterX": 0,
-        "localCenterY": 0,
-        "inkWidth": 0.5385,
-        "inkHeight": 0.14250000000000002,
-        "metresPerPDFPoint": 0.003,
-        "pdfInkBounds": [
-          100.5,
-          177.0,
-          280.0,
-          224.5
-        ],
-        "fonts": [
-          "SourceHanSerifSC"
-        ],
-        "uniformScaleOnly": true,
-        "extractionRegion": null,
-        "excludedASCII": false,
-        "text": "each person.",
-        "note": "补上原稿翻到下一页才出现的each person，沿墙略停再接；与前两页同一字号比例。"
+        "excludedASCII": true,
+        "text": "从每个人流过。",
+        "note": "保留原中文路径、字号和内部疏密；接在河流下方，撤去整条英文支线及单独each person站位。",
+        "selectiveLanguageEdit": true
       },
       {
         "id": "world",
@@ -3425,40 +3322,6 @@
         "note": "原稿的沉默、浮出与较重的黑暗进入已有透明诗板，保留玻璃透视。"
       },
       {
-        "id": "waves",
-        "sourcePages": [
-          26
-        ],
-        "sourcePDFSHA256": "0bb15cbbc38b8da5f60cfa7299b135a35ee14e27d799b9579c806140ef06a272",
-        "path": "assets/typography/book-20261116/waves.png",
-        "sourceSVG": "assets/typography/book-20261116/waves.svg",
-        "sha256": "59c5ac0cae031a8fe30e53b2efdb1b74e8aa2177ee1e9f7884aeca4e969646b4",
-        "physicalWidth": 1.1882565597667638,
-        "physicalHeight": 0.8745072886297376,
-        "localCenterX": 0,
-        "localCenterY": 0,
-        "inkWidth": 1.18,
-        "inkHeight": 0.8662507288629737,
-        "metresPerPDFPoint": 0.0027521865889212826,
-        "pdfInkBounds": [
-          64.75,
-          133.0,
-          493.5,
-          447.75
-        ],
-        "fonts": [
-          "STHeitiSC-Medium-1",
-          "SourceHanSerifSC",
-          "SourceHanSerifSC-Heavy",
-          "SourceHanSerifSC-Light"
-        ],
-        "uniformScaleOnly": true,
-        "extractionRegion": null,
-        "excludedASCII": false,
-        "text": "它聚拢，它抬升，它倾覆，它盘旋。\nit overturns,",
-        "note": "恢复原稿四种动作的高低、轻重与旋转；整组缩小，留在玻璃上方的墙面，不压入作品。"
-      },
-      {
         "id": "night-sky",
         "sourcePages": [
           27
@@ -3524,10 +3387,9 @@
       }
     ],
     "carrierCounts": {
-      "wall": 14,
+      "wall": 12,
       "floor": 3,
-      "glass": 3,
-      "ceiling": 0
+      "glass": 3
     },
     "splitGeometryPreserved": true,
     "artworkChanges": {},
@@ -3562,7 +3424,9 @@
       32,
       34
     ],
-    "paratextReason": "书名、纸背镜像、at/once、署名与封底属于书的开合；本轮不自动增设空间口号。"
+    "paratextReason": "书名、纸背镜像、at/once、署名与封底属于书的开合；本轮不自动增设空间口号。",
+    "exhibitionReadingMode": "selected_encounters_not_full_linear_poem",
+    "completeReaderURL": "https://13864768492jxy-create.github.io/once-exhibition-viewer/book/"
   },
   "savedEditorArrangement": {
     "savedAt": "2026-11-17",
@@ -3621,5 +3485,31 @@
     "paperScale": 1.1428571428571428,
     "status": "纸面与字句放大试版",
     "sourceLayoutSHA256": "c2e44525d0d2e206f7890c9b41e39d67b73bad10363ba9f9b4c5599b63f88bcb"
+  },
+  "curationRevision": {
+    "sourceLayoutSHA256": "8d376819f6e4f367f2e4da8d0624c99197dc498676d151e83afcc458315e27cb",
+    "script": "source/build_curation_trial19.py",
+    "removedPoemIds": [
+      "river-each",
+      "waves"
+    ],
+    "changedPhotoIds": [
+      "once_31",
+      "once_10",
+      "once_22",
+      "once_30",
+      "once_32"
+    ],
+    "changedPoemIds": [
+      "mountains",
+      "mountains-open",
+      "river",
+      "river-through",
+      "between",
+      "moon",
+      "glass-growing"
+    ],
+    "completeReaderVerifiedSHA256": "3f3ee95e80ebb615fa452770c17494e2395914c6a8fe44bc9436cfed4122c9f1",
+    "nativeModelUpdated": false
   }
 }

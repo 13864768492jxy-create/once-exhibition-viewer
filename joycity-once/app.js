@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-import { installPoetryEditor } from './poetry-editor.js?v=20261117-refine1';
+import { installPoetryEditor } from './poetry-editor.js?v=20261117-trial19-2';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261117-saved1';
-import { buildExhibition } from './exhibition.js?v=20261116-trial18-farwaves-a4-15pt';
+import { installCatalog } from './catalog.js?v=20261117-trial19-2';
+import { buildExhibition } from './exhibition.js?v=20261117-trial19-2';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
@@ -11,6 +11,8 @@ let data, renderer, scene, camera, controls, groups, walls, view = 'overview';
 let exhibition, trialLayout, library, trialVisible=true, inspectionFrame=null, poetryEditor;
 let yaw = 0, pitch = 0, walkPosition, pointerStart, pressed = new Set();
 let previousTime = performance.now(), raf = 0;
+const viewerVersion='20261117-trial19-2';
+let updateComparisonLink=()=>{};
 const lightStudyUniform={value:0};
 function lightStudyMaterial(material){
   const study=trialLayout?.lightingStudy;
@@ -246,6 +248,7 @@ function focusOnGroup(id){
   let group=trialLayout.focusGroups.find(g=>g.id===id);
   if(!group&&id.startsWith('blank-')){const i=Number(id.split('-')[1]),blank=trialLayout.blankWallIntervals?.[i];if(blank)group={id,label:`主墙停顿${i+1} · 约${blank.length.toFixed(1)}米`,workIds:[i?'once_26':'once_20'],surfaceId:blank.surfaceId,side:'left',emptyRange:[blank.from,blank.to]};}
   if(!group)return;
+  $('#focus-group').value=id;updateComparisonLink(id);
   if(group.camera){
     setTrialVisible(true);inspectionFrame=null;pressed.clear();pointerStart=null;view='inspection';
     document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed','false'));
@@ -342,27 +345,46 @@ async function init(){try{
   const typographyStudy=typeMode==='study';
   const previousTypography=typeMode==='study1'||typeMode==='study2';
   const typographyCompare=typographyStudy||previousTypography||typeMode==='base';
-  const baseline=['09','10','11','12','13','14','15','16','17'].includes(requestedTrial)?requestedTrial:null;
+  const baseline=['09','10','11','12','13','14','15','16','17','18'].includes(requestedTrial)?requestedTrial:null;
   const layoutURL=typographyStudy?'layouts/typography-study.json':typeMode==='study2'?'layouts/typography-study-20261108-mixed.json':previousTypography?'layouts/typography-study-20261107.json':baseline?'layouts/trial'+baseline+'.json':'layout.json';
-  const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v=20261117-refine1',{cache:'no-store'})));
+  const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v='+viewerVersion,{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
   const inputTexts=await Promise.all(responses.map(r=>r.text()));
   [data,trialLayout,library]=inputTexts.map(text=>JSON.parse(text));
+  // Compare the retained and current layout from the same positions. These
+  // viewing aids do not rewrite either layout or its verified source bytes.
+  if(/trial(?:18|19)$/.test(trialLayout.revision)){
+    const sharedViews=[
+      {id:'curation-opening',label:'开篇 · 摄影组合正视',camera:[3.8,1.5,2.7],target:[0,1.5,2.7],framing:{projection:'orthographic',width:5.4,height:3.2}},
+      {id:'curation-opening-walk',label:'开篇 · 人眼看摄影与文字',camera:[3.6,1.6,1.4],target:[0,1.35,3.1],framing:{projection:'perspective'}},
+      {id:'curation-river-walk',label:'河流 · 人眼看柱廊与文字',camera:[1.6,1.6,11.6],target:[4.967,1.65,13.9],framing:{projection:'perspective'}},
+      {id:'curation-between-walk',label:'之间 · 人眼看前段留白',camera:[3.6,1.6,3],target:[0,1.15,4.8],framing:{projection:'perspective'}},
+      {id:'curation-moon-walk',label:'月亮 · 从玻璃区回望',camera:[2.7,1.6,21],target:[4.25,1.5,18.732],framing:{projection:'perspective'}},
+      {id:'book-river-wall',label:'河流 · 文字与两侧图像',camera:[1.7,1.55,13.9],target:[5,1.55,13.9],framing:{projection:'orthographic',width:5.7,height:3}},
+      {id:'book-between',label:'之间 · 前段留白对照',camera:[3.6,1.45,5.35],target:[0,1.45,5.35],framing:{projection:'orthographic',width:4.3,height:3.2}},
+    ];
+    const sharedIds=new Set(sharedViews.map(g=>g.id));
+    trialLayout.focusGroups=[...sharedViews,...trialLayout.focusGroups.filter(g=>!sharedIds.has(g.id))];
+  }
   $('#projection-light-row').hidden=trialLayout.lightingStudy?.controlledZone?.side!=='both';
   $('#projection-light-study').addEventListener('change',updateLightStudy);
   $('#trial-on').textContent=trialName();
-  $('#baseline-compare').textContent=baseline?'回到试排18':'对照上一版';
-  $('#baseline-compare').href=baseline?'?v=20261116-trial18':'?trial=17&v=20261116-trial18';
+  $('#baseline-compare').textContent=baseline?'回到试排19':'对照试排18';
+  updateComparisonLink=focus=>{
+    const query=new URLSearchParams(baseline?{}:{trial:'18'});query.set('v',viewerVersion);
+    if(focus)query.set('focus',focus);
+    $('#baseline-compare').href='?'+query;
+  };
+  updateComparisonLink(new URLSearchParams(location.search).get('focus'));
   if(baseline){$('.header h1 span').textContent='保留基准 · '+trialName();$('.header p').textContent=baseline==='10'?'上一版的摄影位置与透明诗板':'六块并板 · 原位置与句形';document.title='大悦城 ONCE · '+trialName();
-    $('#trial-description').innerHTML='<h3>保留基准 · '+trialName()+'</h3><p>这一版的位置、作品尺寸与诗句字形保留，可返回试排18比较左、右、左的摄影动线。</p>';
+    $('#trial-description').innerHTML='<h3>保留基准 · '+trialName()+'</h3><p>'+(baseline==='18'?'保留已保存的20组空间文字、7组手动排版和24厘米远浪纸面。':'保留这一版的位置、作品尺寸与诗句字形。')+'可在同一观看位置返回试排19比较。</p><p><a href="https://13864768492jxy-create.github.io/once-exhibition-viewer/book/" target="_blank" rel="noopener noreferrer">阅读完整诗册</a></p>';
   }
   if(typographyCompare){
     $('.header h1 span').textContent=typographyStudy?'文字与空间 · 试读':previousTypography?'两句地诗 · 上一轮':'字体对照 · 现版';$('.header p').textContent=typographyStudy?'文字、摄影与材料 · 在走动与回望中阅读':'迎着风 / 河流 · 同视角比较';document.title='大悦城 ONCE · 文字与空间';
     $('#baseline-compare').textContent=typographyStudy?'对照上一轮':'切换新版地诗';
     const currentFocus=new URLSearchParams(location.search).get('focus');
-    const compareHref=focus=>'?type='+(typographyStudy?'study2':'study')+'&v=type-syntax-20261108'+(focus?'&focus='+encodeURIComponent(focus):'');
-    $('#baseline-compare').href=compareHref(currentFocus);
-    $('#focus-group').addEventListener('change',event=>{$('#baseline-compare').href=compareHref(event.target.value);});
+    updateComparisonLink=focus=>{$('#baseline-compare').href='?type='+(typographyStudy?'study2':'study')+'&v=type-syntax-20261108'+(focus?'&focus='+encodeURIComponent(focus):'');};
+    updateComparisonLink(currentFocus);
     if(!trialLayout.focusGroups.some(g=>g.id==='spatial-floor-tomorrow'))trialLayout.focusGroups.unshift({id:'spatial-floor-tomorrow',label:'地面文字 · 迎着风谈论明天',camera:[2.35,1.6,2.75],target:[2.35,.03,4.05]});
     for(const view of [{id:'language-river-images',label:'诗与照片 · 河流的阅读',camera:[4.5,1.65,8.5],target:[1.6,.9,11.4]},{id:'language-body-images',label:'文字与身体 · 一切正常',camera:[1.2,1.65,3.3],target:[4.65,.85,7.1]}]){
       if(!trialLayout.focusGroups.some(g=>g.id===view.id))trialLayout.focusGroups.unshift(view);
@@ -379,7 +401,7 @@ async function init(){try{
   exhibition=await buildExhibition({scene,renderer,layout:trialLayout,catalog:library,layoutSourceText:inputTexts[1]});
   applyFinish();
   $('#pillow-preview').hidden=!trialLayout.works.some(w=>w.projectionVideo);
-  $('#pillow-preview').addEventListener('click',async()=>{const button=$('#pillow-preview');button.disabled=true;try{focusOnGroup('traveler-context');$('#focus-group').value='traveler-context';const playing=await exhibition.togglePillowProjection();$('#projection-light-study').checked=playing;updateLightStudy();button.textContent=playing?'暂停枕头投影':'播放枕头投影';}catch(error){$('#status').textContent='投影预览暂未载入，请重试';}finally{button.disabled=false;}});
+  $('#pillow-preview').addEventListener('click',async()=>{const button=$('#pillow-preview');button.disabled=true;try{focusOnGroup('pillow-margin');const playing=await exhibition.togglePillowProjection();$('#projection-light-study').checked=playing;updateLightStudy();button.textContent=playing?'暂停枕头投影':'播放枕头投影';}catch(error){$('#status').textContent='投影预览暂未载入，请重试';}finally{button.disabled=false;}});
   for(const group of trialLayout.focusGroups){const option=document.createElement('option');option.value=group.id;option.textContent=group.label;$('#focus-group').append(option);}
   trialLayout.blankWallIntervals?.forEach((blank,i)=>{const option=document.createElement('option');option.value=`blank-${i}`;option.textContent=`主墙停顿${i+1} · 约${blank.length.toFixed(1)}米`;$('#focus-group').append(option);});
   $('#focus-group').addEventListener('change',event=>focusOnGroup(event.target.value));
@@ -399,7 +421,7 @@ async function init(){try{
   window.addEventListener('keydown',e=>{if(poetryEditor?.active)return;if(e.target.matches('input,button,a,select,textarea'))return;const key=e.key.toLowerCase();if(['w','a','s','d','arrowup','arrowleft','arrowdown','arrowright','shift'].includes(key)&&(view==='entry'||view==='reverse')){pressed.add(key);e.preventDefault();}if(key==='escape')panel(false);});window.addEventListener('keyup',e=>pressed.delete(e.key.toLowerCase()));window.addEventListener('blur',()=>pressed.clear());
   new ResizeObserver(resize).observe(host);document.addEventListener('visibilitychange',()=>{pressed.clear();previousTime=performance.now();});
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();$('#error').hidden=false;$('#error').textContent='三维画面连接中断，请刷新页面重新载入。';cancelAnimationFrame(raf);});
-  installCatalog({layout:trialLayout,onInspect:focusOnWork});
+  installCatalog({layout:trialLayout,onInspect:focusOnWork,onFocus:focusOnGroup});
   state.loaded=true;requestAnimationFrame(animate);
   exhibition.ready.then(stats=>{const total=stats.loaded+stats.errors;canvas.setAttribute('data-image-load-stats',JSON.stringify({loaded:stats.loaded,errors:stats.errors,pending:stats.pending,failures:stats.failures}));if(stats.errors){$('#status').textContent=`${stats.errors}项预览暂未载入，请刷新重试`;}$('#image-status').textContent=stats.errors?`${stats.loaded}/${total} 项预览已载入`:`${stats.photos+stats.large+stats.glass+stats.videos-(trialLayout.works.some(w=>w.id==='traveler-1')?1:0)}件原作`+(trialLayout.works.some(w=>w.id==='traveler-1')?' + 旅人候选':'')+' · '+trialName();});
   window.spaceModel={exhibition,layout:trialLayout,getState:()=>({trialVisible,exhibitionStats:exhibition.stats,loaded:state.loaded,error:state.error,view,room:data.room,tile:data.tile,camera:{position:camera.position.toArray(),target:controls.target.toArray()},visible:{strips:groups.strips.visible,bars:groups.bars.visible,lighting:groups.lighting.visible,leftWall:walls.left.visible,rightWall:walls.right.visible},counts:{strips:groups.strips.children.length,bars:groups.bars.children.length,lightingRows:data.lighting?.rowPositions.length||0},endBStatus:data.ends.B.openingStatus,renderCalls:renderer.info.render.calls}),setView,focusOnWork,focusOnGroup,setTrialVisible,scene,data};

@@ -1,10 +1,46 @@
 const get=id=>document.getElementById(id);
 let library=null;
-let currentLayout=null,inspectWork=null;
+let currentLayout=null,inspectWork=null,inspectGroup=null;
 function placementFor(id){return currentLayout?.works.find(w=>w.catalogId===id)||currentLayout?.freestandingGlass.find(w=>w.catalogId===id);}
 function displayDimensions(work){const p=placementFor(work.id);return p?.joinedGroup?`玻璃板 ${Math.round(p.width*100)} × ${Math.round(p.height*100)} cm · 当前试排`:work.dimensions;}
 const groups={all:'全部',once:'ONCE摄影',glass:'玻璃板',large:'大尺幅',performance:'VESSEL',traveler:'旅人（候选）',poetry:'空间诗歌'};
 function node(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el;}
+const poemFocusIds={
+  future:'book-arrival',mountains:'book-mountains','mountains-open':'book-mountains',
+  river:'book-river-wall','river-through':'book-river-wall','river-each':'book-river-wall',
+  world:'curation-opening',across:'language-split-word','across-gen':'language-gen-wall',between:'book-between',
+  ending:'book-ending',moon:'book-moon','moon-english':'book-moon',sea:'book-sea-floor',shore:'book-shore-wall',
+  'glass-sea-echo':'book-glass',waves:'book-glass','night-sky':'book-night-sky',moonlight:'book-moonlight',
+  'far-waves':'book-far-waves-print','glass-growing':'spatial-glass-transmission',
+};
+function renderPoetry(){
+  const target=get('catalog-poetry');target.replaceChildren();
+  target.append(node('h3','','空间诗歌 · 选读'),node('p','','以下是当前展厅中的文字选段，点击可在空间中查看；完整诗作的分行与翻页见诗册。'));
+  const book=node('a','','阅读完整诗册');book.href='https://13864768492jxy-create.github.io/once-exhibition-viewer/book/';book.target='_blank';book.rel='noopener noreferrer';
+  const bookLine=node('p');bookLine.append(book);target.append(bookLine);
+  const poems=new Map((currentLayout?.poems||[]).map(p=>[p.id,p]));
+  const focusIds=new Set((currentLayout?.focusGroups||[]).map(g=>g.id));
+  const listed=new Set();
+  function appendList(parent,records){
+    const list=node('ul');
+    for(const poem of records){
+      const label=poem.text.replace(/\n+/g,' / '),focusId=poemFocusIds[poem.id];
+      const item=node('li'),button=node('button','catalog-back',label);button.type='button';button.dataset.poemId=poem.id;
+      button.setAttribute('aria-label','在空间中查看：'+label);
+      if(inspectGroup&&focusIds.has(focusId)){button.dataset.focusId=focusId;button.addEventListener('click',()=>inspectGroup(focusId));}
+      else button.disabled=true;
+      item.append(button);list.append(item);listed.add(poem.id);
+    }
+    parent.append(list);
+  }
+  for(const sequence of currentLayout?.readingSequences||[]){
+    const ids=[...new Set(sequence.sequence||[])],records=ids.map(id=>poems.get(id)).filter(Boolean);
+    if(!records.length)continue;
+    const section=node('section');section.append(node('h4','',sequence.title));appendList(section,records);target.append(section);
+  }
+  const other=[...poems.values()].filter(p=>!listed.has(p.id));
+  if(other.length){const section=node('section');section.append(node('h4','','其他空间文字'));appendList(section,other);target.append(section);}
+}
 function showDetail(work){
   const target=get('catalog-detail');target.replaceChildren();
   const back=node('button','catalog-back','返回作品列表');back.type='button';back.addEventListener('click',()=>{target.hidden=true;get('catalog-list').hidden=false;get('catalog-filter').hidden=false;});target.append(back);
@@ -26,8 +62,8 @@ function render(){
     const img=node('img','');img.src=work.image;img.alt='';img.loading='lazy';button.append(img,node('strong','',work.title),node('span','',displayDimensions(work)),node('small','',placementFor(work.id)?'当前试排':'待布置'));button.addEventListener('click',()=>showDetail(work));li.append(button);list.append(li);
   }
 }
-export function installCatalog({layout=null,onInspect=null}={}){
-  currentLayout=layout;inspectWork=onInspect;
+export function installCatalog({layout=null,onInspect=null,onFocus=null}={}){
+  currentLayout=layout;inspectWork=onInspect;inspectGroup=onFocus;
   const panel=get('catalog-panel'),open=get('catalog-button');
   const setOpen=(visible)=>{panel.hidden=!visible;open.setAttribute('aria-expanded',String(visible));if(visible){get('details-panel').hidden=true;get('details-button').setAttribute('aria-expanded','false');}};
   open.addEventListener('click',()=>setOpen(panel.hidden));get('close-catalog').addEventListener('click',()=>{setOpen(false);open.focus();});
@@ -39,8 +75,7 @@ export function installCatalog({layout=null,onInspect=null}={}){
     if(currentLayout?.excludedWorkIds?.length){data.items=data.items.filter(w=>!currentLayout.excludedWorkIds.includes(w.id));data.counts.all=data.items.length;for(const key of ['once','glass','large','performance','traveler'])data.counts[key]=data.items.filter(w=>w.group===key).length;}
     library=data;get('catalog-summary').textContent=(currentLayout?.selectedPhotographyCount||31)+'幅摄影全部装裱 · 6块玻璃 · 4幅大图 · VESSEL。'+(data.counts.traveler?'另试放《旅人-1》，尚未确认加入。':'当前空间试排，尚未定稿。');
     for(const [value,label]of Object.entries(groups)){if(value==='traveler'&&!data.counts.traveler)continue;const option=node('option','',label+(data.counts[value]?' · '+data.counts[value]:''));option.value=value;get('catalog-filter').append(option);}
-    const poetry=get('catalog-poetry');poetry.append(node('h3','',data.poetry.title),node('p','','当前展出文字分布于玻璃、墙面与地面，字形与句内疏密沿用原稿。'),node('p','','载体：墙面、地面及其他建筑位置。'));
-    for(const ref of data.poetry.references){const a=node('a','',ref.title);a.href=ref.url;a.target='_blank';a.rel='noopener noreferrer';poetry.append(a);}
+    renderPoetry();
     render();
   }).catch(error=>{get('catalog-summary').textContent=error.message+'，请刷新页面重试。';get('catalog-filter').hidden=true;});
 }

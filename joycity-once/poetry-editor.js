@@ -33,7 +33,6 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
     <div class="editor-row editor-history"><button id="editor-undo">撤销</button><button id="editor-redo">重做</button><button id="editor-reset">恢复这组</button></div>
     <button id="editor-compare" class="editor-wide" aria-pressed="false">查看原版</button>
     <p id="editor-feedback" role="status" aria-live="polite"></p>
-    <details class="editor-study"><summary>这一区的留白试案</summary><p>“已经发生的世界”向 A 端退开；“在我／与／他们／之间”缩小并向 B 端让开。用环看检查玻璃框与文字的关系。</p><button id="editor-candidate">试一下这两组</button><p>只调整这两组，可撤销。横／亘与摄影保持。</p></details>
     <div class="editor-save"><label for="editor-name">方案名称</label><input id="editor-name" type="text" maxlength="60" value="我的文字试排">
       <div class="editor-row"><button id="editor-export">导出方案</button><button id="editor-import">载入方案</button></div>
       <input id="editor-file" type="file" accept=".json,application/json" hidden>
@@ -73,7 +72,7 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
     $('#editor-lock-note').hidden=!['across','across-gen'].includes(selected);
     $('#editor-paper-note').hidden=!e.scaleLocked;
     $('#editor-undo').disabled=!model.status.canUndo||comparing;$('#editor-redo').disabled=!model.status.canRedo||comparing;
-    $('#editor-reset').disabled=e.locked||comparing;$('#editor-candidate').disabled=comparing;
+    $('#editor-reset').disabled=e.locked||comparing;
     $('#editor-compare').textContent=comparing?'回到我的草稿':'查看原版';$('#editor-compare').setAttribute('aria-pressed',String(comparing));
     $('#editor-open').textContent=model.status.changedCount?`文字试排 · ${model.status.changedCount}组已改`:'文字试排';
   }
@@ -86,7 +85,7 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
       if(!value)e.object.matrix.multiply(new THREE.Matrix4().makeTranslation(p.u,p.v,0)).multiply(new THREE.Matrix4().makeScale(p.scale,p.scale,1));
       e.object.matrixWorldNeedsUpdate=true;
     }
-    exhibition.group.updateMatrixWorld(true);updatePanel();feedback(value?'正在查看试排18原版；再次点击返回草稿。':'已回到我的草稿。');
+    exhibition.group.updateMatrixWorld(true);updatePanel();feedback(value?'正在查看当前发布版；再次点击返回草稿。':'已回到我的草稿。');
   }
   function setActive(value){
     if(gesture)endGesture(false);orbitClick=null;if(comparing)setComparing(false);active=value;pane.hidden=!value;
@@ -179,10 +178,6 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
   $('#editor-compare').addEventListener('click',()=>setComparing(!comparing));
   $('#editor-name').addEventListener('change',scheduleSave);
   $('#editor-restore-button').addEventListener('click',()=>{try{if(comparing)setComparing(false);model.importDraft(savedDraft);if(savedDraft.name)$('#editor-name').value=savedDraft.name;$('#editor-restore').hidden=true;focusEntry(entries.get(selected));feedback('已载入上次草稿。');}catch(e){feedback(e.message,true);}});
-  $('#editor-candidate').addEventListener('click',()=>{
-    try {model.begin();model.change('world',{u:-.52,v:0,scale:1},{commit:false});model.change('between',{u:.58,v:.13,scale:.65},{commit:false});model.commit();select('between',true);scheduleSave();feedback('已试排这两组。点“查看原版”比较；撤销可整步还原。');}
-    catch(error){model.cancel();feedback(error.message,true);}
-  });
   $('#editor-export').addEventListener('click',()=>{
     const draft=model.exportDraft();draft.name=$('#editor-name').value.trim()||'我的文字试排';
     const url=URL.createObjectURL(new Blob([JSON.stringify(draft,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=draft.name.replace(/[\\/:*?"<>|]/g,'_')+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);feedback('已导出我的草稿；文件可以重新载入。');
