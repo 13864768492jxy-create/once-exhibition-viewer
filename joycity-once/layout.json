@@ -1550,43 +1550,6 @@
       ]
     },
     {
-      "id": "moon-english",
-      "text": "The moon rises.\nThe tide knows nothing of it.",
-      "position": [
-        4.967,
-        1.12,
-        17.76
-      ],
-      "fontSize": 0.031358322381973266,
-      "width": 0.5349687500000001,
-      "surface": "wall",
-      "rotationY": -90,
-      "weight": 400,
-      "fontFamily": "authored-book-20261116",
-      "fontWidthScale": 1,
-      "lineHeight": 1,
-      "align": "left",
-      "color": "#161616",
-      "letterSpacing": 0,
-      "rotationInPlane": 0,
-      "typographyNote": "英文如书中先出现于另一平面，转过活动墙再遇见中文；字号与下沉关系按原稿。",
-      "rasterOverride": {
-        "path": "assets/typography/book-20261116/moon-english.png",
-        "sourceSVG": "assets/typography/book-20261116/moon-english.svg",
-        "sha256": "946410c926491879d778f8531b22fa3587857f9a2097226eaa305cfee530faa5",
-        "physicalWidth": 0.5349687500000001,
-        "physicalHeight": 0.7987265625000001,
-        "localCenterX": 0,
-        "localCenterY": 0
-      },
-      "preserveAuthoredInk": true,
-      "note": "英文如书中先出现于另一平面，转过活动墙再遇见中文；字号与下沉关系按原稿。",
-      "sourceBookPage": 18,
-      "sourceBookPages": [
-        18
-      ]
-    },
-    {
       "id": "sea",
       "text": "海水越过海水，\nSea / sea,",
       "position": [
@@ -1818,8 +1781,8 @@
         1.55,
         14.45
       ],
-      "fontSize": 0.005291666666666667,
-      "width": 0.21,
+      "fontSize": 0.007257142857142856,
+      "width": 0.24,
       "surface": "wall",
       "rotationY": 90,
       "weight": 400,
@@ -1830,35 +1793,35 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "诗册第19页完整等比放入A4竖版纸，打印后做悬浮装裱：纸外每边留2厘米浅灰背板，配8毫米窄黑框、3厘米框深与玻璃；保留纸张完整边缘和中心小句，挂在原来的墙面位置。",
+      "typographyNote": "保留诗册原字形与居中小句，纸面按A4长宽比放至240×339.43毫米；窄黑框与灰背板留边同步放大，外框304×403.43毫米。悬浮装裱，挂在原墙面位置。",
       "rasterOverride": {
-        "path": "assets/typography/book-20261111/far-waves.png",
-        "sourceSVG": "assets/typography/book-20261111/far-waves.svg",
-        "sha256": "eb2520c8ea7b82c78af93cfc69b305ed5bdb335bb70afd214b85368d455278bf",
-        "physicalWidth": 0.21,
-        "physicalHeight": 0.297,
+        "path": "assets/typography/refine-20261117/far-waves-24cm.png",
+        "sourceSVG": "assets/typography/refine-20261117/far-waves-24cm.svg",
+        "sha256": "ecf6990f833b2a37578ec1c54c45a048101f26ca4f64ec31174da94fc98eaae6",
+        "physicalWidth": 0.24,
+        "physicalHeight": 0.3394285714285714,
         "localCenterX": 0,
         "localCenterY": 0
       },
-      "note": "仍为A4竖版15磅原字形、完整露边黑框悬浮装裱；新版原稿第25页同一句，无需重做既定打印文件。",
+      "note": "放大试版：纸内原字形先放大20%，再将纸面和装裱整体放大至原来的8/7；实际字约20.57磅，字句中心、长宽比及墙面位置保持。",
       "preserveAuthoredInk": true,
       "sourceBookPage": 25,
       "framedPaper": {
-        "paperWidth": 0.21,
-        "paperHeight": 0.297,
-        "frameFace": 0.008,
-        "depth": 0.03,
-        "paperGap": 0.02,
+        "paperWidth": 0.24,
+        "paperHeight": 0.3394285714285714,
+        "frameFace": 0.009142857142857142,
+        "depth": 0.03428571428571428,
+        "paperGap": 0.022857142857142857,
         "backingColor": "#d7d5ce",
-        "paperDepth": -0.002,
-        "paperFloat": 0.006,
+        "paperDepth": -0.0022857142857142855,
+        "paperFloat": 0.006857142857142857,
         "glazing": true,
         "frameColor": "#252725",
         "orientation": "portrait",
-        "extraMatWidth": 0,
-        "printPDF": "output/pdf/远浪_A4装裱/更远的浪正在赶来_A4_实际尺寸打印.pdf",
+        "extraMatWidth": 0.0,
+        "printPDF": "output/pdf/远浪_24厘米纸面_放大试版/更远的浪正在赶来_24厘米纸面_放大试版.pdf",
         "printAtActualSize": true,
-        "printFontPoints": 15
+        "printFontPoints": 20.57142857142857
       },
       "outsideBook": false,
       "sourceBookPages": [
@@ -1979,7 +1942,7 @@
     },
     {
       "id": "book-far-waves-print",
-      "label": "远浪 · A4纸上诗与窄框",
+      "label": "远浪 · 24厘米纸面与窄框",
       "camera": [
         1,
         1.55,
@@ -2360,8 +2323,8 @@
     "横与亘的坐标、角度和字面高度锁定。",
     "月亮与迁徙采用原稿菲林和纸页覆合后的字样，不增加独立玻璃。",
     "补回夜空与群星，放在墙面；房顶不放文字。",
-    "更远的浪仍为A4竖版15磅悬浮装裱，位置与既定文件保留。",
-    "墙面15组、地面5组、玻璃3组；不以单字计数。",
+    "更远的浪采用240×339.43毫米纸面、约20.57磅原字形悬浮装裱，原墙面位置保留，打印文件另存试版。",
+    "墙面14组、地面3组、玻璃3组；不以单字计数。",
     "摄影、活动墙、玻璃、投影区域及环境配色保持上一版；本轮不改安装、喷绘文件。"
   ],
   "environment": {
@@ -2524,7 +2487,7 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/saved-20261117/manifest.json",
+  "poetryRasterManifest": "poetry/refine-20261117/manifest.json",
   "occupancyStudy": {
     "status": "illustrative_not_observed_people",
     "diameters": [
@@ -2646,7 +2609,6 @@
       "id": "sea-poem",
       "title": "月亮升起",
       "sequence": [
-        "moon-english",
         "moon",
         "sea",
         "shore",
@@ -3562,7 +3524,7 @@
       }
     ],
     "carrierCounts": {
-      "wall": 15,
+      "wall": 14,
       "floor": 3,
       "glass": 3,
       "ceiling": 0
@@ -3648,5 +3610,16 @@
       "invitation-crossing"
     ],
     "glyphImagesUnchanged": true
+  },
+  "poetryRefinement": {
+    "date": "2026-11-17",
+    "removedPoemIds": [
+      "moon-english"
+    ],
+    "farWavesPoints": 20.57142857142857,
+    "previousPoints": 15,
+    "paperScale": 1.1428571428571428,
+    "status": "纸面与字句放大试版",
+    "sourceLayoutSHA256": "c2e44525d0d2e206f7890c9b41e39d67b73bad10363ba9f9b4c5599b63f88bcb"
   }
 }

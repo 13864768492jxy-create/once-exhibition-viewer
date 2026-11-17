@@ -26,7 +26,7 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
     <fieldset class="editor-fields"><legend>大小与位置</legend>
       <label for="editor-scale">等比大小 <output id="editor-size"></output></label>
       <div class="editor-scale-row"><input id="editor-scale" type="range" min="25" max="200" step="1"><input id="editor-percent" type="number" min="25" max="200" step="1" aria-label="等比大小百分比"><span>%</span></div>
-      <p id="editor-paper-note" class="editor-meta" hidden>A4纸与装裱保持实际尺寸，可移动。</p>
+      <p id="editor-paper-note" class="editor-meta" hidden>纸面与装裱按当前实际尺寸显示，可移动。</p>
       <div class="editor-coordinates"><label>左右偏移 · cm<input id="editor-u" type="number" step="1"></label><label>上下偏移 · cm<input id="editor-v" type="number" step="1"></label></div>
       <p class="editor-meta">相对原位，沿当前承载面移动。方向键 1 cm；Shift＋方向键 10 cm。</p>
     </fieldset>
@@ -129,7 +129,7 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
       if(!hit)return;e=hit;select(e.record.id);
     }
     event.preventDefault();event.stopImmediatePropagation();host.focus({preventScroll:true});
-    if(e.locked||(kind==='scale'&&e.scaleLocked)){feedback(e.locked?'此组已锁定；取消锁定后可以调整。':'A4纸与外框保持实际尺寸。');return;}
+    if(e.locked||(kind==='scale'&&e.scaleLocked)){feedback(e.locked?'此组已锁定；取消锁定后可以调整。':'纸面与外框保持当前实际尺寸。');return;}
     const point=onPlane(event,e);if(!point)return;
     const controls=getControls();gesture={id:event.pointerId,kind,e,point,x:event.clientX,y:event.clientY,moved:false,start:{...model.get(selected)},controls,enabled:controls.enabled};
     controls.enabled=false;canvas.setPointerCapture(event.pointerId);canvas.style.cursor=kind==='scale'?'nwse-resize':'grabbing';
