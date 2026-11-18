@@ -2,6 +2,9 @@
 // baseline layout records, image pixels, carrier glass or photography.
 const EPS = 1e-8;
 const IDENTITY = Object.freeze({u: 0, v: 0, scale: 1});
+// These released layouts share every poem's coordinate system and support dimensions.
+const TRIAL20 = {revision: '20261118-trial20', sha: '04e5ead6ffd317af3851230e24312e7f4af5b149f4d0f6eca13fed8d80f0070b'};
+const TRIAL21 = {revision: '20261118-trial21', sha: 'ce7cad5654edf970e98ad0b5b642efd481e92e11cf3701c7384bad4d8b9ba247'};
 const DEFAULT_LOCKS = new Set(['across', 'across-gen']);
 const clone = value => JSON.parse(JSON.stringify(value));
 const finite = value => typeof value === 'number' && Number.isFinite(value);
@@ -44,6 +47,7 @@ export function createPoetryEditorModel({THREE, exhibition, layout, space, onCha
   if (!exhibition?.group || !exhibition?.poemGroups || !layout?.revision || !space?.room) throw new Error('文字编辑器缺少展厅数据。');
   const sourceSHA = baseLayoutSHA256 || exhibition.group.userData.poetryRasterManifest?.sourceLayoutSHA256;
   if (typeof sourceSHA !== 'string' || !/^[a-f0-9]{64}$/i.test(sourceSHA)) throw new Error('文字编辑器缺少已核验的基准版本。');
+  const acceptsTrial20 = layout.revision === TRIAL21.revision && sourceSHA === TRIAL21.sha;
   const entries = new Map(), values = new Map(), undoStack = [], redoStack = [];
   let transaction = null, disposed = false;
   exhibition.group.updateWorldMatrix(true, true);
@@ -193,10 +197,12 @@ export function createPoetryEditorModel({THREE, exhibition, layout, space, onCha
     const before = snapshot(); entryFor(id).locked = locked; push(before, snapshot()); notify('lock', id);
   }
   function exportDraft() { return {schema: 'once-poetry-draft', version: 1, baseRevision: layout.revision, baseLayoutSHA256: sourceSHA, units: 'metres', ...snapshot()}; }
-  function importDraft(input) {
-    const draft = typeof input === 'string' ? JSON.parse(input) : input;
+  function validateDraft(draft) {
     if (!plain(draft) || draft.schema !== 'once-poetry-draft' || draft.version !== 1) throw new Error('这不是可读取的 ONCE 文字试排方案。');
-    if (draft.baseRevision !== layout.revision || draft.baseLayoutSHA256 !== sourceSHA) throw new Error('方案来自另一版展厅，请打开对应基准版本后再导入。');
+    const current = draft.baseRevision === layout.revision && draft.baseLayoutSHA256 === sourceSHA;
+    const fromTrial20 = acceptsTrial20 && draft.baseRevision === TRIAL20.revision && draft.baseLayoutSHA256 === TRIAL20.sha;
+    if (!current && !fromTrial20) throw new Error('方案来自另一版展厅，请打开对应基准版本后再导入。');
+    if ((fromTrial20 || draft.units != null) && draft.units !== 'metres') throw new Error('草稿位移单位须为米。');
     if (!plain(draft.transforms) || (draft.locks != null && !plain(draft.locks))) throw new Error('方案中的文字位置数据无效。');
     if (Object.keys(draft.transforms).some(id => !entries.has(id)) || Object.keys(draft.locks || {}).some(id => !entries.has(id))) throw new Error('方案含有当前展厅不存在的文字块。');
     const next = {transforms: {}, locks: {}};
@@ -206,12 +212,29 @@ export function createPoetryEditorModel({THREE, exhibition, layout, space, onCha
       if (typeof locked !== 'boolean') throw new Error(`「${id}」的锁定状态无效。`);
       next.locks[id] = locked;
     }
+    return next;
+  }
+  // Offer the newest compatible saved draft without applying it or rewriting storage.
+  function findSavedDraft(read) {
+    for (const sha of acceptsTrial20 ? [sourceSHA, TRIAL20.sha] : [sourceSHA]) {
+      try {
+        const draft = JSON.parse(read(sha));
+        if (draft?.baseLayoutSHA256 !== sha) continue;
+        validateDraft(draft);
+        return draft;
+      } catch { /* Invalid or inaccessible local data cannot be restored. */ }
+    }
+    return null;
+  }
+  function importDraft(input) {
+    const draft = typeof input === 'string' ? JSON.parse(input) : input;
+    const next = validateDraft(draft);
     // Validate the whole document before touching either visible state or undo.
     if (transaction) cancel();
     const before = snapshot(); restore(next); push(before, snapshot()); notify('import');
     return getStatus();
   }
-  return {entries, get: id => ({...values.get(entryFor(id).record.id)}), change, begin, commit, cancel, undo, redo, reset, resetAll, exportDraft, importDraft, setLocked, getBounds,
+  return {entries, get: id => ({...values.get(entryFor(id).record.id)}), change, begin, commit, cancel, undo, redo, reset, resetAll, exportDraft, importDraft, findSavedDraft, setLocked, getBounds,
     get status() { return getStatus(); },
     dispose() { if (transaction) cancel(); for (const entry of entries.values()) { entry.object.matrix.copy(entry.baseMatrix); entry.object.matrixAutoUpdate = entry.originalAutoUpdate; entry.object.matrixWorldNeedsUpdate = true; entry.object.updateWorldMatrix(true, true); } disposed = true; },
   };

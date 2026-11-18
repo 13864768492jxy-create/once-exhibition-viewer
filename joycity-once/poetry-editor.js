@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createPoetryEditorModel } from './poetry-editor-model.js?v=20261116-editor1';
+import { createPoetryEditorModel } from './poetry-editor-model.js?v=20261118-trial21';
 import { createPoetryInkPicker } from './poetry-editor-picking.js?v=20261117-editor2';
 
 export function installPoetryEditor({exhibition, layout, layoutSourceText, space, host, getCamera, getControls, focusEntry, onActive}) {
@@ -50,7 +50,10 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
   const title=e=>e.record.text.replace(/\n/g,' / ');
   for(const e of entries.values()) {const o=document.createElement('option');o.value=e.record.id;o.textContent=title(e);$('#editor-poem').append(o);}
   if(!entries.has(selected))selected=entries.keys().next().value;
-  try{savedDraft=JSON.parse(localStorage.getItem(storageKey)||'null');}catch{}
+  savedDraft=model.findSavedDraft(sha=>localStorage.getItem('once-poetry-draft:'+sha));
+  if(savedDraft && savedDraft.baseRevision!==layout.revision){
+    $('#editor-restore p').textContent='此浏览器保存有试排20的草稿，可在试排21继续调整。';
+  }
   $('#editor-restore').hidden=!savedDraft;
   const raycaster=new THREE.Raycaster(), pointer=new THREE.Vector2();
   const projected=[];

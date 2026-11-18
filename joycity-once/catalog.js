@@ -20,9 +20,9 @@ function renderPoetry(){
   const bookLine=node('p');bookLine.append(book);target.append(bookLine);
   const poems=new Map((currentLayout?.poems||[]).map(p=>[p.id,p]));
   const focusIds=new Set((currentLayout?.focusGroups||[]).map(g=>g.id));
-  const positions=currentLayout?.revision.endsWith('trial20')?{
+  const positions=/trial(?:20|21)$/.test(currentLayout?.revision)?{
     ...poemFocusIds,world:'curation-world',river:'curation-river-wide','river-through':'curation-river-return',
-    ending:'curation-ending-walk'
+    ending:'curation-ending-walk',...(/trial21$/.test(currentLayout.revision)?{mountains:'curation-mountains-walk','mountains-open':'curation-mountains-walk'}:{})
   }:poemFocusIds;
   const listed=new Set();
   function appendList(parent,records){

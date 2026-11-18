@@ -498,7 +498,7 @@ function joinedGlassPlans(layout) {
  * works Map values are THREE.Group objects; surfaces Map values are normalized
  * canonical descriptors. focusTarget() always returns canonical coordinates.
  */
-export async function buildExhibition({scene, renderer, layout = {}, catalog = {}, layoutSHA256, layoutSourceText}) {
+export async function buildExhibition({scene, renderer, trackWash, layout = {}, catalog = {}, layoutSHA256, layoutSourceText}) {
   const poetryRasters = new Map();
   let poetryRasterEvidence = null;
   if (layout.poetryRasterManifest) {
@@ -572,6 +572,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
   const loadingTexture = messageTexture('图像载入中');
   let errorTexture;
   const white = new THREE.MeshStandardMaterial({color: activePalette.wall || '#f2f1ec', roughness: .86, side: THREE.DoubleSide});
+  trackWash?.apply(white);
   const backing = new THREE.MeshStandardMaterial({color: '#e5e3dc', roughness: .9, side: THREE.DoubleSide});
   const textFamily = (record, fallback = 'serif') => Number(String(layout.revision || '').match(/trial(\d+)/)?.[1] || 1) >= 4 && (!record.fontFamily || record.fontFamily === 'sans') ? 'plex' : record.fontFamily || fallback;
 
@@ -765,6 +766,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
     const fieldGroup = faceGroup(group, `墙面试色_${field.id}`, center, normal);
     fieldGroup.userData = {environmentId: field.id, kind: 'wallField', layout: field, canonicalPosition: center, canonicalNormal: [...normal], surface};
     const fieldMaterial = new THREE.MeshBasicMaterial({color: field.fixedColor ? field.color : activePalette.glassWall || field.color || '#dfe4dc', side: THREE.DoubleSide, toneMapped: false});
+    trackWash?.apply(fieldMaterial);
     if (!field.fixedColor) wallFieldMaterials.add(fieldMaterial);
     plane(fieldGroup, '墙面试色_画作之后', end - start, height, fieldMaterial);
     environmentFields.set(field.id, fieldGroup);
@@ -890,6 +892,7 @@ export async function buildExhibition({scene, renderer, layout = {}, catalog = {
         box(work, '左框条', face, height - face * 2, depth, -(width - face) / 2, 0, depth / 2, frameMaterial);
         box(work, '右框条', face, height - face * 2, depth, (width - face) / 2, 0, depth / 2, frameMaterial);
       }
+      if(face>0)trackWash?.frameContact(work,width,height,depth,center,normal);
       const slotWidth = Math.min(imageWidth, Math.max(.001, width - face * 2));
       const slotHeight = Math.min(imageHeight, Math.max(.001, height - face * 2));
       imageOn(work, item, record, slotWidth, slotHeight, depth * .76 + .001);

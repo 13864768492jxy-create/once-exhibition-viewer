@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "revision": "20261118-trial20",
+  "revision": "20261118-trial21",
   "title": "大悦城 ONCE · 空间选读",
-  "status": "留白与回看试排20，非制作定稿",
+  "status": "连廊观看与河流英文试排21，非制作定稿",
   "date": "2026-11-18",
-  "sourceLayout": "layouts/trial19.json",
+  "sourceLayout": "layouts/trial20.json",
   "principle": "以作者原字形与句内疏密为基础，选择适合空间相遇的段落；图像成组、文字留出停顿，允许回望，不承诺单向读完整首。",
   "partitions": [
     {
@@ -818,7 +818,7 @@
       "group": "YQZC",
       "type": "large",
       "surfaceId": "other-main",
-      "along": 7.143989,
+      "along": 7.063989,
       "centerY": 1.45,
       "imageWidth": 1.6,
       "imageHeight": 1.0674285714285714,
@@ -836,7 +836,7 @@
       "group": "YQZC",
       "type": "large",
       "surfaceId": "other-main",
-      "along": 9.709989,
+      "along": 9.789989,
       "centerY": 1.45,
       "imageWidth": 1.6,
       "imageHeight": 1.174857142857143,
@@ -1216,7 +1216,7 @@
     },
     {
       "id": "river",
-      "text": "河流带有未命名的方向，",
+      "text": "河流带有未命名的方向，\nthe river,",
       "position": [
         4.967,
         0.8147920593617921,
@@ -1234,18 +1234,28 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "按作者保存的试排19草稿原量平移，落在14号照片下方。由B向A可经喷泉接读下句。",
+      "typographyNote": "在作者保存的原位恢复第6页河流下方弧形的 the river,，英文笔画取中灰 #898989。",
       "rasterOverride": {
-        "path": "assets/typography/curation-20261117/river-zh-only.png",
-        "sourceSVG": "assets/typography/curation-20261117/river-zh-only.svg",
-        "sha256": "a01b42d5976a9f7eb76872ce47e492105716f122a172e21c9ce3867691368b1e",
+        "path": "assets/typography/curation-trial21/river-with-english.png",
+        "sourceSVG": "assets/typography/curation-trial21/river-with-english.svg",
+        "sha256": "ea0cc7efc69d762fae3e59e97c18bb5df360e9a2a729fdae8de6bb3263717dd2",
         "physicalWidth": 1.07775,
         "physicalHeight": 0.714,
         "localCenterX": 0,
-        "localCenterY": 0
+        "localCenterY": 0,
+        "satinInk": {
+          "text": "the river,",
+          "color": "#898989",
+          "uvBounds": [
+            0.0038975501113585748,
+            0.2978991596638656,
+            0.15868596881959912,
+            0.44243697478991595
+          ]
+        }
       },
       "preserveAuthoredInk": true,
-      "note": "按作者保存的试排19草稿原量平移，落在14号照片下方。由B向A可经喷泉接读下句。",
+      "note": "在作者保存的原位恢复第6页河流下方弧形的 the river,，英文笔画取中灰 #898989。",
       "sourceBookPage": 6,
       "sourceBookPages": [
         6
@@ -2247,7 +2257,9 @@
     "末句在01与02之间以中文下落；诗册原稿保留完整中英文。",
     "远浪使用与灰框试样相同的框色。纸、字、背板、原挂位和尺寸沿用试排19。",
     "横／亘的前后距离、海水的Sea及月／亮的浓淡交换沿用作者排法。",
-    "摄影与建筑布局沿用试排19。墙面12组，地面3组，玻璃3组。完整阅读见数字诗册。"
+    "摄影与建筑布局沿用试排19。墙面12组，地面3组，玻璃3组。完整阅读见数字诗册。",
+    "03与04各向外8厘米，框间留111厘米，群山与句尾两边同时多出8厘米。",
+    "在作者保存的原位恢复第6页河流下方弧形的 the river,，英文笔画取中灰 #898989。"
   ],
   "environment": {
     "wallFields": [
@@ -2409,7 +2421,7 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/trial20/manifest.json",
+  "poetryRasterManifest": "poetry/trial21/manifest.json",
   "occupancyStudy": {
     "status": "illustrative_not_observed_people",
     "diameters": [
@@ -2559,13 +2571,13 @@
   "largeSeriesRhythm": {
     "outerFrameGapsMetres": [
       0.7,
-      0.7,
-      0.95
+      0.62,
+      1.11
     ],
-    "spanMetres": 8.814,
+    "spanMetres": 8.894,
     "firstCenterZ": 3.8,
     "originalSpanMetres": 10.616,
-    "reason": "前三幅以70厘米净间距连成系列；末个间隔留95厘米给诗句，保持停顿。"
+    "reason": "03与04各向外8厘米，框间留111厘米，群山与句尾两边同时多出8厘米。"
   },
   "photoRoute": [
     {
@@ -2648,7 +2660,7 @@
   "nativeBaseline": "models/长廊展厅_空间底模_近5m试算.blend",
   "nativeBaselineQA": "qa/native_r09_model_qa.json",
   "spaceRevision": "20261106-r09-near5m",
-  "previousTrial": "20261117-trial19",
+  "previousTrial": "20261118-trial20",
   "spatialZones": [
     {
       "id": "opening",
@@ -2938,9 +2950,9 @@
           6
         ],
         "sourcePDFSHA256": "0bb15cbbc38b8da5f60cfa7299b135a35ee14e27d799b9579c806140ef06a272",
-        "path": "assets/typography/curation-20261117/river-zh-only.png",
-        "sourceSVG": "assets/typography/curation-20261117/river-zh-only.svg",
-        "sha256": "a01b42d5976a9f7eb76872ce47e492105716f122a172e21c9ce3867691368b1e",
+        "path": "assets/typography/curation-trial21/river-with-english.png",
+        "sourceSVG": "assets/typography/curation-trial21/river-with-english.svg",
+        "sha256": "ea0cc7efc69d762fae3e59e97c18bb5df360e9a2a729fdae8de6bb3263717dd2",
         "physicalWidth": 1.07775,
         "physicalHeight": 0.714,
         "localCenterX": 0,
@@ -2960,10 +2972,21 @@
         ],
         "uniformScaleOnly": true,
         "extractionRegion": null,
-        "excludedASCII": true,
-        "text": "河流带有未命名的方向，",
-        "note": "按作者保存的试排19草稿原量平移，落在14号照片下方。由B向A可经喷泉接读下句。",
-        "selectiveLanguageEdit": true
+        "excludedASCII": false,
+        "text": "河流带有未命名的方向，\nthe river,",
+        "note": "在作者保存的原位恢复第6页河流下方弧形的 the river,，英文笔画取中灰 #898989。",
+        "selectiveLanguageEdit": true,
+        "satinInk": {
+          "text": "the river,",
+          "color": "#898989",
+          "uvBounds": [
+            0.0038975501113585748,
+            0.2978991596638656,
+            0.15868596881959912,
+            0.44243697478991595
+          ]
+        },
+        "retainedEnglish": "the river,"
       },
       {
         "id": "river-through",
@@ -3484,28 +3507,14 @@
     "sourceLayoutSHA256": "c2e44525d0d2e206f7890c9b41e39d67b73bad10363ba9f9b4c5599b63f88bcb"
   },
   "curationRevision": {
-    "sourceLayoutSHA256": "a5967cda75976f26d9c58d9c8a4a170900598e7be89bd1ec08b95a6ae6e64496",
-    "script": "source/build_curation_trial20.py",
-    "authorDraftSHA256": "ea3d1082cea194b2db6acf9ce196c542d08465e8879ed7f0a5bf384ba0451a91",
-    "authorRiverTransforms": {
-      "river": {
-        "u": -4.909803372310353,
-        "v": -1.1457079406382078,
-        "scale": 1
-      },
-      "river-through": {
-        "u": -2.5864355935799423,
-        "v": -0.3781517639454175,
-        "scale": 1
-      }
-    },
-    "changedPhotoIds": [],
+    "sourceLayoutSHA256": "04e5ead6ffd317af3851230e24312e7f4af5b149f4d0f6eca13fed8d80f0070b",
+    "script": "source/build_curation_trial21.py",
+    "changedPhotoIds": [
+      "yqzc-03",
+      "yqzc-04"
+    ],
     "changedPoemIds": [
-      "world",
-      "river",
-      "river-through",
-      "ending",
-      "far-waves"
+      "river"
     ],
     "removedPoemIds": [],
     "completeReaderVerifiedSHA256": "3f3ee95e80ebb615fa452770c17494e2395914c6a8fe44bc9436cfed4122c9f1",

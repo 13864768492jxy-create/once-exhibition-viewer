@@ -1,8 +1,10 @@
 import * as THREE from 'three';
-import { installPoetryEditor } from './poetry-editor.js?v=20261118-trial20';
+import { createTrackWash, galleryHeadAim } from './gallery-lighting.js?v=20261118-trial21';
+import { installRiverInk } from './river-ink.js?v=20261118-trial21';
+import { installPoetryEditor } from './poetry-editor.js?v=20261118-trial21';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261118-trial20';
-import { buildExhibition } from './exhibition.js?v=20261118-trial20';
+import { installCatalog } from './catalog.js?v=20261118-trial21';
+import { buildExhibition } from './exhibition.js?v=20261118-trial21';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
@@ -11,16 +13,17 @@ let data, renderer, scene, camera, controls, groups, walls, view = 'overview';
 let exhibition, trialLayout, library, trialVisible=true, inspectionFrame=null, poetryEditor;
 let yaw = 0, pitch = 0, walkPosition, pointerStart, pressed = new Set();
 let previousTime = performance.now(), raf = 0;
-const viewerVersion='20261118-trial20-eye';
+const viewerVersion='20261118-trial21';
 const filmDiagonalMm = Math.hypot(36, 24);
 let lensMode = 'natural';
 
 function applyVisitorLens(cam, aspect) {
-  const { focalMm, wideFov, paneTangents } = cam.userData.visitorLens;
+  const { detailMm, focalMm, wideFov, paneTangents } = cam.userData.visitorLens;
   cam.aspect = aspect;
-  if (lensMode === 'natural') {
+  if (lensMode !== 'wide') {
+    const mm=lensMode==='detail'?detailMm:focalMm;
     // Use the same diagonal when the viewport rotates or changes shape.
-    cam.fov = THREE.MathUtils.radToDeg(2 * Math.atan(filmDiagonalMm / (2 * focalMm * Math.hypot(1, aspect))));
+    cam.fov = THREE.MathUtils.radToDeg(2 * Math.atan(filmDiagonalMm / (2 * mm * Math.hypot(1, aspect))));
   } else if (paneTangents) {
     const tangent = Math.max(paneTangents.vertical, paneTangents.horizontal / aspect);
     cam.fov = THREE.MathUtils.clamp(THREE.MathUtils.radToDeg(2 * Math.atan(tangent * 1.18)), wideFov, 105);
@@ -30,35 +33,48 @@ function applyVisitorLens(cam, aspect) {
   cam.updateProjectionMatrix();
 }
 
-function visitorCamera(focalMm, wideFov) {
+function visitorCamera(focalMm, wideFov, detailMm) {
   const aspect = host.clientWidth / host.clientHeight;
   const cam = new THREE.PerspectiveCamera(wideFov, aspect, .025, 120);
-  cam.userData.visitorLens = { focalMm, wideFov };
+  cam.userData.visitorLens = { focalMm, wideFov, detailMm };
   cam.up.copy(worldUp);
   applyVisitorLens(cam, aspect);
   return cam;
 }
 let framedInspection=null, responsiveGroup=null;
 let updateComparisonLink=()=>{};
+let trackWash, roomLights;
+let trackWashRequested = new URLSearchParams(location.search).get('lighting') !== 'flat';
 const lightStudyUniform={value:0};
-function lightStudyMaterial(material){
+function lightStudyMaterial(material,trafficSurface=false){
   const study=trialLayout?.lightingStudy;
   if(study?.controlledZone?.side!=='both')return material;
+  const minimum=(trackWash && trafficSurface) ? .82 : study.minimumDiffuse;
   material.onBeforeCompile=shader=>{
     shader.uniforms.galleryDimming=lightStudyUniform;
     shader.vertexShader='varying float galleryDepth;\n'+shader.vertexShader;
     shader.vertexShader=shader.vertexShader.replace('#include <worldpos_vertex>','#include <worldpos_vertex>\n galleryDepth=-(modelMatrix*vec4(transformed,1.0)).z;');
     shader.fragmentShader='varying float galleryDepth;\nuniform float galleryDimming;\n'+shader.fragmentShader;
-    shader.fragmentShader=shader.fragmentShader.replace('#include <opaque_fragment>',`outgoingLight *= mix(1.0,${study.minimumDiffuse.toFixed(3)},smoothstep(${study.transitionStartZ.toFixed(3)},${study.controlledZone.fromZ.toFixed(3)},galleryDepth)*galleryDimming);\n#include <opaque_fragment>`);
+    shader.fragmentShader=shader.fragmentShader.replace('#include <opaque_fragment>',`outgoingLight *= mix(1.0,${minimum.toFixed(3)},smoothstep(${study.transitionStartZ.toFixed(3)},${study.controlledZone.fromZ.toFixed(3)},galleryDepth)*galleryDimming);\n#include <opaque_fragment>`);
   };
+  material.customProgramCacheKey=()=>'projection-study-'+minimum;
   return material;
 }
 function updateLightStudy(){
+  if(trackWash&&roomLights){
+    const on=trialVisible&&trackWashRequested;
+    const changed=trackWash.enabled.value!==Number(on);
+    trackWash.enabled.value=Number(on);
+    roomLights.ambient.intensity=on?1.9:2.1;
+    roomLights.sunlight.intensity=on?2.0:2.5;
+    roomLights.fill.intensity=on ? .96 : 1.1;
+    if(changed)exhibition?.refreshGlassReflections();
+  }
   lightStudyUniform.value=trialVisible&&$('#projection-light-study')?.checked?1:0;
   groups?.lighting?.traverse(object=>{if(object.userData.controlledLens)object.material.color.set(lightStudyUniform.value?'#7e817c':'#fff8df');});
 }
 const trialName = () => trialLayout?.typographyStudy ? '字体试读' : '试排' + (trialLayout?.revision.match(/trial(\d+)/)?.[1] || '');
-const eyeHeight = 1.6;
+let eyeHeight=1.6, walkLensMm=35, stopLensMm=40;
 const worldUp = new THREE.Vector3(0, 1, 0);
 const state = { loaded: false, error: null };
 const fitPoint = new THREE.Vector3();
@@ -80,9 +96,11 @@ function buildLighting(){
     d.headXs.forEach((x,i)=>{
       box('长方适配器',.11,.045,.075,x,d.railHeight-.045,z,white,groups.lighting);
       box('短转轴与支架',.023,.065,.025,x,d.railHeight-.093,z,white,groups.lighting);
-      const head=new THREE.Group();head.name='可倾斜白圆筒射灯_照片示意';head.position.set(x,d.railHeight-.15,z);head.rotation.z=(x<data.room.width/2?-1:1)*(.38+(row+i)%3*.07);groups.lighting.add(head);
+      const head=new THREE.Group();head.name='可倾斜白圆筒射灯_照片示意';head.position.set(x,d.railHeight-.15,z);if(trackWash)head.quaternion.setFromUnitVectors(new THREE.Vector3(0,-1,0),galleryHeadAim(data,row,i));
+      else head.rotation.z=(x<data.room.width/2?-1:1)*(.38+(row+i)%3*.07);
+      groups.lighting.add(head);
       head.add(new THREE.Mesh(cylinder,white));const controlled=trialLayout.lightingStudy?.controlledZone?.side==='both'&&z>=trialLayout.lightingStudy.controlledZone.fromZ;
-      const disk=new THREE.Mesh(lens,controlled?face.clone():face);disk.userData.controlledLens=controlled;disk.position.y=-d.headBodyLength/2-.001;disk.rotation.x=Math.PI/2;head.add(disk);
+      const disk=new THREE.Mesh(lens,controlled?face.clone():face);disk.userData.controlledLens=controlled&&(!trackWash||Math.min(i,d.headXs.length-1-i)<2);disk.position.y=-d.headBodyLength/2-.001;disk.rotation.x=Math.PI/2;head.add(disk);
     });
   });
 }
@@ -120,7 +138,12 @@ function build() {
   const metal = new THREE.MeshStandardMaterial({color:trialLayout.environment?.metalFinish?.color||0x707870,metalness:.32,roughness:.58});stripMaterial=metal;
   const green = new THREE.MeshStandardMaterial({color:0x466148,roughness:.67});
   const grout = new THREE.MeshBasicMaterial({color:0x9c9f96});
-  [white,floorMat,metal,green,grout].forEach(lightStudyMaterial);
+  trackWash=createTrackWash(data,trialLayout);
+  for(const material of [white,floorMat,metal,green,grout]){
+    const trafficSurface=[floorMat,grout,metal].includes(material);
+    lightStudyMaterial(material,trafficSurface);
+    if(material===white||trafficSurface)trackWash?.apply(material);
+  }
   architectureMaterials={wall:white,floor:floorMat,grout,originalTileMap:floorMat.map,studyTileMap:makeTileTexture(true)};
   groups={shell:new THREE.Group(),tiles:new THREE.Group(),strips:new THREE.Group(),bars:new THREE.Group(),lighting:new THREE.Group(),dimensions:new THREE.Group(),endB:new THREE.Group()};
   Object.entries(groups).forEach(([name,group])=>{group.name=name;group.scale.z=-1;scene.add(group);});
@@ -166,6 +189,7 @@ function build() {
   const ambient=new THREE.HemisphereLight(0xffffff,0xb1b3a5,2.1);scene.add(ambient);
   const sunlight=new THREE.DirectionalLight(0xffffff,2.5);sunlight.position.set(-8,19,7);scene.add(sunlight);
   const fill=new THREE.DirectionalLight(0xffffff,1.1);fill.position.set(12,9,-25);scene.add(fill);
+  roomLights={ambient,sunlight,fill};
   scene.userData={source:data.revision,measuredRoom:data.room,coordinates:'canonical depth maps to negative world Z, matching the native GLB',physicalSpotlightHeight:'above 2.95m; rail3.30m illustrative, not surveyed',note:'render lights are preview illumination, not physical fixtures'};
   walkPosition=new THREE.Vector3(W/2,eyeHeight,-.9);
   $('#position').max=(L-.3).toFixed(1);
@@ -203,17 +227,17 @@ function setView(next) {
     camera=new THREE.OrthographicCamera(-halfW,halfW,halfH,-halfH,.01,100);camera.position.set(W/2,30,-mid);camera.up.set(-1,0,0);camera.lookAt(W/2,0,-mid);
     createControls();controls.target.set(W/2,0,-mid);controls.update();$('#hint').textContent='60 cm砖格 · 滚轮缩放 · 右键平移';
   }else if(next==='portal'){
-    camera=visitorCamera(35,58);
+    camera=visitorCamera(walkLensMm,58,35);
     const x=data.ends.A.mainOpening.x,theta=THREE.MathUtils.degToRad(data.ends.A.slope?.angleDegrees||0),normal=new THREE.Vector3(-Math.sin(theta),0,-Math.cos(theta)),center=new THREE.Vector3(x,eyeHeight,-aZ(x));
     camera.position.copy(center).addScaledVector(normal,-2.7);const target=center.clone().addScaledVector(normal,4);camera.lookAt(target);
     createControls();controls.target.copy(target);controls.update();$('#hint').textContent='A口外看入 · 主入口净宽 1.70 m';
   }else{
-    camera=visitorCamera(35,62);createControls();controls.enabled=false;
+    camera=visitorCamera(walkLensMm,62,35);createControls();controls.enabled=false;
     walkPosition.set(data.room.width/2,eyeHeight,next==='entry'?-.9:-data.room.length+.9);yaw=next==='entry'?Math.PI:0;pitch=0;updateWalk();
     $('#hint').textContent='拖动转头 · W A S D 或方向键行走';
   }
   $('#cutaway').disabled=!['overview','plan'].includes(next);
-  $('#status').textContent=walking?'人眼高度 1.60 m · 拖动转头':next==='plan'?'右墙31.2 m · 左墙更长，差值待测':next==='portal'?'A口斜墙 · 门套进深与斜角待校准':'现有展墙内净空 · A口斜角待测';
+  $('#status').textContent=walking?('眼高 '+eyeHeight.toFixed(2)+' m · 拖动转头'):next==='plan'?'右墙31.2 m · 左墙更长，差值待测':next==='portal'?'A口斜墙 · 门套进深与斜角待校准':'现有展墙内净空 · A口斜角待测';
   updateCutaway();updateLabels();
   if(walking)host.focus({preventScroll:true});
 }
@@ -271,7 +295,7 @@ function frameSelectedWork(focus, work) {
     corners.push(new THREE.Vector3(x+nz*u+nx*depth,y+v,-z+nx*u-nz*depth));
   }
   const aspect=camera.aspect;
-  const tangent=filmDiagonalMm/(2*camera.userData.visitorLens.focalMm*Math.hypot(1,aspect));
+  const tangent=filmDiagonalMm/(2*camera.userData.visitorLens.detailMm*Math.hypot(1,aspect));
   const probe=new THREE.PerspectiveCamera(THREE.MathUtils.radToDeg(2*Math.atan(tangent)),aspect,.025,120);
   // Choose the same station for either lens so a toggle only changes the field of view.
   let distance=focus.distance;
@@ -298,8 +322,8 @@ function focusOnWork(id){
   setTrialVisible(true);inspectionFrame=null;pressed.clear();pointerStart=null;view='inspection';
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed','false'));
   $('#walk-controls').hidden=true;$('#cutaway').disabled=true;
-  camera=visitorCamera(40,58);
-  camera.position.set(focus.position[0],focus.position[1],-focus.position[2]);
+  camera=visitorCamera(stopLensMm,58,40);
+  camera.position.set(focus.position[0],eyeHeight,-focus.position[2]);
   const target=new THREE.Vector3(focus.target[0],focus.target[1],-focus.target[2]);camera.lookAt(target);
   createControls();controls.target.copy(target);controls.maxPolarAngle=Math.PI*.65;controls.update();
   const work=exhibition.works.get(id)?.userData.layout;
@@ -314,10 +338,30 @@ function focusOnWork(id){
   updateCutaway();updateLabels();
 }
 function setGroupPose(pose){
-  camera.position.set(pose.camera[0],pose.camera[1],-pose.camera[2]);
+  const y=camera.userData.visitorLens&&trialLayout.revision.endsWith('trial21')?(pose.eyeOverride??eyeHeight):pose.camera[1];
+  camera.position.set(pose.camera[0],y,-pose.camera[2]);
   const target=new THREE.Vector3(pose.target[0],pose.target[1],-pose.target[2]);
   camera.lookAt(target);
   return target;
+}
+
+function offerSecondView(id){
+  const cues={
+    'language-split-word':['language-split-lower','玻璃上的“横”与墙上的“亘”','将视线放低 15 厘米'],
+    'language-split-lower':['language-split-word','两个字在此处齐平','回到 1.75 米站姿'],
+    'curation-river-ink':['curation-river-ink-side','河流的英文灰墨','沿墙侧看'],
+    'curation-river-ink-side':['curation-river-ink','河流的英文灰墨','回到正面']
+  };
+  if(!cues[id])return;
+  const [next,caption,label]=cues[id];
+  const url=new URL(location.href);url.searchParams.set('focus',next);
+  const link=document.createElement('a');link.href=url.href;link.textContent=label;
+  link.addEventListener('click',event=>{
+    if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+    event.preventDefault();focusOnGroup(next);
+    $('#hint a')?.focus({preventScroll:true});
+  });
+  $('#hint').replaceChildren(document.createTextNode(caption+'　'),link);
 }
 
 function focusOnGroup(id){
@@ -332,7 +376,7 @@ function focusOnGroup(id){
     const aspect=host.clientWidth/host.clientHeight;
     const mobileFloorInvitation=host.clientWidth<600&&group.id==='spatial-normal-threshold';
     const perspectiveStudy=group.framing?.projection==='perspective';
-    if(!mobileFloorInvitation&&!perspectiveStudy&&(group.framing?.projection==='orthographic'||(host.clientWidth<600&&!/trial(?:19|20)$/.test(trialLayout.revision)))){inspectionFrame={width:group.framing?.width||3.2,height:group.framing?.height||3.1};const h=Math.max(inspectionFrame.height/2,inspectionFrame.width/2/aspect);camera=new THREE.OrthographicCamera(-h*1.12*aspect,h*1.12*aspect,h*1.28,-h*.96,.025,120);}else camera=visitorCamera(40,mobileFloorInvitation?90:58);camera.up.copy(worldUp);
+    if(!mobileFloorInvitation&&!perspectiveStudy&&(group.framing?.projection==='orthographic'||(host.clientWidth<600&&!/trial(?:19|20|21)$/.test(trialLayout.revision)))){inspectionFrame={width:group.framing?.width||3.2,height:group.framing?.height||3.1};const h=Math.max(inspectionFrame.height/2,inspectionFrame.width/2/aspect);camera=new THREE.OrthographicCamera(-h*1.12*aspect,h*1.12*aspect,h*1.28,-h*.96,.025,120);}else camera=visitorCamera(stopLensMm,mobileFloorInvitation?90:58,40);camera.up.copy(worldUp);
     if(group.cameraUp)camera.up.set(group.cameraUp[0],group.cameraUp[1],-group.cameraUp[2]);
     const portrait=aspect<.85;
     const target=setGroupPose(portrait&&group.portrait?group.portrait:group);
@@ -354,11 +398,12 @@ function focusOnGroup(id){
     }
     createControls();
     // Preserve the authored eye position when the perspective target is below eye level.
-    if(perspectiveStudy)controls.maxPolarAngle=Math.PI*.65;
+    if(perspectiveStudy||camera.userData.visitorLens&&trialLayout.revision.endsWith('trial21'))controls.maxPolarAngle=Math.PI*.90;
     if(group.id==='spatial-ceiling-language')controls.maxPolarAngle=Math.PI-.04;
     controls.target.copy(target);controls.update();
     if(group.portrait)responsiveGroup={group,portrait};
     $('#status').textContent=(trialName()+' · ')+group.label;$('#hint').textContent=group.id==='spatial-ceiling-language'?'顶部试字 · 暂用3.6 m附着标高，实际顶高待测':perspectiveStudy&&textScreen?'横在玻璃，亘在远处白墙 · 拖动侧看，感受前后距离':'拖动环看 · 滚轮或双指缩放';
+    if(trialLayout.revision.endsWith('trial21'))offerSecondView(id);
     $('#catalog-panel').hidden=true;$('#catalog-button').setAttribute('aria-expanded','false');updateCutaway();updateLabels();return;
   }
   let members=group.workIds.map(w=>exhibition.works.get(w)?.userData).filter(Boolean);
@@ -451,10 +496,10 @@ async function init(){try{
   const typographyStudy=typeMode==='study';
   const previousTypography=typeMode==='study1'||typeMode==='study2';
   const typographyCompare=typographyStudy||previousTypography||typeMode==='base';
-  const baseline=['09','10','11','12','13','14','15','16','17','18','19'].includes(requestedTrial)?requestedTrial:null;
+  const baseline=['09','10','11','12','13','14','15','16','17','18','19','20'].includes(requestedTrial)?requestedTrial:null;
   const requestedLens=new URLSearchParams(location.search).get('lens');
-  const comparingCurrent=!typographyCompare&&(!baseline||baseline==='19');
-  lensMode=requestedLens==='natural'||requestedLens==='wide'?requestedLens:comparingCurrent?'natural':'wide';
+  const comparingCurrent=!typographyCompare&&(!baseline||baseline==='19'||baseline==='20');
+  lensMode=['natural','wide','detail'].includes(requestedLens)?requestedLens:comparingCurrent?'natural':'wide';
   $('#viewer-lens').value=lensMode;
   $('#viewer-lens').addEventListener('change',event=>{
     lensMode=event.target.value;
@@ -472,8 +517,14 @@ async function init(){try{
   [data,trialLayout,library]=inputTexts.map(text=>JSON.parse(text));
   // Compare the retained and current layout from the same positions. These
   // viewing aids do not rewrite either layout or its verified source bytes.
-  const trial20=trialLayout.revision.endsWith('trial20');
-  if(/trial(?:18|19|20)$/.test(trialLayout.revision)){
+  const trial21=trialLayout.revision.endsWith('trial21');
+  const currentRiver=trial21||trialLayout.revision.endsWith('trial20');
+  if(trial21){eyeHeight=1.75;walkLensMm=30;stopLensMm=35;}
+  if(!trial21&&lensMode==='detail')lensMode='natural';
+  $('#viewer-lens').querySelector('[value="detail"]').hidden=!trial21;
+  $('#viewer-lens').value=lensMode;
+  $('#lens-note').textContent='站姿眼高 '+eyeHeight.toFixed(2)+' m。自然视角按全画幅折算，步行 '+walkLensMm+' mm，停看 '+stopLensMm+' mm。';
+  if(/trial(?:18|19|20|21)$/.test(trialLayout.revision)){
     const sharedViews=[
       {id:'curation-opening',label:'开篇 · 摄影组合正视',camera:[3.8,1.5,2.7],target:[0,1.5,2.7],framing:{projection:'orthographic',width:5.4,height:3.2}},
       {id:'curation-opening-walk',label:'开篇 · 人眼看摄影与文字',camera:[3.6,1.6,1.4],target:[0,1.48,2.02],portrait:{camera:[4.40,1.6,1.4],target:[0,1.48,1.39]},framing:{projection:'perspective'}},
@@ -484,7 +535,7 @@ async function init(){try{
       {id:'book-between',label:'之间 · 前段留白对照',camera:[3.6,1.45,5.35],target:[0,1.45,5.35],framing:{projection:'orthographic',width:4.3,height:3.2}},
     ];
     const currentRiverIds={'book-river-wall':'curation-river-wide','curation-river-walk':'curation-river-forward'};
-    if(/trial(?:19|20)$/.test(trialLayout.revision)){
+    if(/trial(?:19|20|21)$/.test(trialLayout.revision)){
       const perspective={projection:'perspective'};
       sharedViews.push(
         {id:'curation-world',label:'已经发生的世界 · 活动板前',camera:[2.55,1.6,10.78],target:[.15,1.34,12.76],framing:perspective},
@@ -495,12 +546,24 @@ async function init(){try{
         {id:'book-far-waves-print',label:'更远的浪 · 走到纸前',camera:[.86,1.6,14.48],target:[.02,1.55,14.45],framing:perspective},
         {id:'curation-ending-walk',label:'他们再也看不见我 · 图缝与末段',camera:[3.12,1.6,23.95],target:[.1,1.43,25.06],framing:perspective}
       );
+      if(currentRiver){
+        sharedViews.push(
+          {id:'curation-mountains-walk',label:'群山 · 看两幅床照之间',camera:[2.30,1.6,9.70],target:[4.96,1.52,9.715],framing:perspective},
+          {id:'curation-corridor',label:'连廊 · 从中央看两侧展墙',camera:[2.52,1.6,6.35],target:[3.00,1.64,14.7],framing:perspective},
+          {id:'curation-river-ink',label:trial21?'河流 · 近看英文灰墨':'河流 · 近看原挂位',camera:[3.25,1.6,17.64],target:[4.96,.89,17.75],framing:perspective}
+        );
+      }
+      if(trial21){
+        sharedViews.push({id:'curation-river-ink-side',menuHidden:true,label:'河流 · 从侧面看灰墨',camera:[4.00,1.75,16.45],target:[4.96,.82,17.93],framing:perspective});
+        const glass=trialLayout.focusGroups.find(g=>g.id==='language-split-word');
+        if(glass)sharedViews.push({...glass,id:'language-split-lower',label:'横／亘 · 在原地稍低视线',eyeOverride:1.60});
+      }
       for(const [legacy,current] of Object.entries(currentRiverIds)){
         const oldView=sharedViews.find(g=>g.id===legacy);
         // A comparison from an archived river view must keep the old camera.
         const oldId='previous-'+legacy;
         sharedViews.push({...oldView,id:oldId,menuHidden:true});
-        if(trial20)Object.assign(oldView,sharedViews.find(g=>g.id===current),{id:legacy,menuHidden:true,compareFocus:current});
+        if(currentRiver)Object.assign(oldView,sharedViews.find(g=>g.id===current),{id:legacy,menuHidden:true,compareFocus:current});
         else oldView.compareFocus=oldId;
       }
     }else{
@@ -511,17 +574,30 @@ async function init(){try{
   }
   $('#projection-light-row').hidden=trialLayout.lightingStudy?.controlledZone?.side!=='both';
   $('#projection-light-study').addEventListener('change',updateLightStudy);
+  const washControl=$('#track-wash');
+  if(washControl){
+    const washRow=$('#track-wash-row')||washControl.closest('label');
+    washRow.hidden=Number(trialLayout.revision.match(/trial(\d+)$/)?.[1]||0)<21;
+    washControl.checked=trackWashRequested;
+    washControl.addEventListener('change',()=>{
+      trackWashRequested=washControl.checked;
+      updateLightStudy();
+      const url=new URL(location.href);
+      if(trackWashRequested)url.searchParams.delete('lighting');else url.searchParams.set('lighting','flat');
+      history.replaceState(null,'',url);
+    });
+  }
   $('#trial-on').textContent=trialName();
-  $('#baseline-compare').textContent=baseline?'回到试排20':'对照试排19';
+  $('#baseline-compare').textContent=baseline?'回到试排21':'对照试排20';
   updateComparisonLink=focus=>{
-    const query=new URLSearchParams(baseline?{}:{trial:'19'});query.set('v',viewerVersion);query.set('lens',lensMode);
-    if(focus)query.set('focus',trialLayout.focusGroups.find(g=>g.id===focus)?.compareFocus||focus);
+    const query=new URLSearchParams(baseline?{}:{trial:'20'});query.set('v',viewerVersion);query.set('lens',lensMode);
+    if(focus)query.set('focus',focus==='language-split-lower'?'language-split-word':focus==='curation-river-ink-side'?'curation-river-ink':trialLayout.focusGroups.find(g=>g.id===focus)?.compareFocus||focus);
     $('#baseline-compare').href='?'+query;
   };
   updateComparisonLink(new URLSearchParams(location.search).get('focus'));
   if(baseline){$('.header h1 span').textContent='保留基准 · '+trialName();$('.header p').textContent='摄影与诗句的历史布置';document.title='大悦城 ONCE · '+trialName();
-    const archiveNote=baseline==='19'?'河流两组位于柱廊旁，远浪使用窄黑框，终句保留中英两种下行。':baseline==='18'?'包含20组空间文字、7组手动排版和24厘米远浪纸面。':'保留这一版的位置、作品尺寸与诗句字形。';
-    $('#trial-description').innerHTML='<h3>'+trialName()+' · 历史布置</h3><p>'+archiveNote+'</p><p><a href="https://13864768492jxy-create.github.io/once-exhibition-viewer/book/" target="_blank" rel="noopener noreferrer">阅读完整诗册</a></p>'+(baseline==='19'?'<p><a href="book-study/trial19-overview.jpg">试排19空间总览</a> · <a href="?trial=18">查看试排18</a></p>':'');
+    const archiveNote=baseline==='20'?'作者调整了河流两组的位置。站姿眼高为1.60米，保留原照明和床照间距。':baseline==='19'?'河流两组位于柱廊旁，远浪使用窄黑框，终句保留中英两种下行。':baseline==='18'?'包含20组空间文字、7组手动排版和24厘米远浪纸面。':'保留这一版的位置、作品尺寸与诗句字形。';
+    $('#trial-description').innerHTML='<h3>'+trialName()+' · 历史布置</h3><p>'+archiveNote+'</p><p><a href="https://13864768492jxy-create.github.io/once-exhibition-viewer/book/" target="_blank" rel="noopener noreferrer">阅读完整诗册</a></p>'+(baseline==='20'?'<p><a href="book-study/trial20-eye.jpg">试排20视角对照</a> · <a href="?trial=19">查看试排19</a></p>':baseline==='19'?'<p><a href="book-study/trial19-overview.jpg">试排19空间总览</a> · <a href="?trial=18">查看试排18</a></p>':'');
   }
   if(typographyCompare){
     $('.header h1 span').textContent=typographyStudy?'文字与空间 · 试读':previousTypography?'两句地诗 · 上一轮':'字体对照 · 现版';$('.header p').textContent=typographyStudy?'文字、摄影与材料 · 在走动与回望中阅读':'迎着风 / 河流 · 同视角比较';document.title='大悦城 ONCE · 文字与空间';
@@ -538,12 +614,26 @@ async function init(){try{
   const initialFocus=new URLSearchParams(location.search).get('focus');
   renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(host.clientWidth,host.clientHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;host.appendChild(renderer.domElement);
   scene=new THREE.Scene();scene.background=new THREE.Color(0xeeede9);build();
+  updateLightStudy();
   await Promise.all([document.fonts.load('400 96px "ONCE Text"','我横'),document.fonts.load('700 96px "ONCE Text"','我横'),document.fonts.load('400 96px "ONCE Grotesk"','我横'),document.fonts.load('500 96px "ONCE Grotesk"','我横'),document.fonts.load('700 96px "ONCE Grotesk"','我横')]);
   for(const palette of trialLayout.environment?.finishStudies||[]){const option=document.createElement('option');option.value=palette.id;option.textContent=palette.label;$('#finish-study').append(option);}
   selectedFinishId=trialLayout.environment?.activeFinish;
   $('#finish-study').addEventListener('change',event=>applyFinish(event.target.value));
-  exhibition=await buildExhibition({scene,renderer,layout:trialLayout,catalog:library,layoutSourceText:inputTexts[1]});
+  exhibition=await buildExhibition({scene,renderer,trackWash,layout:trialLayout,catalog:library,layoutSourceText:inputTexts[1]});
   applyFinish();
+  const satin=installRiverInk(exhibition,data,trackWash);
+  if(satin){
+    const control=$('#satin-ink');
+    $('#satin-ink-row').hidden=false;
+    control.checked=new URLSearchParams(location.search).get('ink')!=='matte';
+    satin.value=Number(control.checked);
+    control.addEventListener('change',()=>{
+      satin.value=Number(control.checked);
+      const url=new URL(location.href);
+      if(control.checked)url.searchParams.delete('ink');else url.searchParams.set('ink','matte');
+      history.replaceState(null,'',url);
+    });
+  }
   $('#pillow-preview').hidden=!trialLayout.works.some(w=>w.projectionVideo);
   $('#pillow-preview').addEventListener('click',async()=>{const button=$('#pillow-preview');button.disabled=true;try{focusOnGroup('pillow-margin');const playing=await exhibition.togglePillowProjection();$('#projection-light-study').checked=playing;updateLightStudy();button.textContent=playing?'暂停枕头投影':'播放枕头投影';}catch(error){$('#status').textContent='投影预览暂未载入，请重试';}finally{button.disabled=false;}});
   for(const group of trialLayout.focusGroups){const option=document.createElement('option');option.value=group.id;option.textContent=group.label;option.hidden=Boolean(group.menuHidden);$('#focus-group').append(option);}
@@ -597,7 +687,7 @@ async function init(){try{
   installCatalog({layout:trialLayout,onInspect:focusOnWork,onFocus:focusOnGroup});
   state.loaded=true;requestAnimationFrame(animate);
   exhibition.ready.then(stats=>{const total=stats.loaded+stats.errors;canvas.setAttribute('data-image-load-stats',JSON.stringify({loaded:stats.loaded,errors:stats.errors,pending:stats.pending,failures:stats.failures}));if(stats.errors){$('#status').textContent=`${stats.errors}项预览暂未载入，请刷新重试`;}$('#image-status').textContent=stats.errors?`${stats.loaded}/${total} 项预览已载入`:`${stats.photos+stats.large+stats.glass+stats.videos-(trialLayout.works.some(w=>w.id==='traveler-1')?1:0)}件原作`+(trialLayout.works.some(w=>w.id==='traveler-1')?' + 旅人候选':'')+' · '+trialName();});
-  window.spaceModel={exhibition,layout:trialLayout,getState:()=>({trialVisible,exhibitionStats:exhibition.stats,loaded:state.loaded,error:state.error,view,room:data.room,tile:data.tile,camera:{position:camera.position.toArray(),target:controls.target.toArray(),projection:camera.isPerspectiveCamera?'perspective':'orthographic',lens:camera.userData.visitorLens?lensMode:null,focalMm:camera.userData.visitorLens&&lensMode==='natural'?camera.userData.visitorLens.focalMm:null,verticalFov:camera.fov??null,aspect:camera.aspect??null},visible:{strips:groups.strips.visible,bars:groups.bars.visible,lighting:groups.lighting.visible,leftWall:walls.left.visible,rightWall:walls.right.visible},counts:{strips:groups.strips.children.length,bars:groups.bars.children.length,lightingRows:data.lighting?.rowPositions.length||0},endBStatus:data.ends.B.openingStatus,renderCalls:renderer.info.render.calls}),setView,focusOnWork,focusOnGroup,setTrialVisible,scene,data};
+  window.spaceModel={exhibition,layout:trialLayout,getState:()=>({trialVisible,exhibitionStats:exhibition.stats,loaded:state.loaded,error:state.error,view,room:data.room,tile:data.tile,camera:{position:camera.position.toArray(),target:controls.target.toArray(),projection:camera.isPerspectiveCamera?'perspective':'orthographic',lens:camera.userData.visitorLens?lensMode:null,focalMm:camera.userData.visitorLens&&lensMode!=='wide'?(lensMode==='detail'?camera.userData.visitorLens.detailMm:camera.userData.visitorLens.focalMm):null,verticalFov:camera.fov??null,aspect:camera.aspect??null},visible:{strips:groups.strips.visible,bars:groups.bars.visible,lighting:groups.lighting.visible,leftWall:walls.left.visible,rightWall:walls.right.visible},counts:{strips:groups.strips.children.length,bars:groups.bars.children.length,lightingRows:data.lighting?.rowPositions.length||0},endBStatus:data.ends.B.openingStatus,renderCalls:renderer.info.render.calls}),setView,focusOnWork,focusOnGroup,setTrialVisible,scene,data};
   if(!baseline&&!typographyCompare){
     poetryEditor=installPoetryEditor({exhibition,layout:trialLayout,layoutSourceText:inputTexts[1],space:data,host,getCamera:()=>camera,getControls:()=>controls,focusEntry:focusPoetryEntry,onActive:active=>{pressed.clear();pointerStart=null;if(active){setTrialVisible(true);$('#walk-controls').hidden=true;}$('#hint').textContent=active?'选中文字后拖动 · 角点等比缩放 · ⌘Z 撤销':'拖动环看 · 滚轮缩放';resize();}});
     window.spaceModel.poetryEditor=poetryEditor;$('#editor-open').disabled=false;
