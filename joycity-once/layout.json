@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "revision": "20261117-trial19",
+  "revision": "20261118-trial20",
   "title": "大悦城 ONCE · 空间选读",
-  "status": "审美调整试排19，非制作定稿",
-  "date": "2026-11-17",
-  "sourceLayout": "layouts/trial18.json",
+  "status": "留白与回看试排20，非制作定稿",
+  "date": "2026-11-18",
+  "sourceLayout": "layouts/trial19.json",
   "principle": "以作者原字形与句内疏密为基础，选择适合空间相遇的段落；图像成组、文字留出停顿，允许回望，不承诺单向读完整首。",
   "partitions": [
     {
@@ -1219,8 +1219,8 @@
       "text": "河流带有未命名的方向，",
       "position": [
         4.967,
-        1.9605,
-        12.847125
+        0.8147920593617921,
+        17.756928372310355
       ],
       "fontSize": 0.05599998664855957,
       "width": 1.07775,
@@ -1234,7 +1234,7 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "原字号、曲折字序和灰度保留；完整撤去英文分支，与从每个人流过共用视觉左起点，降低至照片上方。",
+      "typographyNote": "按作者保存的试排19草稿原量平移，落在14号照片下方。由B向A可经喷泉接读下句。",
       "rasterOverride": {
         "path": "assets/typography/curation-20261117/river-zh-only.png",
         "sourceSVG": "assets/typography/curation-20261117/river-zh-only.svg",
@@ -1245,7 +1245,7 @@
         "localCenterY": 0
       },
       "preserveAuthoredInk": true,
-      "note": "原字号、曲折字序和灰度保留；完整撤去英文分支，与从每个人流过共用视觉左起点，降低至照片上方。",
+      "note": "按作者保存的试排19草稿原量平移，落在14号照片下方。由B向A可经喷泉接读下句。",
       "sourceBookPage": 6,
       "sourceBookPages": [
         6
@@ -1256,8 +1256,8 @@
       "text": "从每个人流过。",
       "position": [
         4.967,
-        1.819875,
-        12.924
+        1.4417232360545824,
+        15.510435593579942
       ],
       "fontSize": 0.057599979400634764,
       "width": 1.1340000000000001,
@@ -1271,7 +1271,7 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "保留原中文路径、字号和内部疏密；接在河流下方，撤去整条英文支线及单独each person站位。",
+      "typographyNote": "采用作者草稿位置，留在08号喷泉与26号柱廊之间。墨迹与河流上半句之间有一张摄影。",
       "rasterOverride": {
         "path": "assets/typography/curation-20261117/river-through-zh-only.png",
         "sourceSVG": "assets/typography/curation-20261117/river-through-zh-only.svg",
@@ -1282,7 +1282,7 @@
         "localCenterY": 0
       },
       "preserveAuthoredInk": true,
-      "note": "保留原中文路径、字号和内部疏密；接在河流下方，撤去整条英文支线及单独each person站位。",
+      "note": "采用作者草稿位置，留在08号喷泉与26号柱廊之间。墨迹与河流上半句之间有一张摄影。",
       "sourceBookPage": 7,
       "sourceBookPages": [
         7
@@ -1292,9 +1292,9 @@
       "id": "world",
       "text": "已经发生的世界，",
       "position": [
-        0.033000000000000154,
-        1.958274343792895,
-        2.1782028459063514
+        0.033,
+        1.13,
+        12.26
       ],
       "fontSize": 0.08166477438668225,
       "width": 0.654355140186916,
@@ -1308,8 +1308,8 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "note": "保持细框与框外逗号，作为回望横、亘的伏笔。",
-      "typographyNote": "保持细框与框外逗号，作为回望横、亘的伏笔。",
+      "note": "在第一块活动板之前、27号照片下方偏右才遇到这句。沿用原稿的细框、框外逗号和原大。",
+      "typographyNote": "在第一块活动板之前、27号照片下方偏右才遇到这句。沿用原稿的细框、框外逗号和原大。",
       "rasterOverride": {
         "path": "assets/typography/book-20261116/world.png",
         "sourceSVG": "assets/typography/book-20261116/world.svg",
@@ -1439,7 +1439,7 @@
     },
     {
       "id": "ending",
-      "text": "他们再也看不见我。\nthey can no longer see me",
+      "text": "他们再也看不见我。",
       "position": [
         0.033,
         1.2998212885546936,
@@ -1457,12 +1457,12 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "note": "保留原稿中文向右下降、英文垂落的不同读法；让终句穿过01与02之间，末端低于02。",
-      "typographyNote": "保留原稿中文向右下降、英文垂落的不同读法；让终句穿过01与02之间，末端低于02。",
+      "note": "中文依原稿沿01和02之间的墙面下降，句号留在02下方。英文列的墙面留空。",
+      "typographyNote": "中文依原稿沿01和02之间的墙面下降，句号留在02下方。英文列的墙面留空。",
       "rasterOverride": {
-        "path": "assets/typography/book-20261116/ending.png",
-        "sourceSVG": "assets/typography/book-20261116/ending.svg",
-        "sha256": "43aeb74ab5d1c3d316decc835886c73fb11e299141a434defc1244b41c53af1d",
+        "path": "assets/typography/curation-20261118/ending-zh-only.png",
+        "sourceSVG": "assets/typography/curation-20261118/ending-zh-only.svg",
+        "sha256": "3ff951f0bf8d03ed5fa202e674adcacb8281941e49c6fc1b22309b2413abd1ee",
         "physicalWidth": 0.9397164339327471,
         "physicalHeight": 1.0782194157997005,
         "localCenterX": 0.0,
@@ -1719,7 +1719,7 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "保留诗册原字形与居中小句，纸面按A4长宽比放至240×339.43毫米；窄黑框与灰背板留边同步放大，外框304×403.43毫米。悬浮装裱，挂在原墙面位置。",
+      "typographyNote": "纸面240 × 339.43毫米，约20.57磅；中灰窄框、浅灰背板及原有悬浮留边，挂在原处。",
       "rasterOverride": {
         "path": "assets/typography/refine-20261117/far-waves-24cm.png",
         "sourceSVG": "assets/typography/refine-20261117/far-waves-24cm.svg",
@@ -1729,7 +1729,7 @@
         "localCenterX": 0,
         "localCenterY": 0
       },
-      "note": "放大试版：纸内原字形先放大20%，再将纸面和装裱整体放大至原来的8/7；实际字约20.57磅，字句中心、长宽比及墙面位置保持。",
+      "note": "纸面240 × 339.43毫米，约20.57磅；中灰窄框、浅灰背板及原有悬浮留边，挂在原处。",
       "preserveAuthoredInk": true,
       "sourceBookPage": 25,
       "framedPaper": {
@@ -1742,7 +1742,7 @@
         "paperDepth": -0.0022857142857142855,
         "paperFloat": 0.006857142857142857,
         "glazing": true,
-        "frameColor": "#252725",
+        "frameColor": "#888780",
         "orientation": "portrait",
         "extraMatWidth": 0.0,
         "printPDF": "output/pdf/远浪_24厘米纸面_放大试版/更远的浪正在赶来_24厘米纸面_放大试版.pdf",
@@ -1944,21 +1944,19 @@
     },
     {
       "id": "book-river-wall",
-      "label": "河流 · 中文两段的接续",
+      "label": "作者试排 · 喷泉两侧的河流",
       "camera": [
-        1.7,
-        2,
-        14.2
+        0.65,
+        1.6,
+        16.5
       ],
       "target": [
-        5,
-        2,
-        14.2
+        4.96,
+        1.36,
+        16.55
       ],
       "framing": {
-        "projection": "orthographic",
-        "width": 5.7,
-        "height": 2.9
+        "projection": "perspective"
       }
     },
     {
@@ -2034,7 +2032,7 @@
     },
     {
       "id": "book-ending",
-      "label": "原稿15 · 终句的两种下行",
+      "label": "原稿15 · 在01与02之间下降的中文终句",
       "camera": [
         3.6,
         1.5,
@@ -2244,14 +2242,12 @@
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "原稿、原字形和句内疏密保留；群山两块统一缩至80%，其余保留现有字面尺度。",
-    "群山、河流完整撤去英文分支；海水的Sea、终句近读英文保留各自作用。",
-    "撤下独立each person与它聚拢等动作组；Growing Again只保留一次完整标题。",
-    "开篇31/10/22/30/32收拢，32回到30上方；其余摄影、活动墙、玻璃、枕头与投影保持。",
-    "横与亘坐标、大小和透视关系锁定；远浪仍采用240×339.43毫米纸面悬浮装裱，原墙面位置保留。",
-    "墙面12组、地面3组、玻璃3组；共18组空间选读，不以单字计数。",
-    "允许回望与跳读，完整诗歌在数字诗册阅读；房顶不放文字。",
-    "本次更新网页讨论稿，未更新Blender、安装或喷绘文件。"
+    "在试排19上纳入作者保存的两组河流位移，保留两句原大与墨迹层次。",
+    "开篇五幅摄影先独立出现，已经发生的世界移至27号照片下方、13号活动板侧前方。",
+    "末句在01与02之间以中文下落；诗册原稿保留完整中英文。",
+    "远浪使用与灰框试样相同的框色。纸、字、背板、原挂位和尺寸沿用试排19。",
+    "横／亘的前后距离、海水的Sea及月／亮的浓淡交换沿用作者排法。",
+    "摄影与建筑布局沿用试排19。墙面12组，地面3组，玻璃3组。完整阅读见数字诗册。"
   ],
   "environment": {
     "wallFields": [
@@ -2413,7 +2409,7 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/trial19/manifest.json",
+  "poetryRasterManifest": "poetry/trial20/manifest.json",
   "occupancyStudy": {
     "status": "illustrative_not_observed_people",
     "diameters": [
@@ -2527,7 +2523,7 @@
           "across-gen",
           "between"
         ],
-        "note": "世界与横亘是前段伏笔，之间接在05/12附近；后段再遇终句。"
+        "note": "入口先读摄影与横，沿左墙来到27号后补读世界，再接活动板上的亘。河流两句可在返程依原语序读。"
       },
       "readingMode": "selected_encounters_not_full_linear_poem",
       "note": "此列表按原诗关系列出在场选段，现场允许回望；完整诗歌及原有双语关系在数字诗册阅读。"
@@ -2652,7 +2648,7 @@
   "nativeBaseline": "models/长廊展厅_空间底模_近5m试算.blend",
   "nativeBaselineQA": "qa/native_r09_model_qa.json",
   "spaceRevision": "20261106-r09-near5m",
-  "previousTrial": "20261117-trial18",
+  "previousTrial": "20261117-trial19",
   "spatialZones": [
     {
       "id": "opening",
@@ -2966,7 +2962,7 @@
         "extractionRegion": null,
         "excludedASCII": true,
         "text": "河流带有未命名的方向，",
-        "note": "原字号、曲折字序和灰度保留；完整撤去英文分支，与从每个人流过共用视觉左起点，降低至照片上方。",
+        "note": "按作者保存的试排19草稿原量平移，落在14号照片下方。由B向A可经喷泉接读下句。",
         "selectiveLanguageEdit": true
       },
       {
@@ -2999,7 +2995,7 @@
         "extractionRegion": null,
         "excludedASCII": true,
         "text": "从每个人流过。",
-        "note": "保留原中文路径、字号和内部疏密；接在河流下方，撤去整条英文支线及单独each person站位。",
+        "note": "采用作者草稿位置，留在08号喷泉与26号柱廊之间。墨迹与河流上半句之间有一张摄影。",
         "selectiveLanguageEdit": true
       },
       {
@@ -3031,7 +3027,7 @@
         "extractionRegion": null,
         "excludedASCII": false,
         "text": "已经发生的世界，",
-        "note": "保持细框与框外逗号，作为回望横、亘的伏笔。"
+        "note": "在第一块活动板之前、27号照片下方偏右才遇到这句。沿用原稿的细框、框外逗号和原大。"
       },
       {
         "id": "across",
@@ -3134,13 +3130,13 @@
           15
         ],
         "sourcePDFSHA256": "0bb15cbbc38b8da5f60cfa7299b135a35ee14e27d799b9579c806140ef06a272",
-        "path": "assets/typography/book-20261116/ending.png",
-        "sourceSVG": "assets/typography/book-20261116/ending.svg",
-        "sha256": "43aeb74ab5d1c3d316decc835886c73fb11e299141a434defc1244b41c53af1d",
-        "physicalWidth": 0.9269172932330827,
-        "physicalHeight": 1.0635338345864662,
-        "localCenterX": 0,
-        "localCenterY": 0,
+        "path": "assets/typography/curation-20261118/ending-zh-only.png",
+        "sourceSVG": "assets/typography/curation-20261118/ending-zh-only.svg",
+        "sha256": "3ff951f0bf8d03ed5fa202e674adcacb8281941e49c6fc1b22309b2413abd1ee",
+        "physicalWidth": 0.9397164339327471,
+        "physicalHeight": 1.0782194157997005,
+        "localCenterX": 0.0,
+        "localCenterY": 0.0,
         "inkWidth": 0.9199999999999999,
         "inkHeight": 1.0566165413533835,
         "metresPerPDFPoint": 0.002305764411027569,
@@ -3155,9 +3151,10 @@
         ],
         "uniformScaleOnly": true,
         "extractionRegion": null,
-        "excludedASCII": false,
-        "text": "他们再也看不见我。\nthey can no longer see me",
-        "note": "保留原稿中文向右下降、英文垂落的不同读法；让终句穿过01与02之间，末端低于02。"
+        "excludedASCII": true,
+        "text": "他们再也看不见我。",
+        "note": "中文依原稿沿01和02之间的墙面下降，句号留在02下方。英文列的墙面留空。",
+        "selectiveLanguageEdit": true
       },
       {
         "id": "moon",
@@ -3487,29 +3484,31 @@
     "sourceLayoutSHA256": "c2e44525d0d2e206f7890c9b41e39d67b73bad10363ba9f9b4c5599b63f88bcb"
   },
   "curationRevision": {
-    "sourceLayoutSHA256": "8d376819f6e4f367f2e4da8d0624c99197dc498676d151e83afcc458315e27cb",
-    "script": "source/build_curation_trial19.py",
-    "removedPoemIds": [
-      "river-each",
-      "waves"
-    ],
-    "changedPhotoIds": [
-      "once_31",
-      "once_10",
-      "once_22",
-      "once_30",
-      "once_32"
-    ],
+    "sourceLayoutSHA256": "a5967cda75976f26d9c58d9c8a4a170900598e7be89bd1ec08b95a6ae6e64496",
+    "script": "source/build_curation_trial20.py",
+    "authorDraftSHA256": "ea3d1082cea194b2db6acf9ce196c542d08465e8879ed7f0a5bf384ba0451a91",
+    "authorRiverTransforms": {
+      "river": {
+        "u": -4.909803372310353,
+        "v": -1.1457079406382078,
+        "scale": 1
+      },
+      "river-through": {
+        "u": -2.5864355935799423,
+        "v": -0.3781517639454175,
+        "scale": 1
+      }
+    },
+    "changedPhotoIds": [],
     "changedPoemIds": [
-      "mountains",
-      "mountains-open",
+      "world",
       "river",
       "river-through",
-      "between",
-      "moon",
-      "glass-growing"
+      "ending",
+      "far-waves"
     ],
+    "removedPoemIds": [],
     "completeReaderVerifiedSHA256": "3f3ee95e80ebb615fa452770c17494e2395914c6a8fe44bc9436cfed4122c9f1",
-    "nativeModelUpdated": false
+    "nativeModelUpdated": true
   }
 }

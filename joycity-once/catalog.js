@@ -20,11 +20,15 @@ function renderPoetry(){
   const bookLine=node('p');bookLine.append(book);target.append(bookLine);
   const poems=new Map((currentLayout?.poems||[]).map(p=>[p.id,p]));
   const focusIds=new Set((currentLayout?.focusGroups||[]).map(g=>g.id));
+  const positions=currentLayout?.revision.endsWith('trial20')?{
+    ...poemFocusIds,world:'curation-world',river:'curation-river-wide','river-through':'curation-river-return',
+    ending:'curation-ending-walk'
+  }:poemFocusIds;
   const listed=new Set();
   function appendList(parent,records){
     const list=node('ul');
     for(const poem of records){
-      const label=poem.text.replace(/\n+/g,' / '),focusId=poemFocusIds[poem.id];
+      const label=poem.text.replace(/\n+/g,' / '),focusId=positions[poem.id];
       const item=node('li'),button=node('button','catalog-back',label);button.type='button';button.dataset.poemId=poem.id;
       button.setAttribute('aria-label','在空间中查看：'+label);
       if(inspectGroup&&focusIds.has(focusId)){button.dataset.focusId=focusId;button.addEventListener('click',()=>inspectGroup(focusId));}

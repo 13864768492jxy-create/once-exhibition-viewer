@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-import { installPoetryEditor } from './poetry-editor.js?v=20261117-trial19-2';
+import { installPoetryEditor } from './poetry-editor.js?v=20261118-trial20';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { installCatalog } from './catalog.js?v=20261117-trial19-2';
-import { buildExhibition } from './exhibition.js?v=20261117-trial19-2';
+import { installCatalog } from './catalog.js?v=20261118-trial20';
+import { buildExhibition } from './exhibition.js?v=20261118-trial20';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
@@ -11,7 +11,7 @@ let data, renderer, scene, camera, controls, groups, walls, view = 'overview';
 let exhibition, trialLayout, library, trialVisible=true, inspectionFrame=null, poetryEditor;
 let yaw = 0, pitch = 0, walkPosition, pointerStart, pressed = new Set();
 let previousTime = performance.now(), raf = 0;
-const viewerVersion='20261117-trial19-2';
+const viewerVersion='20261118-trial20';
 let updateComparisonLink=()=>{};
 const lightStudyUniform={value:0};
 function lightStudyMaterial(material){
@@ -162,6 +162,8 @@ function fitOverview() {
   createControls();controls.target.copy(target);controls.update();
 }
 function setView(next) {
+  $('#focus-group').value='';
+  updateComparisonLink();
   view=next;inspectionFrame=null;pressed.clear();pointerStart=null;
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
   const walking=view==='entry'||view==='reverse';$('#walk-controls').hidden=!walking;
@@ -345,7 +347,7 @@ async function init(){try{
   const typographyStudy=typeMode==='study';
   const previousTypography=typeMode==='study1'||typeMode==='study2';
   const typographyCompare=typographyStudy||previousTypography||typeMode==='base';
-  const baseline=['09','10','11','12','13','14','15','16','17','18'].includes(requestedTrial)?requestedTrial:null;
+  const baseline=['09','10','11','12','13','14','15','16','17','18','19'].includes(requestedTrial)?requestedTrial:null;
   const layoutURL=typographyStudy?'layouts/typography-study.json':typeMode==='study2'?'layouts/typography-study-20261108-mixed.json':previousTypography?'layouts/typography-study-20261107.json':baseline?'layouts/trial'+baseline+'.json':'layout.json';
   const responses=await Promise.all([baseline&&['09','10'].includes(baseline)?'layouts/space-trial10.json':'space.json',layoutURL,'catalog.json'].map(path=>fetch(path+'?v='+viewerVersion,{cache:'no-store'})));
   if(responses.some(r=>!r.ok))throw new Error('空间或试排数据读取失败');
@@ -353,7 +355,8 @@ async function init(){try{
   [data,trialLayout,library]=inputTexts.map(text=>JSON.parse(text));
   // Compare the retained and current layout from the same positions. These
   // viewing aids do not rewrite either layout or its verified source bytes.
-  if(/trial(?:18|19)$/.test(trialLayout.revision)){
+  const trial20=trialLayout.revision.endsWith('trial20');
+  if(/trial(?:18|19|20)$/.test(trialLayout.revision)){
     const sharedViews=[
       {id:'curation-opening',label:'开篇 · 摄影组合正视',camera:[3.8,1.5,2.7],target:[0,1.5,2.7],framing:{projection:'orthographic',width:5.4,height:3.2}},
       {id:'curation-opening-walk',label:'开篇 · 人眼看摄影与文字',camera:[3.6,1.6,1.4],target:[0,1.35,3.1],framing:{projection:'perspective'}},
@@ -363,21 +366,44 @@ async function init(){try{
       {id:'book-river-wall',label:'河流 · 文字与两侧图像',camera:[1.7,1.55,13.9],target:[5,1.55,13.9],framing:{projection:'orthographic',width:5.7,height:3}},
       {id:'book-between',label:'之间 · 前段留白对照',camera:[3.6,1.45,5.35],target:[0,1.45,5.35],framing:{projection:'orthographic',width:4.3,height:3.2}},
     ];
+    const currentRiverIds={'book-river-wall':'curation-river-wide','curation-river-walk':'curation-river-forward'};
+    if(/trial(?:19|20)$/.test(trialLayout.revision)){
+      const perspective={projection:'perspective'};
+      sharedViews.push(
+        {id:'curation-world',label:'已经发生的世界 · 活动板前',camera:[2.55,1.6,10.78],target:[.15,1.38,11.72],framing:perspective},
+        {id:'curation-river-wide',label:'河流 · 从对墙读',camera:[.65,1.6,16.5],target:[4.96,1.36,16.55],framing:perspective},
+        {id:'curation-river-forward',label:'河流 · 从A口走来',camera:[2.3,1.6,14.25],target:[4.96,1.38,16.35],framing:perspective},
+        {id:'curation-river-return',label:'河流 · 在板端回身',camera:[2.15,1.6,18.28],target:[4.96,1.33,16.80],framing:perspective},
+        {id:'curation-far-waves-walk',label:'更远的浪 · 沿墙走近',camera:[2.1,1.6,13.05],target:[.05,1.53,14.85],framing:perspective},
+        {id:'curation-ending-walk',label:'他们再也看不见我 · 图缝与末段',camera:[2.6,1.6,23.95],target:[.1,1.38,25.9],framing:perspective}
+      );
+      for(const [legacy,current] of Object.entries(currentRiverIds)){
+        const oldView=sharedViews.find(g=>g.id===legacy);
+        // A comparison from an archived river view must keep the old camera.
+        const oldId='previous-'+legacy;
+        sharedViews.push({...oldView,id:oldId,menuHidden:true});
+        if(trial20)Object.assign(oldView,sharedViews.find(g=>g.id===current),{id:legacy,menuHidden:true,compareFocus:current});
+        else oldView.compareFocus=oldId;
+      }
+    }else{
+      for(const legacy of Object.keys(currentRiverIds))sharedViews.find(g=>g.id===legacy).compareFocus='previous-'+legacy;
+    }
     const sharedIds=new Set(sharedViews.map(g=>g.id));
     trialLayout.focusGroups=[...sharedViews,...trialLayout.focusGroups.filter(g=>!sharedIds.has(g.id))];
   }
   $('#projection-light-row').hidden=trialLayout.lightingStudy?.controlledZone?.side!=='both';
   $('#projection-light-study').addEventListener('change',updateLightStudy);
   $('#trial-on').textContent=trialName();
-  $('#baseline-compare').textContent=baseline?'回到试排19':'对照试排18';
+  $('#baseline-compare').textContent=baseline?'回到试排20':'对照试排19';
   updateComparisonLink=focus=>{
-    const query=new URLSearchParams(baseline?{}:{trial:'18'});query.set('v',viewerVersion);
-    if(focus)query.set('focus',focus);
+    const query=new URLSearchParams(baseline?{}:{trial:'19'});query.set('v',viewerVersion);
+    if(focus)query.set('focus',trialLayout.focusGroups.find(g=>g.id===focus)?.compareFocus||focus);
     $('#baseline-compare').href='?'+query;
   };
   updateComparisonLink(new URLSearchParams(location.search).get('focus'));
-  if(baseline){$('.header h1 span').textContent='保留基准 · '+trialName();$('.header p').textContent=baseline==='10'?'上一版的摄影位置与透明诗板':'六块并板 · 原位置与句形';document.title='大悦城 ONCE · '+trialName();
-    $('#trial-description').innerHTML='<h3>保留基准 · '+trialName()+'</h3><p>'+(baseline==='18'?'保留已保存的20组空间文字、7组手动排版和24厘米远浪纸面。':'保留这一版的位置、作品尺寸与诗句字形。')+'可在同一观看位置返回试排19比较。</p><p><a href="https://13864768492jxy-create.github.io/once-exhibition-viewer/book/" target="_blank" rel="noopener noreferrer">阅读完整诗册</a></p>';
+  if(baseline){$('.header h1 span').textContent='保留基准 · '+trialName();$('.header p').textContent='摄影与诗句的历史布置';document.title='大悦城 ONCE · '+trialName();
+    const archiveNote=baseline==='19'?'河流两组位于柱廊旁，远浪使用窄黑框，终句保留中英两种下行。':baseline==='18'?'包含20组空间文字、7组手动排版和24厘米远浪纸面。':'保留这一版的位置、作品尺寸与诗句字形。';
+    $('#trial-description').innerHTML='<h3>'+trialName()+' · 历史布置</h3><p>'+archiveNote+'</p><p><a href="https://13864768492jxy-create.github.io/once-exhibition-viewer/book/" target="_blank" rel="noopener noreferrer">阅读完整诗册</a></p>'+(baseline==='19'?'<p><a href="book-study/trial19-overview.jpg">试排19空间总览</a> · <a href="?trial=18">查看试排18</a></p>':'');
   }
   if(typographyCompare){
     $('.header h1 span').textContent=typographyStudy?'文字与空间 · 试读':previousTypography?'两句地诗 · 上一轮':'字体对照 · 现版';$('.header p').textContent=typographyStudy?'文字、摄影与材料 · 在走动与回望中阅读':'迎着风 / 河流 · 同视角比较';document.title='大悦城 ONCE · 文字与空间';
@@ -402,7 +428,7 @@ async function init(){try{
   applyFinish();
   $('#pillow-preview').hidden=!trialLayout.works.some(w=>w.projectionVideo);
   $('#pillow-preview').addEventListener('click',async()=>{const button=$('#pillow-preview');button.disabled=true;try{focusOnGroup('pillow-margin');const playing=await exhibition.togglePillowProjection();$('#projection-light-study').checked=playing;updateLightStudy();button.textContent=playing?'暂停枕头投影':'播放枕头投影';}catch(error){$('#status').textContent='投影预览暂未载入，请重试';}finally{button.disabled=false;}});
-  for(const group of trialLayout.focusGroups){const option=document.createElement('option');option.value=group.id;option.textContent=group.label;$('#focus-group').append(option);}
+  for(const group of trialLayout.focusGroups){const option=document.createElement('option');option.value=group.id;option.textContent=group.label;option.hidden=Boolean(group.menuHidden);$('#focus-group').append(option);}
   trialLayout.blankWallIntervals?.forEach((blank,i)=>{const option=document.createElement('option');option.value=`blank-${i}`;option.textContent=`主墙停顿${i+1} · 约${blank.length.toFixed(1)}米`;$('#focus-group').append(option);});
   $('#focus-group').addEventListener('change',event=>focusOnGroup(event.target.value));
   $('#trial-on').addEventListener('click',()=>setTrialVisible(true));$('#trial-off').addEventListener('click',()=>setTrialVisible(false));
