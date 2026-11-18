@@ -40,3 +40,18 @@ footer{min-height:65px;display:flex;justify-content:space-between;align-items:ce
   #pillow-preview{grid-column:3}
   #catalog-panel,#details-panel{top:222px;max-height:calc(100% - 244px)}
 }
+
+#view-menu{min-height:42px;font-size:13px;white-space:nowrap}
+#viewer-controls:not(.menu-open),.poetry-editing #view-menu{display:none}
+#viewer-lens{width:100%;min-height:40px;padding:6px 10px;font:inherit;background:var(--panel);border:1px solid var(--line);border-radius:4px;color:var(--ink)}
+@media(max-width:760px),(max-height:520px){
+  #view-menu{display:inline-block;min-height:44px;padding:0 10px;white-space:nowrap;font-size:13px}
+  #viewer-controls:not(.menu-open),.poetry-editing #view-menu{min-height:42px;font-size:13px;white-space:nowrap}
+#viewer-controls:not(.menu-open),.poetry-editing #view-menu{display:none}
+  #catalog-panel,#details-panel{top:12px;max-height:calc(100% - 24px)}
+}
+@media(max-height:520px){
+  body{grid-template-rows:52px minmax(0,1fr) auto}
+  .header{padding-block:3px}.header p,.header h1 span,.measurements{display:none}
+  footer{min-height:32px;padding-block:4px}
+}
