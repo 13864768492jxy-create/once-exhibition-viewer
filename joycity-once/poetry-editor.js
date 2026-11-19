@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createPoetryEditorModel } from './poetry-editor-model.js?v=20261119-trial22';
+import { createPoetryEditorModel } from './poetry-editor-model.js?v=20261119-entry-spacing';
 import { createPoetryInkPicker } from './poetry-editor-picking.js?v=20261117-editor2';
 
 export function installPoetryEditor({exhibition, layout, layoutSourceText, space, host, getCamera, getControls, focusEntry, onActive}) {
@@ -52,11 +52,13 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
   if(!entries.has(selected))selected=entries.keys().next().value;
   savedDraft=model.findSavedDraft(sha=>localStorage.getItem('once-poetry-draft:'+sha));
   function migrationNotice(draft) {
+    if (draft?.baseRevision===layout.revision && draft.baseLayoutSHA256!==exhibition.group.userData.poetryRasterManifest.sourceLayoutSHA256)
+      return '入口调整前保存的文字位置、大小和锁定状态均可恢复。';
     if (draft?.baseRevision === layout.revision) return '';
     if (layout.curationRevision?.draftMigration) return '三组移位的文字沿用当前挂位（已经发生的世界、Growing Again、礁石沉默）。其余旧版文字可恢复，旧版草稿保留。';
     return '旧版文字可在当前试排继续调整。';
   }
-  if(savedDraft && savedDraft.baseRevision!==layout.revision){
+  if(savedDraft && migrationNotice(savedDraft)){
     $('#editor-restore p').textContent='此浏览器保存有试排'+savedDraft.baseRevision.split('trial').pop()+'的草稿。'+migrationNotice(savedDraft);
   }
   $('#editor-restore').hidden=!savedDraft;

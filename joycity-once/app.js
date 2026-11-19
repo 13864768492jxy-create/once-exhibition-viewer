@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import {addVisitorInstallation} from './visitor-installation.js?v=20261119-trial22';
 import { createTrackWash } from './gallery-lighting.js?v=20261119-trial22';
 import { installRiverInk } from './river-ink.js?v=20261119-trial22';
-import { installPoetryEditor } from './poetry-editor.js?v=20261119-trial22';
+import { installPoetryEditor } from './poetry-editor.js?v=20261119-entry-spacing';
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { installCatalog, catalogWorkTitle } from './catalog.js?v=20261119-trial22-series';
 import { buildExhibition } from './exhibition.js?v=20261119-trial22-foreword';
@@ -636,9 +636,18 @@ async function init(){try{
   if(is22){
     const world = trialLayout.focusGroups.find(g=>g.id==='curation-world');
     Object.assign(world, {label:'已经发生的世界 · 玻璃的A口侧',camera:[2.4,1.75,3.8],target:[.03,.96,4.48]});
+    const foreword=trialLayout.works.find(work=>work.id==='preface-location');
+    const wall=trialLayout.surfaces.find(surface=>surface.id===foreword.surfaceId);
+    const centerZ=wall.a[1]+foreword.along;
+    const columnZ=centerZ-.57;
     trialLayout.focusGroups.unshift(
-      {id:'entry-foreword',label:'AT ONCE · 入口前言',camera:[.90,1.75,2.18],target:[4.98,1.58,2.13],portrait:{camera:[1.58,1.75,2.16],target:[4.98,1.51,2.13]},framing:{projection:'perspective',wallExtent:{center:[4.98,1.50,2.13],width:1.62,height:2.52}}},
-      {id:'entry-foreword-read',label:'入口前言 · 正文近读',camera:[3.87,1.75,1.57],target:[4.98,1.48,1.56],portrait:{camera:[4.25,1.75,1.57],target:[4.98,1.47,1.56]},framing:{projection:'perspective'}},
+      {id:'entry-foreword',label:'AT ONCE · 入口前言',
+        camera:[.90,1.75,centerZ+.98],target:[4.98,1.58,centerZ+.53],
+        portrait:{camera:[1.58,1.75,centerZ+.85],target:[4.98,1.51,centerZ+.08]},
+        framing:{projection:'perspective',wallExtent:{center:[4.98,foreword.centerY,centerZ],width:foreword.outerWidth,height:foreword.outerHeight}}},
+      {id:'entry-foreword-read',label:'入口前言 · 正文近读',
+        camera:[3.87,1.75,columnZ+.01],target:[4.98,1.48,columnZ],
+        portrait:{camera:[4.18,1.75,columnZ+.01],target:[4.98,1.47,columnZ]},framing:{projection:'perspective'}},
       {id:'opening-guide',label:'分区展签 · 开篇摄影',camera:[1.25,.74,1.44],target:[.01,.74,1.44],framing:{projection:'orthographic',width:.35,height:.29}},
 
     );

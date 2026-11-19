@@ -872,7 +872,7 @@
       "group": "PREFACE",
       "type": "text",
       "surfaceId": "other-main",
-      "along": 0.84,
+      "along": 0.44,
       "centerY": 1.5,
       "imageWidth": 1.62,
       "imageHeight": 2.52,
@@ -896,7 +896,7 @@
       "rasterOverride": {
         "physicalWidth": 1.62,
         "physicalHeight": 2.52,
-        "sha256": "2b156d3ce29440b426c631b07de552f0c4f14ea34abebe0247b19353c6180980",
+        "sha256": "ddc7ff883a3c4701fa3eb1e6b442c2655bc3db1676cc49e61c7964efe29d0d5e",
         "localCenterX": 0,
         "localCenterY": 0,
         "path": "site/wall-guide/foreword.png",
