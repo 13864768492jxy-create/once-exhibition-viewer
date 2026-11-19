@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-import {addVisitorInstallation} from './visitor-installation.js?v=20261119-trial22';
+import {addVisitorInstallation} from './visitor-installation.js?v=20261119-trial22-silver-r5';
 import { createTrackWash } from './gallery-lighting.js?v=20261119-trial22';
 import { installRiverInk } from './river-ink.js?v=20261119-trial22';
-import { installPoetryEditor } from './poetry-editor.js?v=20261119-trial22-cords-r4';
+import { installPoetryEditor } from './poetry-editor.js?v=20261119-trial22-silver-r5';
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { installCatalog, catalogWorkTitle } from './catalog.js?v=20261119-trial22-series';
 import { buildExhibition } from './exhibition.js?v=20261119-trial22-foreword';

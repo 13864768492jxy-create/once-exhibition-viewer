@@ -5,9 +5,15 @@ export function addVisitorInstallation(group, layout, collisionRects) {
   const spec = layout.visitorInstallation;
   if (!spec) return;
   const materials = Object.fromEntries(Object.entries(spec.finishes).map(([name, color]) =>
-    [name, new THREE.MeshStandardMaterial({color, roughness: .79, metalness: name === 'cord' ? 0 : .16})]));
+    [name, new THREE.MeshStandardMaterial({color, roughness: .79, metalness: name === 'cord' ? 0 : .16,
+      ...spec.finishProperties?.[name]})]));
   const cylinder = new THREE.CylinderGeometry(1, 1, 1, 16);
-  const toe = new THREE.BoxGeometry(1, 1, 1);
+  const disc = spec.footProfile ? new THREE.LatheGeometry([
+    new THREE.Vector2(0, -.5),
+    ...spec.footProfile.map(([radius, height]) => new THREE.Vector2(radius, height-.5)),
+    new THREE.Vector2(0, .5),
+  ], 64) : cylinder;
+  const toe = materials.edge ? new THREE.BoxGeometry(1, 1, 1) : null;
   const up = new THREE.Vector3(0, 1, 0);
   const left = new THREE.Vector3(), right = new THREE.Vector3(), delta = new THREE.Vector3();
   const transform = new THREE.Object3D();
@@ -19,7 +25,7 @@ export function addVisitorInstallation(group, layout, collisionRects) {
     for (const [finish, material] of Object.entries(materials)) {
       const tubes = item.tubes.filter(t => t[0] === finish);
       if (!tubes.length) continue;
-      const mesh = new THREE.InstancedMesh(cylinder, material, tubes.length);
+      const mesh = new THREE.InstancedMesh(finish === 'foot' ? disc : cylinder, material, tubes.length);
       mesh.name = item.id + '_' + finish;
       tubes.forEach(([, radius, from, to], i) => {
         left.fromArray(from); right.fromArray(to); delta.subVectors(right, left);
@@ -30,7 +36,7 @@ export function addVisitorInstallation(group, layout, collisionRects) {
       });
       assembly.add(mesh);
     }
-    for (const [x,z,u,v,h,depth] of item.plates) {
+    for (const [x,z,u,v,h,depth] of item.plates || []) {
       const mesh = new THREE.Mesh(toe, materials.edge);
       mesh.position.set((x+u)/2, h/2, (z+v)/2);
       mesh.scale.set(Math.hypot(u-x,v-z), h, depth);
