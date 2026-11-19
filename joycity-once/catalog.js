@@ -4,6 +4,11 @@ let currentLayout=null,inspectWork=null,inspectGroup=null;
 function placementFor(id){return currentLayout?.works.find(w=>w.catalogId===id)||currentLayout?.freestandingGlass.find(w=>w.catalogId===id);}
 function displayDimensions(work){const p=placementFor(work.id);return p?.joinedGroup?`玻璃板 ${Math.round(p.width*100)} × ${Math.round(p.height*100)} cm · 当前试排`:work.dimensions;}
 const groups={all:'全部',once:'ONCE摄影',glass:'玻璃板',large:'大尺幅',performance:'VESSEL',traveler:'旅人（候选）',poetry:'空间诗歌'};
+export function catalogWorkTitle(work,layout){
+  if(work?.group!=='once'||!layout?.revision?.endsWith('trial22'))return work?.title;
+  const number=work.id.slice('once_'.length);
+  return `《${work.series}》${number} · ${work.seriesEnglish}, no. ${number}`;
+}
 function node(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el;}
 const poemFocusIds={
   future:'book-arrival',mountains:'book-mountains','mountains-open':'book-mountains',
@@ -75,10 +80,16 @@ export function installCatalog({layout=null,onInspect=null,onFocus=null}={}){
   get('details-button').addEventListener('click',()=>{panel.hidden=true;open.setAttribute('aria-expanded','false');});
   get('catalog-filter').addEventListener('change',render);
   fetch('catalog.json?v=20261107-trial14',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('作品库读取失败');return r.json();}).then(data=>{
+    const groupNames={...groups};
+    if(currentLayout?.revision.endsWith('trial22')){
+      const photo=data.items.find(work=>work.group==='once');
+      if(photo)groupNames.once=`${photo.series} · ${photo.seriesEnglish}`;
+      for(const work of data.items)work.title=catalogWorkTitle(work,currentLayout);
+    }
     if(!currentLayout?.works.some(w=>w.id==='traveler-1')){data.items=data.items.filter(w=>w.group!=='traveler');delete data.counts.traveler;data.counts.all=data.items.length;}
     if(currentLayout?.excludedWorkIds?.length){data.items=data.items.filter(w=>!currentLayout.excludedWorkIds.includes(w.id));data.counts.all=data.items.length;for(const key of ['once','glass','large','performance','traveler'])data.counts[key]=data.items.filter(w=>w.group===key).length;}
     library=data;get('catalog-summary').textContent=(currentLayout?.selectedPhotographyCount||31)+'幅摄影全部装裱 · 6块玻璃 · 4幅大图 · VESSEL。'+(data.counts.traveler?'另试放《旅人-1》，尚未确认加入。':'当前空间试排，尚未定稿。');
-    for(const [value,label]of Object.entries(groups)){if(value==='traveler'&&!data.counts.traveler)continue;const option=node('option','',label+(data.counts[value]?' · '+data.counts[value]:''));option.value=value;get('catalog-filter').append(option);}
+    for(const [value,label]of Object.entries(groupNames)){if(value==='traveler'&&!data.counts.traveler)continue;const option=node('option','',label+(data.counts[value]?' · '+data.counts[value]:''));option.value=value;get('catalog-filter').append(option);}
     renderPoetry();
     render();
   }).catch(error=>{get('catalog-summary').textContent=error.message+'，请刷新页面重试。';get('catalog-filter').hidden=true;});

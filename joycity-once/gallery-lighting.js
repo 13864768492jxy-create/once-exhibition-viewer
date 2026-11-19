@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { makeFramingStudy } from './gallery-framing.js?v=20261119-trial22';
 
 // All coordinates used to aim and bake heads are in the measured-room convention (+Z toward B).
 // This is a relative lighting study. Beam spreads and intensities are design values.
@@ -112,7 +113,9 @@ export function createTrackWash(space, layout) {
     return { x, z, aim: galleryHeadAim(space, row, head), power: edge === 0 ? .52 : edge === 1 ? 1.35 : .72 };
   }));
   const { texture, scale, bias } = bakeIrradiance(space, layout.partitions || [], rows);
+  const framing = revision >= 22 ? makeFramingStudy(space,layout,rows) : null;
   const enabled = { value: 1 };
+  const cutEnabled = framing ? {value:1} : null;
   const contactMaterial=new THREE.ShaderMaterial({
     uniforms:{trackMix:enabled}, transparent:true,depthWrite:false,toneMapped:false,
     vertexShader:`attribute vec3 frameContact; varying vec2 localPos; varying vec3 edge;
@@ -122,7 +125,11 @@ export function createTrackWash(space, layout) {
         gl_FragColor=vec4(0.,0.,0.,.13*trackMix*(1.-smoothstep(-edge.z,edge.z,dist)));}`,
   });
   return {
-    enabled,
+    enabled, cutEnabled,
+    headAim(row, i) {
+      const spot = framing?.fixtures.get(row+':'+i);
+      return cutEnabled?.value && spot ? spot.aim : rows[row][i].aim;
+    },
     frameContact(group,width,height,depth,center,normal) {
       addFrameContact(group,width,height,depth,center,normal,rows,lighting.railHeight-.15,contactMaterial);
     },
@@ -134,22 +141,28 @@ export function createTrackWash(space, layout) {
         shader.uniforms.trackScale = { value: scale };
         shader.uniforms.trackBias = { value: bias };
         shader.uniforms.trackMix = enabled;
-        const varyings = 'varying vec3 trackUVW;\nvarying vec3 trackAxis;\n';
+        if (framing) {
+          shader.uniforms.cutField = {value:framing.texture};
+          shader.uniforms.cutMix = cutEnabled;
+        }
+        const varyings = 'varying vec3 trackUVW;\nvarying vec3 trackAxis;\n' + (framing ? 'varying vec3 cutPosition;\n' : '');
         shader.vertexShader = varyings + 'uniform vec3 trackScale; uniform vec3 trackBias;\n' + shader.vertexShader;
         shader.vertexShader = shader.vertexShader.replace('#include <worldpos_vertex>', `#include <worldpos_vertex>
           vec3 trackWorld = (modelMatrix * vec4(transformed, 1.0)).xyz;
+          ${framing ? 'cutPosition = trackWorld * vec3(1.,1.,-1.);' : ''}
           trackUVW = trackWorld * vec3(1., 1., -1.) * trackScale + trackBias;
           trackAxis = normalize(mat3(modelMatrix) * normal);
         `);
-        shader.fragmentShader = varyings + 'uniform highp sampler3D trackField; uniform float trackMix;\n' + shader.fragmentShader;
+        shader.fragmentShader = varyings + 'uniform highp sampler3D trackField; uniform float trackMix;\n' + (framing?.fragment || '') + '\n' + shader.fragmentShader;
         shader.fragmentShader = shader.fragmentShader.replace('#include <opaque_fragment>', `
           vec3 gains = .6 + .6 * texture(trackField, trackUVW).rgb;
           vec3 axis = normalize(trackAxis);
           outgoingLight *= mix(1., dot(gains, axis * axis), trackMix);
+          ${framing ? 'outgoingLight *= mix(1.,framingGain(cutPosition,axis),trackMix*cutMix);' : ''}
           #include <opaque_fragment>
         `);
       };
-      material.customProgramCacheKey = () => earlierKey + '/track-wash';
+      material.customProgramCacheKey = () => earlierKey + (framing ? '/track-framing-' + layout.revision : '/track-wash');
     },
   };
 }

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "revision": "20261118-trial21",
-  "title": "大悦城 ONCE · 空间选读",
-  "status": "连廊观看与河流英文试排21，非制作定稿",
-  "date": "2026-11-18",
-  "sourceLayout": "layouts/trial20.json",
+  "revision": "20261119-trial22",
+  "title": "AT ONCE",
+  "status": "展墙、切光及通行关系试排22，施工前须现场复核。",
+  "date": "2026-11-19",
+  "sourceLayout": "layouts/trial21.json",
   "principle": "以作者原字形与句内疏密为基础，选择适合空间相遇的段落；图像成组、文字留出停顿，允许回望，不承诺单向读完整首。",
   "partitions": [
     {
@@ -327,8 +327,8 @@
       "group": "A-city",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 1.2,
-      "centerY": 2.12,
+      "along": 1.64,
+      "centerY": 2.26,
       "imageWidth": 0.3,
       "imageHeight": 0.23793699577000002,
       "outerWidth": 0.396,
@@ -536,8 +536,8 @@
       "group": "A-city",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 2.18,
-      "centerY": 1.05,
+      "along": 2.785,
+      "centerY": 0.95,
       "imageWidth": 0.54,
       "imageHeight": 0.42472299999999996,
       "outerWidth": 0.636,
@@ -650,8 +650,8 @@
       "group": "A-city",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 3.06,
-      "centerY": 1.5,
+      "along": 3.86,
+      "centerY": 1.46,
       "imageWidth": 0.62,
       "imageHeight": 0.509715,
       "outerWidth": 0.716,
@@ -669,8 +669,8 @@
       "group": "A-city",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 1.2,
-      "centerY": 1.35,
+      "along": 1.615,
+      "centerY": 1.36,
       "imageWidth": 0.85,
       "imageHeight": 0.7,
       "outerWidth": 0.9420000000000001,
@@ -688,8 +688,8 @@
       "group": "A-city",
       "type": "photo",
       "surfaceId": "once-main",
-      "along": 3.06,
-      "centerY": 2.15,
+      "along": 3.55,
+      "centerY": 2.28,
       "imageWidth": 0.255,
       "imageHeight": 0.2125,
       "outerWidth": 0.391,
@@ -872,36 +872,37 @@
       "group": "PREFACE",
       "type": "text",
       "surfaceId": "other-main",
-      "along": 0.6619889999999999,
-      "centerY": 1.62,
-      "imageWidth": 0.85,
-      "imageHeight": 1.3,
-      "outerWidth": 0.85,
-      "outerHeight": 1.3,
+      "along": 0.84,
+      "centerY": 1.5,
+      "imageWidth": 1.62,
+      "imageHeight": 2.52,
+      "outerWidth": 1.62,
+      "outerHeight": 2.52,
       "frameFace": 0,
       "frameColor": "#ffffff",
       "depth": 0.004,
       "matColor": "#ffffff",
-      "text": "前言\n\nONCE 后知后觉\n\n首版仅示意前言位置\n内容与形式另行调整",
-      "note": "前言占位，不是定稿文件。",
-      "fontFamily": "authored-quiet",
-      "fontSize": 0.085,
+      "text": "AT ONCE\n姜昕宇 · JIANG XINYU\n前言 · FOREWORD\n花布从窗前垂下来。一把透明的椅子留在空泳池底。两张照片没有交代它们相隔多远。今天，它们之间只隔着一条可以走过的廊道。\n\n照片把光留下来。有些细节却要等我们走远，才从刚刚看过的画面里浮出来。也许是一道影子，也许是某个字，在回头的一刻，和另一面墙上的字相遇。",
+      "note": "展名与入口前言试稿。",
+      "fontFamily": "AT ONCE wall lettering",
+      "fontSize": 0.015,
       "fontWidthScale": 1,
       "weight": 400,
       "color": "#42483F",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "width": 0.85,
-      "typographyNote": "只显示已有占位内容，作为正文版式的边界；本轮没有新的正式前言。",
+      "width": 1.62,
+      "typographyNote": "墙面直接施字；前言中AT／ON／CE三行与姜／昕／宇逐行相邻，门头横排英文展名。",
       "rasterOverride": {
-        "path": "assets/typography/quiet-20261109/preface-location.png",
-        "sourceSVG": "assets/typography/quiet-20261109/preface-location.svg",
-        "sha256": "62f27ccfa7ccf49bb38701fc2c53268f0eac6fd399c58f4a94512f878fd1a580",
-        "physicalWidth": 0.85,
-        "physicalHeight": 1.3,
+        "physicalWidth": 1.62,
+        "physicalHeight": 2.52,
+        "sha256": "2b156d3ce29440b426c631b07de552f0c4f14ea34abebe0247b19353c6180980",
         "localCenterX": 0,
-        "localCenterY": 0
-      }
+        "localCenterY": 0,
+        "path": "site/wall-guide/foreword.png",
+        "sourceSVG": "site/wall-guide/foreword.svg"
+      },
+      "directLettering": true
     },
     {
       "id": "entry-title",
@@ -919,27 +920,28 @@
       "depth": 0.008,
       "matColor": "#f1f2ec",
       "color": "#42483F",
-      "fontSize": 0.16,
+      "fontSize": 0.176,
       "lineHeight": 1.05,
-      "fontFamily": "authored-quiet",
+      "fontFamily": "AT ONCE wall lettering",
       "align": "center",
-      "text": "ONCE 后知后觉",
-      "note": "A口新增轻质门头位置与字样试验，非制作定稿。",
+      "text": "AT ONCE",
+      "note": "展名与入口前言试稿。",
       "fontWidthScale": 1,
       "weight": 400,
       "letterSpacing": 0,
       "rotationInPlane": 0,
       "width": 1.6,
-      "typographyNote": "一行展名，控制在门头占位内，和作品诗句分工。",
+      "typographyNote": "墙面直接施字；前言中AT／ON／CE三行与姜／昕／宇逐行相邻，门头横排英文展名。",
       "rasterOverride": {
-        "path": "assets/typography/quiet-20261109/entry-title.png",
-        "sourceSVG": "assets/typography/quiet-20261109/entry-title.svg",
-        "sha256": "df55a768bd20f7092391e963a372da18fa418cebd78279720255022b93fb6a73",
         "physicalWidth": 1.6,
         "physicalHeight": 0.32,
+        "sha256": "871123dd7f3b12098cd8bda6d1e2d6c67542112f4fc8b208fca5f2dfa966d6ea",
         "localCenterX": 0,
-        "localCenterY": 0
-      }
+        "localCenterY": 0,
+        "path": "site/wall-guide/on-entry.png",
+        "sourceSVG": "site/wall-guide/on-entry.svg"
+      },
+      "directLettering": true
     },
     {
       "id": "traveler-1",
@@ -997,109 +999,133 @@
       "id": "ga-01",
       "catalogId": "ga-01",
       "group": "GLASS",
-      "x": 4.6,
-      "z": 20.95,
-      "yaw": 90,
+      "x": 4.0584463,
+      "z": 20.9206346,
+      "yaw": 80,
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
-      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
+      "note": "三段错落玻璃中的同面接缝共享夹架；尺寸与结构待现场复核。",
       "supportType": "tile-display-clamp",
       "supportPlacement": "edge",
       "imageFit": "contain",
       "sourceImageWidth": 0.6,
       "sourceImageHeight": 0.8,
-      "joinedGroup": "growing-again-continuous"
+      "joinedGroup": "growing-again-bank-1",
+      "normal": [
+        -0.984807753012208,
+        0.17364817766693041
+      ]
     },
     {
       "id": "ga-02",
       "catalogId": "ga-02",
       "group": "GLASS",
-      "x": 4.6,
-      "z": 21.65,
-      "yaw": 90,
+      "x": 4.18,
+      "z": 21.61,
+      "yaw": 80,
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
-      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
+      "note": "三段错落玻璃中的同面接缝共享夹架；尺寸与结构待现场复核。",
       "supportType": "tile-display-clamp",
       "supportPlacement": "edge",
       "imageFit": "contain",
       "sourceImageWidth": 0.7,
       "sourceImageHeight": 1.2,
-      "joinedGroup": "growing-again-continuous"
+      "joinedGroup": "growing-again-bank-1",
+      "normal": [
+        -0.984807753012208,
+        0.17364817766693041
+      ]
     },
     {
       "id": "ga-03",
       "catalogId": "ga-03",
       "group": "GLASS",
-      "x": 4.6,
-      "z": 23.049999999999997,
-      "yaw": 90,
+      "x": 4.6015537,
+      "z": 23.3906346,
+      "yaw": 100,
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
-      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
+      "note": "三段错落玻璃中的同面接缝共享夹架；尺寸与结构待现场复核。",
       "supportType": "tile-display-clamp",
       "supportPlacement": "edge",
       "imageFit": "contain",
       "sourceImageWidth": 0.6,
       "sourceImageHeight": 1.4,
-      "joinedGroup": "growing-again-continuous"
+      "joinedGroup": "growing-again-bank-2",
+      "normal": [
+        -0.984807753012208,
+        -0.1736481776669303
+      ]
     },
     {
       "id": "ga-04",
       "catalogId": "ga-04",
       "group": "GLASS",
-      "x": 4.6,
-      "z": 23.75,
-      "yaw": 90,
+      "x": 4.48,
+      "z": 24.08,
+      "yaw": 100,
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
-      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
+      "note": "三段错落玻璃中的同面接缝共享夹架；尺寸与结构待现场复核。",
       "supportType": "tile-display-clamp",
       "supportPlacement": "edge",
       "imageFit": "contain",
       "sourceImageWidth": 0.7,
       "sourceImageHeight": 1.6,
-      "joinedGroup": "growing-again-continuous"
+      "joinedGroup": "growing-again-bank-2",
+      "normal": [
+        -0.984807753012208,
+        -0.1736481776669303
+      ]
     },
     {
       "id": "ga-05",
       "catalogId": "ga-05",
       "group": "GLASS",
-      "x": 4.6,
-      "z": 25.15,
-      "yaw": 90,
+      "x": 4.0852479,
+      "z": 25.9243091,
+      "yaw": 81,
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
-      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
+      "note": "三段错落玻璃中的同面接缝共享夹架；尺寸与结构待现场复核。",
       "supportType": "tile-display-clamp",
       "supportPlacement": "edge",
       "imageFit": "contain",
       "sourceImageWidth": 0.6,
       "sourceImageHeight": 1.65,
-      "joinedGroup": "growing-again-continuous"
+      "joinedGroup": "growing-again-bank-3",
+      "normal": [
+        -0.9876883405951378,
+        0.15643446504023092
+      ]
     },
     {
       "id": "ga-06",
       "catalogId": "ga-06",
       "group": "GLASS",
-      "x": 4.6,
-      "z": 25.849999999999998,
-      "yaw": 90,
+      "x": 4.1947521,
+      "z": 26.6156909,
+      "yaw": 81,
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
-      "note": "作品玻璃70×180厘米；在第2/3、第4/5件之间插入透明诗板。原作比例与半透明画面保持，接缝共用夹架仍为构型候选。",
+      "note": "三段错落玻璃中的同面接缝共享夹架；尺寸与结构待现场复核。",
       "supportType": "tile-display-clamp",
       "supportPlacement": "edge",
       "imageFit": "contain",
       "sourceImageWidth": 0.6,
       "sourceImageHeight": 1.8,
-      "joinedGroup": "growing-again-continuous"
+      "joinedGroup": "growing-again-bank-3",
+      "normal": [
+        -0.9876883405951378,
+        0.15643446504023092
+      ]
     }
   ],
   "poems": [
@@ -1216,7 +1242,7 @@
     },
     {
       "id": "river",
-      "text": "河流带有未命名的方向，\nthe river,",
+      "text": "河流带有未命名的方向，\nthe river, carrying an unnamed",
       "position": [
         4.967,
         0.8147920593617921,
@@ -1234,11 +1260,11 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "在作者保存的原位恢复第6页河流下方弧形的 the river,，英文笔画取中灰 #898989。",
+      "typographyNote": "第6页中英文沿原稿各自的曲线。喷泉之后先读英文起句，原作者试排的中文位置与字形保留。",
       "rasterOverride": {
-        "path": "assets/typography/curation-trial21/river-with-english.png",
-        "sourceSVG": "assets/typography/curation-trial21/river-with-english.svg",
-        "sha256": "ea0cc7efc69d762fae3e59e97c18bb5df360e9a2a729fdae8de6bb3263717dd2",
+        "path": "assets/typography/curation-trial22/river.png",
+        "sourceSVG": "assets/typography/curation-trial22/river.svg",
+        "sha256": "74218c1caae8c95b1aa26a6f59d73e14b3482efd6cfd0c15229943016ef46d1c",
         "physicalWidth": 1.07775,
         "physicalHeight": 0.714,
         "localCenterX": 0,
@@ -1255,7 +1281,7 @@
         }
       },
       "preserveAuthoredInk": true,
-      "note": "在作者保存的原位恢复第6页河流下方弧形的 the river,，英文笔画取中灰 #898989。",
+      "note": "第6页中英文沿原稿各自的曲线。喷泉之后先读英文起句，原作者试排的中文位置与字形保留。",
       "sourceBookPage": 6,
       "sourceBookPages": [
         6
@@ -1263,7 +1289,7 @@
     },
     {
       "id": "river-through",
-      "text": "从每个人流过。",
+      "text": "从每个人流过。\ndirection, flows through",
       "position": [
         4.967,
         1.4417232360545824,
@@ -1281,21 +1307,58 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "采用作者草稿位置，留在08号喷泉与26号柱廊之间。墨迹与河流上半句之间有一张摄影。",
+      "typographyNote": "第7页的 direction, flows through 随原稿斜向上接，中文仍落在作者保存的站位。",
       "rasterOverride": {
-        "path": "assets/typography/curation-20261117/river-through-zh-only.png",
-        "sourceSVG": "assets/typography/curation-20261117/river-through-zh-only.svg",
-        "sha256": "3f90a51f71f059a254a244fb767a8916b67fde42ee8f33171e58a19431c41a05",
+        "path": "assets/typography/curation-trial22/river-through.png",
+        "sourceSVG": "assets/typography/curation-trial22/river-through.svg",
+        "sha256": "f40dd6a840e7407eaadc469cc30e8bc742a40ca540fcd538723da484f59ae43e",
         "physicalWidth": 1.1340000000000001,
         "physicalHeight": 0.74325,
         "localCenterX": 0,
         "localCenterY": 0
       },
       "preserveAuthoredInk": true,
-      "note": "采用作者草稿位置，留在08号喷泉与26号柱廊之间。墨迹与河流上半句之间有一张摄影。",
+      "note": "第7页的 direction, flows through 随原稿斜向上接，中文仍落在作者保存的站位。",
       "sourceBookPage": 7,
       "sourceBookPages": [
         7
+      ]
+    },
+    {
+      "id": "river-each",
+      "text": "each person.",
+      "position": [
+        4.967,
+        2.32,
+        14.58
+      ],
+      "fontSize": 0.04079998970031738,
+      "width": 0.5475,
+      "surface": "wall",
+      "rotationY": -90,
+      "weight": 400,
+      "fontFamily": "authored-book-20261116",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "第8页的 each person. 在返向行走时接上前两组英文。与26号之间保留空白。",
+      "rasterOverride": {
+        "path": "assets/typography/curation-trial22/river-each.png",
+        "sourceSVG": "assets/typography/curation-trial22/river-each.svg",
+        "sha256": "94645e0e0fbc06c5f9368cc238712228d7215ace4c4bbe4d8094b64810af03a7",
+        "physicalWidth": 0.5475,
+        "physicalHeight": 0.1515,
+        "localCenterX": 0,
+        "localCenterY": 0
+      },
+      "preserveAuthoredInk": true,
+      "note": "第8页的 each person. 在返向行走时接上前两组英文。与26号之间保留空白。",
+      "sourceBookPage": 8,
+      "sourceBookPages": [
+        8
       ]
     },
     {
@@ -1303,11 +1366,11 @@
       "text": "已经发生的世界，",
       "position": [
         0.033,
-        1.13,
-        12.26
+        0.96,
+        4.48
       ],
-      "fontSize": 0.08166477438668225,
-      "width": 0.654355140186916,
+      "fontSize": 0.04992076587851348,
+      "width": 0.4,
       "surface": "wall",
       "rotationY": 90,
       "weight": 400,
@@ -1318,16 +1381,16 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "note": "在第一块活动板之前、27号照片下方偏右才遇到这句。沿用原稿的细框、框外逗号和原大。",
-      "typographyNote": "在第一块活动板之前、27号照片下方偏右才遇到这句。沿用原稿的细框、框外逗号和原大。",
+      "note": "字块宽40厘米，原稿细框和框外逗号等比缩小；整句落在既有左长墙、玻璃靠A口的一侧。",
+      "typographyNote": "字块宽40厘米，原稿细框和框外逗号等比缩小；整句落在既有左长墙、玻璃靠A口的一侧。",
       "rasterOverride": {
         "path": "assets/typography/book-20261116/world.png",
         "sourceSVG": "assets/typography/book-20261116/world.svg",
         "sha256": "2e99f8e6efba18417cae382abfedd8bcc7f1b791fde938a42b8b485d8a3477f5",
-        "physicalWidth": 0.654355140186916,
-        "physicalHeight": 0.128,
-        "localCenterX": 0,
-        "localCenterY": 0
+        "physicalWidth": 0.4,
+        "physicalHeight": 0.07824497257769651,
+        "localCenterX": 0.0,
+        "localCenterY": 0.0
       },
       "preserveAuthoredInk": true,
       "sourceBookPage": 9,
@@ -1601,11 +1664,11 @@
       "text": "礁石沉默，\n群岛浮出黑暗。",
       "surface": "wall",
       "position": [
-        4.584,
+        4.3426894,
         0.9931246148073174,
-        24.45
+        24.766587
       ],
-      "rotationY": -90,
+      "rotationY": -100,
       "fontFamily": "authored-book-20261116",
       "weight": 400,
       "fontWidthScale": 1,
@@ -1769,11 +1832,11 @@
       "text": "Growing\nAgain",
       "surface": "wall",
       "position": [
-        4.584,
+        4.2857968,
         0.935,
-        22.349999999999998
+        22.3021438
       ],
-      "rotationY": -90,
+      "rotationY": -80,
       "fontFamily": "authored-quiet",
       "weight": 400,
       "fontWidthScale": 1,
@@ -1954,7 +2017,7 @@
     },
     {
       "id": "book-river-wall",
-      "label": "作者试排 · 喷泉两侧的河流",
+      "label": "河流 · 三页原稿沿墙接读",
       "camera": [
         0.65,
         1.6,
@@ -2006,14 +2069,14 @@
       "id": "book-glass",
       "label": "玻璃 · 海水与Growing Again",
       "camera": [
-        1.5,
-        1.7,
-        24
+        1.56,
+        1.75,
+        24.05
       ],
       "target": [
-        4.65,
-        1.5,
-        24
+        4.32,
+        1.12,
+        23.48
       ],
       "framing": {
         "projection": "orthographic",
@@ -2248,31 +2311,84 @@
       "framing": {
         "projection": "perspective"
       }
+    },
+    {
+      "id": "curation-growing-approach",
+      "label": "Growing Again · 从A侧走近",
+      "camera": [
+        2.52,
+        1.75,
+        19.95
+      ],
+      "target": [
+        4.1,
+        1.0,
+        23.22
+      ],
+      "framing": {
+        "projection": "perspective"
+      }
+    },
+    {
+      "id": "curation-growing-return",
+      "label": "Growing Again · 从B侧回望",
+      "camera": [
+        2.2,
+        1.75,
+        27.58
+      ],
+      "target": [
+        4.33,
+        1.04,
+        24.0
+      ],
+      "framing": {
+        "projection": "perspective"
+      }
+    },
+    {
+      "id": "curation-entry-arrow",
+      "label": "AT ONCE · 入口方向牌",
+      "camera": [
+        2.36,
+        1.75,
+        0.14
+      ],
+      "target": [
+        4.59,
+        0.96,
+        1.38
+      ],
+      "framing": {
+        "projection": "perspective"
+      }
+    },
+    {
+      "id": "curation-pillow-boundary",
+      "label": "白枕头 · 通行线",
+      "camera": [
+        2.82,
+        1.75,
+        27.9
+      ],
+      "target": [
+        0.09,
+        1.02,
+        29.4
+      ],
+      "framing": {
+        "projection": "perspective"
+      }
     }
   ],
   "framingAssumption": "已有14幅沿用旧外框；17幅新框临时按每边4cm白卡＋8mm窄黑框，均为试排，未定制作。",
   "notes": [
-    "在试排19上纳入作者保存的两组河流位移，保留两句原大与墨迹层次。",
-    "开篇五幅摄影先独立出现，已经发生的世界移至27号照片下方、13号活动板侧前方。",
-    "末句在01与02之间以中文下落；诗册原稿保留完整中英文。",
-    "远浪使用与灰框试样相同的框色。纸、字、背板、原挂位和尺寸沿用试排19。",
-    "横／亘的前后距离、海水的Sea及月／亮的浓淡交换沿用作者排法。",
-    "摄影与建筑布局沿用试排19。墙面12组，地面3组，玻璃3组。完整阅读见数字诗册。",
     "03与04各向外8厘米，框间留111厘米，群山与句尾两边同时多出8厘米。",
-    "在作者保存的原位恢复第6页河流下方弧形的 the river,，英文笔画取中灰 #898989。"
+    "字块宽40厘米，原稿细框和框外逗号等比缩小；整句落在既有左长墙、玻璃靠A口的一侧。",
+    "从B向A经过右侧，河流三组英文依次落在原稿第6、7、8页的阅读方向上。"
   ],
   "environment": {
-    "wallFields": [
-      {
-        "id": "glass-field",
-        "surfaceId": "other-main",
-        "alongStart": 18.711989,
-        "alongEnd": 26.411989,
-        "bottom": 0,
-        "height": 2.95,
-        "color": "#D6DED7"
-      }
-    ],
+    "wallFields": [],
     "floorFields": [],
     "note": "整体配色比较；连续哑光地面保留砖缝与金属走势，不填三角色块。A为本轮默认，颜色仍需现场样板。",
     "metalFinish": {
@@ -2301,7 +2417,7 @@
         "id": "warm-stone",
         "label": "A 暖石与雾绿",
         "wall": "#F6F5F1",
-        "glassWall": "#D6DED7",
+        "glassWall": "#F6F5F1",
         "floor": "#C7C3B8",
         "grout": "#AAA79D",
         "metal": "#786D5E",
@@ -2312,7 +2428,7 @@
         "id": "silver-grey",
         "label": "B 冷灰与银盐",
         "wall": "#F4F5F2",
-        "glassWall": "#E1E5E3",
+        "glassWall": "#F4F5F2",
         "floor": "#B9C0C1",
         "grout": "#9AA4A4",
         "metal": "#697575",
@@ -2323,7 +2439,7 @@
         "id": "night-tide",
         "label": "C 暗潮地面",
         "wall": "#F5F3ED",
-        "glassWall": "#E3E0D8",
+        "glassWall": "#F5F3ED",
         "floor": "#788783",
         "grout": "#657570",
         "metal": "#B3A48B",
@@ -2421,7 +2537,7 @@
       "status": "用户继续写作中"
     }
   ],
-  "poetryRasterManifest": "poetry/trial21/manifest.json",
+  "poetryRasterManifest": "poetry/trial22/manifest.json",
   "occupancyStudy": {
     "status": "illustrative_not_observed_people",
     "diameters": [
@@ -2462,14 +2578,32 @@
       },
       {
         "id": "ga05",
-        "x": 3.65,
-        "z": 25.15
+        "x": 2.92,
+        "z": 26.1
       }
     ]
   },
   "joinedGlassGroups": [
     {
-      "id": "growing-again-continuous",
+      "id": "growing-again-bank-1",
+      "supportType": "shared-seam-clamp",
+      "supportTube": 0.03,
+      "supportDepth": 0.52,
+      "supportHeight": 0.42,
+      "supportEdgeClearance": 0.002,
+      "status": "illustrative_unmeasured"
+    },
+    {
+      "id": "growing-again-bank-2",
+      "supportType": "shared-seam-clamp",
+      "supportTube": 0.03,
+      "supportDepth": 0.52,
+      "supportHeight": 0.42,
+      "supportEdgeClearance": 0.002,
+      "status": "illustrative_unmeasured"
+    },
+    {
+      "id": "growing-again-bank-3",
       "supportType": "shared-seam-clamp",
       "supportTube": 0.03,
       "supportDepth": 0.52,
@@ -2481,35 +2615,43 @@
   "poetryGlassPanels": [
     {
       "id": "ga-poetry-title",
-      "joinedGroup": "growing-again-continuous",
-      "x": 4.6,
-      "z": 22.349999999999998,
-      "yaw": 90,
+      "joinedGroup": "growing-again-bank-1",
+      "x": 4.3015537,
+      "z": 22.2993654,
+      "yaw": 80,
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
       "viewingNormal": [
-        -1,
-        0
+        -0.984807753012208,
+        0.17364817766693041
       ],
       "role": "transparent_poetry_panel_not_artwork",
-      "note": "透明空白为诗句的载体；与作品共面，不再向通道挑出。字迹静态退淡试验，非已确定水溶材料。"
+      "note": "三段错落玻璃中的同面接缝共享夹架；尺寸与结构待现场复核。",
+      "normal": [
+        -0.984807753012208,
+        0.17364817766693041
+      ]
     },
     {
       "id": "ga-poetry-sea",
-      "joinedGroup": "growing-again-continuous",
-      "x": 4.6,
-      "z": 24.45,
-      "yaw": 90,
+      "joinedGroup": "growing-again-bank-2",
+      "x": 4.3584463,
+      "z": 24.7693654,
+      "yaw": 100,
       "width": 0.7,
       "height": 1.8,
       "bottom": 0.035,
       "viewingNormal": [
-        -1,
-        0
+        -0.984807753012208,
+        -0.1736481776669303
       ],
       "role": "transparent_poetry_panel_not_artwork",
-      "note": "透明空白为诗句的载体；与作品共面，不再向通道挑出。字迹静态退淡试验，非已确定水溶材料。"
+      "note": "三段错落玻璃中的同面接缝共享夹架；尺寸与结构待现场复核。",
+      "normal": [
+        -0.984807753012208,
+        -0.1736481776669303
+      ]
     }
   ],
   "readingSequences": [
@@ -2522,6 +2664,7 @@
         "mountains-open",
         "river",
         "river-through",
+        "river-each",
         "world",
         "across",
         "across-gen",
@@ -2535,7 +2678,7 @@
           "across-gen",
           "between"
         ],
-        "note": "入口先读摄影与横，沿左墙来到27号后补读世界，再接活动板上的亘。河流两句可在返程依原语序读。"
+        "note": "从A口进入先读墙上小字，再到单片玻璃。返向沿右墙可依原语序读完河流三组英文。"
       },
       "readingMode": "selected_encounters_not_full_linear_poem",
       "note": "此列表按原诗关系列出在场选段，现场允许回望；完整诗歌及原有双语关系在数字诗册阅读。"
@@ -2599,7 +2742,7 @@
         "once_36"
       ],
       "zRange": [
-        0.979,
+        1.144,
         13.06
       ]
     },
@@ -2660,7 +2803,7 @@
   "nativeBaseline": "models/长廊展厅_空间底模_近5m试算.blend",
   "nativeBaselineQA": "qa/native_r09_model_qa.json",
   "spaceRevision": "20261106-r09-near5m",
-  "previousTrial": "20261118-trial20",
+  "previousTrial": "20261118-trial21",
   "spatialZones": [
     {
       "id": "opening",
@@ -2699,12 +2842,25 @@
     }
   ],
   "growingAgainAreaStudy": {
-    "interpretation": "reduce occupied wall field, retain confirmed physical glass dimensions",
+    "configuration": "three offset banks on original white wall",
     "paneWidth": 0.7,
     "paneHeight": 1.8,
-    "joinedLength": 5.6,
-    "wallFieldBefore": 9.55,
-    "wallFieldAfter": 7.7,
+    "order": [
+      "ga-01",
+      "ga-02",
+      "ga-poetry-title",
+      "ga-03",
+      "ga-04",
+      "ga-poetry-sea",
+      "ga-05",
+      "ga-06"
+    ],
+    "bankLengths": [
+      2.1,
+      2.1,
+      1.4
+    ],
+    "colourField": false,
     "physicalResizing": false
   },
   "studyVariant": "spatial-selected-reading",
@@ -2773,7 +2929,7 @@
         17
       ]
     ],
-    "adaptation": "开篇五幅收拢为同视域，32回到30上方；其余摄影位置不变。35/28保留跨通道对角，19/11和13/36各为板墙两面，需回看。",
+    "adaptation": "A端五幅沿原顺序展开。10与32稍偏离大幅中心，22单独落在两组间。",
     "empty_faces": [],
     "empty_face_reason": "三块板墙的两面均有图像或文字；late-B已有11，boundary-B已有月亮。"
   },
@@ -2950,9 +3106,9 @@
           6
         ],
         "sourcePDFSHA256": "0bb15cbbc38b8da5f60cfa7299b135a35ee14e27d799b9579c806140ef06a272",
-        "path": "assets/typography/curation-trial21/river-with-english.png",
-        "sourceSVG": "assets/typography/curation-trial21/river-with-english.svg",
-        "sha256": "ea0cc7efc69d762fae3e59e97c18bb5df360e9a2a729fdae8de6bb3263717dd2",
+        "path": "assets/typography/curation-trial22/river.png",
+        "sourceSVG": "assets/typography/curation-trial22/river.svg",
+        "sha256": "74218c1caae8c95b1aa26a6f59d73e14b3482efd6cfd0c15229943016ef46d1c",
         "physicalWidth": 1.07775,
         "physicalHeight": 0.714,
         "localCenterX": 0,
@@ -2973,9 +3129,9 @@
         "uniformScaleOnly": true,
         "extractionRegion": null,
         "excludedASCII": false,
-        "text": "河流带有未命名的方向，\nthe river,",
-        "note": "在作者保存的原位恢复第6页河流下方弧形的 the river,，英文笔画取中灰 #898989。",
-        "selectiveLanguageEdit": true,
+        "text": "河流带有未命名的方向，\nthe river, carrying an unnamed",
+        "note": "第6页中英文沿原稿各自的曲线。喷泉之后先读英文起句，原作者试排的中文位置与字形保留。",
+        "selectiveLanguageEdit": false,
         "satinInk": {
           "text": "the river,",
           "color": "#898989",
@@ -2986,7 +3142,7 @@
             0.44243697478991595
           ]
         },
-        "retainedEnglish": "the river,"
+        "retainedEnglish": "the river, carrying an unnamed"
       },
       {
         "id": "river-through",
@@ -2994,9 +3150,9 @@
           7
         ],
         "sourcePDFSHA256": "0bb15cbbc38b8da5f60cfa7299b135a35ee14e27d799b9579c806140ef06a272",
-        "path": "assets/typography/curation-20261117/river-through-zh-only.png",
-        "sourceSVG": "assets/typography/curation-20261117/river-through-zh-only.svg",
-        "sha256": "3f90a51f71f059a254a244fb767a8916b67fde42ee8f33171e58a19431c41a05",
+        "path": "assets/typography/curation-trial22/river-through.png",
+        "sourceSVG": "assets/typography/curation-trial22/river-through.svg",
+        "sha256": "f40dd6a840e7407eaadc469cc30e8bc742a40ca540fcd538723da484f59ae43e",
         "physicalWidth": 1.1340000000000001,
         "physicalHeight": 0.74325,
         "localCenterX": 0,
@@ -3016,10 +3172,44 @@
         ],
         "uniformScaleOnly": true,
         "extractionRegion": null,
-        "excludedASCII": true,
-        "text": "从每个人流过。",
-        "note": "采用作者草稿位置，留在08号喷泉与26号柱廊之间。墨迹与河流上半句之间有一张摄影。",
-        "selectiveLanguageEdit": true
+        "excludedASCII": false,
+        "text": "从每个人流过。\ndirection, flows through",
+        "note": "第7页的 direction, flows through 随原稿斜向上接，中文仍落在作者保存的站位。",
+        "selectiveLanguageEdit": false,
+        "retainedEnglish": "direction, flows through"
+      },
+      {
+        "id": "river-each",
+        "sourcePages": [
+          8
+        ],
+        "sourcePDFSHA256": "0bb15cbbc38b8da5f60cfa7299b135a35ee14e27d799b9579c806140ef06a272",
+        "path": "assets/typography/curation-trial22/river-each.png",
+        "sourceSVG": "assets/typography/curation-trial22/river-each.svg",
+        "sha256": "94645e0e0fbc06c5f9368cc238712228d7215ace4c4bbe4d8094b64810af03a7",
+        "physicalWidth": 0.5475,
+        "physicalHeight": 0.1515,
+        "localCenterX": 0,
+        "localCenterY": 0,
+        "inkWidth": 0.5385,
+        "inkHeight": 0.14250000000000002,
+        "metresPerPDFPoint": 0.003,
+        "pdfInkBounds": [
+          100.5,
+          177.0,
+          280.0,
+          224.5
+        ],
+        "fonts": [
+          "SourceHanSerifSC"
+        ],
+        "uniformScaleOnly": true,
+        "extractionRegion": null,
+        "excludedASCII": false,
+        "text": "each person.",
+        "note": "第8页的 each person. 在返向行走时接上前两组英文。与26号之间保留空白。",
+        "retainedEnglish": "each person.",
+        "selectiveLanguageEdit": false
       },
       {
         "id": "world",
@@ -3030,13 +3220,13 @@
         "path": "assets/typography/book-20261116/world.png",
         "sourceSVG": "assets/typography/book-20261116/world.svg",
         "sha256": "2e99f8e6efba18417cae382abfedd8bcc7f1b791fde938a42b8b485d8a3477f5",
-        "physicalWidth": 0.654355140186916,
-        "physicalHeight": 0.128,
-        "localCenterX": 0,
-        "localCenterY": 0,
-        "inkWidth": 0.64,
-        "inkHeight": 0.11364485981308411,
-        "metresPerPDFPoint": 0.004785046728971963,
+        "physicalWidth": 0.4,
+        "physicalHeight": 0.07824497257769651,
+        "localCenterX": 0.0,
+        "localCenterY": 0.0,
+        "inkWidth": 0.39122486288848257,
+        "inkHeight": 0.06946983546617914,
+        "metresPerPDFPoint": 0.002925045703839122,
         "pdfInkBounds": [
           108.25,
           268.75,
@@ -3050,7 +3240,7 @@
         "extractionRegion": null,
         "excludedASCII": false,
         "text": "已经发生的世界，",
-        "note": "在第一块活动板之前、27号照片下方偏右才遇到这句。沿用原稿的细框、框外逗号和原大。"
+        "note": "字块宽40厘米，原稿细框和框外逗号等比缩小；整句落在既有左长墙、玻璃靠A口的一侧。"
       },
       {
         "id": "across",
@@ -3407,7 +3597,7 @@
       }
     ],
     "carrierCounts": {
-      "wall": 12,
+      "wall": 13,
       "floor": 3,
       "glass": 3
     },
@@ -3507,17 +3697,3049 @@
     "sourceLayoutSHA256": "c2e44525d0d2e206f7890c9b41e39d67b73bad10363ba9f9b4c5599b63f88bcb"
   },
   "curationRevision": {
-    "sourceLayoutSHA256": "04e5ead6ffd317af3851230e24312e7f4af5b149f4d0f6eca13fed8d80f0070b",
-    "script": "source/build_curation_trial21.py",
+    "sourceLayoutSHA256": "ce7cad5654edf970e98ad0b5b642efd481e92e11cf3701c7384bad4d8b9ba247",
+    "script": "source/build_curation_trial22.py",
+    "completeReaderVerifiedSHA256": "3f3ee95e80ebb615fa452770c17494e2395914c6a8fe44bc9436cfed4122c9f1",
     "changedPhotoIds": [
-      "yqzc-03",
-      "yqzc-04"
+      "once_31",
+      "once_10",
+      "once_22",
+      "once_30",
+      "once_32"
     ],
     "changedPoemIds": [
-      "river"
+      "river",
+      "river-through",
+      "river-each",
+      "world"
+    ],
+    "addedPoemIds": [
+      "river-each"
     ],
     "removedPoemIds": [],
-    "completeReaderVerifiedSHA256": "3f3ee95e80ebb615fa452770c17494e2395914c6a8fe44bc9436cfed4122c9f1",
-    "nativeModelUpdated": true
-  }
+    "draftMigration": {
+      "resetIds": [
+        "world",
+        "glass-sea-echo",
+        "glass-growing"
+      ],
+      "addedIds": [
+        "river-each"
+      ]
+    }
+  },
+  "visitorInstallation": {
+    "finishes": {
+      "post": "#66665f",
+      "foot": "#8b8980",
+      "cord": "#747369",
+      "edge": "#b4b1a9",
+      "arrow": "#544f41"
+    },
+    "zones": [
+      {
+        "id": "poem-glass",
+        "path": [
+          [
+            0.071,
+            4.3
+          ],
+          [
+            1.46,
+            4.3
+          ],
+          [
+            1.46,
+            5.2
+          ],
+          [
+            0.071,
+            5.2
+          ]
+        ],
+        "side": "left",
+        "cordHeight": 0.72,
+        "cordRadius": 0.0028,
+        "postRadius": 0.0105,
+        "baseRadius": 0.064,
+        "toeHeight": 0.075,
+        "toeThickness": 0.012
+      },
+      {
+        "id": "growing-again",
+        "path": [
+          [
+            4.93,
+            19.58
+          ],
+          [
+            3.76,
+            19.58
+          ],
+          [
+            3.49,
+            20.45
+          ],
+          [
+            3.52,
+            22.55
+          ],
+          [
+            3.79,
+            23.02
+          ],
+          [
+            3.79,
+            24.79
+          ],
+          [
+            3.52,
+            25.54
+          ],
+          [
+            3.5,
+            27.22
+          ],
+          [
+            4.93,
+            27.22
+          ]
+        ],
+        "side": "right",
+        "cordHeight": 0.72,
+        "cordRadius": 0.0028,
+        "postRadius": 0.0105,
+        "baseRadius": 0.064,
+        "toeHeight": 0.075,
+        "toeThickness": 0.012
+      },
+      {
+        "id": "pillow",
+        "path": [
+          [
+            0.071,
+            28.29
+          ],
+          [
+            0.4,
+            28.29
+          ],
+          [
+            0.4,
+            30.51
+          ],
+          [
+            0.071,
+            30.51
+          ]
+        ],
+        "side": "left",
+        "cordHeight": 0.72,
+        "cordRadius": 0.0028,
+        "postRadius": 0.0105,
+        "baseRadius": 0.064,
+        "toeHeight": 0.075,
+        "toeThickness": 0.012
+      }
+    ],
+    "directionSign": {
+      "id": "entry-route-arrow",
+      "x": 4.68,
+      "z": 1.23,
+      "axis": [
+        -0.78,
+        0.6257795
+      ],
+      "baseRadius": 0.137,
+      "rodRadius": 0.0065,
+      "height": 1.13,
+      "profile": [
+        [
+          -0.137,
+          0.009
+        ],
+        [
+          -0.012,
+          0.009
+        ],
+        [
+          -0.012,
+          1.025
+        ],
+        [
+          0.226,
+          1.025
+        ],
+        [
+          0.146,
+          1.108
+        ],
+        [
+          0.166,
+          1.13
+        ],
+        [
+          0.29,
+          1.009
+        ],
+        [
+          0.167,
+          0.889
+        ],
+        [
+          0.148,
+          0.911
+        ],
+        [
+          0.226,
+          0.991
+        ],
+        [
+          0.013,
+          0.991
+        ],
+        [
+          0.013,
+          0.009
+        ],
+        [
+          0.137,
+          0.009
+        ]
+      ]
+    },
+    "notes": [
+      "IMG_5749／5713：环底、折回的单杆箭头。A口右墙边指向左前方。",
+      "IMG_5693／5713：细绳与窄杆圆脚。试排提高线位，沿线底部增设可被手杖探到的连续低挡边。",
+      "制作前需场馆用实样复核细绳可见性、底盘稳定、玻璃支撑、消防及现场有效净宽。"
+    ],
+    "components": [
+      {
+        "id": "poem-glass",
+        "tubes": [
+          [
+            "foot",
+            0.064,
+            [
+              0.071,
+              0.003,
+              4.3
+            ],
+            [
+              0.071,
+              0.014,
+              4.3
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              0.071,
+              0.014,
+              4.3
+            ],
+            [
+              0.071,
+              0.728,
+              4.3
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              0.071,
+              0.6799999999999999,
+              4.3
+            ],
+            [
+              0.071,
+              0.693,
+              4.3
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              1.46,
+              0.003,
+              4.3
+            ],
+            [
+              1.46,
+              0.014,
+              4.3
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              1.46,
+              0.014,
+              4.3
+            ],
+            [
+              1.46,
+              0.728,
+              4.3
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              1.46,
+              0.6799999999999999,
+              4.3
+            ],
+            [
+              1.46,
+              0.693,
+              4.3
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              1.46,
+              0.003,
+              5.2
+            ],
+            [
+              1.46,
+              0.014,
+              5.2
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              1.46,
+              0.014,
+              5.2
+            ],
+            [
+              1.46,
+              0.728,
+              5.2
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              1.46,
+              0.6799999999999999,
+              5.2
+            ],
+            [
+              1.46,
+              0.693,
+              5.2
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              0.071,
+              0.003,
+              5.2
+            ],
+            [
+              0.071,
+              0.014,
+              5.2
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              0.071,
+              0.014,
+              5.2
+            ],
+            [
+              0.071,
+              0.728,
+              5.2
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              0.071,
+              0.6799999999999999,
+              5.2
+            ],
+            [
+              0.071,
+              0.693,
+              5.2
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              0.071,
+              0.72,
+              4.3
+            ],
+            [
+              1.46,
+              0.72,
+              4.3
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              1.46,
+              0.72,
+              4.3
+            ],
+            [
+              1.46,
+              0.72,
+              5.2
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              1.46,
+              0.72,
+              5.2
+            ],
+            [
+              0.071,
+              0.72,
+              5.2
+            ]
+          ]
+        ],
+        "plates": [
+          [
+            0.071,
+            4.3,
+            1.46,
+            4.3,
+            0.075,
+            0.012
+          ],
+          [
+            1.46,
+            4.3,
+            1.46,
+            5.2,
+            0.075,
+            0.012
+          ],
+          [
+            1.46,
+            5.2,
+            0.071,
+            5.2,
+            0.075,
+            0.012
+          ]
+        ]
+      },
+      {
+        "id": "growing-again",
+        "tubes": [
+          [
+            "foot",
+            0.064,
+            [
+              4.93,
+              0.003,
+              19.58
+            ],
+            [
+              4.93,
+              0.014,
+              19.58
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              4.93,
+              0.014,
+              19.58
+            ],
+            [
+              4.93,
+              0.728,
+              19.58
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              4.93,
+              0.6799999999999999,
+              19.58
+            ],
+            [
+              4.93,
+              0.693,
+              19.58
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              3.76,
+              0.003,
+              19.58
+            ],
+            [
+              3.76,
+              0.014,
+              19.58
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              3.76,
+              0.014,
+              19.58
+            ],
+            [
+              3.76,
+              0.728,
+              19.58
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              3.76,
+              0.6799999999999999,
+              19.58
+            ],
+            [
+              3.76,
+              0.693,
+              19.58
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              3.49,
+              0.003,
+              20.45
+            ],
+            [
+              3.49,
+              0.014,
+              20.45
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              3.49,
+              0.014,
+              20.45
+            ],
+            [
+              3.49,
+              0.728,
+              20.45
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              3.49,
+              0.6799999999999999,
+              20.45
+            ],
+            [
+              3.49,
+              0.693,
+              20.45
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              3.52,
+              0.003,
+              22.55
+            ],
+            [
+              3.52,
+              0.014,
+              22.55
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              3.52,
+              0.014,
+              22.55
+            ],
+            [
+              3.52,
+              0.728,
+              22.55
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              3.52,
+              0.6799999999999999,
+              22.55
+            ],
+            [
+              3.52,
+              0.693,
+              22.55
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              3.79,
+              0.003,
+              23.02
+            ],
+            [
+              3.79,
+              0.014,
+              23.02
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              3.79,
+              0.014,
+              23.02
+            ],
+            [
+              3.79,
+              0.728,
+              23.02
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              3.79,
+              0.6799999999999999,
+              23.02
+            ],
+            [
+              3.79,
+              0.693,
+              23.02
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              3.79,
+              0.003,
+              24.79
+            ],
+            [
+              3.79,
+              0.014,
+              24.79
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              3.79,
+              0.014,
+              24.79
+            ],
+            [
+              3.79,
+              0.728,
+              24.79
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              3.79,
+              0.6799999999999999,
+              24.79
+            ],
+            [
+              3.79,
+              0.693,
+              24.79
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              3.52,
+              0.003,
+              25.54
+            ],
+            [
+              3.52,
+              0.014,
+              25.54
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              3.52,
+              0.014,
+              25.54
+            ],
+            [
+              3.52,
+              0.728,
+              25.54
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              3.52,
+              0.6799999999999999,
+              25.54
+            ],
+            [
+              3.52,
+              0.693,
+              25.54
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              3.5,
+              0.003,
+              27.22
+            ],
+            [
+              3.5,
+              0.014,
+              27.22
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              3.5,
+              0.014,
+              27.22
+            ],
+            [
+              3.5,
+              0.728,
+              27.22
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              3.5,
+              0.6799999999999999,
+              27.22
+            ],
+            [
+              3.5,
+              0.693,
+              27.22
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              4.93,
+              0.003,
+              27.22
+            ],
+            [
+              4.93,
+              0.014,
+              27.22
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              4.93,
+              0.014,
+              27.22
+            ],
+            [
+              4.93,
+              0.728,
+              27.22
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              4.93,
+              0.6799999999999999,
+              27.22
+            ],
+            [
+              4.93,
+              0.693,
+              27.22
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              4.93,
+              0.72,
+              19.58
+            ],
+            [
+              3.76,
+              0.72,
+              19.58
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              3.76,
+              0.72,
+              19.58
+            ],
+            [
+              3.49,
+              0.72,
+              20.45
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              3.49,
+              0.72,
+              20.45
+            ],
+            [
+              3.52,
+              0.72,
+              22.55
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              3.52,
+              0.72,
+              22.55
+            ],
+            [
+              3.79,
+              0.72,
+              23.02
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              3.79,
+              0.72,
+              23.02
+            ],
+            [
+              3.79,
+              0.72,
+              24.79
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              3.79,
+              0.72,
+              24.79
+            ],
+            [
+              3.52,
+              0.72,
+              25.54
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              3.52,
+              0.72,
+              25.54
+            ],
+            [
+              3.5,
+              0.72,
+              27.22
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              3.5,
+              0.72,
+              27.22
+            ],
+            [
+              4.93,
+              0.72,
+              27.22
+            ]
+          ]
+        ],
+        "plates": [
+          [
+            4.93,
+            19.58,
+            3.76,
+            19.58,
+            0.075,
+            0.012
+          ],
+          [
+            3.76,
+            19.58,
+            3.49,
+            20.45,
+            0.075,
+            0.012
+          ],
+          [
+            3.49,
+            20.45,
+            3.52,
+            22.55,
+            0.075,
+            0.012
+          ],
+          [
+            3.52,
+            22.55,
+            3.79,
+            23.02,
+            0.075,
+            0.012
+          ],
+          [
+            3.79,
+            23.02,
+            3.79,
+            24.79,
+            0.075,
+            0.012
+          ],
+          [
+            3.79,
+            24.79,
+            3.52,
+            25.54,
+            0.075,
+            0.012
+          ],
+          [
+            3.52,
+            25.54,
+            3.5,
+            27.22,
+            0.075,
+            0.012
+          ],
+          [
+            3.5,
+            27.22,
+            4.93,
+            27.22,
+            0.075,
+            0.012
+          ]
+        ]
+      },
+      {
+        "id": "pillow",
+        "tubes": [
+          [
+            "foot",
+            0.064,
+            [
+              0.071,
+              0.003,
+              28.29
+            ],
+            [
+              0.071,
+              0.014,
+              28.29
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              0.071,
+              0.014,
+              28.29
+            ],
+            [
+              0.071,
+              0.728,
+              28.29
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              0.071,
+              0.6799999999999999,
+              28.29
+            ],
+            [
+              0.071,
+              0.693,
+              28.29
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              0.4,
+              0.003,
+              28.29
+            ],
+            [
+              0.4,
+              0.014,
+              28.29
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              0.4,
+              0.014,
+              28.29
+            ],
+            [
+              0.4,
+              0.728,
+              28.29
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              0.4,
+              0.6799999999999999,
+              28.29
+            ],
+            [
+              0.4,
+              0.693,
+              28.29
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              0.4,
+              0.003,
+              30.51
+            ],
+            [
+              0.4,
+              0.014,
+              30.51
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              0.4,
+              0.014,
+              30.51
+            ],
+            [
+              0.4,
+              0.728,
+              30.51
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              0.4,
+              0.6799999999999999,
+              30.51
+            ],
+            [
+              0.4,
+              0.693,
+              30.51
+            ]
+          ],
+          [
+            "foot",
+            0.064,
+            [
+              0.071,
+              0.003,
+              30.51
+            ],
+            [
+              0.071,
+              0.014,
+              30.51
+            ]
+          ],
+          [
+            "post",
+            0.0105,
+            [
+              0.071,
+              0.014,
+              30.51
+            ],
+            [
+              0.071,
+              0.728,
+              30.51
+            ]
+          ],
+          [
+            "foot",
+            0.011000000000000001,
+            [
+              0.071,
+              0.6799999999999999,
+              30.51
+            ],
+            [
+              0.071,
+              0.693,
+              30.51
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              0.071,
+              0.72,
+              28.29
+            ],
+            [
+              0.4,
+              0.72,
+              28.29
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              0.4,
+              0.72,
+              28.29
+            ],
+            [
+              0.4,
+              0.72,
+              30.51
+            ]
+          ],
+          [
+            "cord",
+            0.0028,
+            [
+              0.4,
+              0.72,
+              30.51
+            ],
+            [
+              0.071,
+              0.72,
+              30.51
+            ]
+          ]
+        ],
+        "plates": [
+          [
+            0.071,
+            28.29,
+            0.4,
+            28.29,
+            0.075,
+            0.012
+          ],
+          [
+            0.4,
+            28.29,
+            0.4,
+            30.51,
+            0.075,
+            0.012
+          ],
+          [
+            0.4,
+            30.51,
+            0.071,
+            30.51,
+            0.075,
+            0.012
+          ]
+        ]
+      },
+      {
+        "id": "entry-route-arrow",
+        "tubes": [
+          [
+            "arrow",
+            0.0065,
+            [
+              4.817,
+              0.009,
+              1.23
+            ],
+            [
+              4.816249,
+              0.009,
+              1.24432
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.816249,
+              0.009,
+              1.24432
+            ],
+            [
+              4.814006,
+              0.009,
+              1.258484
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.814006,
+              0.009,
+              1.258484
+            ],
+            [
+              4.810295,
+              0.009,
+              1.272335
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.810295,
+              0.009,
+              1.272335
+            ],
+            [
+              4.805156,
+              0.009,
+              1.285723
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.805156,
+              0.009,
+              1.285723
+            ],
+            [
+              4.798645,
+              0.009,
+              1.2985
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.798645,
+              0.009,
+              1.2985
+            ],
+            [
+              4.790835,
+              0.009,
+              1.310527
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.790835,
+              0.009,
+              1.310527
+            ],
+            [
+              4.781811,
+              0.009,
+              1.321671
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.781811,
+              0.009,
+              1.321671
+            ],
+            [
+              4.771671,
+              0.009,
+              1.331811
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.771671,
+              0.009,
+              1.331811
+            ],
+            [
+              4.760527,
+              0.009,
+              1.340835
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.760527,
+              0.009,
+              1.340835
+            ],
+            [
+              4.7485,
+              0.009,
+              1.348645
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.7485,
+              0.009,
+              1.348645
+            ],
+            [
+              4.735723,
+              0.009,
+              1.355156
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.735723,
+              0.009,
+              1.355156
+            ],
+            [
+              4.722335,
+              0.009,
+              1.360295
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.722335,
+              0.009,
+              1.360295
+            ],
+            [
+              4.708484,
+              0.009,
+              1.364006
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.708484,
+              0.009,
+              1.364006
+            ],
+            [
+              4.69432,
+              0.009,
+              1.366249
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.69432,
+              0.009,
+              1.366249
+            ],
+            [
+              4.68,
+              0.009,
+              1.367
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.68,
+              0.009,
+              1.367
+            ],
+            [
+              4.66568,
+              0.009,
+              1.366249
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.66568,
+              0.009,
+              1.366249
+            ],
+            [
+              4.651516,
+              0.009,
+              1.364006
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.651516,
+              0.009,
+              1.364006
+            ],
+            [
+              4.637665,
+              0.009,
+              1.360295
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.637665,
+              0.009,
+              1.360295
+            ],
+            [
+              4.624277,
+              0.009,
+              1.355156
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.624277,
+              0.009,
+              1.355156
+            ],
+            [
+              4.6115,
+              0.009,
+              1.348645
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.6115,
+              0.009,
+              1.348645
+            ],
+            [
+              4.599473,
+              0.009,
+              1.340835
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.599473,
+              0.009,
+              1.340835
+            ],
+            [
+              4.588329,
+              0.009,
+              1.331811
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.588329,
+              0.009,
+              1.331811
+            ],
+            [
+              4.578189,
+              0.009,
+              1.321671
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.578189,
+              0.009,
+              1.321671
+            ],
+            [
+              4.569165,
+              0.009,
+              1.310527
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.569165,
+              0.009,
+              1.310527
+            ],
+            [
+              4.561355,
+              0.009,
+              1.2985
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.561355,
+              0.009,
+              1.2985
+            ],
+            [
+              4.554844,
+              0.009,
+              1.285723
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.554844,
+              0.009,
+              1.285723
+            ],
+            [
+              4.549705,
+              0.009,
+              1.272335
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.549705,
+              0.009,
+              1.272335
+            ],
+            [
+              4.545994,
+              0.009,
+              1.258484
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.545994,
+              0.009,
+              1.258484
+            ],
+            [
+              4.543751,
+              0.009,
+              1.24432
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.543751,
+              0.009,
+              1.24432
+            ],
+            [
+              4.543,
+              0.009,
+              1.23
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.543,
+              0.009,
+              1.23
+            ],
+            [
+              4.543751,
+              0.009,
+              1.21568
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.543751,
+              0.009,
+              1.21568
+            ],
+            [
+              4.545994,
+              0.009,
+              1.201516
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.545994,
+              0.009,
+              1.201516
+            ],
+            [
+              4.549705,
+              0.009,
+              1.187665
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.549705,
+              0.009,
+              1.187665
+            ],
+            [
+              4.554844,
+              0.009,
+              1.174277
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.554844,
+              0.009,
+              1.174277
+            ],
+            [
+              4.561355,
+              0.009,
+              1.1615
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.561355,
+              0.009,
+              1.1615
+            ],
+            [
+              4.569165,
+              0.009,
+              1.149473
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.569165,
+              0.009,
+              1.149473
+            ],
+            [
+              4.578189,
+              0.009,
+              1.138329
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.578189,
+              0.009,
+              1.138329
+            ],
+            [
+              4.588329,
+              0.009,
+              1.128189
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.588329,
+              0.009,
+              1.128189
+            ],
+            [
+              4.599473,
+              0.009,
+              1.119165
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.599473,
+              0.009,
+              1.119165
+            ],
+            [
+              4.6115,
+              0.009,
+              1.111355
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.6115,
+              0.009,
+              1.111355
+            ],
+            [
+              4.624277,
+              0.009,
+              1.104844
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.624277,
+              0.009,
+              1.104844
+            ],
+            [
+              4.637665,
+              0.009,
+              1.099705
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.637665,
+              0.009,
+              1.099705
+            ],
+            [
+              4.651516,
+              0.009,
+              1.095994
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.651516,
+              0.009,
+              1.095994
+            ],
+            [
+              4.66568,
+              0.009,
+              1.093751
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.66568,
+              0.009,
+              1.093751
+            ],
+            [
+              4.68,
+              0.009,
+              1.093
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.68,
+              0.009,
+              1.093
+            ],
+            [
+              4.69432,
+              0.009,
+              1.093751
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.69432,
+              0.009,
+              1.093751
+            ],
+            [
+              4.708484,
+              0.009,
+              1.095994
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.708484,
+              0.009,
+              1.095994
+            ],
+            [
+              4.722335,
+              0.009,
+              1.099705
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.722335,
+              0.009,
+              1.099705
+            ],
+            [
+              4.735723,
+              0.009,
+              1.104844
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.735723,
+              0.009,
+              1.104844
+            ],
+            [
+              4.7485,
+              0.009,
+              1.111355
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.7485,
+              0.009,
+              1.111355
+            ],
+            [
+              4.760527,
+              0.009,
+              1.119165
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.760527,
+              0.009,
+              1.119165
+            ],
+            [
+              4.771671,
+              0.009,
+              1.128189
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.771671,
+              0.009,
+              1.128189
+            ],
+            [
+              4.781811,
+              0.009,
+              1.138329
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.781811,
+              0.009,
+              1.138329
+            ],
+            [
+              4.790835,
+              0.009,
+              1.149473
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.790835,
+              0.009,
+              1.149473
+            ],
+            [
+              4.798645,
+              0.009,
+              1.1615
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.798645,
+              0.009,
+              1.1615
+            ],
+            [
+              4.805156,
+              0.009,
+              1.174277
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.805156,
+              0.009,
+              1.174277
+            ],
+            [
+              4.810295,
+              0.009,
+              1.187665
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.810295,
+              0.009,
+              1.187665
+            ],
+            [
+              4.814006,
+              0.009,
+              1.201516
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.814006,
+              0.009,
+              1.201516
+            ],
+            [
+              4.816249,
+              0.009,
+              1.21568
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.816249,
+              0.009,
+              1.21568
+            ],
+            [
+              4.817,
+              0.009,
+              1.23
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.78686,
+              0.009,
+              1.144268
+            ],
+            [
+              4.70028,
+              0.009,
+              1.21373
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.70028,
+              0.009,
+              1.21373
+            ],
+            [
+              4.695502,
+              0.009875,
+              1.217563
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.695502,
+              0.009875,
+              1.217563
+            ],
+            [
+              4.69209,
+              0.0125,
+              1.2203
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.69209,
+              0.0125,
+              1.2203
+            ],
+            [
+              4.690042,
+              0.016875,
+              1.221943
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.690042,
+              0.016875,
+              1.221943
+            ],
+            [
+              4.68936,
+              0.023,
+              1.222491
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.68936,
+              0.023,
+              1.222491
+            ],
+            [
+              4.68936,
+              1.011,
+              1.222491
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.68936,
+              1.011,
+              1.222491
+            ],
+            [
+              4.688677,
+              1.017125,
+              1.223038
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.688677,
+              1.017125,
+              1.223038
+            ],
+            [
+              4.68663,
+              1.0215,
+              1.224681
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.68663,
+              1.0215,
+              1.224681
+            ],
+            [
+              4.683217,
+              1.024125,
+              1.227419
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.683217,
+              1.024125,
+              1.227419
+            ],
+            [
+              4.67844,
+              1.025,
+              1.231252
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.67844,
+              1.025,
+              1.231252
+            ],
+            [
+              4.51464,
+              1.025,
+              1.362665
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.51464,
+              1.025,
+              1.362665
+            ],
+            [
+              4.510336,
+              1.02563,
+              1.366118
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.510336,
+              1.02563,
+              1.366118
+            ],
+            [
+              4.508345,
+              1.02752,
+              1.367716
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.508345,
+              1.02752,
+              1.367716
+            ],
+            [
+              4.508665,
+              1.03067,
+              1.367459
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.508665,
+              1.03067,
+              1.367459
+            ],
+            [
+              4.511298,
+              1.03508,
+              1.365346
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.511298,
+              1.03508,
+              1.365346
+            ],
+            [
+              4.558542,
+              1.09792,
+              1.327444
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.558542,
+              1.09792,
+              1.327444
+            ],
+            [
+              4.561584,
+              1.102715,
+              1.325003
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.561584,
+              1.102715,
+              1.325003
+            ],
+            [
+              4.563133,
+              1.10702,
+              1.32376
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.563133,
+              1.10702,
+              1.32376
+            ],
+            [
+              4.563189,
+              1.110835,
+              1.323715
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.563189,
+              1.110835,
+              1.323715
+            ],
+            [
+              4.561752,
+              1.11416,
+              1.324868
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.561752,
+              1.11416,
+              1.324868
+            ],
+            [
+              4.554888,
+              1.12384,
+              1.330375
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.554888,
+              1.12384,
+              1.330375
+            ],
+            [
+              4.552489,
+              1.125924,
+              1.3323
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.552489,
+              1.125924,
+              1.3323
+            ],
+            [
+              4.549658,
+              1.126016,
+              1.334571
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.549658,
+              1.126016,
+              1.334571
+            ],
+            [
+              4.546397,
+              1.124115,
+              1.337187
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.546397,
+              1.124115,
+              1.337187
+            ],
+            [
+              4.542704,
+              1.120222,
+              1.34015
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.542704,
+              1.120222,
+              1.34015
+            ],
+            [
+              4.461616,
+              1.018778,
+              1.405206
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.461616,
+              1.018778,
+              1.405206
+            ],
+            [
+              4.458685,
+              1.013889,
+              1.407557
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.458685,
+              1.013889,
+              1.407557
+            ],
+            [
+              4.457708,
+              1.009,
+              1.408341
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.457708,
+              1.009,
+              1.408341
+            ],
+            [
+              4.458685,
+              1.004112,
+              1.407557
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.458685,
+              1.004112,
+              1.407557
+            ],
+            [
+              4.461616,
+              0.999223,
+              1.405205
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.461616,
+              0.999223,
+              1.405205
+            ],
+            [
+              4.541924,
+              0.898777,
+              1.340776
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.541924,
+              0.898777,
+              1.340776
+            ],
+            [
+              4.545603,
+              0.894884,
+              1.337824
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.545603,
+              0.894884,
+              1.337824
+            ],
+            [
+              4.548823,
+              0.892984,
+              1.335241
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.548823,
+              0.892984,
+              1.335241
+            ],
+            [
+              4.551586,
+              0.893076,
+              1.333024
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.551586,
+              0.893076,
+              1.333024
+            ],
+            [
+              4.55389,
+              0.89516,
+              1.331176
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.55389,
+              0.89516,
+              1.331176
+            ],
+            [
+              4.56041,
+              0.90484,
+              1.325945
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.56041,
+              0.90484,
+              1.325945
+            ],
+            [
+              4.561749,
+              0.908162,
+              1.32487
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.561749,
+              0.908162,
+              1.32487
+            ],
+            [
+              4.561617,
+              0.911966,
+              1.324977
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.561617,
+              0.911966,
+              1.324977
+            ],
+            [
+              4.560013,
+              0.916254,
+              1.326264
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.560013,
+              0.916254,
+              1.326264
+            ],
+            [
+              4.556937,
+              0.921024,
+              1.328731
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.556937,
+              0.921024,
+              1.328731
+            ],
+            [
+              4.511343,
+              0.980976,
+              1.36531
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.511343,
+              0.980976,
+              1.36531
+            ],
+            [
+              4.508691,
+              0.985361,
+              1.367438
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.508691,
+              0.985361,
+              1.367438
+            ],
+            [
+              4.508356,
+              0.988494,
+              1.367707
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.508356,
+              0.988494,
+              1.367707
+            ],
+            [
+              4.510339,
+              0.990373,
+              1.366116
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.510339,
+              0.990373,
+              1.366116
+            ],
+            [
+              4.51464,
+              0.991,
+              1.362665
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.51464,
+              0.991,
+              1.362665
+            ],
+            [
+              4.65894,
+              0.991,
+              1.246896
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.65894,
+              0.991,
+              1.246896
+            ],
+            [
+              4.663717,
+              0.990125,
+              1.243063
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.663717,
+              0.990125,
+              1.243063
+            ],
+            [
+              4.66713,
+              0.9875,
+              1.240325
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.66713,
+              0.9875,
+              1.240325
+            ],
+            [
+              4.669177,
+              0.983125,
+              1.238683
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.669177,
+              0.983125,
+              1.238683
+            ],
+            [
+              4.66986,
+              0.977,
+              1.238135
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.66986,
+              0.977,
+              1.238135
+            ],
+            [
+              4.66986,
+              0.023,
+              1.238135
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.66986,
+              0.023,
+              1.238135
+            ],
+            [
+              4.669177,
+              0.016875,
+              1.238683
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.669177,
+              0.016875,
+              1.238683
+            ],
+            [
+              4.66713,
+              0.0125,
+              1.240325
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.66713,
+              0.0125,
+              1.240325
+            ],
+            [
+              4.663717,
+              0.009875,
+              1.243063
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.663717,
+              0.009875,
+              1.243063
+            ],
+            [
+              4.65894,
+              0.009,
+              1.246896
+            ]
+          ],
+          [
+            "arrow",
+            0.0065,
+            [
+              4.65894,
+              0.009,
+              1.246896
+            ],
+            [
+              4.57314,
+              0.009,
+              1.315732
+            ]
+          ]
+        ],
+        "plates": []
+      }
+    ]
+  },
+  "wallGuides": [
+    {
+      "id": "opening",
+      "title": "后知后觉",
+      "surfaceId": "once-main",
+      "along": 1.44,
+      "centerY": 0.74,
+      "width": 0.261,
+      "height": 0.221,
+      "imageUrl": "wall-guide/opening.png",
+      "members": [
+        "once_10",
+        "once_31",
+        "once_22",
+        "once_32",
+        "once_30",
+        "once_05",
+        "once_12"
+      ]
+    },
+    {
+      "id": "seawall",
+      "title": "后知后觉",
+      "surfaceId": "once-main",
+      "along": 6.995,
+      "centerY": 1.35,
+      "width": 0.261,
+      "height": 0.192,
+      "imageUrl": "wall-guide/seawall.png",
+      "members": [
+        "once_21",
+        "once_24",
+        "once_20",
+        "once_27",
+        "once_13",
+        "once_36"
+      ]
+    },
+    {
+      "id": "snow",
+      "title": "后知后觉",
+      "surfaceId": "once-main",
+      "along": 22.75,
+      "centerY": 1.47,
+      "width": 0.261,
+      "height": 0.232,
+      "imageUrl": "wall-guide/snow.png",
+      "members": [
+        "once_18",
+        "once_28",
+        "once_33",
+        "once_16",
+        "once_34",
+        "once_09",
+        "once_19",
+        "once_11"
+      ]
+    },
+    {
+      "id": "last",
+      "title": "后知后觉",
+      "surfaceId": "once-main",
+      "along": 27.25,
+      "centerY": 1.44,
+      "width": 0.261,
+      "height": 0.14,
+      "imageUrl": "wall-guide/last.png",
+      "members": [
+        "once_01",
+        "once_02",
+        "once_17"
+      ]
+    },
+    {
+      "id": "rooms",
+      "title": "一切正常",
+      "surfaceId": "other-main",
+      "along": 5.94,
+      "centerY": 0.69,
+      "width": 0.261,
+      "height": 0.14,
+      "imageUrl": "wall-guide/rooms.png",
+      "members": [
+        "yqzc-01",
+        "yqzc-02",
+        "yqzc-03",
+        "yqzc-04"
+      ]
+    },
+    {
+      "id": "river-wall",
+      "title": "后知后觉",
+      "surfaceId": "other-main",
+      "along": 10.94,
+      "centerY": 1.54,
+      "width": 0.261,
+      "height": 0.186,
+      "imageUrl": "wall-guide/river-wall.png",
+      "members": [
+        "once_04",
+        "once_26",
+        "once_23",
+        "once_08",
+        "once_14",
+        "once_35"
+      ]
+    },
+    {
+      "id": "glass",
+      "title": "Growing Again",
+      "surfaceId": "other-main",
+      "along": 18.02,
+      "centerY": 1.52,
+      "width": 0.261,
+      "height": 0.159,
+      "imageUrl": "wall-guide/glass.png",
+      "members": [
+        "ga-01",
+        "ga-02",
+        "ga-03",
+        "ga-04",
+        "ga-05",
+        "ga-06"
+      ]
+    },
+    {
+      "id": "vessel",
+      "title": "VESSEL",
+      "surfaceId": "other-main",
+      "along": 28.45,
+      "centerY": 1.4,
+      "width": 0.128,
+      "height": 0.084,
+      "imageUrl": "wall-guide/vessel.png",
+      "members": [
+        "performance_vessel"
+      ]
+    },
+    {
+      "id": "pillow",
+      "title": "旅人-1",
+      "surfaceId": "once-main",
+      "along": 30.86,
+      "centerY": 1.42,
+      "width": 0.128,
+      "height": 0.073,
+      "imageUrl": "wall-guide/pillow.png",
+      "members": [
+        "traveler-1"
+      ]
+    }
+  ],
+  "exhibitionTitle": "AT ONCE"
 }

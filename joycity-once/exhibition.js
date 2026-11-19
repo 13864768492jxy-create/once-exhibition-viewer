@@ -804,6 +804,14 @@ export async function buildExhibition({scene, renderer, trackWash, layout = {}, 
     group.add(ceilingStudy); stats.ceilingStudyPlanes = 1;
   }
 
+  for (const guide of layout.wallGuides || []) {
+    const {a, direction, normal} = surfaces.get(guide.surfaceId);
+    const center = [a[0]+direction[0]*guide.along+normal[0]*.009, guide.centerY, a[1]+direction[1]*guide.along+normal[1]*.009];
+    const mount = faceGroup(group, '分区展签_' + guide.id, center, normal);
+    imageOn(mount, null, guide, guide.width, guide.height, 0, {alpha:true, preserveDimensions:true});
+    mount.userData = {role:'wallGuide', guideId:guide.id, memberIds:guide.members};
+  }
+  stats.wallGuides = layout.wallGuides?.length || 0;
   for (const record of layout.works || []) {
     const surface = surfaces.get(record.surfaceId);
     if (!surface) {
@@ -821,11 +829,14 @@ export async function buildExhibition({scene, renderer, trackWash, layout = {}, 
     const depth = positive(record.depth, record.type === 'video' ? .055 : .035);
 
     if (record.type === 'text') {
-      const paper = new THREE.MeshBasicMaterial({color: record.matColor || '#f8f7f2', side: THREE.DoubleSide, toneMapped: false});
-      box(work, '前言版面_排版待核', width, height, .008, 0, 0, .004, paper);
+      if (!record.directLettering) {
+        const paper = new THREE.MeshBasicMaterial({color: record.matColor || '#f8f7f2', side: THREE.DoubleSide, toneMapped: false});
+        box(work, '前言版面_排版待核', width, height, .008, 0, 0, .004, paper);
+      }
       const supplied = poetryRasters.get(record.id);
       if (supplied) {
-        const text = imageOn(work, null, {...record, imageUrl: supplied.imageUrl, type: 'poetry-raster'}, supplied.physicalWidth, supplied.physicalHeight, .009, {alpha: true, preserveDimensions: true});
+        const fullHeightTitle = record.id === 'preface-location' && record.directLettering && layout.revision.endsWith('trial22');
+        const text = imageOn(work, null, {...record, imageUrl: supplied.imageUrl, type: 'poetry-raster'}, supplied.physicalWidth, supplied.physicalHeight, .009, {alpha: true, preserveDimensions: true, maxTextureSide: fullHeightTitle ? 4096 : undefined});
         text.position.x = supplied.localCenterX || 0;
         text.position.y = supplied.localCenterY || 0;
         text.name = '独立排定字样_与原生模型一致';
@@ -899,7 +910,7 @@ export async function buildExhibition({scene, renderer, trackWash, layout = {}, 
       if (record.type === 'large') stats.large++;
       else stats.photos++;
     }
-    if (record.type !== 'text' && record.label !== false) labelForWork(work, item?.title || record.catalogId || record.id, width, height, depth, stats);
+    if (!stats.wallGuides && record.type !== 'text' && record.label !== false) labelForWork(work, item?.title || record.catalogId || record.id, width, height, depth, stats);
     register(record, work, item, center, normal, [width, height]);
   }
 
@@ -965,7 +976,7 @@ export async function buildExhibition({scene, renderer, trackWash, layout = {}, 
       box(work, '试排底脚_非施工构造', baseWidth, .035, .28, x, .0175 - center[1], 0, supportMaterial);
       if (bottom > .03) box(work, '试排短支撑_尺寸待核', .026, bottom + .04, .035, x, (bottom + .04) / 2 - center[1], 0, supportMaterial);
     }
-    labelForWork(work, item?.title || record.catalogId || record.id, width, height, .01, stats);
+    if (!stats.wallGuides) labelForWork(work, item?.title || record.catalogId || record.id, width, height, .01, stats);
     const a = [center[0] - direction[0] * supportWidth / 2, center[2] - direction[1] * supportWidth / 2];
     const b = [center[0] + direction[0] * supportWidth / 2, center[2] + direction[1] * supportWidth / 2];
     // Include the illustrative feet in the walking collision envelope.

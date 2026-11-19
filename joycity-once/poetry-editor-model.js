@@ -48,6 +48,9 @@ export function createPoetryEditorModel({THREE, exhibition, layout, space, onCha
   const sourceSHA = baseLayoutSHA256 || exhibition.group.userData.poetryRasterManifest?.sourceLayoutSHA256;
   if (typeof sourceSHA !== 'string' || !/^[a-f0-9]{64}$/i.test(sourceSHA)) throw new Error('文字编辑器缺少已核验的基准版本。');
   const acceptsTrial20 = layout.revision === TRIAL21.revision && sourceSHA === TRIAL21.sha;
+  const migration22 = layout.revision === '20261119-trial22' && layout.curationRevision?.sourceLayoutSHA256 === TRIAL21.sha
+    ? layout.curationRevision.draftMigration : null;
+  const ancestors = migration22 ? [TRIAL21,TRIAL20] : acceptsTrial20 ? [TRIAL20] : [];
   const entries = new Map(), values = new Map(), undoStack = [], redoStack = [];
   let transaction = null, disposed = false;
   exhibition.group.updateWorldMatrix(true, true);
@@ -200,14 +203,23 @@ export function createPoetryEditorModel({THREE, exhibition, layout, space, onCha
   function validateDraft(draft) {
     if (!plain(draft) || draft.schema !== 'once-poetry-draft' || draft.version !== 1) throw new Error('这不是可读取的 ONCE 文字试排方案。');
     const current = draft.baseRevision === layout.revision && draft.baseLayoutSHA256 === sourceSHA;
-    const fromTrial20 = acceptsTrial20 && draft.baseRevision === TRIAL20.revision && draft.baseLayoutSHA256 === TRIAL20.sha;
-    if (!current && !fromTrial20) throw new Error('方案来自另一版展厅，请打开对应基准版本后再导入。');
-    if ((fromTrial20 || draft.units != null) && draft.units !== 'metres') throw new Error('草稿位移单位须为米。');
+    const inherited = ancestors.some(base => draft.baseRevision === base.revision && draft.baseLayoutSHA256 === base.sha);
+    if (!current && !inherited) throw new Error('方案来自另一版展厅，请打开对应基准版本后再导入。');
+    if ((inherited || draft.units != null) && draft.units !== 'metres') throw new Error('草稿位移单位须为米。');
     if (!plain(draft.transforms) || (draft.locks != null && !plain(draft.locks))) throw new Error('方案中的文字位置数据无效。');
     if (Object.keys(draft.transforms).some(id => !entries.has(id)) || Object.keys(draft.locks || {}).some(id => !entries.has(id))) throw new Error('方案含有当前展厅不存在的文字块。');
     const next = {transforms: {}, locks: {}};
     for (const [id, entry] of entries) {
-      next.transforms[id] = validated(entry, draft.transforms[id] ?? IDENTITY, true);
+      const raw = draft.transforms[id] ?? IDENTITY;
+      if (inherited && migration22?.addedIds.includes(id) && (id in draft.transforms || id in (draft.locks || {}))) {
+        throw new Error('旧版草稿含有该版本尚未展出的文字。');
+      }
+      if (inherited && migration22?.resetIds.includes(id)) {
+        if (!plain(raw) || Object.keys(raw).length !== 3 || ![raw.u,raw.v,raw.scale].every(finite) || raw.scale < .25 || raw.scale > 2) {
+          throw new Error('旧版文字数据无效。');
+        }
+        next.transforms[id] = {...IDENTITY};
+      } else next.transforms[id] = validated(entry, raw, true);
       const locked = draft.locks?.[id] ?? DEFAULT_LOCKS.has(id);
       if (typeof locked !== 'boolean') throw new Error(`「${id}」的锁定状态无效。`);
       next.locks[id] = locked;
@@ -216,7 +228,7 @@ export function createPoetryEditorModel({THREE, exhibition, layout, space, onCha
   }
   // Offer the newest compatible saved draft without applying it or rewriting storage.
   function findSavedDraft(read) {
-    for (const sha of acceptsTrial20 ? [sourceSHA, TRIAL20.sha] : [sourceSHA]) {
+    for (const sha of [sourceSHA, ...ancestors.map(base => base.sha)]) {
       try {
         const draft = JSON.parse(read(sha));
         if (draft?.baseLayoutSHA256 !== sha) continue;

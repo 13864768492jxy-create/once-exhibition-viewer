@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createPoetryEditorModel } from './poetry-editor-model.js?v=20261118-trial21';
+import { createPoetryEditorModel } from './poetry-editor-model.js?v=20261119-trial22';
 import { createPoetryInkPicker } from './poetry-editor-picking.js?v=20261117-editor2';
 
 export function installPoetryEditor({exhibition, layout, layoutSourceText, space, host, getCamera, getControls, focusEntry, onActive}) {
@@ -51,8 +51,13 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
   for(const e of entries.values()) {const o=document.createElement('option');o.value=e.record.id;o.textContent=title(e);$('#editor-poem').append(o);}
   if(!entries.has(selected))selected=entries.keys().next().value;
   savedDraft=model.findSavedDraft(sha=>localStorage.getItem('once-poetry-draft:'+sha));
+  function migrationNotice(draft) {
+    if (draft?.baseRevision === layout.revision) return '';
+    if (layout.curationRevision?.draftMigration) return '三组移位的文字沿用当前挂位（已经发生的世界、Growing Again、礁石沉默）。其余旧版文字可恢复，旧版草稿保留。';
+    return '旧版文字可在当前试排继续调整。';
+  }
   if(savedDraft && savedDraft.baseRevision!==layout.revision){
-    $('#editor-restore p').textContent='此浏览器保存有试排20的草稿，可在试排21继续调整。';
+    $('#editor-restore p').textContent='此浏览器保存有试排'+savedDraft.baseRevision.split('trial').pop()+'的草稿。'+migrationNotice(savedDraft);
   }
   $('#editor-restore').hidden=!savedDraft;
   const raycaster=new THREE.Raycaster(), pointer=new THREE.Vector2();
@@ -180,14 +185,14 @@ export function installPoetryEditor({exhibition, layout, layoutSourceText, space
   $('#editor-reset').addEventListener('click',()=>{model.reset(selected);feedback('已恢复这组的原始位置与大小，可撤销。');});
   $('#editor-compare').addEventListener('click',()=>setComparing(!comparing));
   $('#editor-name').addEventListener('change',scheduleSave);
-  $('#editor-restore-button').addEventListener('click',()=>{try{if(comparing)setComparing(false);model.importDraft(savedDraft);if(savedDraft.name)$('#editor-name').value=savedDraft.name;$('#editor-restore').hidden=true;focusEntry(entries.get(selected));feedback('已载入上次草稿。');}catch(e){feedback(e.message,true);}});
+  $('#editor-restore-button').addEventListener('click',()=>{try{if(comparing)setComparing(false);model.importDraft(savedDraft);if(savedDraft.name)$('#editor-name').value=savedDraft.name;$('#editor-restore').hidden=true;focusEntry(entries.get(selected));feedback('已载入上次草稿。'+migrationNotice(savedDraft));}catch(e){feedback(e.message,true);}});
   $('#editor-export').addEventListener('click',()=>{
     const draft=model.exportDraft();draft.name=$('#editor-name').value.trim()||'我的文字试排';
     const url=URL.createObjectURL(new Blob([JSON.stringify(draft,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=draft.name.replace(/[\\/:*?"<>|]/g,'_')+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);feedback('已导出我的草稿；文件可以重新载入。');
   });
   $('#editor-import').addEventListener('click',()=>$('#editor-file').click());
   $('#editor-file').addEventListener('change',async event=>{
-    const file=event.target.files?.[0];if(!file)return;try {if(file.size>150000)throw new Error('方案文件过大，请选择从此编辑器导出的 JSON。');const draft=JSON.parse(await file.text());if(comparing)setComparing(false);restoring=true;model.importDraft(draft);if(typeof draft.name==='string')$('#editor-name').value=draft.name.slice(0,60);restoring=false;$('#editor-restore').hidden=true;scheduleSave();focusEntry(entries.get(selected));feedback('方案已载入。');}
+    const file=event.target.files?.[0];if(!file)return;try {if(file.size>150000)throw new Error('方案文件过大，请选择从此编辑器导出的 JSON。');const draft=JSON.parse(await file.text());if(comparing)setComparing(false);restoring=true;model.importDraft(draft);if(typeof draft.name==='string')$('#editor-name').value=draft.name.slice(0,60);restoring=false;$('#editor-restore').hidden=true;scheduleSave();focusEntry(entries.get(selected));feedback('方案已载入。'+migrationNotice(draft));}
     catch(e){restoring=false;feedback('未载入：'+e.message,true);}finally{event.target.value='';}
   });
   window.addEventListener('keydown',event=>{
