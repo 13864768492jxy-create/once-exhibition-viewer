@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "revision": "20261119-trial22",
-  "sourceLayoutSHA256": "e90a6d26372d33f4894b2b11c295846f693f5f9167912743ae0f041b1f92f4d4",
+  "sourceLayoutSHA256": "18ec324d7d007ff7a201242d345bb3adb74df34dd36012203282e84472886e00",
   "imagePathBase": "poetry/trial22",
   "units": "metres",
   "colorSpace": "sRGB",
@@ -313,6 +313,26 @@
       "vectorUrl": "../trial18/glass-sea-echo.svg"
     },
     {
+      "id": "waves",
+      "imageUrl": "../trial18/waves.png",
+      "physicalWidth": 0.96,
+      "physicalHeight": 0.7065199768384482,
+      "localCenterX": 0.0,
+      "localCenterY": 0.0,
+      "fontSize": 0.05069599445389405,
+      "effectiveFontSize": 0.05069599445389405,
+      "fontWidthScale": 1,
+      "uniformContainScale": 1,
+      "fontFamily": "authored-book-20261116",
+      "fontWeight": 400,
+      "glyphMode": "fill",
+      "sha256": "59c5ac0cae031a8fe30e53b2efdb1b74e8aa2177ee1e9f7884aeca4e969646b4",
+      "text": "它聚拢，它抬升，它倾覆，它盘旋。\nit overturns,",
+      "rasterOrigin": "authored-override",
+      "alphaPreservedByteForByte": true,
+      "vectorUrl": "../trial18/waves.svg"
+    },
+    {
       "id": "night-sky",
       "imageUrl": "../trial18/night-sky.png",
       "physicalWidth": 0.7522651933701657,
@@ -374,7 +394,7 @@
     },
     {
       "id": "glass-growing",
-      "imageUrl": "glass-growing-r6.png",
+      "imageUrl": "../trial19/glass-growing-single.png",
       "physicalWidth": 0.6,
       "physicalHeight": 1.54,
       "localCenterX": 0,
@@ -383,15 +403,15 @@
       "effectiveFontSize": 0.19,
       "fontWidthScale": 1,
       "uniformContainScale": 1,
-      "fontFamily": "Growing Again custom capitals",
+      "fontFamily": "DomaineSansDisplay-Regular",
       "fontWeight": 400,
       "glyphMode": "fill",
-      "sha256": "f51fc1a88628d4e478c7b53a297ba3dfac8b3b3f6bba104ca200bb747575429e",
-      "text": "GROWING\nAGAIN",
+      "sha256": "aca30b2d0d002bb38ef0cfb64d5f59d07f9db71efc0e6e1b4fe07fd25d6133a9",
+      "text": "Growing\nAgain",
       "rasterOrigin": "authored-override",
       "alphaPreservedByteForByte": false,
-      "vectorUrl": "glass-growing-r6.svg",
-      "retainedGlyphsUnchanged": false
+      "vectorUrl": "../trial19/glass-growing-single.svg",
+      "retainedGlyphsUnchanged": true
     },
     {
       "id": "preface-location",

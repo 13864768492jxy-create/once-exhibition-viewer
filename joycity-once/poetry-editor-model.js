@@ -7,6 +7,7 @@ const TRIAL20 = {revision: '20261118-trial20', sha: '04e5ead6ffd317af3851230e243
 const TRIAL21 = {revision: '20261118-trial21', sha: 'ce7cad5654edf970e98ad0b5b642efd481e92e11cf3701c7384bad4d8b9ba247'};
 // Newest first. These exact releases share all 19 authored poem planes and support dimensions.
 const TRIAL22_EDITIONS = [
+  '18ec324d7d007ff7a201242d345bb3adb74df34dd36012203282e84472886e00',
   'e90a6d26372d33f4894b2b11c295846f693f5f9167912743ae0f041b1f92f4d4',
   'dbb4144adca7abedd904fcb8ac1bbe5b99053891b8e09d58259c329d0d10d627',
   '22292638cdb5b29a09b0c20f4b9bb15783fda22ab3c63446151c3c0f0076ba9d',
@@ -233,7 +234,16 @@ export function createPoetryEditorModel({THREE, exhibition, layout, space, onCha
           throw new Error('旧版文字数据无效。');
         }
         next.transforms[id] = {...IDENTITY};
-      } else next.transforms[id] = validated(entry, raw, true);
+      } else {
+        const applied = (!current && id in draft.transforms) && migration22?.wallTranslationsApplied?.[id];
+        if (applied && (!plain(raw) || !finite(raw.u) || !finite(raw.v))) {
+          throw new Error('旧版文字位置无效。');
+        }
+        // The published base already contains these translations. Re-express a
+        // saved draft in its new origin so its world-space placement is preserved.
+        const offset = applied ? {...raw, u: raw.u-applied.u, v: raw.v-applied.v} : raw;
+        next.transforms[id] = validated(entry, offset, true);
+      }
       const locked = draft.locks?.[id] ?? DEFAULT_LOCKS.has(id);
       if (typeof locked !== 'boolean') throw new Error(`「${id}」的锁定状态无效。`);
       next.locks[id] = locked;

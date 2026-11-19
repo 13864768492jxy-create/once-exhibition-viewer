@@ -871,7 +871,7 @@
       "group": "VESSEL",
       "type": "video",
       "surfaceId": "other-main",
-      "along": 28.731989,
+      "along": 28.1033034403807,
       "centerY": 1.55,
       "imageWidth": 1.22,
       "imageHeight": 0.68625,
@@ -1346,8 +1346,8 @@
       "text": "each person.",
       "position": [
         4.967,
-        2.32,
-        14.58
+        1.7859155534351145,
+        13.253803435114504
       ],
       "fontSize": 0.04079998970031738,
       "width": 0.5475,
@@ -1715,12 +1715,49 @@
       "glassPanelId": "ga-poetry-sea"
     },
     {
+      "id": "waves",
+      "text": "它聚拢，它抬升，它倾覆，它盘旋。\nit overturns,",
+      "position": [
+        0.033,
+        2.14,
+        22.39
+      ],
+      "fontSize": 0.05069599445389405,
+      "width": 0.96,
+      "surface": "wall",
+      "rotationY": 90,
+      "weight": 400,
+      "fontFamily": "authored-book-20261116",
+      "fontWidthScale": 1,
+      "lineHeight": 1,
+      "align": "left",
+      "color": "#161616",
+      "letterSpacing": 0,
+      "rotationInPlane": 0,
+      "typographyNote": "四个动作共用原稿第26页的字形、字重、斜度与间距。左侧长墙09上方接近折墙，隔通道与玻璃上的礁石句相望。",
+      "rasterOverride": {
+        "path": "assets/typography/book-20261116/waves.png",
+        "sourceSVG": "assets/typography/book-20261116/waves.svg",
+        "sha256": "59c5ac0cae031a8fe30e53b2efdb1b74e8aa2177ee1e9f7884aeca4e969646b4",
+        "physicalWidth": 0.96,
+        "physicalHeight": 0.7065199768384482,
+        "localCenterX": 0.0,
+        "localCenterY": 0.0
+      },
+      "preserveAuthoredInk": true,
+      "note": "四个动作共用原稿第26页的字形、字重、斜度与间距。左侧长墙09上方接近折墙，隔通道与玻璃上的礁石句相望。",
+      "sourceBookPage": 26,
+      "sourceBookPages": [
+        26
+      ]
+    },
+    {
       "id": "night-sky",
       "text": "夜空向海面缓缓倾斜，\n群星随波浪起伏。",
       "position": [
         4.967,
-        0.9373688479956207,
-        26.815431875679373
+        2.273400813644476,
+        27.20649628407632
       ],
       "fontSize": 0.0697753025286764,
       "width": 0.7522651933701657,
@@ -1846,7 +1883,7 @@
     },
     {
       "id": "glass-growing",
-      "text": "GROWING\nAGAIN",
+      "text": "Growing\nAgain",
       "surface": "wall",
       "position": [
         4.2857968,
@@ -1863,14 +1900,14 @@
       "align": "left",
       "color": "#42483F",
       "glassPanelId": "ga-poetry-title",
-      "note": "两行字使用同一套手绘大写轮廓、同一字高。下行缩进，两行的 I 与 N 各自共用一根垂直轴。",
+      "note": "Growing与Again各出现一次；保留现有Domaine Sans Display原生路径、字号、字距和两行位置，撤去Again的两层淡影。",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "两行字使用同一套手绘大写轮廓、同一字高。下行缩进，两行的 I 与 N 各自共用一根垂直轴。",
+      "typographyNote": "Growing与Again各出现一次；保留现有Domaine Sans Display原生路径、字号、字距和两行位置，撤去Again的两层淡影。",
       "rasterOverride": {
-        "path": "site/poetry/trial22/glass-growing-r6.png",
-        "sourceSVG": "site/poetry/trial22/glass-growing-r6.svg",
-        "sha256": "f51fc1a88628d4e478c7b53a297ba3dfac8b3b3f6bba104ca200bb747575429e",
+        "path": "assets/typography/curation-20261117/glass-growing-single.png",
+        "sourceSVG": "assets/typography/curation-20261117/glass-growing-single.svg",
+        "sha256": "aca30b2d0d002bb38ef0cfb64d5f59d07f9db71efc0e6e1b4fe07fd25d6133a9",
         "physicalWidth": 0.6,
         "physicalHeight": 1.54,
         "localCenterX": 0,
@@ -1905,22 +1942,61 @@
       }
     },
     {
+      "id": "book-wave-verbs",
+      "label": "它聚拢，它抬升，它倾覆，它盘旋。",
+      "camera": [
+        2.54,
+        1.75,
+        22.1
+      ],
+      "target": [
+        0.033,
+        1.92,
+        22.39
+      ],
+      "portrait": {
+        "camera": [
+          2.3,
+          1.75,
+          22.12
+        ],
+        "target": [
+          0.033,
+          1.9,
+          22.39
+        ]
+      },
+      "framing": {
+        "projection": "perspective"
+      }
+    },
+    {
       "id": "book-night-sky",
       "label": "原稿27 · 夜空与群星",
       "camera": [
-        1.5,
-        1.7,
-        26.8
+        2.9,
+        1.75,
+        27.049996284076318
       ],
       "target": [
-        5,
-        1.7,
-        26.8
+        4.967,
+        2.223400813644476,
+        27.20649628407632
       ],
       "framing": {
-        "projection": "orthographic",
-        "width": 3,
-        "height": 2.95
+        "projection": "perspective"
+      },
+      "portrait": {
+        "camera": [
+          2.3,
+          1.75,
+          27.049996284076318
+        ],
+        "target": [
+          4.967,
+          2.223400813644476,
+          27.20649628407632
+        ]
       }
     },
     {
@@ -2386,12 +2462,12 @@
       "camera": [
         2.53,
         1.75,
-        29.62
+        28.9913144403807
       ],
       "target": [
         5,
         1.34,
-        29.87
+        29.2413144403807
       ],
       "framing": {
         "projection": "perspective"
@@ -2743,6 +2819,7 @@
         "shore",
         "glass-sea-echo",
         "far-waves",
+        "waves",
         "night-sky",
         "moonlight"
       ],
@@ -4717,6 +4794,40 @@
         "note": "原稿的沉默、浮出与较重的黑暗进入已有透明诗板，保留玻璃透视。"
       },
       {
+        "id": "waves",
+        "sourcePages": [
+          26
+        ],
+        "sourcePDFSHA256": "0bb15cbbc38b8da5f60cfa7299b135a35ee14e27d799b9579c806140ef06a272",
+        "path": "assets/typography/book-20261116/waves.png",
+        "sourceSVG": "assets/typography/book-20261116/waves.svg",
+        "sha256": "59c5ac0cae031a8fe30e53b2efdb1b74e8aa2177ee1e9f7884aeca4e969646b4",
+        "physicalWidth": 0.96,
+        "physicalHeight": 0.7065199768384482,
+        "localCenterX": 0.0,
+        "localCenterY": 0.0,
+        "inkWidth": 0.953329473074696,
+        "inkHeight": 0.6998494499131441,
+        "metresPerPDFPoint": 0.0022235089751013316,
+        "pdfInkBounds": [
+          64.75,
+          133.0,
+          493.5,
+          447.75
+        ],
+        "fonts": [
+          "STHeitiSC-Medium-1",
+          "SourceHanSerifSC",
+          "SourceHanSerifSC-Heavy",
+          "SourceHanSerifSC-Light"
+        ],
+        "uniformScaleOnly": true,
+        "extractionRegion": null,
+        "excludedASCII": false,
+        "text": "它聚拢，它抬升，它倾覆，它盘旋。\nit overturns,",
+        "note": "四个动作共用原稿第26页的字形、字重、斜度与间距。左侧长墙09上方接近折墙，隔通道与玻璃上的礁石句相望。"
+      },
+      {
         "id": "night-sky",
         "sourcePages": [
           27
@@ -4782,7 +4893,7 @@
       }
     ],
     "carrierCounts": {
-      "wall": 13,
+      "wall": 14,
       "floor": 3,
       "glass": 3
     },
@@ -4899,7 +5010,8 @@
       "world"
     ],
     "addedPoemIds": [
-      "river-each"
+      "river-each",
+      "waves"
     ],
     "removedPoemIds": [],
     "draftMigration": {
@@ -4909,7 +5021,28 @@
         "glass-growing"
       ],
       "addedIds": [
-        "river-each"
+        "river-each",
+        "waves"
+      ],
+      "wallTranslationsApplied": {
+        "river-each": {
+          "u": 1.326196564885496,
+          "v": -0.5340844465648853,
+          "scale": 1
+        },
+        "night-sky": {
+          "u": -0.39106440839694656,
+          "v": 1.3360319656488553,
+          "scale": 1
+        }
+      }
+    },
+    "artistArrangement": {
+      "sourceLayoutSHA256": "e90a6d26372d33f4894b2b11c295846f693f5f9167912743ae0f041b1f92f4d4",
+      "draftSHA256": "26bb73876ebe8745a6df304e1a300bd5ee329cc2db504935fe1bae0c6b5199f3",
+      "affectedPoemIds": [
+        "river-each",
+        "night-sky"
       ]
     }
   },
@@ -7265,7 +7398,7 @@
         "performance_vessel"
       ],
       "centerY": 0.874286,
-      "along": 27.857989
+      "along": 27.229303
     },
     {
       "id": "pillow",
