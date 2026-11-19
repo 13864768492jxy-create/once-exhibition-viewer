@@ -894,10 +894,12 @@ export async function buildExhibition({scene, renderer, trackWash, layout = {}, 
     } else {
       const face = Math.max(0, Math.min(finite(record.frameFace, record.type === 'large' ? 0 : .016), width * .2, height * .2));
       const mat = new THREE.MeshBasicMaterial({color: record.matColor || '#f8f7f2', side: THREE.DoubleSide, toneMapped: false});
+      trackWash?.applyPrintSurface?.(mat,record.id,'paper');
       box(work, '背板_试排厚度', width, height, depth * .72, 0, 0, depth * .36, backing);
       plane(work, '白卡纸', Math.max(.001, width - face * 2), Math.max(.001, height - face * 2), mat, depth * .76);
       if (face > 0) {
         const frameMaterial = new THREE.MeshStandardMaterial({color: record.frameColor || '#48483e', roughness: .66, side: THREE.DoubleSide});
+        if(frameMaterial.color.r > .65) trackWash?.applyPrintSurface?.(frameMaterial,record.id,'rim');
         box(work, '上框条', width, face, depth, 0, (height - face) / 2, depth / 2, frameMaterial);
         box(work, '下框条', width, face, depth, 0, -(height - face) / 2, depth / 2, frameMaterial);
         box(work, '左框条', face, height - face * 2, depth, -(width - face) / 2, 0, depth / 2, frameMaterial);

@@ -1,5 +1,5 @@
-import * as THREE from 'three';
-import { makeFramingStudy } from './gallery-framing.js?v=20261119-trial22';
+import * as THREE from './vendor/three.module.js';
+import { makeFramingStudy } from './gallery-framing.js?v=20261119-trial22-light-r6';
 
 // All coordinates used to aim and bake heads are in the measured-room convention (+Z toward B).
 // This is a relative lighting study. Beam spreads and intensities are design values.
@@ -16,7 +16,7 @@ export function galleryHeadAim(space, rowIndex, headIndex) {
 
 // Bake diffuse light arriving along the three surface axes. Linear filtering interpolates
 // adjacent samples; the runtime cost is one texture fetch regardless of the number of heads.
-function bakeIrradiance(space, partitions, rows) {
+export function bakeIrradiance(space, partitions, rows) {
   const { room, lighting } = space;
   const startZ = Math.min(0, space.ends.A.slope?.leftZ || 0);
   const spanZ = room.length - startZ, height = lighting.railHeight;
@@ -104,14 +104,19 @@ function addFrameContact(group, width, height, depth, center, normal, rows, sour
   group.add(shadow);
 }
 
+export function makeTrackRows(space) {
+  const {lighting}=space;
+  return lighting.rowPositions.map((z, row) => lighting.headXs.map((x, head) => {
+    const edge = Math.min(head, lighting.headXs.length - 1 - head);
+    return { x, z, aim: galleryHeadAim(space, row, head), power: edge === 0 ? .52 : edge === 1 ? 1.35 : .72 };
+  }));
+}
+
 export function createTrackWash(space, layout) {
   const revision = Number(layout.revision.match(/trial(\d+)$/)?.[1]);
   if (!(revision >= 21) || !space.lighting?.rowPositions?.length || !space.lighting.headXs?.length) return null;
   const {lighting}=space;
-  const rows = lighting.rowPositions.map((z, row) => lighting.headXs.map((x, head) => {
-    const edge = Math.min(head, lighting.headXs.length - 1 - head);
-    return { x, z, aim: galleryHeadAim(space, row, head), power: edge === 0 ? .52 : edge === 1 ? 1.35 : .72 };
-  }));
+  const rows = makeTrackRows(space);
   const { texture, scale, bias } = bakeIrradiance(space, layout.partitions || [], rows);
   const framing = revision >= 22 ? makeFramingStudy(space,layout,rows) : null;
   const enabled = { value: 1 };
@@ -129,6 +134,19 @@ export function createTrackWash(space, layout) {
     headAim(row, i) {
       const spot = framing?.fixtures.get(row+':'+i);
       return cutEnabled?.value && spot ? spot.aim : rows[row][i].aim;
+    },
+    applyPrintSurface(material, id, finish) {
+      const light = framing?.settings?.get(id);
+      if (!light) return;
+      const gain = finish === 'paper' ? light.paperGain : light.rimGain;
+      material.onBeforeCompile = shader => {
+        shader.uniforms.paperCut = cutEnabled;
+        shader.uniforms.paperGain = {value:gain};
+        shader.fragmentShader = 'uniform float paperCut, paperGain;\n' + shader.fragmentShader;
+        shader.fragmentShader = shader.fragmentShader.replace('#include <opaque_fragment>',
+          'outgoingLight *= mix(1.,paperGain,paperCut);\n#include <opaque_fragment>');
+      };
+      material.customProgramCacheKey = () => 'once-print-surface-r6';
     },
     frameContact(group,width,height,depth,center,normal) {
       addFrameContact(group,width,height,depth,center,normal,rows,lighting.railHeight-.15,contactMaterial);
@@ -157,8 +175,9 @@ export function createTrackWash(space, layout) {
         shader.fragmentShader = shader.fragmentShader.replace('#include <opaque_fragment>', `
           vec3 gains = .6 + .6 * texture(trackField, trackUVW).rgb;
           vec3 axis = normalize(trackAxis);
-          outgoingLight *= mix(1., dot(gains, axis * axis), trackMix);
-          ${framing ? 'outgoingLight *= mix(1.,framingGain(cutPosition,axis),trackMix*cutMix);' : ''}
+          float baseGain = dot(gains,axis*axis);
+          outgoingLight *= mix(1.,baseGain,trackMix);
+          ${framing ? 'outgoingLight *= mix(1.,framingGain(cutPosition,axis,baseGain),trackMix*cutMix);' : ''}
           #include <opaque_fragment>
         `);
       };

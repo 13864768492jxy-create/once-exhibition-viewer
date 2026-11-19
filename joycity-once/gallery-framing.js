@@ -1,4 +1,5 @@
-import * as THREE from 'three';
+import * as THREE from './vendor/three.module.js';
+import { preparePrintLighting, photographColumn } from './gallery-print-light.js?v=20261119-trial22-light-r6';
 
 // A framing-projector study in metres. Shutter positions and penumbrae are design
 // assumptions; the rail inventory and optics still need an on-site check.
@@ -98,20 +99,32 @@ export function makeFramingStudy(space,layout,rows) {
     const tangent = new THREE.Vector2(s.b[0]-s.a[0],s.b[1]-s.a[1]);
     return {...s, length:tangent.length(), tangent:tangent.normalize(), prints:[]};
   });
-  const fixtures = assignProjectors(space, layout, walls, rows);
+  const printLighting = layout.lightingStudy?.onceLightingRevision === '20261119-r6'
+    ? preparePrintLighting(space,layout,walls,rows) : null;
+  const fixtures = printLighting?.fixtures || assignProjectors(space, layout, walls, rows);
   if (!fixtures.size) return null;
 
   // A separate strip per actual wall face gives centimetre-scale edge detail
   // without a full-resolution volume or a loop over all artworks per fragment.
   const width = 2048, height = 160, strips = walls.length;
-  const pixels = new Uint8Array(width*height*strips).fill(255);
-  const swatches = [];
+  const channels = printLighting ? 2 : 1;
+  const pixels = new Uint8Array(width*height*strips*channels).fill(255);
+  const swatches = [], stripInfo = [];
   walls.forEach((wall, i) => {
     if (!wall.prints.length) return;
     const columns = Math.min(width, Math.ceil(wall.length/.016) + 1);
+    stripInfo.push({id:wall.id,row:i,columns,height,length:wall.length});
     const neighbors = layout.works.filter(w => w.surfaceId === wall.id && ['large','video'].includes(w.type));
     for (let u=0;u<columns;u++) {
       const along = u*wall.length/(columns-1);
+      if(printLighting) {
+        const column=photographColumn(wall,along,height,layout.lightingStudy.photoFraming.wall,neighbors);
+        for(let v=0;v<height;v++) {
+          const index=((i*height+v)*width+u)*channels;
+          pixels[index]=column.values[v]; pixels[index+1]=column.mask;
+        }
+        continue;
+      }
       let distanceToHang = Infinity;
       for (const p of wall.prints)
         distanceToHang = Math.min(distanceToHang, Math.abs(along-p.center)-p.w);
@@ -152,14 +165,14 @@ export function makeFramingStudy(space,layout,rows) {
         vec2 uv = vec2((.5 + clamp(u,0.,${n(wall.length)})*${n((columns-1)/wall.length)})/${n(width)},
           (${n(i*height+.5)} + clamp(wp.y/${n(wall.height)},0.,1.)*${n(height-1)})/${n(height*strips)});
         float fade = smoothstep(${n(-margin)},0.,u) * (1.-smoothstep(${n(wall.length)},${n(wall.length+margin)},u));
-        return mix(1.,texture(cutField,uv).r,fade);
+        ${printLighting ? 'vec2 field=texture(cutField,uv).rg; return mix(1.,field.r/baseGain,fade*field.g);' : 'return mix(1.,texture(cutField,uv).r,fade);'}
       }
     }`);
   });
-  const texture = new THREE.DataTexture(pixels,width,height*strips,THREE.RedFormat);
+  const texture = new THREE.DataTexture(pixels,width,height*strips,printLighting ? THREE.RGFormat : THREE.RedFormat);
   texture.minFilter = texture.magFilter = THREE.LinearFilter;
   texture.unpackAlignment = 1;
   texture.needsUpdate = true;
-  return {texture, fixtures, fragment:`uniform sampler2D cutField; uniform float cutMix;
-    float framingGain(vec3 wp, vec3 axis) { if (abs(axis.y)>.25) return 1.; ${swatches.join('\n')} return 1.; }`};
+  return {texture, fixtures, strips:stripInfo, settings:printLighting?.settings, fragment:`uniform sampler2D cutField; uniform float cutMix;
+    float framingGain(vec3 wp, vec3 axis, float baseGain) { if (abs(axis.y)>.25) return 1.; ${swatches.join('\n')} return 1.; }`};
 }

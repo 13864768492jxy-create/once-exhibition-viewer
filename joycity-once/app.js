@@ -1,11 +1,11 @@
 import * as THREE from 'three';
-import {addVisitorInstallation} from './visitor-installation.js?v=20261119-trial22-silver-r5';
-import { createTrackWash } from './gallery-lighting.js?v=20261119-trial22';
+import {addVisitorInstallation} from './visitor-installation.js?v=20261119-trial22-light-r6';
+import { createTrackWash } from './gallery-lighting.js?v=20261119-trial22-light-r6';
 import { installRiverInk } from './river-ink.js?v=20261119-trial22';
-import { installPoetryEditor } from './poetry-editor.js?v=20261119-trial22-silver-r5';
+import { installPoetryEditor } from './poetry-editor.js?v=20261119-trial22-light-r6';
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { installCatalog, catalogWorkTitle } from './catalog.js?v=20261119-trial22-series';
-import { buildExhibition } from './exhibition.js?v=20261119-trial22-foreword';
+import { buildExhibition } from './exhibition.js?v=20261119-trial22-light-r6';
 
 const $ = (s) => document.querySelector(s);
 const host = $('#canvas-host');
@@ -640,6 +640,12 @@ async function init(){try{
     const wall=trialLayout.surfaces.find(surface=>surface.id===foreword.surfaceId);
     const centerZ=wall.a[1]+foreword.along;
     const columnZ=centerZ-.57;
+    const guide=trialLayout.wallGuides.find(g=>g.id==='opening');
+    const guideWall=trialLayout.surfaces.find(s=>s.id===guide.surfaceId);
+    const dx=guideWall.b[0]-guideWall.a[0], dz=guideWall.b[1]-guideWall.a[1];
+    const distance=guide.along/Math.hypot(dx,dz);
+    const gx=guideWall.a[0]+dx*distance, gz=guideWall.a[1]+dz*distance;
+    const [nx,nz]=guideWall.normal;
     trialLayout.focusGroups.unshift(
       {id:'entry-foreword',label:'AT ONCE · 入口前言',
         camera:[.90,1.75,centerZ+.98],target:[4.98,1.58,centerZ+.53],
@@ -648,7 +654,7 @@ async function init(){try{
       {id:'entry-foreword-read',label:'入口前言 · 正文近读',
         camera:[3.87,1.75,columnZ+.01],target:[4.98,1.48,columnZ],
         portrait:{camera:[4.18,1.75,columnZ+.01],target:[4.98,1.47,columnZ]},framing:{projection:'perspective'}},
-      {id:'opening-guide',label:'分区展签 · 开篇摄影',camera:[1.25,.74,1.44],target:[.01,.74,1.44],framing:{projection:'orthographic',width:.35,height:.29}},
+      {id:'opening-guide',label:'分区展签 · 开篇摄影',camera:[gx+1.25*nx,guide.centerY,gz+1.25*nz],target:[gx+.009*nx,guide.centerY,gz+.009*nz],framing:{projection:'orthographic',width:guide.width+.09,height:guide.height+.07}},
 
     );
   }

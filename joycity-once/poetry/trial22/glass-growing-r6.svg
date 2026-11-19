@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600mm" height="1540mm" viewBox="0 0 600 1540">
+  <title>GROWING AGAIN</title>
+  <g aria-label="GROWING" fill="#42483f" fill-rule="evenodd" transform="translate(92 432) scale(0.78)">
+    <path data-letter="G" transform="translate(0 0)" d="M67 22L59.4 24.2C56.6 12 48.8 5.6 35.5 5.6C17.6 5.6 9.2 16.8 9.2 36.8V63.5C9.2 84 17.8 94.6 35.7 94.6C46 94.6 54.1 90.9 59.6 85.1V57.5H39.1V50.6H67.5V88.4C59.8 96.9 49.5 101.2 35.3 101.2C12.8 101.2 1 87.2 1 63.7V36.5C1 12.6 13.2 -1.2 35.5 -1.2C52.7 -1.2 63.5 6.8 67 22Z" />
+    <path data-letter="R" transform="translate(80 0)" d="M2 0H33.4C53.3 0 64.9 8.8 64.9 27.6C64.9 43.3 56.3 52.2 43 54.9L69.5 100H59.8L34.5 56.1H10.2V100H2ZM10.2 7V49.2H32.6C48.4 49.2 56.5 42.5 56.5 27.8C56.5 13.3 48.7 7 32.9 7Z" />
+    <path data-letter="O" transform="translate(159 0)" d="M35.6 -1.2C57.7 -1.2 70.3 12.8 70.3 36.6V63.4C70.3 87.2 57.7 101.2 35.6 101.2C13.6 101.2 1 87.2 1 63.4V36.6C1 12.8 13.6 -1.2 35.6 -1.2ZM35.6 5.6C18.2 5.6 9.2 16.4 9.2 36.9V63.1C9.2 83.6 18.2 94.4 35.6 94.4C53.1 94.4 62.1 83.6 62.1 63.1V36.9C62.1 16.4 53.1 5.6 35.6 5.6Z" />
+    <path data-letter="W" transform="translate(238 0)" d="M0 0H8.7L26 85.8L47 0H55.1L75.7 85.8L93.1 0H101.2L79.7 100H72.2L50.7 13.7L29.1 100H21.5Z" />
+    <path data-letter="I" transform="translate(352 0)" d="M1.5 0H9.7V100H1.5Z" />
+    <path data-letter="N" transform="translate(375 0)" d="M2 0H11L61.3 85.8V0H69.1V100H60.8L9.8 12.9V100H2Z" />
+    <path data-letter="G" transform="translate(455 0)" d="M67 22L59.4 24.2C56.6 12 48.8 5.6 35.5 5.6C17.6 5.6 9.2 16.8 9.2 36.8V63.5C9.2 84 17.8 94.6 35.7 94.6C46 94.6 54.1 90.9 59.6 85.1V57.5H39.1V50.6H67.5V88.4C59.8 96.9 49.5 101.2 35.3 101.2C12.8 101.2 1 87.2 1 63.7V36.5C1 12.6 13.2 -1.2 35.5 -1.2C52.7 -1.2 63.5 6.8 67 22Z" />
+  </g>
+  <g aria-label="AGAIN" fill="#42483f" fill-rule="evenodd" transform="translate(92 615) scale(0.78)">
+    <path data-letter="A" transform="translate(101 0)" d="M32.4 0H40.9L75 100H66.1L56.6 71H16.1L6.7 100H-1.4ZM18.4 64.1H54.2L36.2 10.6Z" />
+    <path data-letter="G" transform="translate(186 0)" d="M67 22L59.4 24.2C56.6 12 48.8 5.6 35.5 5.6C17.6 5.6 9.2 16.8 9.2 36.8V63.5C9.2 84 17.8 94.6 35.7 94.6C46 94.6 54.1 90.9 59.6 85.1V57.5H39.1V50.6H67.5V88.4C59.8 96.9 49.5 101.2 35.3 101.2C12.8 101.2 1 87.2 1 63.7V36.5C1 12.6 13.2 -1.2 35.5 -1.2C52.7 -1.2 63.5 6.8 67 22Z" />
+    <path data-letter="A" transform="translate(266 0)" d="M32.4 0H40.9L75 100H66.1L56.6 71H16.1L6.7 100H-1.4ZM18.4 64.1H54.2L36.2 10.6Z" />
+    <path data-letter="I" transform="translate(352 0)" d="M1.5 0H9.7V100H1.5Z" />
+    <path data-letter="N" transform="translate(375 0)" d="M2 0H11L61.3 85.8V0H69.1V100H60.8L9.8 12.9V100H2Z" />
+  </g>
+</svg>

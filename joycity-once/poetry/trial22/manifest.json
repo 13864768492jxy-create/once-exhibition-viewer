@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "revision": "20261119-trial22",
-  "sourceLayoutSHA256": "dbb4144adca7abedd904fcb8ac1bbe5b99053891b8e09d58259c329d0d10d627",
+  "sourceLayoutSHA256": "e90a6d26372d33f4894b2b11c295846f693f5f9167912743ae0f041b1f92f4d4",
   "imagePathBase": "poetry/trial22",
   "units": "metres",
   "colorSpace": "sRGB",
@@ -374,7 +374,7 @@
     },
     {
       "id": "glass-growing",
-      "imageUrl": "../trial19/glass-growing-single.png",
+      "imageUrl": "glass-growing-r6.png",
       "physicalWidth": 0.6,
       "physicalHeight": 1.54,
       "localCenterX": 0,
@@ -383,15 +383,15 @@
       "effectiveFontSize": 0.19,
       "fontWidthScale": 1,
       "uniformContainScale": 1,
-      "fontFamily": "DomaineSansDisplay-Regular",
+      "fontFamily": "Growing Again custom capitals",
       "fontWeight": 400,
       "glyphMode": "fill",
-      "sha256": "aca30b2d0d002bb38ef0cfb64d5f59d07f9db71efc0e6e1b4fe07fd25d6133a9",
-      "text": "Growing\nAgain",
+      "sha256": "f51fc1a88628d4e478c7b53a297ba3dfac8b3b3f6bba104ca200bb747575429e",
+      "text": "GROWING\nAGAIN",
       "rasterOrigin": "authored-override",
       "alphaPreservedByteForByte": false,
-      "vectorUrl": "../trial19/glass-growing-single.svg",
-      "retainedGlyphsUnchanged": true
+      "vectorUrl": "glass-growing-r6.svg",
+      "retainedGlyphsUnchanged": false
     },
     {
       "id": "preface-location",
