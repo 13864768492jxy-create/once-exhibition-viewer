@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import {addVisitorInstallation} from './visitor-installation.js?v=20261119-trial22-light-r6';
 import { createTrackWash } from './gallery-lighting.js?v=20261119-trial22-light-r6';
 import { installRiverInk } from './river-ink.js?v=20261119-trial22';
-import { installPoetryEditor } from './poetry-editor.js?v=20261119-trial22-author-r7';
+import { installPoetryEditor } from './poetry-editor.js?v=20261119-trial22-growing-r8';
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { installCatalog, catalogWorkTitle } from './catalog.js?v=20261119-trial22-series';
 import { buildExhibition } from './exhibition.js?v=20261119-trial22-light-r6';

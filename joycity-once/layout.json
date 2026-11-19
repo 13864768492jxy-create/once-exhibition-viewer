@@ -1718,14 +1718,14 @@
       "id": "waves",
       "text": "它聚拢，它抬升，它倾覆，它盘旋。\nit overturns,",
       "position": [
-        0.033,
-        2.14,
-        22.39
+        4.967,
+        2.36,
+        25.36
       ],
       "fontSize": 0.05069599445389405,
       "width": 0.96,
       "surface": "wall",
-      "rotationY": 90,
+      "rotationY": -90,
       "weight": 400,
       "fontFamily": "authored-book-20261116",
       "fontWidthScale": 1,
@@ -1734,7 +1734,7 @@
       "color": "#161616",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "四个动作共用原稿第26页的字形、字重、斜度与间距。左侧长墙09上方接近折墙，隔通道与玻璃上的礁石句相望。",
+      "typographyNote": "保留诗册第26页的字形、字重、斜度与间距。四个动作落在 Growing Again 原白墙，越过第二、第三列玻璃的交接，从礁石句接向夜空。",
       "rasterOverride": {
         "path": "assets/typography/book-20261116/waves.png",
         "sourceSVG": "assets/typography/book-20261116/waves.svg",
@@ -1745,7 +1745,7 @@
         "localCenterY": 0.0
       },
       "preserveAuthoredInk": true,
-      "note": "四个动作共用原稿第26页的字形、字重、斜度与间距。左侧长墙09上方接近折墙，隔通道与玻璃上的礁石句相望。",
+      "note": "保留诗册第26页的字形、字重、斜度与间距。四个动作落在 Growing Again 原白墙，越过第二、第三列玻璃的交接，从礁石句接向夜空。",
       "sourceBookPage": 26,
       "sourceBookPages": [
         26
@@ -1891,7 +1891,7 @@
         22.3021438
       ],
       "rotationY": -80,
-      "fontFamily": "authored-quiet",
+      "fontFamily": "Baskerville Regular / Semibold Italic",
       "weight": 400,
       "fontWidthScale": 1,
       "fontSize": 0.19,
@@ -1900,14 +1900,14 @@
       "align": "left",
       "color": "#42483F",
       "glassPanelId": "ga-poetry-title",
-      "note": "Growing与Again各出现一次；保留现有Domaine Sans Display原生路径、字号、字距和两行位置，撤去Again的两层淡影。",
+      "note": "Growing 用正体展开，Again 用收紧的半粗斜体向右接续。两行按墨迹右缘对齐，在原玻璃留出左下空白。",
       "letterSpacing": 0,
       "rotationInPlane": 0,
-      "typographyNote": "Growing与Again各出现一次；保留现有Domaine Sans Display原生路径、字号、字距和两行位置，撤去Again的两层淡影。",
+      "typographyNote": "Growing 用正体展开，Again 用收紧的半粗斜体向右接续。两行按墨迹右缘对齐，在原玻璃留出左下空白。",
       "rasterOverride": {
-        "path": "assets/typography/curation-20261117/glass-growing-single.png",
-        "sourceSVG": "assets/typography/curation-20261117/glass-growing-single.svg",
-        "sha256": "aca30b2d0d002bb38ef0cfb64d5f59d07f9db71efc0e6e1b4fe07fd25d6133a9",
+        "path": "site/poetry/trial22/glass-growing-r8.png",
+        "sourceSVG": "site/poetry/trial22/glass-growing-r8.svg",
+        "sha256": "54025676610f739cb85697fa4c4414b1ac16c2be245f397a8ac00851b2b211b0",
         "physicalWidth": 0.6,
         "physicalHeight": 1.54,
         "localCenterX": 0,
@@ -1943,27 +1943,27 @@
     },
     {
       "id": "book-wave-verbs",
-      "label": "它聚拢，它抬升，它倾覆，它盘旋。",
+      "label": "Growing Again · 它聚拢，它抬升，它倾覆，它盘旋。",
       "camera": [
-        2.54,
+        2.55,
         1.75,
-        22.1
+        25.23
       ],
       "target": [
-        0.033,
-        1.92,
-        22.39
+        4.967,
+        2.13,
+        25.36
       ],
       "portrait": {
         "camera": [
-          2.3,
+          2.26,
           1.75,
-          22.12
+          25.32
         ],
         "target": [
-          0.033,
-          1.9,
-          22.39
+          4.967,
+          2.2,
+          25.36
         ]
       },
       "framing": {
@@ -2426,13 +2426,13 @@
       "id": "curation-growing-return",
       "label": "Growing Again · 从B侧回望",
       "camera": [
-        2.2,
+        1.52,
         1.75,
-        27.58
+        28.1
       ],
       "target": [
-        4.33,
-        1.04,
+        4.4,
+        1.53,
         24.0
       ],
       "framing": {
@@ -2449,7 +2449,7 @@
       ],
       "target": [
         4.26,
-        1.1,
+        1.22,
         22.36
       ],
       "framing": {
@@ -4825,7 +4825,7 @@
         "extractionRegion": null,
         "excludedASCII": false,
         "text": "它聚拢，它抬升，它倾覆，它盘旋。\nit overturns,",
-        "note": "四个动作共用原稿第26页的字形、字重、斜度与间距。左侧长墙09上方接近折墙，隔通道与玻璃上的礁石句相望。"
+        "note": "保留诗册第26页的字形、字重、斜度与间距。四个动作落在 Growing Again 原白墙，越过第二、第三列玻璃的交接，从礁石句接向夜空。"
       },
       {
         "id": "night-sky",
@@ -5035,7 +5035,11 @@
           "v": 1.3360319656488553,
           "scale": 1
         }
-      }
+      },
+      "artistPositionsSHA": "18ec324d7d007ff7a201242d345bb3adb74df34dd36012203282e84472886e00",
+      "resetPreviousEditionIds": [
+        "waves"
+      ]
     },
     "artistArrangement": {
       "sourceLayoutSHA256": "e90a6d26372d33f4894b2b11c295846f693f5f9167912743ae0f041b1f92f4d4",

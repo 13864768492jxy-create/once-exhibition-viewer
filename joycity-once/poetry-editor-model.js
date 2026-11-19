@@ -5,8 +5,9 @@ const IDENTITY = Object.freeze({u: 0, v: 0, scale: 1});
 // These released layouts share every poem's coordinate system and support dimensions.
 const TRIAL20 = {revision: '20261118-trial20', sha: '04e5ead6ffd317af3851230e24312e7f4af5b149f4d0f6eca13fed8d80f0070b'};
 const TRIAL21 = {revision: '20261118-trial21', sha: 'ce7cad5654edf970e98ad0b5b642efd481e92e11cf3701c7384bad4d8b9ba247'};
-// Newest first. These exact releases share all 19 authored poem planes and support dimensions.
+// Newest first. Only the exact released editions can share or migrate a draft.
 const TRIAL22_EDITIONS = [
+  'd0b69742cae7c0d025a37a71956858d0acd50b8d898c1f8fbdb3b3ec232da7ab',
   '18ec324d7d007ff7a201242d345bb3adb74df34dd36012203282e84472886e00',
   'e90a6d26372d33f4894b2b11c295846f693f5f9167912743ae0f041b1f92f4d4',
   'dbb4144adca7abedd904fcb8ac1bbe5b99053891b8e09d58259c329d0d10d627',
@@ -223,19 +224,25 @@ export function createPoetryEditorModel({THREE, exhibition, layout, space, onCha
     if ((!current || draft.units != null) && draft.units !== 'metres') throw new Error('草稿位移单位须为米。');
     if (!plain(draft.transforms) || (draft.locks != null && !plain(draft.locks))) throw new Error('方案中的文字位置数据无效。');
     if (Object.keys(draft.transforms).some(id => !entries.has(id)) || Object.keys(draft.locks || {}).some(id => !entries.has(id))) throw new Error('方案含有当前展厅不存在的文字块。');
+    const artistPositionsEdition = TRIAL22_EDITIONS.indexOf(migration22?.artistPositionsSHA);
+    const draftEdition = TRIAL22_EDITIONS.indexOf(draft.baseLayoutSHA256);
+    const needsArtistTranslation = inherited ||
+      (previousEdition && (artistPositionsEdition < 0 || draftEdition > artistPositionsEdition));
     const next = {transforms: {}, locks: {}};
     for (const [id, entry] of entries) {
       const raw = draft.transforms[id] ?? IDENTITY;
       if (inherited && migration22?.addedIds.includes(id) && (id in draft.transforms || id in (draft.locks || {}))) {
         throw new Error('旧版草稿含有该版本尚未展出的文字。');
       }
-      if (inherited && migration22?.resetIds.includes(id)) {
+      const rehang = (inherited && migration22?.resetIds.includes(id)) ||
+        (previousEdition && migration22?.resetPreviousEditionIds?.includes(id));
+      if (rehang) {
         if (!plain(raw) || Object.keys(raw).length !== 3 || ![raw.u,raw.v,raw.scale].every(finite) || raw.scale < .25 || raw.scale > 2) {
           throw new Error('旧版文字数据无效。');
         }
         next.transforms[id] = {...IDENTITY};
       } else {
-        const applied = (!current && id in draft.transforms) && migration22?.wallTranslationsApplied?.[id];
+        const applied = (needsArtistTranslation && id in draft.transforms) && migration22?.wallTranslationsApplied?.[id];
         if (applied && (!plain(raw) || !finite(raw.u) || !finite(raw.v))) {
           throw new Error('旧版文字位置无效。');
         }
