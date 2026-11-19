@@ -5,9 +5,12 @@ const IDENTITY = Object.freeze({u: 0, v: 0, scale: 1});
 // These released layouts share every poem's coordinate system and support dimensions.
 const TRIAL20 = {revision: '20261118-trial20', sha: '04e5ead6ffd317af3851230e24312e7f4af5b149f4d0f6eca13fed8d80f0070b'};
 const TRIAL21 = {revision: '20261118-trial21', sha: 'ce7cad5654edf970e98ad0b5b642efd481e92e11cf3701c7384bad4d8b9ba247'};
-// Only the entrance changed between these two publications; the 19 poem planes stayed fixed.
-const PREVIOUS_TRIAL22 = '60ca842cd35313d089854b5107c27f9a99d26e15539fe11a6dc10661ad230a3e';
-const ENTRY_SPACING_TRIAL22 = '0c964905696d87ec632aff2f7eaf0c5c96606ffe03196e9aaf587ac355a5233a';
+// Newest first. These exact releases share all 19 authored poem planes and glyphs.
+const TRIAL22_EDITIONS = [
+  '5138830b57c0e9da3da86044cef09da78e84616d074bcc4a67a6c5f82a0bf6dc',
+  '0c964905696d87ec632aff2f7eaf0c5c96606ffe03196e9aaf587ac355a5233a',
+  '60ca842cd35313d089854b5107c27f9a99d26e15539fe11a6dc10661ad230a3e',
+];
 const DEFAULT_LOCKS = new Set(['across', 'across-gen']);
 const clone = value => JSON.parse(JSON.stringify(value));
 const finite = value => typeof value === 'number' && Number.isFinite(value);
@@ -54,8 +57,9 @@ export function createPoetryEditorModel({THREE, exhibition, layout, space, onCha
   const migration22 = layout.revision === '20261119-trial22' && layout.curationRevision?.sourceLayoutSHA256 === TRIAL21.sha
     ? layout.curationRevision.draftMigration : null;
   const ancestors = migration22 ? [TRIAL21,TRIAL20] : acceptsTrial20 ? [TRIAL20] : [];
-  const compatibleEdition = migration22 && sourceSHA === ENTRY_SPACING_TRIAL22 ? PREVIOUS_TRIAL22 : null;
-  const savedHashes = [sourceSHA, ...(compatibleEdition ? [compatibleEdition] : []), ...ancestors.map(base => base.sha)];
+  const editionIndex = migration22 ? TRIAL22_EDITIONS.indexOf(sourceSHA) : -1;
+  const previousEditions = editionIndex < 0 ? [] : TRIAL22_EDITIONS.slice(editionIndex + 1);
+  const savedHashes = [sourceSHA, ...previousEditions, ...ancestors.map(base => base.sha)];
   const entries = new Map(), values = new Map(), undoStack = [], redoStack = [];
   let transaction = null, disposed = false;
   exhibition.group.updateWorldMatrix(true, true);
@@ -209,7 +213,7 @@ export function createPoetryEditorModel({THREE, exhibition, layout, space, onCha
     if (!plain(draft) || draft.schema !== 'once-poetry-draft' || draft.version !== 1) throw new Error('这不是可读取的 ONCE 文字试排方案。');
     const current = draft.baseRevision === layout.revision && draft.baseLayoutSHA256 === sourceSHA;
     const inherited = ancestors.some(base => draft.baseRevision === base.revision && draft.baseLayoutSHA256 === base.sha);
-    const previousEdition = compatibleEdition !== null && draft.baseRevision === layout.revision && draft.baseLayoutSHA256 === compatibleEdition;
+    const previousEdition = draft.baseRevision === layout.revision && previousEditions.includes(draft.baseLayoutSHA256);
     if (!current && !inherited && !previousEdition) throw new Error('方案来自另一版展厅，请打开对应基准版本后再导入。');
     if ((!current || draft.units != null) && draft.units !== 'metres') throw new Error('草稿位移单位须为米。');
     if (!plain(draft.transforms) || (draft.locks != null && !plain(draft.locks))) throw new Error('方案中的文字位置数据无效。');
