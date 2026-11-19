@@ -7,6 +7,7 @@ const TRIAL20 = {revision: '20261118-trial20', sha: '04e5ead6ffd317af3851230e243
 const TRIAL21 = {revision: '20261118-trial21', sha: 'ce7cad5654edf970e98ad0b5b642efd481e92e11cf3701c7384bad4d8b9ba247'};
 // Newest first. These exact releases share all 19 authored poem planes and glyphs.
 const TRIAL22_EDITIONS = [
+  '6e17a65df9a5dad7acd2cfd7c64db7bf70e35490d5931b49d876147862e472d4',
   '5138830b57c0e9da3da86044cef09da78e84616d074bcc4a67a6c5f82a0bf6dc',
   '0c964905696d87ec632aff2f7eaf0c5c96606ffe03196e9aaf587ac355a5233a',
   '60ca842cd35313d089854b5107c27f9a99d26e15539fe11a6dc10661ad230a3e',

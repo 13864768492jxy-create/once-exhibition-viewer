@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createPoetryEditorModel } from './poetry-editor-model.js?v=20261119-trial22-entry-r2';
+import { createPoetryEditorModel } from './poetry-editor-model.js?v=20261119-trial22-entry-r3';
 import { createPoetryInkPicker } from './poetry-editor-picking.js?v=20261117-editor2';
 
 export function installPoetryEditor({exhibition, layout, layoutSourceText, space, host, getCamera, getControls, focusEntry, onActive}) {

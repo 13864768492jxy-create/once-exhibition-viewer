@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "revision": "20261119-trial22",
-  "sourceLayoutSHA256": "5138830b57c0e9da3da86044cef09da78e84616d074bcc4a67a6c5f82a0bf6dc",
+  "sourceLayoutSHA256": "6e17a65df9a5dad7acd2cfd7c64db7bf70e35490d5931b49d876147862e472d4",
   "imagePathBase": "poetry/trial22",
   "units": "metres",
   "colorSpace": "sRGB",
@@ -407,7 +407,7 @@
       "fontFamily": "AT ONCE wall lettering",
       "fontWeight": 400,
       "glyphMode": "fill",
-      "sha256": "9006db4e765125bcd6bd217bb6aba093ec11a95e2cde5869025048c0a78c110d",
+      "sha256": "cf394dd18aa17269e5d631c5283a4b724737e9b3c9a69dfb491f6fc095324d4d",
       "text": "AT ONCE\n姜昕宇 · JIANG XINYU\n前言 · FOREWORD\n花布从窗前垂下来。一把透明的椅子留在空泳池底。两张照片没有交代它们相隔多远。今天，它们之间只隔着一条可以走过的廊道。\n\n照片把光留下来。有些细节却要等我们走远，才从刚刚看过的画面里浮出来。也许是一道影子，也许是某个字，在回头的一刻，和另一面墙上的字相遇。",
       "rasterOrigin": "authored-override",
       "alphaPreservedByteForByte": false,
